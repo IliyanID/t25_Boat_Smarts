@@ -1,4 +1,4 @@
-# Preferences for _ILIYANID_
+# Preferences for _IliyanID_
 
 1. __Is it generally easier to reach you by text, electronic mail, voice mail or something else?  What hours?__ 
    * I can best be reached through text, slack, or discord.
