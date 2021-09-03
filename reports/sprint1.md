@@ -7,7 +7,7 @@
 ### *Tell them who we are.*
 
 ## Scrum Master
-### *firstname lastname*
+### *Iliyan Dimitrov*
 
 ## Definition of Done
 
@@ -35,7 +35,7 @@
 
 ## Planned Epics
 
-{REMOVE THIS:  Write paragraphs, not bullets.}
+*This is the summary
 
 ## Metrics
 
