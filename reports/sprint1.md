@@ -36,7 +36,8 @@
 ## Planned Epics
 
 * Team Identification & About Epic Summary
-* The goal of the Team Identification epic is to accomplish three large items. The first goal is that the team should choose a name and identify itself to the organization. The second goal is that the team number should be in the HTML tab name as well as the footer. Lastly, the last goal is to plan and distribute work properly utilizing the proper GitHub rules. For the About epic the goal is to create team preferences. We will have an image and mission statement for the team. We also need to have an image, name, and short bio for each team member. It goes to say that there should be a consistent style and formating. We also want to progressively add information to this file to reduce clutter.
+  * The goal of the Team Identification epic is to accomplish three large items. The first goal is that the team should choose a name and identify itself to the organization. The second goal is that the team number should be in the HTML tab name as well as the footer. Lastly, the last goal is to plan and distribute work properly utilizing the proper GitHub rules. 
+  * For the About epic the goal is to create team preferences. We will have an image and mission statement for the team. We also need to have an image, name, and short bio for each team member. It goes to say that there should be a consistent style and formating. We also want to progressively add information to this file to reduce clutter.
 
 
 
