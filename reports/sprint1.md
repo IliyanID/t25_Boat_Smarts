@@ -36,7 +36,7 @@
 ## Planned Epics
 
 * Team Identification
-We want 
+  * We want 
 
 ## Metrics
 
