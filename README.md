@@ -1,5 +1,7 @@
 # t25 - Boat Smarts
 
+![](team/images/25.jpg)
+
 | Last Name | First Name | CSU eName | GitHub Username | CSU email |
 |-----------|------------|-----------|-----------------|-----------|
 |    Holmes |    Andrew  |holmesaw   |holmesaw         |holmesaw@rams.colostate.edu|
