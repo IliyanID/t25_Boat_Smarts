@@ -36,7 +36,8 @@
 ## Planned Epics
 
 * Team Identification
-  * We want 
+  * The goal of this epic is to accomplish three large items. The first sprint is that the team should choose a name and identify itself to the orignization. The second major sprint is that the team number should be in the HTML tab name as well as the footer. Lastly, the last goal is to plan an and distrubte work properly utilizing the proper GitHub rules.
+
 
 ## Metrics
 
