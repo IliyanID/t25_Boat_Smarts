@@ -6,4 +6,4 @@
 | McCracken |    Derek   |dsmcc      |dsmccracken      |dsmcc@colostate.edu|
 |Cluett     |Caleb       |ccuett     |CalebCluett      |ccluett@colostate.edu|
 |Dimitrov   |Iliyan      |iliyan     |IliyanID         |iliyan@colostate.edu|
-
+|    Flight |    Matthew |   mstrikr |  matthewflight1 |mstrikr@rams.colostate.edu|
