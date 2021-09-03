@@ -1,4 +1,4 @@
-# Sprint # - *25* - *The Boat Smarts*
+# Sprint # 1 - *25* - *The Boat Smarts*
 
 ## Product Goal
 ### *The Product Goal is an easy-to-use mobile trip planning application that satisfies a global audience.*
