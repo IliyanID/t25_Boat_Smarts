@@ -1,4 +1,4 @@
-# Sprint # - *your team number* - *your team name*
+# Sprint #1 - *25* - *The Boat Smarts*
 
 ## Product Goal
 ### *The Product Goal is an easy-to-use mobile trip planning application that satisfies a global audience.*
@@ -7,7 +7,7 @@
 ### *Tell them who we are.*
 
 ## Scrum Master
-### *firstname lastname*
+### *Iliyan Dimitrov*
 
 ## Definition of Done
 
@@ -35,7 +35,11 @@
 
 ## Planned Epics
 
-{REMOVE THIS:  Write paragraphs, not bullets.}
+
+* The goal of the Team Identification epic is to accomplish three large items. The first goal is that the team should choose a name and identify itself to the organization. The second goal is that the team number should be in the HTML tab name as well as the footer. Lastly, the last goal is to plan and distribute work properly utilizing the proper GitHub rules. 
+* For the About epic the goal is to create team preferences. We will have an image and mission statement for the team. We also need to have an image, name, and short bio for each team member. It goes to say that there should be a consistent style and formating. We also want to progressively add information to this file to reduce clutter.
+
+
 
 ## Metrics
 
@@ -43,9 +47,9 @@ These metrics reflect what was planned at the beginning of the sprint and what w
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | *count* | *count* |
-| Tasks |  *count*   | *count* | 
-| Story Points |  *count*  | *count* | 
+| Epics | *2* | *count* |
+| Tasks |  *8*   | *count* | 
+| Story Points |  *11*  | *count* | 
 
 
 ## Scrums
