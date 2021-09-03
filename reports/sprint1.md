@@ -39,7 +39,7 @@
   * The goal of this epic is to accomplish three large items. The first sprint is that the team should choose a name and identify itself to the orignization. The second major sprint is that the team number should be in the HTML tab name as well as the footer. Lastly, the last goal is to plan an and distrubte work properly utilizing the proper GitHub rules.
 
 * About
- * The goal of this epic is to create the team preferences. We will have an image and mission statement for the team. We also need to have an image,name, and short bio for each team member. It goes to say that there should be a consistent style and formating. We also want to progressive add information to this file in order to reduce cluter.
+  * The goal of this epic is to create the team preferences. We will have an image and mission statement for the team. We also need to have an image,name, and short bio for each team member. It goes to say that there should be a consistent style and formating. We also want to progressive add information to this file in order to reduce cluter.
 
 
 ## Metrics
