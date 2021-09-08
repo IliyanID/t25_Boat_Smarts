@@ -13,7 +13,7 @@ export const teamData =
 export const memberData = [
     {
         name: "Caleb Cluett",
-        bio: "Caleb is going for a degree in Computer Science with a consentration in Networking and Secuitry. Caleb has other interests which include, includes Rock Climbing, Woodworking, and Reptiles",
+        bio: "Caleb is going for a degree in Computer Science with a concentration in Networking and Security. Caleb has other interests which includes Rock Climbing, Woodworking, and Reptiles",
         homeTown: "Fort Collins, Colorado",
         imagePath: calebPic
     },
