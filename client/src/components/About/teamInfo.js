@@ -31,7 +31,7 @@ export const memberData = [
     },
     {
         name: "Iliyan Dimitrov",
-        bio: "Iliyan is a third year Computer Science student with a focus in AI and Machine Learning at CSU. His interests consists of  web development, game development, and artificial intelligence development. After graduating, Iliyan would like to be a software developer within one of the big four FANG companies.",
+        bio: "Iliyan is a third-year Computer Science student with a focus in AI and Machine Learning at CSU. His interests consist of web, game, and AI development. After graduating, Iliyan would like to be a software developer within one of the big four FANG companies.",
         homeTown: "Parker",
         imagePath: IliyanDimitrov
     },
