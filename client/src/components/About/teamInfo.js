@@ -5,7 +5,7 @@ import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.png"
 
 export const teamData =
     {
-        teamName: "The Boat Smarts",
+        teamName: "Boat Smarts",
         missionStatement: "Mission Statement",
         imagePath: teamPic,
     };
