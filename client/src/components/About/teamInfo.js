@@ -1,5 +1,6 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import teamPic from "../../static/images/PlaceholderTeam.jpg";
+import calebPic from "../../static/images/CalebPic.jpg";
 
 export const teamData =
     {
@@ -11,10 +12,10 @@ export const teamData =
 
 export const memberData = [
     {
-        name: "Team Member 1",
-        bio: "Bio Here",
-        homeTown: "Hometown",
-        imagePath: memberPic
+        name: "Caleb Cluett",
+        bio: "Caleb is going for a degree in Computer Science with a concentration in Networking and Security. Caleb has other interests which includes Rock Climbing, Woodworking, and Reptiles",
+        homeTown: "Fort Collins, Colorado",
+        imagePath: calebPic
     },
     {
         name: "Team Member 2",
