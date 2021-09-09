@@ -8,7 +8,7 @@ import andrewPic from "../../static/images/AndrewPhoto.jpg";
 export const teamData =
     {
         teamName: "Boat Smarts",
-        missionStatement: "Mission Statement",
+        missionStatement: "Boat Smarts' mission is to create a complete product and learn to work as a team. We will use the development tools provided to us to ensure quality and stability. We will adhere to the SCRUM procedure to promote effective collaboration and communication.",
         imagePath: teamPic,
     };
 
