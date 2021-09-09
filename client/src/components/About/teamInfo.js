@@ -1,8 +1,8 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import teamPic from "../../static/images/teamimage.jpg";
-import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg"
+import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg";
 import calebPic from "../../static/images/CalebPic.jpg";
-
+import derekPic from "../../static/images/derekTeamPic.jpg";
 import andrewPic from "../../static/images/AndrewPhoto.jpg";
 import matthewPic from "../../static/images/matthewPic.jpg";
 
@@ -39,9 +39,9 @@ export const memberData = [
         imagePath: andrewPic
     },
     {
-        name: "Team Member 5",
-        bio: "Bio Here",
-        homeTown: "Hometown",
-        imagePath: memberPic
+        name: "Derek McCracken",
+        bio: "Derek is in his final year of the second bachelor’s program in Computer Science at CSU. His interests include front-end design and Human Computer Interaction. After graduating, Derek would like to work as a front-end engineer for a big tech company.",
+        homeTown: "Austin, Texas",
+        imagePath: derekPic
     },
 ];
