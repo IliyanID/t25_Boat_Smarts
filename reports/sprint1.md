@@ -59,7 +59,7 @@ The #*task* numbers refer to the issue numbers in GitHub.
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | #*task, ...* | #*task, ...* | *none* | 
+| *9/8/2021* | #*3, 6, 7, 8, 32, 34* | #*9, 12, 13, 14, 33, 35* | *none* | 
 
 
 ## Review

@@ -4,6 +4,7 @@ import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg"
 import calebPic from "../../static/images/CalebPic.jpg";
 import derekPic from "../../static/images/derekTeamPic.jpg";
 import andrewPic from "../../static/images/AndrewPhoto.jpg";
+import matthewPic from "../../static/images/matthewPic.jpg";
 
 export const teamData =
     {
@@ -26,10 +27,10 @@ export const memberData = [
         imagePath: IliyanDimitrov
     },
     {
-        name: "Derek McCracken",
-        bio: "Derek is in his final year of the second bachelor’s program in Computer Science at CSU. His interests include front-end design and Human Computer Interaction. After graduating, Derek would like to work as a front-end engineer for a big tech company.",
-        homeTown: "Austin, Texas",
-        imagePath: derekPic
+        name: "Matthew Flight",
+        bio: "Matthew is getting his undergraduate degree in Computer Science with a concentration in Networks and Security. He is interested in artificial intelligence and algorithms for security like blockchain. He also likes rock climbing and sleeping.",
+        homeTown: "Wheaton, Illinois",
+        imagePath: matthewPic
     },
     {
         name: "Andrew Holmes",
@@ -38,9 +39,9 @@ export const memberData = [
         imagePath: andrewPic
     },
     {
-        name: "Team Member 5",
-        bio: "Bio Here",
-        homeTown: "Hometown",
-        imagePath: memberPic
+        name: "Derek McCracken",
+        bio: "Derek is in his final year of the second bachelor’s program in Computer Science at CSU. His interests include front-end design and Human Computer Interaction. After graduating, Derek would like to work as a front-end engineer for a big tech company.",
+        homeTown: "Austin, Texas",
+        imagePath: derekPic
     },
 ];
