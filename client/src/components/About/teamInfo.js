@@ -1,5 +1,5 @@
 import memberPic from "../../static/images/Placeholder.jpg";
-import teamPic from "../../../../team/images/25.jpg";
+import teamPic from "../../static/images/teamimage.jpg";
 import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg"
 import calebPic from "../../static/images/CalebPic.jpg";
 
