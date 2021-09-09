@@ -4,6 +4,7 @@ import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg"
 import calebPic from "../../static/images/CalebPic.jpg";
 
 import andrewPic from "../../static/images/AndrewPhoto.jpg";
+import andrewPic from "../../static/images/matthewPic.jpg";
 
 export const teamData =
     {
@@ -26,10 +27,10 @@ export const memberData = [
         imagePath: IliyanDimitrov
     },
     {
-        name: "Team Member 3",
-        bio: "Bio Here",
-        homeTown: "Hometown",
-        imagePath: memberPic
+        name: "Matthew Flight",
+        bio: "Matthew is getting his undergraduate degree in Computer Science with a concentration in Networks and Security. He is interested in artificial intelligence and algorithms for security like blockchain. He also likes rock climbing and sleeping.",
+        homeTown: "Wheaton, Illinois",
+        imagePath: matthewPic
     },
     {
         name: "Andrew Holmes",
