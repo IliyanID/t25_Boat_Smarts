@@ -3,6 +3,8 @@ import teamPic from "../../../../team/images/25.jpg";
 import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg"
 import calebPic from "../../static/images/CalebPic.jpg";
 
+import andrewPic from "../../static/images/AndrewPhoto.jpg";
+
 export const teamData =
     {
         teamName: "Boat Smarts",
@@ -18,10 +20,10 @@ export const memberData = [
         imagePath: calebPic
     },
     {
-        name: "Team Member 2",
-        bio: "Bio Here",
-        homeTown: "Hometown",
-        imagePath: memberPic
+        name: "Iliyan Dimitrov",
+        bio: "Iliyan is a third-year Computer Science student with a focus in AI and Machine Learning at CSU. His interests consist of web, game, and AI development. After graduating, Iliyan would like to be a software developer within one of the big four FANG companies.",
+        homeTown: "Parker, Colorado",
+        imagePath: IliyanDimitrov
     },
     {
         name: "Team Member 3",
@@ -30,10 +32,10 @@ export const memberData = [
         imagePath: memberPic
     },
     {
-        name: "Iliyan Dimitrov",
-        bio: "Iliyan is a third-year Computer Science student with a focus in AI and Machine Learning at CSU. His interests consist of web, game, and AI development. After graduating, Iliyan would like to be a software developer within one of the big four FANG companies.",
-        homeTown: "Parker, Colorado",
-        imagePath: IliyanDimitrov
+        name: "Andrew Holmes",
+        bio: "Andrew is a 4th year Computer Science and Mathematics Education student at CSU. He has interests in algorithm analysis, artificial intelligence, and pedagogy. After finishing his bachelor's degree, Andrew plans on pursuing a master's degree and teaching Computer Science at a university level.",
+        homeTown: "Highlands Ranch, Colorado",
+        imagePath: andrewPic
     },
     {
         name: "Team Member 5",
