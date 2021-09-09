@@ -59,7 +59,7 @@ The #*task* numbers refer to the issue numbers in GitHub.
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *9/8/21* | #*Set the team number and name on the server., Set the team number and name in the client, Add Iliyan's image, name, and short bio,Add Andrew's image, name, and short bio* | #*Create a team image, Write a team mission statement,Add Matthew's image, name, and short bio,Add Caleb's image, name, and short bio* | *none* | 
+| *9/8/21* | #*Set the team number and name on the server, #Set the team number and name in the client, Add Iliyan's image, name, and short bio,Add Andrew's image, name, and short bio* | #*Create a team image, Write a team mission statement,Add Matthew's image, name, and short bio,Add Caleb's image, name, and short bio* | *none* | 
 
 
 ## Review
