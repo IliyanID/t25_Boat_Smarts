@@ -4,7 +4,7 @@ import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg"
 import calebPic from "../../static/images/CalebPic.jpg";
 
 import andrewPic from "../../static/images/AndrewPhoto.jpg";
-import andrewPic from "../../static/images/matthewPic.jpg";
+import matthewPic from "../../static/images/matthewPic.jpg";
 
 export const teamData =
     {
