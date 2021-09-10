@@ -59,18 +59,21 @@ The #*task* numbers refer to the issue numbers in GitHub.
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *9/8/2021* | #*3, 6, 7, 8, 32, 34* | #*9, 12, 13, 14, 33, 35* | *none* | 
+| *9/8/2021* | #*6, 7, 8, 32, 34* | #*12, 13, 14, 33, 35* | *none* | 
 
 
 ## Review
 
 #### Epics completed  
-
+* We have completed the About Epic where we were able to create a team image and mission statement together. We also completed our Bios as well as maintained our existing styling.
+* We have completed the Team Identification Epic where we had to choose a team name, update the project, and distribute work
 #### Epics not completed 
-
+* We were able to complete all planned epics during this sprint
 
 ## Retrospective
 
 #### Things that went well
+* Our team was able to stay on track and complete the necessary tasks associated with the sprint. We consistently did work throughout the sprint. We held multiple meetings where we worked together to complete larger tasks. For the most part, everyone was able to follow the proper etiquette when completing tasks. When mistakes did occur people quickly announced them and took steps in fixing them. People were quick to respond on Slack when needing help or merging PRs.
 
 #### Things that we need to improve
+* Something we could work on is to be more consistent with the number of SCRUM meetings we have. Make sure all PRs are linked with a necessary task. Be extra careful in following proper GitHub etiquette.
