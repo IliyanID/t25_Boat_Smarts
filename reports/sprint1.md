@@ -73,7 +73,7 @@ The #*task* numbers refer to the issue numbers in GitHub.
 ## Retrospective
 
 #### Things that went well
-* Our team was able to stay on track and complete the necessary tasks associated with the sprint. We managed to stay on track and consistently did work throughout the sprint. We held multiple meetings where we worked together to complete larger tasks. For the most part, everyone was able to follow the proper etiquette when completing tasks. When mistakes did occur people quickly announced them and took steps in fixing them. People were quick to respond on Slack when needing help or merging PRs.
+* Our team was able to stay on track and complete the necessary tasks associated with the sprint. We consistently did work throughout the sprint. We held multiple meetings where we worked together to complete larger tasks. For the most part, everyone was able to follow the proper etiquette when completing tasks. When mistakes did occur people quickly announced them and took steps in fixing them. People were quick to respond on Slack when needing help or merging PRs.
 
 #### Things that we need to improve
-* Be more consistent with the number of SCRUM meetings. Make sure all PRs are linked with a necessary task. Be extra careful in following proper GitHub etiquette.
+* Something we could work on is to be more consistent with the number of SCRUM meetings we have. Make sure all PRs are linked with a necessary task. Be extra careful in following proper GitHub etiquette.
