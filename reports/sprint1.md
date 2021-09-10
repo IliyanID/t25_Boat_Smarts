@@ -65,7 +65,7 @@ The #*task* numbers refer to the issue numbers in GitHub.
 ## Review
 
 #### Epics completed  
-* We have completed the About Epic where we were able to create an team image and missino statement toghetor. We also completed our Bios as well as maintained our exisiting styling.
+* We have completed the About Epic where we were able to create a team image and mission statement together. We also completed our Bios as well as maintained our existing styling.
 * We have completed the Team Identification Epic where we had to choose a team name, update the project, and distribute work
 #### Epics not completed 
 * We were able to complete all planned epics during this sprint
@@ -73,6 +73,7 @@ The #*task* numbers refer to the issue numbers in GitHub.
 ## Retrospective
 
 #### Things that went well
-* I believe that
+* Our team was able to stay on track and complete the necessary tasks associated with the sprint. We managed to stay on track and consistently did work throughout the sprint. We held multiple meetings where we worked together to complete larger tasks. For the most part, everyone was able to follow the proper etiquette when completing tasks. When mistakes did occur people quickly announced them and took steps in fixing them. People were quick to respond on Slack when needing help or merging PRs.
 
 #### Things that we need to improve
+* Be more consistent with the number of SCRUM meetings. Make sure all PRs are linked with a necessary task. Be extra careful in following proper GitHub etiquette.
