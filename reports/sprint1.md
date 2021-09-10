@@ -65,12 +65,14 @@ The #*task* numbers refer to the issue numbers in GitHub.
 ## Review
 
 #### Epics completed  
-
+* We have completed the About Epic where we were able to create an team image and missino statement toghetor. We also completed our Bios as well as maintained our exisiting styling.
+* We have completed the Team Identification Epic where we had to choose a team name, update the project, and distribute work
 #### Epics not completed 
-
+* We were able to complete all planned epics during this sprint
 
 ## Retrospective
 
 #### Things that went well
+* I believe that
 
 #### Things that we need to improve
