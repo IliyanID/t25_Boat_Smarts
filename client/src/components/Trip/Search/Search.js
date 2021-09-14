@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import {
     InputGroup,
     InputGroupAddon,
-    InputGroupButtonDropdown,
     Input,
     Button
 } from 'reactstrap';
@@ -10,10 +9,14 @@ import {
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
 
+    function handleChange(e) {
+        setUserInput(e.target.value)
+    };
+
     return (
         <>
         <InputGroup>
-            <Input value={userInput} onChange={(e) => {setUserInput(e.target.value)}}/>
+            <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
                 <Button>Search</Button>
             </InputGroupAddon>
@@ -21,3 +24,4 @@ export default function Search(props) {
         </>
     )
 }
+
