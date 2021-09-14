@@ -144,6 +144,7 @@ Only minor changes to text constants are required.
 
 ### User Interface
 ![base](/team/images/Sprint2Design.jpg)
+![base2](/team/images/Sprint2DesignPg2.png)
 ### Client Components
 
 We will be adding three components to the base architecture during this sprint.
