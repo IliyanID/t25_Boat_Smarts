@@ -37,19 +37,19 @@ public class FindPlaces {
         this.name = name;
     }
 
-    public float getlatitude() {
+    public String getlatitude() {
         return this.latitude;
     }
 
-    public void setlatitude(float latitude) {
+    public void setlatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public float getlongitude() {
+    public String getlongitude() {
         return this.longitude;
     }
 
-    public void setlongitude(float longitude) {
+    public void setlongitude(String longitude) {
         this.longitude = longitude;
     }
 
@@ -61,11 +61,11 @@ public class FindPlaces {
         this.id = id;
     }
 
-    public int getaltitude() {
+    public String getaltitude() {
         return this.altitude;
     }
 
-    public void setaltitude(int altitude) {
+    public void setaltitude(String altitude) {
         this.altitude = altitude;
     }
 
