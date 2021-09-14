@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useRef} from "react";
 import {
     InputGroup,
     InputGroupAddon,
     Input,
     Button
 } from 'reactstrap';
+import {sendAPIRequest} from "../../../utils/restfulAPI";
 
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
@@ -13,12 +14,18 @@ export default function Search(props) {
         setUserInput(e.target.value)
     };
 
+    function handleClick(e) {
+        e.preventDefault();
+        const requestBody = findRequestBody();
+        const response = sendAPIRequest(requestBody);
+    }
+
     return (
         <>
         <InputGroup>
             <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
-                <Button>Search</Button>
+                <Button onClick={handleClick}>Search</Button>
             </InputGroupAddon>
         </InputGroup>
         </>
