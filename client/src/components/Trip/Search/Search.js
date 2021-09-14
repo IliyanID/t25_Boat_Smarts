@@ -16,11 +16,19 @@ export default function Search(props) {
         setUserInput(e.target.value)
     };
 
-    function handleClick(e) {
+    async function handleClick(e) {
         e.preventDefault();
-        const requestBody = findRequestBody();
-        const response = sendAPIRequest(requestBody, currentURL + '/api/find');
+        const requestBody = createFindRequestBody();
+        const response = await sendAPIRequest(requestBody, currentURL + '/api/find');
         setSearchResults(response);
+    }
+
+    function createFindRequestBody() {
+        return {
+            requestType: 'find',
+            match: userInput,
+            limit: 0
+        }
     }
 
     return (
