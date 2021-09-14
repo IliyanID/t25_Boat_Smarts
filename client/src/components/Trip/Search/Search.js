@@ -13,7 +13,7 @@ export default function Search(props) {
     return (
         <>
         <InputGroup>
-            <Input />
+            <Input value={userInput} onChange={(e) => {setUserInput(e.target.value)}}/>
             <InputGroupAddon addonType="append">
                 <Button>Search</Button>
             </InputGroupAddon>
