@@ -34,6 +34,7 @@
 
 
 ## Planned Epics
+#### Where Am I?
 The 'Where Am I?' epic allows the user to add their currently location to their trip, rather than a single fixed point on CSU campus. The feature will use GPS to generate the point to be added to the trip, without searching and selecting from the search bar. Potentially, when adding a user's location to their trip, a query is made to the database to see if the user's current location returns a named location to be added to the trip, such as Coors Field, when standing outside the venue, otherwise returning a pin "my location".
 
 ## Metrics
