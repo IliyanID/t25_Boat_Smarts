@@ -2,23 +2,36 @@ package com.tco.requests;
 
 import java.util.ArrayList;
 
+import com.tco.misc.FindPlaces;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
 
 public class FindRequest extends Request {
 
     private String match;
-    private final transient Logger log = LoggerFactory.getLogger(FindRequest.class);
-    private ArrayList<String> type;
-    private ArrayList<String> where;
     private int limit;
+    private int found;
+    private ArrayList<FindPlaces> places;
+    private final transient Logger log = LoggerFactory.getLogger(FindRequest.class);
+
+
+
 
     @Override
     public void buildResponse() {
         match = getmatch();
-        type = new ArrayList<>();
-        where = new ArrayList<>();
         limit = getlimit();
+        places = new ArrayList<>();
+
+
+
+        //Load findPlace with result and add it to places when it gets implemented
+        //places.add(new FindPlace());
+
+        found = places.size();
 
         log.trace("buildResponse -> {}", this);
     }
