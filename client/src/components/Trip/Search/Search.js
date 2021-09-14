@@ -9,6 +9,8 @@ import {sendAPIRequest} from "../../../utils/restfulAPI";
 
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
+    const [searchResults, setSearchResults] = useState({});
+    const currentURL = useRef();
 
     function handleChange(e) {
         setUserInput(e.target.value)
@@ -17,7 +19,8 @@ export default function Search(props) {
     function handleClick(e) {
         e.preventDefault();
         const requestBody = findRequestBody();
-        const response = sendAPIRequest(requestBody);
+        const response = sendAPIRequest(requestBody, currentURL + '/api/find');
+        setSearchResults(response);
     }
 
     return (
