@@ -146,6 +146,15 @@ Only minor changes to text constants are required.
 ![base](/team/images/Sprint2Design.jpg)
 ### Client Components
 
+We will be adding three components to the base architecture during this sprint.
+*Search component will render the search bar
+*Results component will render the search results
+*LocateMe component will render over the map which will find the user's location and query about adding location to trip
+
+The Planner component will render the Search component. The Search component will render the Results component.
+
+![components1](images/ComponentsSprint2.png)
+
 ### Server Classes
 -add endpoint
 -add FindRequest.java
