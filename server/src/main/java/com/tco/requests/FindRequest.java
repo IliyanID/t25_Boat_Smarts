@@ -29,7 +29,7 @@ public class FindRequest extends Request {
 
 
         //Load findPlace with result and add it to places when it gets implemented
-        //places.add(new FindPlace());
+        //places.add(new FindPlaces());
 
         found = places.size();
 
