@@ -15,12 +15,11 @@ public class FindRequest extends Request {
 
     @Override
     public void buildResponse() {
-        match = "";
+        match = getmatch();
         type = new ArrayList<>();
         where = new ArrayList<>();
-        limit = 0;
-        type.add("");
-        where.add("");
+        limit = getlimit();
+
         log.trace("buildResponse -> {}", this);
     }
 
@@ -29,6 +28,21 @@ public class FindRequest extends Request {
 
     public FindRequest() {
         this.requestType = "find";
+    }
+
+    //Called automatically via GSON data decentralization
+    public String getmatch(){
+        return match;
+    }
+    public void setmatch(String match){
+        this.match = match;
+    }
+
+    public int getlimit(){
+        return limit;
+    }
+    public void setlimit(int limit){
+        this.limit = limit;
     }
 
 }
