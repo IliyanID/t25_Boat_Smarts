@@ -34,6 +34,8 @@
 
 
 ## Planned Epics
+#### Interoperability
+This epic prepares the client to interact with other services. The user should be able to connect the client to any server which implements the protocol. Upon changing servers, the client should list the features available in the new server and warn the user if any of the necesary features are not implemented.
 #### Where Am I?
 The 'Where Am I?' epic will allow the user to add their current location to their trip, rather than a single fixed point on CSU campus. The feature will use GPS to generate the point to be added to the trip, without searching and selecting from the search bar. Potentially, when adding a user's location to their trip, a query is made to the database to see if the user's current location returns a named location to be added to the trip, such as Coors Field, when standing outside the venue, otherwise returning a pin "my location". The app will update the user's location so that they will be able to see their current location on the map.
 
