@@ -15,6 +15,7 @@ export default function ServerSettings(props) {
                 serverSettings={props.serverSettings}
                 serverName={getCurrentServerName(config, props.serverSettings)}
                 validServer={validServer}
+                features={getCurrentFeatures(config,props.serverSettings)}
             />
             <Footer
                 config={config}
@@ -35,6 +36,17 @@ function getCurrentServerName(config, serverSettings) {
         return serverSettings.serverConfig.serverName;
     }
     return "";
+}
+
+function getCurrentFeatures(config, serverSettings){
+    if(config && config.features)
+        return "[" + config.features.map((item)=>{return item + " "}) + "]";
+    
+    else if(serverSettings && serverSettings.features)
+        return "[" + serverSettings.features.map((item)=>{return item + " "}) + "]";
+    
+    else
+        return "None"
 }
 
 function Header(props) {
@@ -60,6 +72,7 @@ function Body(props) {
             <Container>
                 <SettingsRow label="Name" value={props.serverName} />
                 <SettingsRow label="URL" value={urlInput} />
+                <SettingsRow label="Features" value={props.features} />
             </Container>
         </ModalBody>
     );
