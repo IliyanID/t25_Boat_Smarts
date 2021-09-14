@@ -144,6 +144,7 @@ Only minor changes to text constants are required.
 
 ### User Interface
 ![base](/team/images/Sprint2Design.jpg)
+![base](/team/images/Sprint2DesignPg2.jpg)
 ### Client Components
 
 ### Server Classes
