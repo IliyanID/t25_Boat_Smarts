@@ -143,7 +143,7 @@ Only minor changes to text constants are required.
 # Sprint 2
 
 ### User Interface
-![base](https://github.com/CSU-CS-314-Fall-2021/t25/blob/sprint2md_picture/team/images/Sprint2Design.jpg?raw=true)
+![base](team/images/Sprint2Design.jpg)
 ### Client Components
 
 ### Server Classes
