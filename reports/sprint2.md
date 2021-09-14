@@ -34,6 +34,8 @@
 
 
 ## Planned Epics
+#### Find Places
+The 'Find Places' epic will use a search bar to get user input and search for places that match the string. The matching places will appear as a list with expandable details and the option to add the place to the user's trip.
 #### Interoperability
 This epic prepares the client to interact with other services. The user should be able to connect the client to any server which implements the protocol. Upon changing servers, the client should list the features available in the new server and warn the user if any of the necesary features are not implemented.
 #### Where Am I?
@@ -48,7 +50,7 @@ The Map will be centered around the selected location.
 | --- | ---: | ---: |
 | Epics | 4 | *count* |
 | Tasks |  25   | *count* | 
-| Story Points |  90  | *sum* | 
+| Story Points |  45  | *sum* | 
 
 
 ## Scrums
