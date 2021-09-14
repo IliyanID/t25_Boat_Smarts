@@ -50,7 +50,7 @@ The Map will be centered around the selected location.
 | --- | ---: | ---: |
 | Epics | 4 | *count* |
 | Tasks |  25   | *count* | 
-| Story Points |  90  | *sum* | 
+| Story Points |  45  | *sum* | 
 
 
 ## Scrums
