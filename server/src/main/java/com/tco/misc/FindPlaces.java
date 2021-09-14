@@ -1,10 +1,10 @@
 package com.tco.misc;
 public class FindPlaces {
 
-    private float latitude;
-    private float longitude;
+    private String latitude;
+    private String longitude;
     private String id;
-    private int altitude;
+    private String altitude;
     private String municipality;
     private String type;
     private String region;
@@ -17,10 +17,10 @@ public class FindPlaces {
     Constructor used for testing purposes; Shouldn't be called during execution
     */
     public FindPlaces(){
-        this.latitude = 0;
-        this.longitude = 0;
-        this.id = "";
-        this.altitude = 0;
+        this.latitude = "0";
+        this.longitude = "0";
+        this.id = "0";
+        this.altitude = "0";
         this.municipality = "";
         this.type = "";
         this.region = "";
