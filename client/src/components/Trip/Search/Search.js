@@ -15,7 +15,6 @@ export default function Search(props) {
         <InputGroup>
             <Input />
             <InputGroupAddon addonType="append">
-                // TODO: add onClick property to Button
                 <Button>Search</Button>
             </InputGroupAddon>
         </InputGroup>
