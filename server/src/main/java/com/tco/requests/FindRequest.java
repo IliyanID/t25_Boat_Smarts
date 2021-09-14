@@ -30,7 +30,7 @@ public class FindRequest extends Request {
         this.requestType = "find";
     }
 
-    //Called automatically via GSON data decentralization
+    //Called automatically via GSON data deserialized
     public String getmatch(){
         return match;
     }
