@@ -148,17 +148,20 @@ Only minor changes to text constants are required.
 ### Client Components
 
 We will be adding three components to the base architecture during this sprint.
-*Search component will render the search bar
-*Results component will render the search results
-*LocateMe component will render over the map which will find the user's location and query about adding location to trip
+* Search component will render the search bar
+* Results component will render the search results
+* LocateMe component will render over the map which will find the user's location and query about adding location to trip
 
 The Planner component will render the Search component. The Search component will render the Results component.
 
 ![components1](images/ComponentsSprint2.png)
 
 ### Server Classes
--add endpoint
--add FindRequest.java
+We will be adding two items to the server structure
+* FindRequest.json will be used to validate the incoming find requests
+* FindRequest.java will handle querying the database and building the response
+
+The existing ConfigRequest class will be modified so that *find is listed as a supported opperation.
 
 # Sprint 3
 # Sprint 4 
