@@ -3,6 +3,8 @@ import {ListGroup, ListGroupItem} from 'reactstrap';
 
 export default function Results () {
     const results = props.searchResults;
+    const places = results.places;
+    const placesFound = results.found;
 
     return (
         <ListGroup>
