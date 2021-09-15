@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import Map from './Map/Map';
 import Search from './Search/Search';
