@@ -8,6 +8,7 @@ import { useToggle } from '../hooks/useToggle';
 import { LOG } from '../utils/constants';
 import { getOriginalServerUrl, sendAPIRequest, SCHEMAS } from '../utils/restfulAPI';
 
+export let missingFeatures = []
 export default function Page(props) {
 	const [showAbout, toggleAbout] = useToggle(false);
 	const [serverSettings, processServerConfigSuccess] = useServerSettings(props.showMessage);
@@ -45,8 +46,9 @@ function useServerSettings(showMessage) {
 		setServerUrl(url);
 	}
 
-	function missingFeaturesExists(missingFeatures,configResponse){
-		SCHEMAS['where'] = 'S'
+	function missingFeaturesExists(configResponse){
+		//Uncomment Below to cause missing feature error
+		//SCHEMAS['where'] = 'S'
 		for(let feature in SCHEMAS){
 			if(!configResponse.features.includes(feature))
 				missingFeatures.push(feature)
@@ -59,8 +61,7 @@ function useServerSettings(showMessage) {
 		const configResponse = await sendAPIRequest({ requestType: "config" }, serverUrl);
 		if (configResponse) {
 
-			let missingFeatures = []
-			if(missingFeaturesExists(missingFeatures,configResponse)){
+			if(missingFeaturesExists(configResponse)){
 				showMessage('Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.','error')
 			}
 			processServerConfigSuccess(configResponse, serverUrl);
