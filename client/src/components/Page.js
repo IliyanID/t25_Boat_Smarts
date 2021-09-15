@@ -6,7 +6,7 @@ import About from './About/About';
 import Planner from './Trip/Planner';
 import { useToggle } from '../hooks/useToggle';
 import { LOG } from '../utils/constants';
-import { getOriginalServerUrl, sendAPIRequest } from '../utils/restfulAPI';
+import { getOriginalServerUrl, sendAPIRequest, SCHEMAS } from '../utils/restfulAPI';
 
 export default function Page(props) {
 	const [showAbout, toggleAbout] = useToggle(false);
@@ -45,9 +45,24 @@ function useServerSettings(showMessage) {
 		setServerUrl(url);
 	}
 
+	function missingFeaturesExists(missingFeatures,configResponse){
+		SCHEMAS['where'] = 'S'
+		for(let feature in SCHEMAS){
+			if(!configResponse.features.includes(feature))
+				missingFeatures.push(feature)
+		}
+
+		return missingFeatures.length > 0
+	}
+
 	async function sendConfigRequest() {
 		const configResponse = await sendAPIRequest({ requestType: "config" }, serverUrl);
 		if (configResponse) {
+
+			let missingFeatures = []
+			if(missingFeaturesExists(missingFeatures,configResponse)){
+				showMessage('Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.','error')
+			}
 			processServerConfigSuccess(configResponse, serverUrl);
 		} else {
 			setServerConfig(null);
