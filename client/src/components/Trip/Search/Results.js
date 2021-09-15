@@ -17,7 +17,7 @@ export default function Results(props) {
     return (
         <ListGroup>
             {places && places.map((place, i) => (
-                <ListGroupItem>
+                <ListGroupItem key={place.name+place.id}>
                     <SinglePlace place={place} index={i} />
                 </ListGroupItem>
             ))}
@@ -28,13 +28,12 @@ export default function Results(props) {
 function SinglePlace(props) {
     const [isOpen, toggle] = useToggle(false);
     const place = props.place;
-    const toggleSelector = "#" + place.id;
 
     return (
-        <Card id={place.id}>
+        <Card key={place.name} id={place.name}>
             <CardHeader>{place.name}</CardHeader>
             <CardBody>
-                <UncontrolledCollapse toggler={toggleSelector}>
+                <UncontrolledCollapse toggler={place.name}>
                     <p><strong>Municipality:</strong> {place.municipality}</p>
                     <p><strong>Country:</strong> {place.country}</p>
                     <p><strong>Region:</strong> {place.region}</p>
