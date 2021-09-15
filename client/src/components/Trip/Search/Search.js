@@ -9,7 +9,6 @@ import {sendAPIRequest, getOriginalServerUrl} from "../../../utils/restfulAPI";
 
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
-    const [searchResults, setSearchResults] = useState({});
     const currentURL = getOriginalServerUrl();
 
     function handleChange(e) {

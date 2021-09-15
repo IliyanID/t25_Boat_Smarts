@@ -7,6 +7,7 @@ import { usePlaces } from '../../hooks/usePlaces';
 
 export default function Planner() {
     const [places, selectedIndex, placeActions] = usePlaces();
+    const [searchResults, setSearchResults] = useState({});
 
     return (
         <Container>
@@ -15,7 +16,7 @@ export default function Planner() {
             </Section>
             <br />
             <Section>
-                <Search />
+                <Search searchResults={searchResults} setSearchResults={setSearchResults} />
             </Section>
             <br />
             <Section>
