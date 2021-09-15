@@ -52,6 +52,7 @@ The Map will be centered around the selected location.
 | Tasks |  25   | *count* | 
 | Story Points |  45  | *sum* | 
 
+It was difficult to get a good estimate of our abilities as a team last sprint since there was so little tobe done. We decided that these 4 epics would give us enough to do and create a good v2 product without overwhelming us. We ended up waiting until the last minute with some parts of sprint 1 so we will have to keep on top of it and not get behind.
 
 ## Scrums
 
