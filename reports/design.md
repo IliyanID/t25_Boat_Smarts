@@ -143,8 +143,15 @@ Only minor changes to text constants are required.
 # Sprint 2
 
 ### User Interface
+
+Our Search and Results components will be rendered below the map and above the trip. Each of the elements of the results will have collapsible details and an option to add the location to the user's trip.
+
 ![base](/team/images/Sprint2Design.jpg)
+
+The server connection modal, where the server connection can be altered, has been updated to include the list of features. There will also be an error pop-up to notify the user of any missing features.
+
 ![base2](/team/images/Sprint2DesignPg2.png)
+
 ### Client Components
 
 We will be adding three components to the base architecture during this sprint.
