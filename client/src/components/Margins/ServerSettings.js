@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Col, Container, Input, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { useServerInputValidation } from '../../hooks/useServerInputValidation';
+import { missingFeatures } from '../Page'
 
 export default function ServerSettings(props) {
     const [serverInput, setServerInput, config, validServer, resetModal]
@@ -73,6 +74,7 @@ function Body(props) {
                 <SettingsRow label="Name" value={props.serverName} />
                 <SettingsRow label="URL" value={urlInput} />
                 <SettingsRow label="Features" value={props.features} />
+                {(missingFeatures.length>0) && <SettingsRow label="Missing Features" value={'[' + missingFeatures.map((feature)=>{return feature}) + ']'}/>}
             </Container>
         </ModalBody>
     );
@@ -81,10 +83,10 @@ function Body(props) {
 function SettingsRow({label, value}) {
     return (
         <Row className="my-2 vertical-center">
-            <Col xs={3}>
+            <Col xs={4}>
                 {label}:
             </Col>
-            <Col xs={9}>
+            <Col xs={8}>
                 {value}
             </Col>
         </Row>

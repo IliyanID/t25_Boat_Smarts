@@ -3,7 +3,7 @@ import * as configSchema from '../../schemas/ConfigResponse';
 import * as findSchema from '../../schemas/FindResponse';
 import { LOG } from './constants';
 
-const SCHEMAS = {
+export const SCHEMAS = {
     config: configSchema,
     find: findSchema
 }

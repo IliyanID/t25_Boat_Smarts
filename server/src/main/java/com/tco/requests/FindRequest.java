@@ -25,7 +25,7 @@ public class FindRequest extends Request {
         places = new ArrayList<>();
 
         //Load findPlace with result and add it to places when it gets implemented
-        //places.add(new FindPlaces());
+        places.add(new FindPlaces());
 
         found = places.size();
         log.trace("buildResponse -> {}", this);
