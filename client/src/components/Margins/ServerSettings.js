@@ -74,7 +74,7 @@ function Body(props) {
                 <SettingsRow label="Name" value={props.serverName} />
                 <SettingsRow label="URL" value={urlInput} />
                 <SettingsRow label="Features" value={props.features} />
-                {(missingFeatures.length>0)?<SettingsRow label="Missing Features" value={'[' + missingFeatures.map((feature)=>{return feature}) + ']'}/>:<></>}
+                {(missingFeatures.length>0) && <SettingsRow label="Missing Features" value={'[' + missingFeatures.map((feature)=>{return feature}) + ']'}/>
             </Container>
         </ModalBody>
     );
