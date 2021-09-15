@@ -23,7 +23,7 @@
       "description": "",
       "type": "array",
       "items": {
-        "type": "object"
+        "type": "string"
       }
     },
     "type": {
