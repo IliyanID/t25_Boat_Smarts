@@ -1,6 +1,8 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import Map from './Map/Map';
+import Search from './Search/Search';
+import Results from './Search/Results';
 import Itinerary from './Itinerary/Itinerary';
 import { usePlaces } from '../../hooks/usePlaces';
 
@@ -12,6 +14,12 @@ export default function Planner() {
             <Section>
                 <Map places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
+            <br />
+            <Section>
+                <Search searchResults={searchResults} setSearchResults={setSearchResults} />
+                <Results />
+            </Section>
+            <br />
             <Section>
                 <Itinerary places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
