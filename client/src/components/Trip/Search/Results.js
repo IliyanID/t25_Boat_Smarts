@@ -9,14 +9,14 @@ import {
 } from 'reactstrap';
 import {useToggle} from '../../../hooks/useToggle';
 
-export default function Results () {
+export default function Results(props) {
     const results = props.searchResults;
     const places = results.places;
     const placesFound = results.found;
 
     return (
         <ListGroup>
-            {places.map((place, i) => (
+            {places && places.map((place, i) => (
                 <ListGroupItem>
                     <SinglePlace place={place} index={i} />
                 </ListGroupItem>
