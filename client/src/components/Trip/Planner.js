@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import Map from './Map/Map';
 import Search from './Search/Search';
+import SearchResult from './Search/SearchResult'
 import Itinerary from './Itinerary/Itinerary';
 import { usePlaces } from '../../hooks/usePlaces';
 
@@ -17,6 +18,7 @@ export default function Planner() {
             <br />
             <Section>
                 <Search searchResults={searchResults} setSearchResults={setSearchResults} />
+                <SearchResult searchResults={searchResults}/>
             </Section>
             <br />
             <Section>

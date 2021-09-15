@@ -27,7 +27,7 @@ export default function Search(props) {
         return {
             requestType: 'find',
             match: userInput,
-            limit: 0
+            limit: 10
         }
     }
 

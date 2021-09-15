@@ -19,14 +19,14 @@ public class FindPlaces {
     public FindPlaces(){
         this.latitude = "0";
         this.longitude = "0";
-        this.id = "0";
-        this.altitude = "0";
-        this.municipality = "";
-        this.type = "";
-        this.region = "";
-        this.country = "";
-        this.url = "";
-        this.name="";
+        this.id = "10";
+        this.altitude = "1000";
+        this.municipality = "fort collins";
+        this.type = "airport";
+        this.region = "colorado";
+        this.country = "usa";
+        this.url = "url";
+        this.name="name";
     }
 
     public String getname() {
