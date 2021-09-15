@@ -47,9 +47,12 @@ function useServerSettings(showMessage) {
 	}
 
 	function missingFeaturesExists(configResponse){
+		let existingClientFeatures = {...SCHEMAS}
+
 		//Uncomment Below to cause missing feature error
-		//SCHEMAS['where'] = 'S'
-		for(let feature in SCHEMAS){
+		//existingClientFeatures['where'] = 'S'
+
+		for(let feature in existingClientFeatures){
 			if(!configResponse.features.includes(feature))
 				missingFeatures.push(feature)
 		}
