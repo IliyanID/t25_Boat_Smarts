@@ -65,7 +65,8 @@ function useServerSettings(showMessage) {
 		if (configResponse) {
 
 			if(missingFeaturesExists(configResponse)){
-				showMessage('Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.','warning')
+				let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
+				showMessage(message,'warning')
 			}
 			processServerConfigSuccess(configResponse, serverUrl);
 		} else {
