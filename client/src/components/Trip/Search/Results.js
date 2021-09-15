@@ -27,11 +27,11 @@ export default function Results () {
 
 function SinglePlace(props) {
     const [isOpen, toggle] = useToggle(false);
-    const toggleId = "toggle" + props.index;
-    const toggleSelector = "#" + toggleId;
+    const place = props.place;
+    const toggleSelector = "#" + place.id;
 
     return (
-        <Card id={toggleId}>
+        <Card id={place.id}>
             <CardHeader>{place.name}</CardHeader>
             <CardBody>
                 <UncontrolledCollapse toggler={toggleSelector}>
