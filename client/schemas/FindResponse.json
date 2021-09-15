@@ -14,6 +14,18 @@
         "description":"an alphanumeric pattern used to find geographic locations.",
         "type":"string"
       },
+      "found": {
+        "description":"number of results found",
+        "type":"integer",
+        "minimum":0
+      },
+      "places": {
+        "description": "",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
       "type": {
         "description": "types of places to choose",
         "type": "array",
