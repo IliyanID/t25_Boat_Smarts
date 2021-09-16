@@ -146,6 +146,8 @@ Only minor changes to text constants are required.
 
 Our Search and Results components will be rendered below the map and above the trip. Each of the elements of the results will have collapsible details and an option to add the location to the user's trip.
 
+Users will have the ability to highlight elements of a planned trip. The highlighted element will also be displayed under a marker on the map. Additional functionality will be included to center the highlighted element on the map.
+
 ![base](/team/images/Sprint2Design.jpg)
 
 The server connection modal, where the server connection can be altered, has been updated to include the list of features. There will also be an error pop-up to notify the user of any missing features.
@@ -168,7 +170,10 @@ We will be adding two items to the server structure
 * FindRequest.json will be used to validate the incoming find requests
 * FindRequest.java will handle querying the database and building the response
 
-The existing ConfigRequest class will be modified so that *find is listed as a supported opperation.
+The existing ConfigRequest class will be modified so that *find is listed as a supported operation.
+
+
+
 
 # Sprint 3
 # Sprint 4 
