@@ -2,10 +2,7 @@ import React, {useState} from 'react';
 import {
     ListGroup, 
     ListGroupItem, 
-    UncontrolledCollapse, 
-    Card, 
-    CardBody, 
-    CardHeader
+    UncontrolledCollapse,
 } from 'reactstrap';
 import {useToggle} from '../../../hooks/useToggle';
 
@@ -17,7 +14,7 @@ export default function Results(props) {
     return (
         <ListGroup>
             {places && places.map((place, i) => (
-                <ListGroupItem key={place.name+place.id}>
+                <ListGroupItem key={place.name+place.id} id={place.name}>
                     <SinglePlace place={place} index={i} />
                 </ListGroupItem>
             ))}
@@ -30,21 +27,20 @@ function SinglePlace(props) {
     const place = props.place;
 
     return (
-        <Card key={place.name} id={place.name}>
-            <CardBody>
-            <h5><strong>{place.name}</strong></h5>
-                <UncontrolledCollapse toggler={place.name}>
-                    <br />
-                    <p><strong>Municipality:</strong> {place.municipality}</p>
-                    <p><strong>Country:</strong> {place.country}</p>
-                    <p><strong>Region:</strong> {place.region}</p>
-                    <br />
-                    <p><strong>Coordinates:</strong> {place.latitude}, {place.longitude}</p>
-                    <p><strong>Altitude:</strong> {place.altitude}</p>
-                    <br />
-                    <p><strong>URL:</strong> {place.url}</p>
-                </UncontrolledCollapse>
-            </CardBody>
-        </Card>
+        <>
+            <h5>{place.name}</h5>
+            <UncontrolledCollapse toggler={place.name}>
+                <br />
+                <p><strong>Municipality:</strong> {place.municipality}</p>
+                <p><strong>Country:</strong> {place.country}</p>
+                <p><strong>Region:</strong> {place.region}</p>
+                <br />
+                <p><strong>Coordinates:</strong> {place.latitude}, {place.longitude}</p>
+                <p><strong>Altitude:</strong> {place.altitude}</p>
+                <br />
+                <p><strong>URL:</strong> {place.url}</p>
+            </UncontrolledCollapse>
+            
+        </>
     );
 }
