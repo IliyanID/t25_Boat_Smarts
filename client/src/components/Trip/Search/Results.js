@@ -31,9 +31,10 @@ function SinglePlace(props) {
 
     return (
         <Card key={place.name} id={place.name}>
-            <CardHeader>{place.name}</CardHeader>
             <CardBody>
+            <h5><strong>{place.name}</strong></h5>
                 <UncontrolledCollapse toggler={place.name}>
+                    <br />
                     <p><strong>Municipality:</strong> {place.municipality}</p>
                     <p><strong>Country:</strong> {place.country}</p>
                     <p><strong>Region:</strong> {place.region}</p>
