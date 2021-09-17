@@ -70,7 +70,7 @@ function useServerSettings(showMessage) {
 					showMessage(message,"warning")
 				}
 				catch{
-					LOG.error("Failed to show warning message")
+					// LOG.error("Failed to show warning message")
 				}
 			}
 			processServerConfigSuccess(configResponse, serverUrl);
