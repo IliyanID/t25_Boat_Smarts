@@ -25,6 +25,10 @@ export default function Results(props) {
 function SinglePlace(props) {
     const [isOpen, toggle] = useToggle(false);
     const place = props.place;
+    const latitudeDirection = parseFloat(place.latitude) < 0 ? "S" : "N";
+    const longitudeDirection = parseFloat(place.longitude) < 0 ? "W" : "E";
+    const latitude = Math.abs(place.latitude);
+    const longitude = Math.abs(place.longitude);
 
     return (
         <>
@@ -35,7 +39,7 @@ function SinglePlace(props) {
                 <p><strong>Country:</strong> {place.country}</p>
                 <p><strong>Region:</strong> {place.region}</p>
                 <br />
-                <p><strong>Coordinates:</strong> {place.latitude}, {place.longitude}</p>
+                <p><strong>Coordinates:</strong> {latitude}&#176;{latitudeDirection} {longitude}&#176;{longitudeDirection}</p>
                 <p><strong>Altitude:</strong> {place.altitude}</p>
                 <br />
                 <p><strong>URL:</strong> {place.url}</p>
