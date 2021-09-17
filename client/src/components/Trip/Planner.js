@@ -1,24 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import Map from './Map/Map';
-import Search from './Search/Search';
 import Itinerary from './Itinerary/Itinerary';
 import { usePlaces } from '../../hooks/usePlaces';
 
 export default function Planner() {
-    const [places, selectedIndex, placeActions] = usePlaces();
-    const [searchResults, setSearchResults] = useState({});
+    const {places, selectedIndex, placeActions} = usePlaces();
 
     return (
         <Container>
             <Section>
                 <Map places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
-            <br />
-            <Section>
-                <Search searchResults={searchResults} setSearchResults={setSearchResults} />
-            </Section>
-            <br />
             <Section>
                 <Itinerary places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
