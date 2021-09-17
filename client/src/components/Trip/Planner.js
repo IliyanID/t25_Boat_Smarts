@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import Map from './Map/Map';
 import Search from './Search/Search';
@@ -8,6 +8,7 @@ import { usePlaces } from '../../hooks/usePlaces';
 
 export default function Planner() {
     const {places, selectedIndex, placeActions} = usePlaces();
+    const [searchResults, setSearchResults] = useState({});
 
     return (
         <Container>
