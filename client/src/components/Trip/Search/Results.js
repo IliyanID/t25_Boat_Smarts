@@ -14,7 +14,7 @@ export default function Results(props) {
     return (
         <ListGroup>
             {places && places.map((place, i) => (
-                <ListGroupItem key={place.name+place.id} id={place.id}>
+                <ListGroupItem key={place.iso_country+place.id} id={place.iso_country + place.id}>
                     <SinglePlace place={place} index={i} />
                 </ListGroupItem>
             ))}
@@ -33,7 +33,7 @@ function SinglePlace(props) {
     return (
         <>
             <h5>{place.name}</h5>
-            <UncontrolledCollapse toggler={place.id}>
+            <UncontrolledCollapse toggler={place.iso_country + place.id}>
                 <br />
                 <p><strong>Municipality:</strong> {place.municipality}</p>
                 <p><strong>Country:</strong> {place.iso_country}</p>
