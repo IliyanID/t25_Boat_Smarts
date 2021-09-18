@@ -6,6 +6,7 @@ import {
     UncontrolledCollapse,
 } from 'reactstrap';
 import {useToggle} from '../../../hooks/useToggle';
+import { placeToLatLng } from '../../../utils/transformers';
 
 export default function Results(props) {
     const results = props.searchResults;
@@ -15,8 +16,8 @@ export default function Results(props) {
     return (
         <ListGroup>
             {places && places.map((place, i) => (
-                <ListGroupItem key={place.iso_country+place.id} id={place.iso_country + place.id}>
-                    <SinglePlace place={place} index={i} />
+                <ListGroupItem key={place.iso_country+place.id}>
+                    <SinglePlace place={place} index={i} {...props} />
                 </ListGroupItem>
             ))}
         </ListGroup>
@@ -31,10 +32,15 @@ function SinglePlace(props) {
     const latitude = Math.abs(place.latitude);
     const longitude = Math.abs(place.longitude);
 
+    function addResultToTrip(e) {
+        e.preventDefault();
+        props.placeActions.append(place)
+    }
+
     return (
         <>
-            <h5 className="d-inline">{place.name}</h5>
-            <Button className="d-inline float-right">&#43;</Button>
+            <h5 id={place.iso_country + place.id} className="d-inline float-left">{place.name}</h5>
+            <Button onClick={addResultToTrip} className="d-inline float-right">&#43;</Button>
             <UncontrolledCollapse toggler={place.iso_country + place.id}>
                 <br />
                 <p><strong>Municipality:</strong> {place.municipality}</p>

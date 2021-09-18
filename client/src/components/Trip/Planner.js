@@ -18,7 +18,7 @@ export default function Planner() {
             <br />
             <Section>
                 <Search searchResults={searchResults} setSearchResults={setSearchResults} />
-                {searchResults && <Results searchResults={searchResults} />}
+                {searchResults && <Results searchResults={searchResults} placeActions={placeActions} />}
             </Section>
             <br />
             <Section>
