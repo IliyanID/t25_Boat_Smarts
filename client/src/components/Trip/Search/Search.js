@@ -36,7 +36,7 @@ export default function Search(props) {
         <InputGroup>
             <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
-                <Button onClick={handleClick}>Search</Button>
+                <Button role="search" onClick={handleClick}>Search</Button>
             </InputGroupAddon>
         </InputGroup>
         </>
