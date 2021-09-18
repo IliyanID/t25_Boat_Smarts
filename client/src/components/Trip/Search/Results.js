@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Button,
     ListGroup, 
     ListGroupItem, 
     UncontrolledCollapse,
 } from 'reactstrap';
-import {useToggle} from '../../../hooks/useToggle';
-import { placeToLatLng } from '../../../utils/transformers';
 
 export default function Results(props) {
     const results = props.searchResults;
@@ -25,7 +23,6 @@ export default function Results(props) {
 }
 
 function SinglePlace(props) {
-    const [isOpen, toggle] = useToggle(false);
     const place = props.place;
     const latitudeDirection = parseFloat(place.latitude) < 0 ? "S" : "N";
     const longitudeDirection = parseFloat(place.longitude) < 0 ? "W" : "E";
