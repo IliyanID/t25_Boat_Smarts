@@ -34,6 +34,7 @@ function ServerInformation(props) {
                         ({props.serverSettings.serverUrl}).
                     </a>
                     <ServerSettings
+                        showMessage={props.showMessage}
                         isOpen={props.serverSettingsOpen}
                         toggleOpen={props.toggleServerSettings}
                         serverSettings={props.serverSettings}

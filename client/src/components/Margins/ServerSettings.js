@@ -1,7 +1,31 @@
 import React from 'react';
 import { Button, Col, Container, Input, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { useServerInputValidation } from '../../hooks/useServerInputValidation';
-import { missingFeatures } from '../Page'
+import { SCHEMAS } from '../../utils/restfulAPI';
+import { LOG } from '../../utils/constants';
+
+export let missingFeatures = []
+export function missingFeaturesExists(config,serverSettings){
+    missingFeatures= [];
+    let existingClientFeatures = {...SCHEMAS}
+
+    //Uncomment Below to cause missing feature error
+    //existingClientFeatures['where'] = 'S'
+
+    if(config && config.features)
+        for(let feature in existingClientFeatures){
+            if(!config.features.includes(feature))
+                missingFeatures.push(feature)
+        }
+    
+    else if(serverSettings && serverSettings.features)
+        for(let feature in existingClientFeatures){
+            if(!serverSettings.features.includes(feature))
+                missingFeatures.push(feature)
+        }
+
+    return missingFeatures.length > 0;
+}
 
 export default function ServerSettings(props) {
     const [serverInput, setServerInput, config, validServer, resetModal]
@@ -17,6 +41,8 @@ export default function ServerSettings(props) {
                 serverName={getCurrentServerName(config, props.serverSettings)}
                 validServer={validServer}
                 features={getCurrentFeatures(config,props.serverSettings)}
+                missingFeatures={missingFeaturesExists(config,props.serverSettings)}
+                showMessage={props.showMessage}
             />
             <Footer
                 config={config}
@@ -41,10 +67,10 @@ function getCurrentServerName(config, serverSettings) {
 
 function getCurrentFeatures(config, serverSettings){
     if(config && config.features)
-        return "[" + config.features.map((item)=>{return item + " "}) + "]";
+        return "[" + config.features.map((item)=>{return item}) + "]";
     
     else if(serverSettings && serverSettings.features)
-        return "[" + serverSettings.features.map((item)=>{return item + " "}) + "]";
+        return "[" + serverSettings.features.map((item)=>{return item}) + "]";
     
     else
         return "None"
@@ -67,6 +93,18 @@ function Body(props) {
             valid={props.validServer}
             invalid={!props.validServer}
         />;
+    if(props.missingFeatures){
+        const existMissingFeatures = missingFeatures.length > 0;
+        if(existMissingFeatures){
+            let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
+            try{
+                props.showMessage(message,"warning")
+            }
+            catch{
+                LOG.error("Failed to show warning message")
+            }
+        }
+    }
 
     return (
         <ModalBody>
@@ -74,7 +112,7 @@ function Body(props) {
                 <SettingsRow label="Name" value={props.serverName} />
                 <SettingsRow label="URL" value={urlInput} />
                 <SettingsRow label="Features" value={props.features} />
-                {(missingFeatures.length>0) && <SettingsRow label="Missing Features" value={'[' + missingFeatures.map((feature)=>{return feature}) + ']'}/>}
+                {(props.missingFeatures) && <SettingsRow label="Missing Features" value={'[' + missingFeatures.map((feature)=>{return feature}) + ']'}/>}
             </Container>
         </ModalBody>
     );
