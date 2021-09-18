@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SQL {
 
-    private final static String FIND_COLUMNS = "name,latitude,longitude";
+    private final static String FIND_COLUMNS = "id,name,latitude,longitude,altitude,municipality,iso_country";
 
     public static class Place extends HashMap<String, String> {}
     public static class Places extends ArrayList<Place> {}
