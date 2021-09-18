@@ -18,6 +18,7 @@ export default function Results(props) {
                     <SinglePlace place={place} index={i} {...props} />
                 </ListGroupItem>
             ))}
+            {placesFound && <p>Total results: {placesFound}</p>}
         </ListGroup>
     );
 }
@@ -49,7 +50,6 @@ function SinglePlace(props) {
                 <br />
                 <p><strong>URL:</strong> {place.url}</p>
             </UncontrolledCollapse>
-            
         </>
     );
 }
