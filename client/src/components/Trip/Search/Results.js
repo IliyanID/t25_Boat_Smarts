@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+    Button,
     ListGroup, 
     ListGroupItem, 
     UncontrolledCollapse,
@@ -32,7 +33,8 @@ function SinglePlace(props) {
 
     return (
         <>
-            <h5>{place.name}</h5>
+            <h5 className="d-inline">{place.name}</h5>
+            <Button className="d-inline float-right">&#43;</Button>
             <UncontrolledCollapse toggler={place.iso_country + place.id}>
                 <br />
                 <p><strong>Municipality:</strong> {place.municipality}</p>
