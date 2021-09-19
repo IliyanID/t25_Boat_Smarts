@@ -3,7 +3,7 @@ package com.tco.requests;
 import java.util.ArrayList;
 
 import com.tco.misc.FindPlaces;
-import com.tco.misc.SQL;
+import com.tco.database.SQLDatabase;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +15,13 @@ public class FindRequest extends Request {
     private String match;
     private int limit;
     private int found;
-    private SQL.Places places;
+    private SQLDatabase.Places places;
     private final transient Logger log = LoggerFactory.getLogger(FindRequest.class);
-
-
 
 
     @Override
     public void buildResponse() {
-        places = SQL.Database.findQuery(match, limit);
+        places = SQLDatabase.findQuery(match, limit);
         found = places.size();
         log.trace("buildResponse -> {}", this);
     }
