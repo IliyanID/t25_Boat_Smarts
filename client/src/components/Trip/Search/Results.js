@@ -32,9 +32,11 @@ function SinglePlace(props) {
     }
 
     return (
-        <ListGroupItem className="d-flex align-items-start">
-            <h5 id={place.iso_country + place.id} className="mr-auto">{place.name}</h5>
-            <Button onClick={addResultToTrip} color="primary" className="d-inline float-right flex-grow-0">&#43;</Button>
+        <ListGroupItem>
+            <div className="d-flex">
+                <h5 id={place.iso_country + place.id} className="mr-auto">{place.name}</h5>
+                <Button onClick={addResultToTrip} color="primary" className="align-self-center float-right">&#43;</Button>
+            </div>
             <UncontrolledCollapse toggler={place.iso_country + place.id}>
                 <br />
                 <p><strong>Municipality:</strong> {place.municipality}</p>
