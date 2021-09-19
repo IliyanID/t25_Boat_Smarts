@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useEffect } from 'react';
 import {
+    Button,
     ListGroup, 
     ListGroupItem, 
     UncontrolledCollapse,
 } from 'reactstrap';
-import {useToggle} from '../../../hooks/useToggle';
 
 export default function Results(props) {
     const results = props.searchResults;
@@ -13,26 +13,30 @@ export default function Results(props) {
 
     return (
         <ListGroup>
-            {places && places.map((place, i) => (
-                <ListGroupItem key={place.iso_country+place.id} id={place.iso_country + place.id}>
-                    <SinglePlace place={place} index={i} />
-                </ListGroupItem>
-            ))}
+            {places && places.map((place, i) => <SinglePlace key={place.iso_country+place.id} place={place} index={i} {...props} />)}
+            {placesFound && <p>Total results: {placesFound}</p>}
         </ListGroup>
     );
 }
 
 function SinglePlace(props) {
-    const [isOpen, toggle] = useToggle(false);
     const place = props.place;
     const latitudeDirection = parseFloat(place.latitude) < 0 ? "S" : "N";
     const longitudeDirection = parseFloat(place.longitude) < 0 ? "W" : "E";
     const latitude = Math.abs(place.latitude);
     const longitude = Math.abs(place.longitude);
 
+    function addResultToTrip(e) {
+        e.preventDefault();
+        props.placeActions.append(place)
+    }
+
     return (
-        <>
-            <h5>{place.name}</h5>
+        <ListGroupItem>
+            <div className="d-flex">
+                <h5 id={place.iso_country + place.id} className="mr-auto">{place.name}</h5>
+                <Button onClick={addResultToTrip} color="primary" className="align-self-center float-right">&#43;</Button>
+            </div>
             <UncontrolledCollapse toggler={place.iso_country + place.id}>
                 <br />
                 <p><strong>Municipality:</strong> {place.municipality}</p>
@@ -44,7 +48,6 @@ function SinglePlace(props) {
                 <br />
                 <p><strong>URL:</strong> {place.url}</p>
             </UncontrolledCollapse>
-            
-        </>
+        </ListGroupItem>
     );
 }
