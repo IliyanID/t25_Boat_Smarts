@@ -1,27 +1,30 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     InputGroup,
     InputGroupAddon,
     Input,
-    Button,
-    Dropdown
+    Button
 } from 'reactstrap';
 import {sendAPIRequest, getOriginalServerUrl} from "../../../utils/restfulAPI";
 
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
     const currentURL = getOriginalServerUrl();
-    const setSearchResults = props.setSearchResults;
 
-    function handleChange(e) {
-        setUserInput(e.target.value)
+    async function handleChange(e) {
+        setUserInput(e.target.value);
+        getResults();
     };
 
     async function handleClick(e) {
         e.preventDefault();
+        getResults();
+    }
+
+    async function getResults() {
         const requestBody = createFindRequestBody();
         const response = await sendAPIRequest(requestBody, currentURL);
-        setSearchResults(response);
+        props.setSearchResults(response);
     }
 
     function createFindRequestBody() {
@@ -32,27 +35,13 @@ export default function Search(props) {
         }
     }
 
-    useEffect(() => {
-        let dropdown = document.getElementById('searchDropdown');
-        if (userInput !== "") {
-            dropdown.hidden = 'false';
-        } else {
-            dropdown.hidden = 'true';
-        }
-    })
-
     return (
-        <>
         <InputGroup>
             <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
                 <Button onClick={handleClick}>Search</Button>
             </InputGroupAddon>
         </InputGroup>
-        <Dropdown id="searchDropdown" hidden>
-
-        </Dropdown>
-        </>
     )
 }
 
