@@ -4,10 +4,35 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt } from 'react-icons/fa';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 
+export default class CurrentLocation{
+	state = {
+		lat: null,
+        lng: null
+	};
+
+	findCoordinates = () => {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+				this.setState({ lat: position.coords.latitude });
+                this.setState({ lng: position.coords.longitude});
+                //console.log(this.state)
+			},
+		);
+	};
+
+}
+
 export function ItineraryActionsDropdown(props) {
+
+    let i = new CurrentLocation;
+
+    i.findCoordinates();
+
+    //console.log(i.state);
+
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => props.placeActions.append(DEFAULT_STARTING_PLACE)} data-testid='home-button'>
+            <DropdownItem onClick={() => props.placeActions.append(i.state)} data-testid='home-button'>
                 <FaHome />
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>
