@@ -22,7 +22,7 @@ public class FindRequest extends Request {
     @Override
     public void buildResponse() {
         places = SQLDatabase.findQuery(match, limit);
-        found = places.size();
+        found = SQLDatabase.countQuery(match);
         log.trace("buildResponse -> {}", this);
     }
 
