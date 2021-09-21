@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     InputGroup,
     InputGroupAddon,
     Input,
-    Button
+    Button,
+    Dropdown
 } from 'reactstrap';
 import {sendAPIRequest, getOriginalServerUrl} from "../../../utils/restfulAPI";
 
@@ -31,6 +32,15 @@ export default function Search(props) {
         }
     }
 
+    useEffect(() => {
+        let dropdown = document.getElementById('searchDropdown');
+        if (userInput !== "") {
+            dropdown.hidden = 'false';
+        } else {
+            dropdown.hidden = 'true';
+        }
+    })
+
     return (
         <>
         <InputGroup>
@@ -39,6 +49,9 @@ export default function Search(props) {
                 <Button onClick={handleClick}>Search</Button>
             </InputGroupAddon>
         </InputGroup>
+        <Dropdown id="searchDropdown" hidden>
+
+        </Dropdown>
         </>
     )
 }
