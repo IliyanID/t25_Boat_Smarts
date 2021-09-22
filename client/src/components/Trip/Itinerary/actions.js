@@ -1,34 +1,36 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt } from 'react-icons/fa';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 
-export default class CurrentLocation{
-	state = {
-		lat: null,
-        lng: null
-	};
+export default class CurrentLocation extends Component{
+    state = {
+        latitude: DEFAULT_STARTING_PLACE.latitude,
+        longitude: DEFAULT_STARTING_PLACE.longitude
+    };
+    
+findCurrentLocation = () => {
+    if (!navigator.geolocation){
+        console.log('here');
+    }else{
+        window.navigator.geolocation.getCurrentPosition(
+        position => {
+            this.state.latitude = position.coords.latitude;
+            this.state.longitude = position.coords.longitude;
+        }
+        );
+    }
 
-	findCoordinates = () => {
-		navigator.geolocation.getCurrentPosition(
-			position => {
-				this.setState({ lat: position.coords.latitude });
-                this.setState({ lng: position.coords.longitude});
-                //console.log(this.state)
-			},
-		);
-	};
-
-}
-
+};
+};
 export function ItineraryActionsDropdown(props) {
 
-    let i = new CurrentLocation;
+     let i = new CurrentLocation();
 
-    i.findCoordinates();
+     i.findCurrentLocation();
 
-    //console.log(i.state);
+    // console.log(i.state);
 
     return (
         <ActionsDropdown {...props}>
