@@ -26,15 +26,15 @@ findCurrentLocation = () => {
 };
 export function ItineraryActionsDropdown(props) {
 
-     let i = new CurrentLocation();
+     let userLocation = new CurrentLocation();
 
-     i.findCurrentLocation();
+     userLocation.findCurrentLocation();
 
     // console.log(i.state);
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => props.placeActions.append(i.state)} data-testid='home-button'>
+            <DropdownItem onClick={() => props.placeActions.append(userLocation.state)} data-testid='home-button'>
                 <FaHome />
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>
