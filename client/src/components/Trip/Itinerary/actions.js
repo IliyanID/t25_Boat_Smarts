@@ -12,7 +12,8 @@ export default class CurrentLocation extends Component{
     
 findCurrentLocation = () => {
     if (!navigator.geolocation){
-        console.log('here');
+        //ToDo
+        //Add popup for if the users browser doesnt have location services turned on
     }else{
         window.navigator.geolocation.getCurrentPosition(
         position => {
@@ -29,8 +30,6 @@ export function ItineraryActionsDropdown(props) {
      let userLocation = new CurrentLocation();
 
      userLocation.findCurrentLocation();
-
-    // console.log(i.state);
 
     return (
         <ActionsDropdown {...props}>
