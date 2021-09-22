@@ -13,7 +13,7 @@ import com.tco.database.SQLCredential;
 import com.tco.database.SQLQuery;
 
 public class SQLDatabase {
-
+  
     private final static String FIND_COLUMNS = "id,name,latitude,longitude,altitude,municipality,iso_country";
 
     public static class Place extends HashMap<String, String> {}
@@ -28,12 +28,26 @@ public class SQLDatabase {
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
-      		//System.err.println("Problem with sql:");
        		e.printStackTrace();
        	}
         	
        	return null;
         	     
+    }
+
+    public static int countQuery(String searchStr) {
+        SQLCredential db = new SQLCredential();
+     	try {
+            Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
+            Statement query = conn.createStatement();
+            ResultSet results = query.executeQuery(SQLQuery.count(searchStr));
+            results.next();
+            return results.getInt("count");
+      	} catch (SQLException e) {
+       		e.printStackTrace();
+       	}
+        	
+       	return 0;
     }
 
     static Places convertQueryResultsToPlaces(ResultSet results) throws SQLException {

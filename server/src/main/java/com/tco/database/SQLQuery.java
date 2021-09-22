@@ -10,4 +10,10 @@ public class SQLQuery {
             +  "LIMIT " + Integer.toString(limit)
             +  ";";
     }
+
+    static String count(String searchStr) {
+        return "SELECT COUNT(*) AS count " +
+               "FROM world " +
+               "WHERE name LIKE '%" + searchStr + "%';";
+    }
 }
