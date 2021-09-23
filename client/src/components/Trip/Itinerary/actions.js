@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
-import { FaHome, FaTrash, FaTrashAlt } from 'react-icons/fa';
+import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation } from 'react-icons/fa';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 
 export default class CurrentLocation extends Component{
@@ -48,6 +48,9 @@ export function PlaceActionsDropdown(props) {
         <ActionsDropdown {...props}>
             <DropdownItem onClick={() => props.placeActions.removeAtIndex(props.index)} data-testid={`delete-button-${props.index}`}>
                 <FaTrash />
+            </DropdownItem>
+            <DropdownItem onClick={() => props.placeActions.selectIndex(props.index)} data-testid={`delete-button-${props.index}`}>
+                <FaSearchLocation />
             </DropdownItem>
         </ActionsDropdown>
     );
