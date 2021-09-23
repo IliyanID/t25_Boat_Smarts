@@ -9,7 +9,13 @@ import {sendAPIRequest, getOriginalServerUrl} from "../../../utils/restfulAPI";
 
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
-    const currentURL = getOriginalServerUrl();
+    let currentURL = getOriginalServerUrl();
+    
+    if(props.serverSettings && props.serverSettings.serverUrl)
+        currentURL = props.serverSettings.serverUrl
+
+    const setSearchResults = props.setSearchResults;
+
 
     async function handleChange(e) {
         setUserInput(e.target.value);
@@ -23,7 +29,9 @@ export default function Search(props) {
     async function getResults() {
         const requestBody = createFindRequestBody();
         const response = await sendAPIRequest(requestBody, currentURL);
-        props.setSearchResults(response);
+
+        if(response)
+            props.setSearchResults(response);
     }
 
     function createFindRequestBody() {

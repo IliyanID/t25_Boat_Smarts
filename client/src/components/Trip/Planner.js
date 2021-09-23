@@ -6,7 +6,7 @@ import Results from './Search/Results';
 import Itinerary from './Itinerary/Itinerary';
 import { usePlaces } from '../../hooks/usePlaces';
 
-export default function Planner() {
+export default function Planner(props) {
     const {places, selectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
 
@@ -17,7 +17,7 @@ export default function Planner() {
             </Section>
             <br />
             <Section>
-                <Search searchResults={searchResults} setSearchResults={setSearchResults} />
+                <Search serverSettings={props.serverSettings} searchResults={searchResults} setSearchResults={setSearchResults} />
                 {searchResults && <><br /><Results searchResults={searchResults} placeActions={placeActions} /></>}
             </Section>
             <br />

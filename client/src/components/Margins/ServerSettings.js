@@ -17,6 +17,12 @@ export function missingFeaturesExists(config,serverSettings){
             if(!config.features.includes(feature))
                 missingFeatures.push(feature)
         }
+
+    else if(serverSettings && serverSettings.features)
+        for(let feature in existingClientFeatures){
+            if(!serverSettings.serverConfig.features.includes(feature))
+                missingFeatures.push(feature)
+        }
     
     else if(serverSettings && serverSettings.features)
         for(let feature in existingClientFeatures){
@@ -68,6 +74,9 @@ function getCurrentServerName(config, serverSettings) {
 function getCurrentFeatures(config, serverSettings){
     if(config && config.features)
         return "[" + config.features.map((item)=>{return item}) + "]";
+
+    else if(serverSettings.serverConfig && serverSettings.serverConfig.features)
+        return "[" + serverSettings.serverConfig.features.map((item)=>{return item}) + "]";
     
     else if(serverSettings && serverSettings.features)
         return "[" + serverSettings.features.map((item)=>{return item}) + "]";
