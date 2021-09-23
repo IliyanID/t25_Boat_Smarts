@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     InputGroup,
     InputGroupAddon,
@@ -13,7 +13,6 @@ export default function Search(props) {
 
     async function handleChange(e) {
         setUserInput(e.target.value);
-        getResults();
     };
 
     async function handleClick(e) {
@@ -34,6 +33,8 @@ export default function Search(props) {
             limit: 10
         }
     }
+
+    useEffect(()=>{getResults();},[userInput]);
 
     return (
         <InputGroup>
