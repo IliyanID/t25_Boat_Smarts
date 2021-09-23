@@ -18,7 +18,7 @@ export default function Planner(props) {
             <br />
             <Section>
                 <Search serverSettings={props.serverSettings} searchResults={searchResults} setSearchResults={setSearchResults} />
-                {searchResults && <Results searchResults={searchResults} placeActions={placeActions} />}
+                {searchResults && <><br /><Results searchResults={searchResults} placeActions={placeActions} /></>}
             </Section>
             <br />
             <Section>
