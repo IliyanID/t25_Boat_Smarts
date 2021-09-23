@@ -6,10 +6,15 @@ import {
     Button
 } from 'reactstrap';
 import {sendAPIRequest, getOriginalServerUrl} from "../../../utils/restfulAPI";
+import ServerSettings from "../../Margins/ServerSettings";
 
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
-    const currentURL = getOriginalServerUrl();
+    let currentURL = getOriginalServerUrl();
+    
+    if(props.serverSettings && props.serverSettings.serverUrl)
+        currentURL = props.serverSettings.serverUrl
+
     const setSearchResults = props.setSearchResults;
 
     function handleChange(e) {
@@ -20,7 +25,8 @@ export default function Search(props) {
         e.preventDefault();
         const requestBody = createFindRequestBody();
         const response = await sendAPIRequest(requestBody, currentURL);
-        setSearchResults(response);
+        if(response)
+            setSearchResults(response);
     }
 
     function createFindRequestBody() {
