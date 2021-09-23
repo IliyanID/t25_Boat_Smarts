@@ -32,7 +32,7 @@ export default function Search(props) {
         const response = await sendAPIRequest(requestBody, currentURL);
 
         if(response)
-            setSearchResults(response);
+            props.setSearchResults(response);
     }
 
     function createFindRequestBody() {
