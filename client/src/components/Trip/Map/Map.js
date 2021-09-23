@@ -53,10 +53,10 @@ const getCenter = async () => {
         const position = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
         });
-            centerCoordinates = {
-                latitude : position.coords.latitude,
-                longitude : position.coords.longitude
-            }
+        centerCoordinates = {
+            latitude : position.coords.latitude,
+            longitude : position.coords.longitude
+        }
     }
     return placeToLatLng(centerCoordinates);
 }
