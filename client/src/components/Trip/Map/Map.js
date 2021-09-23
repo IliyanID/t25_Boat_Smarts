@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Map as LeafletMap, Polyline, TileLayer } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
+import { CurrentLocation } from '../Itinerary/actions'
 
 const MAP_BOUNDS = [[-90, -180], [90, 180]];
 const MAP_LAYER_ATTRIBUTION = "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors";
@@ -12,6 +13,11 @@ const MAP_MIN_ZOOM = 1;
 const MAP_MAX_ZOOM = 19;
 
 export default function Map(props) {
+    let [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
+    useEffect(()=>{
+       getCenter().then((result)=>{setCoordinates(result)});
+    },[])
+
     function handleMapClick(mapClickInfo) {
         props.placeActions.append(latLngToPlace(mapClickInfo.latlng));
     }
@@ -25,7 +31,7 @@ export default function Map(props) {
             minZoom={MAP_MIN_ZOOM}
             maxZoom={MAP_MAX_ZOOM}
             maxBounds={MAP_BOUNDS}
-            center={placeToLatLng(DEFAULT_STARTING_PLACE)}
+            center={coordinates}
             onClick={handleMapClick}
             data-testid="Map"
         >
@@ -34,6 +40,22 @@ export default function Map(props) {
             <PlaceMarker places={props.places} selectedIndex={props.selectedIndex} />
         </LeafletMap>
     );
+}
+
+const getCenter = async () => {
+    let centerCoordinates = {...DEFAULT_STARTING_PLACE}
+    if (!navigator.geolocation){
+        //ToDo
+        //Add popup for if the users browser doesnt have location services turned on
+
+    }else{
+        const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+            centerCoordinates.latitude = position.coords.latitude;
+            centerCoordinates.longitude = position.coords.longitude;
+    }
+    return placeToLatLng(centerCoordinates);
 }
 
 function TripLines(props) {
