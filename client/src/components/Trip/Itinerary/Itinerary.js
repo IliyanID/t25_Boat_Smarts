@@ -7,7 +7,7 @@ export default function Itinerary(props) {
     return (
         <Table responsive striped>
             <Header placeActions={props.placeActions} />
-            <Body places={props.places} placeActions={props.placeActions} />
+            <Body places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
 }
@@ -35,6 +35,7 @@ function Body(props) {
                     place={place}
                     placeActions={props.placeActions}
                     index={index}
+                    {...props}
                 />
             )}
         </tbody>
@@ -54,7 +55,7 @@ function TableRow(props) {
                 <small className="text-muted">{location}</small>
             </td>
             <td>
-                <PlaceActionsDropdown placeActions={props.placeActions} index={props.index} />
+                <PlaceActionsDropdown {...props} placeActions={props.placeActions} index={props.index} />
             </td>
         </tr>
     );

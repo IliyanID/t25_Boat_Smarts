@@ -4,10 +4,10 @@ import { reverseGeocode } from '../utils/reverseGeocode';
 import { LOG } from '../utils/constants';
 
 export function usePlaces() {
-    const [places, setPlaces] = useState([]);
+    let [places, setPlaces] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(-1);
 
-    const context = { places, setPlaces, selectedIndex, setSelectedIndex };
+    let context = { places, setPlaces, selectedIndex, setSelectedIndex };
 
     const placeActions = {
         append: async (place) => append(place, context),
@@ -20,15 +20,17 @@ export function usePlaces() {
 }
 
 async function append(place, context) {
-    const { places, setPlaces, setSelectedIndex } = context;
+    let { places, setPlaces, setSelectedIndex } = context;
 
     const newPlaces = [...places];
 
     const fullPlace = await reverseGeocode(placeToLatLng(place));
     newPlaces.push(fullPlace);
 
+
     setPlaces(newPlaces);
     setSelectedIndex(newPlaces.length - 1);
+
 }
 
 function removeAtIndex(index, context) {

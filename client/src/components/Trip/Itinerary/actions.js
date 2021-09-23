@@ -49,7 +49,7 @@ export function PlaceActionsDropdown(props) {
             <DropdownItem onClick={() => props.placeActions.removeAtIndex(props.index)} data-testid={`delete-button-${props.index}`}>
                 <FaTrash />
             </DropdownItem>
-            <DropdownItem onClick={() => props.placeActions.selectIndex(props.index)} data-testid={`select-button-${props.index}`}>
+            <DropdownItem onClick={() => {props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} data-testid={`select-button-${props.index}`}>
                 <FaSearchLocation />
             </DropdownItem>
         </ActionsDropdown>
