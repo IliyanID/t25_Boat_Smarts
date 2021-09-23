@@ -9,11 +9,12 @@ import { usePlaces } from '../../hooks/usePlaces';
 export default function Planner(props) {
     const {places, selectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
+    const [centerView,setCenterView] = useState(false)
 
     return (
         <Container>
             <Section>
-                <Map places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
+                <Map centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
             <br />
             <Section>
@@ -22,7 +23,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Itinerary places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
+                <Itinerary centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
         </Container>
     );
