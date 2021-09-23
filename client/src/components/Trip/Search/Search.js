@@ -6,7 +6,6 @@ import {
     Button
 } from 'reactstrap';
 import {sendAPIRequest, getOriginalServerUrl} from "../../../utils/restfulAPI";
-import ServerSettings from "../../Margins/ServerSettings";
 
 export default function Search(props) {
     const [userInput, setUserInput] = useState("");
