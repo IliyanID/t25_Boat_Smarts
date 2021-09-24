@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 
 import {Input, Button, Label, Row, Col} from 'reactstrap';
+import {placeToLatLng} from "../../../../utils/transformers";
+import { reverseGeocode } from "../../../../utils/reverseGeocode";
 
 export default function CoordinateSearch(props) {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
+    const [location, setLocation] = useState({});
 
     function handleLatitudeChange(e) {
         setLatitude(e.target.value);
@@ -15,7 +18,13 @@ export default function CoordinateSearch(props) {
     }
 
     function handleClick() {
-        // reverse geocode
+        getResults();
+    }
+
+    async function getResults() {
+        setLocation(placeToLatLng({latitude:latitude, longitude:longitude}));
+        const coordsAndName = reverseGeocode(location);
+        // use this for centering map and info in popup
     }
 
     return (
@@ -30,5 +39,5 @@ export default function CoordinateSearch(props) {
             </Col>
             <Button onClick={handleClick}>Find</Button>
         </Row>
-    )
+    );
 }
