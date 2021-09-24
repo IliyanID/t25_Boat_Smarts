@@ -22,8 +22,7 @@ export default function CoordinateSearch(props) {
         getResults();
     }
 
-    async function getResults() {
-        setLocation(placeToLatLng({ latitude: latitude, longitude: longitude }));
+    async function getResults() {   
         if (location) {
             const coordsAndName = await reverseGeocode(location);
         }
@@ -31,9 +30,8 @@ export default function CoordinateSearch(props) {
     }
 
     useEffect(() => {
-        setLatitude(latitude);
-        setLongitude(longitude);
-    });
+        setLocation(placeToLatLng({ latitude: latitude, longitude: longitude }));
+    }, [latitude, longitude]);
 
     return (
         <>
