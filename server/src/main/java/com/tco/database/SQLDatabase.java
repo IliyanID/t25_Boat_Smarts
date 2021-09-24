@@ -22,12 +22,15 @@ public class SQLDatabase {
     public static Places findQuery(String searchStr, int limit) {
         SQLCredential db = new SQLCredential();
 
-        limit = (limit == 0)?20000:limit;
      	try (
         Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
         Statement query = conn.createStatement();
         
-        ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
+        ResultSet results;
+            if(limit == 0)
+                results = query.executeQuery(SQLQuery.find(searchStr, FIND_COLUMNS));
+            else
+                results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
