@@ -28,16 +28,23 @@ export default function CoordinateSearch(props) {
     }
 
     return (
+        <>
         <Row>
-            <Col sm="12" md="6">
+            <Col sm="12" md="6" className="mb-1 mt-2">
                 <Label for="latitude">Latitude:</Label>
                 <Input id="latitude" name="latitude" value={latitude} onChange={handleLatitudeChange} placeholder="Latitude"/>
             </Col>
-            <Col sm="12" md="6">
+            <Col sm="12" md="6" className="mb-1 mt-2">
                 <Label for="latitude">Longitude:</Label>
                 <Input id="longitude" name="longitude" value={longitude} onChange={handleLongitudeChange} placeholder="Longitude"/>
             </Col>
-            <Button onClick={handleClick}>Find</Button>
         </Row>
+        <Row>
+            <Col className="mt-3">
+                <Button onClick={handleClick}>Find</Button>
+            </Col>
+        </Row>
+        
+        </>
     );
 }

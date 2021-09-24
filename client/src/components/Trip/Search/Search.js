@@ -50,7 +50,7 @@ export default function Search(props) {
         <TabContent activeTab={activeTab}>
             <TabPane tabId="defaultSearch">
             <Row>
-                <Col sm="12">
+                <Col sm="12" className="my-2">
                 <DefaultSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
                 </Col>
             </Row>
