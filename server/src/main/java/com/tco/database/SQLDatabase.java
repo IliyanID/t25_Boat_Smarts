@@ -21,10 +21,12 @@ public class SQLDatabase {
 
     public static Places findQuery(String searchStr, int limit) {
         SQLCredential db = new SQLCredential();
+
      	try (
-        Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
-        Statement query = conn.createStatement();
-        ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
+            Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
+            Statement query = conn.createStatement();
+        
+            ResultSet results = (limit == 0)?query.executeQuery(SQLQuery.find(searchStr, FIND_COLUMNS)):query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
