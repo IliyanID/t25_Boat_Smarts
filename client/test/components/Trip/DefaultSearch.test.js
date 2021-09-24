@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
 import {describe, expect, it} from '@jest/globals';
-import DefaultSearch from '../../../src/components/Trip/Search/DefaultSearch';
+import DefaultSearch from '../../../src/components/Trip/Search/SearchOptions/DefaultSearch';
 
 describe('Default Search', () => {
 

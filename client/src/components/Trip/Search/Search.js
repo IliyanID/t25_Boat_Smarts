@@ -11,8 +11,8 @@ import {
 } from "reactstrap";
 import classnames from 'classnames';
 
-import DefaultSearch from "./DefaultSearch";
-import CoordinateSearch from "./CoordinateSearch";
+import DefaultSearch from "./SearchOptions/DefaultSearch";
+import CoordinateSearch from "./SearchOptions/CoordinateSearch";
 import { getOriginalServerUrl } from "../../../utils/restfulAPI";
 
 export default function Search(props) {
