@@ -23,14 +23,10 @@ public class SQLDatabase {
         SQLCredential db = new SQLCredential();
 
      	try (
-        Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
-        Statement query = conn.createStatement();
+            Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
+            Statement query = conn.createStatement();
         
-        ResultSet results;
-            if(limit == 0)
-                results = query.executeQuery(SQLQuery.find(searchStr, FIND_COLUMNS));
-            else
-                results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
+            ResultSet results = (limit == 0)?query.executeQuery(SQLQuery.find(searchStr, FIND_COLUMNS)):query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
