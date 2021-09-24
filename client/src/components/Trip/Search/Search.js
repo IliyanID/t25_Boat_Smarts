@@ -9,6 +9,7 @@ import {
     Row,
     Col
 } from "reactstrap";
+import classnames from 'classnames';
 
 import DefaultSearch from "./DefaultSearch";
 import CoordinateSearch from "./CoordinateSearch";
@@ -16,9 +17,8 @@ import { getOriginalServerUrl } from "../../../utils/restfulAPI";
 
 export default function Search(props) {
     const [activeTab, setActiveTab] = useState("defaultSearch");
-    let currentURL = getOriginalServerUrl();
         
-        let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
+    let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
             
     let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
 
@@ -51,14 +51,14 @@ export default function Search(props) {
             <TabPane tabId="defaultSearch">
             <Row>
                 <Col sm="12">
-                <DefaultSearch currentURL={currentURL} setSearchResults={setSearchResults}/>
+                <DefaultSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
                 </Col>
             </Row>
             </TabPane>
             <TabPane tabId="coordinateSearch">
             <Row>
                 <Col sm="12">
-                <CoordinateSearch currentURL={currentURL} setSearchResults={setSearchResults}/>
+                <CoordinateSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
                 </Col>
             </Row>
             </TabPane>
