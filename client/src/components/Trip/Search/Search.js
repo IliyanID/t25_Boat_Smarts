@@ -1,56 +1,68 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+
 import {
-    InputGroup,
-    InputGroupAddon,
-    Input,
-    Button
-} from 'reactstrap';
-import {sendAPIRequest, getOriginalServerUrl} from "../../../utils/restfulAPI";
+    Nav,
+    NavItem,
+    NavLink,
+    TabContent,
+    TabPane,
+    Row,
+    Col
+} from "reactstrap";
+
+import DefaultSearch from "./DefaultSearch";
+import CoordinateSearch from "./CoordinateSearch";
+import { getOriginalServerUrl } from "../../../utils/restfulAPI";
 
 export default function Search(props) {
-    const [userInput, setUserInput] = useState("");
+    const [activeTab, setActiveTab] = useState("defaultSearch");
     let currentURL = getOriginalServerUrl();
-    
-    if(props.serverSettings && props.serverSettings.serverUrl)
-        currentURL = props.serverSettings.serverUrl
+        
+        let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
+            
+    let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
 
-    const setSearchResults = props.setSearchResults;
-
-
-    async function handleChange(e) {
-        setUserInput(e.target.value);
+    const toggle = (tab) => {
+        if (activeTab !== tab) setActiveTab(tab);
     };
-
-    async function handleClick(e) {
-        e.preventDefault();
-        getResults();
-    }
-
-    async function getResults() {
-        const requestBody = createFindRequestBody();
-        const response = await sendAPIRequest(requestBody, currentURL);
-
-        if(response)
-            props.setSearchResults(response);
-    }
-
-    function createFindRequestBody() {
-        return {
-            requestType: 'find',
-            match: userInput,
-            limit: 10
-        }
-    }
-
-    useEffect(()=>{getResults();},[userInput]);
-
     return (
-        <InputGroup>
-            <Input value={userInput} onChange={handleChange}/>
-            <InputGroupAddon addonType="append">
-                <Button role="search" onClick={handleClick}>Search</Button>
-            </InputGroupAddon>
-        </InputGroup>
-    )
+        <>
+        <Nav tabs>
+            <NavItem>
+            <NavLink
+                className={classnames({ active: activeTab === "defaultSearch" })}
+                onClick={() => {
+                    toggle("defaultSearch");
+                }}>
+                Search
+            </NavLink>
+            </NavItem>
+            <NavItem>
+            <NavLink
+                className={classnames({ active: activeTab === "coordinateSearch" })}
+                onClick={() => {
+                    toggle("coordinateSearch");
+                }}>
+                Coordinates
+            </NavLink>
+            </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+            <TabPane tabId="defaultSearch">
+            <Row>
+                <Col sm="12">
+                <DefaultSearch currentURL={currentURL} setSearchResults={setSearchResults}/>
+                </Col>
+            </Row>
+            </TabPane>
+            <TabPane tabId="coordinateSearch">
+            <Row>
+                <Col sm="12">
+                <CoordinateSearch currentURL={currentURL} setSearchResults={setSearchResults}/>
+                </Col>
+            </Row>
+            </TabPane>
+        </TabContent>
+        </>
+    );
 }
-
