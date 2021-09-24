@@ -13,6 +13,14 @@ export const MOCK_PLACES = [
     { name: 'Place B', lat: 45.0, lng: 55.0 }
 ];
 
+export const MOCK_RESULT = {
+    name: 'Test Location',
+    latitude: '40',
+    longitude: '30',
+    iso_country: 'Testland',
+    id: 17
+}
+
 export const REVERSE_GEOCODE_RESPONSE = JSON.stringify({
     "place_id": 259127396,
     "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
