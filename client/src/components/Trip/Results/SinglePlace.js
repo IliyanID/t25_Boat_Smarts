@@ -21,14 +21,18 @@ export default function SinglePlace(props) {
             </div>
             <UncontrolledCollapse toggler={place.iso_country + place.id}>
                 <br />
-                <p><strong>Municipality:</strong> {place.municipality}</p>
-                <p><strong>Country:</strong> {place.iso_country}</p>
-                <p><strong>Region:</strong> {place.region}</p>
-                <br />
-                <p><strong>Coordinates:</strong> {latitude}&#176;{latitudeDirection} {longitude}&#176;{longitudeDirection}</p>
-                <p><strong>Altitude:</strong> {place.altitude}</p>
-                <br />
-                <p><strong>URL:</strong> {place.url}</p>
+                <p>
+                    <strong>Municipality:</strong> {place.municipality}<br />
+                    <strong>Country:</strong> {place.iso_country}<br />
+                    <strong>Region:</strong> {place.iso_region}
+                </p>
+                <p>
+                    <strong>Type:</strong> {place.type}
+                </p>
+                <p>
+                    <strong>Coordinates:</strong> {latitude}&#176;{latitudeDirection} {longitude}&#176;{longitudeDirection}<br />
+                    <strong>Altitude:</strong> {place.altitude}
+                </p>
             </UncontrolledCollapse>
         </ListGroupItem>
     );
