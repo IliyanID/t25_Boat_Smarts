@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Input, Button, Label, Row, Col } from "reactstrap";
+import { Button, Label, Row, Col } from "reactstrap";
 import { placeToLatLng } from "../../../../utils/transformers";
 import { reverseGeocode } from "../../../../utils/reverseGeocode";
 import DefaultCoordinateSearch from "./DefaultCoordinateSearch";
@@ -36,13 +36,19 @@ export default function CoordinateSearch(props) {
 
     return (
         <>
-            <Row>
-                {(searchType === "decimal" && <DefaultCoordinateSearch setLatitude={setLatitude} setLongitude={setLongitude} />) ||
-                    <>
-                        <DegreesMinutesSeconds latitude={latitude} setLatitude={setLatitude} coordType="Latitude" longitude={longitude} setLongitude={setLongitude} />
-                        <DegreesMinutesSeconds longitude={longitude} setLongitude={setLongitude} coordType="Longitude" latitude={latitude} setLatitude={setLatitude} />
-                    </>}
-            </Row>
+
+            {(searchType === "decimal" && <Row><DefaultCoordinateSearch setLatitude={setLatitude} setLongitude={setLongitude} /></Row>) ||
+                <>
+                <Label className="mt-2 mb-0">Latitude:</Label>
+                <Row>
+                    <DegreesMinutesSeconds latitude={latitude} setLatitude={setLatitude} coordType="Latitude" longitude={longitude} setLongitude={setLongitude} />
+                </Row>
+                <Label className="mt-2 mb-0">Longitude:</Label>
+                <Row>
+                    <DegreesMinutesSeconds longitude={longitude} setLongitude={setLongitude} coordType="Longitude" latitude={latitude} setLatitude={setLatitude} />
+                </Row>
+                </>}
+
             <Row>
                 <Col className="mt-3 col-auto mr-auto">
                     <select

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Col, Label, Input} from 'reactstrap';
+import {Col, Label, InputGroup, Input, InputGroupAddon, InputGroupText} from 'reactstrap';
 
 
 export default function DMS(props) {
@@ -39,30 +39,53 @@ export default function DMS(props) {
     }
 
     return (
-        <Col sm="12" md="6" className="mb-1 mt-2">
-            <Label for="coordinate">{coordString}:</Label>
+        <>
+        
+        <Col className="mb-1 pr-0">
+            <InputGroup size="small">
             <Input
-                className=""
+                className="pr-0"
                 id="degrees"
                 name="degrees"
                 value={degrees}
                 onChange={handleDegreeChange}
                 placeholder="Degrees"
             />
+            <InputGroupAddon addonType="append">
+                <InputGroupText>&#176;</InputGroupText>
+            </InputGroupAddon>
+            </InputGroup>
+        </Col>
+        <Col className="mb-1 px-0 px-sm-1 px-md-2">
+            <InputGroup size="small">
             <Input
+                className="pr-0"
                 id="minutes"
                 name="minutes"
                 value={minutes}
                 onChange={handleMinuteChange}
                 placeholder="Minutes"
             />
+            <InputGroupAddon addonType="append">
+                <InputGroupText>'</InputGroupText>
+            </InputGroupAddon>
+            </InputGroup>
+        </Col>
+        <Col className="mb-1 pl-0">
+            <InputGroup size="small">
             <Input
+                className="pr-0"
                 id="seconds"
                 name="seconds"
                 value={seconds}
                 onChange={handleSecondChange}
                 placeholder="Seconds"
             />
+            <InputGroupAddon addonType="append">
+                <InputGroupText>"</InputGroupText>
+            </InputGroupAddon>
+            </InputGroup>
         </Col>
+        </>
     );
 }
