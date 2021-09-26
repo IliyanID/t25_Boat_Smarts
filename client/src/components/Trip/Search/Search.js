@@ -58,7 +58,7 @@ export default function Search(props) {
             <TabPane tabId="coordinateSearch">
             <Row>
                 <Col sm="12">
-                <CoordinateSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
+                <CoordinateSearch currentURL={currentURL} {...props}/>
                 </Col>
             </Row>
             </TabPane>

@@ -27,8 +27,15 @@ export default function CoordinateSearch(props) {
     }
 
     async function getResults() {
-        if (location) {
+        if (validLatitude && validLongitude) {
             const coordDetails = await reverseGeocode(location);
+        } else {
+            if (!validLatitude) {
+                props.showMessage("Invalid latitude.", "warning");
+            }
+            if (!validLongitude) {
+                props.showMessage("Invalid longitude.", "warning");
+            }
         }
         // use this for centering map and info in popup
     }

@@ -34,7 +34,10 @@ export default function DMS(props) {
     }
 
     function toDecimalDegrees() {
-        const decimal = parseFloat(degrees) + parseFloat(minutes)/60 + parseFloat(seconds)/3600;
+        const d = degrees !== "" ? parseFloat(degrees) : 0;
+        const m = minutes !== "" ? parseFloat(minutes) : 0;
+        const s = seconds !== "" ? parseFloat(seconds) : 0;
+        const decimal = d + m/60 + s/3600;
         return decimal.toString();
     }
 
