@@ -23,8 +23,8 @@ export default function SinglePlace(props) {
                 <br />
                 <p>
                     <strong>Municipality:</strong> {place.municipality}<br />
-                    <strong>Country:</strong> {place.iso_country}<br />
-                    <strong>Region:</strong> {place.iso_region}
+                    <strong>Country:</strong> {place.country}<br />
+                    <strong>Region:</strong> {place.region}
                 </p>
                 <p>
                     <strong>Type:</strong> {place.type}
