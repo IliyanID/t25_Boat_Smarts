@@ -14,7 +14,8 @@ import com.tco.database.SQLQuery;
 
 public class SQLDatabase {
   
-    private final static String FIND_COLUMNS = "id,type,name,latitude,longitude,altitude,municipality,iso_country,iso_region";
+    //Additional columns; place name, id, and country name are always included
+    private final static String FIND_COLUMNS = "type,latitude,longitude,altitude,municipality,iso_country,iso_region";
 
     public static class Place extends HashMap<String, String> {}
     public static class Places extends ArrayList<Place> {}
@@ -57,6 +58,9 @@ public class SQLDatabase {
         String[] columns = FIND_COLUMNS.split(",");
         while (results.next()) {
             Place place = new Place();
+            place.put("name", results.getString("name"));
+            place.put("country", results.getString("country"));
+            place.put("id", results.getString("id"));
             for (String column : columns){
                 place.put(column, results.getString(column));
             }
