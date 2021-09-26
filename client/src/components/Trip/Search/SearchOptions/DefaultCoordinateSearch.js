@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Col, Label, Input} from 'reactstrap';
+import validateCoordinates from "../../../../utils/coordinateValidator";
 
 export default function DefaultCoordinateSearch(props) {
 
@@ -11,6 +12,10 @@ export default function DefaultCoordinateSearch(props) {
         props.setLongitude(e.target.value);
     }
 
+    useEffect(() => {
+        validateCoordinates(props.latitude, props.longitude)
+    }, [props.latitude, props.longitude]);
+
     return (<>
         <Col sm="12" md="6" className="mb-1 mt-2">
                         <Label for="latitude">Latitude:</Label>
@@ -20,6 +25,7 @@ export default function DefaultCoordinateSearch(props) {
                             value={props.latitude}
                             onChange={handleLatitudeChange}
                             placeholder="Latitude"
+                            className="form-control"
                         />
                     </Col>
                     <Col sm="12" md="6" className="mb-1 mt-2">
@@ -30,6 +36,7 @@ export default function DefaultCoordinateSearch(props) {
                             value={props.longitude}
                             onChange={handleLongitudeChange}
                             placeholder="Longitude"
+                            className="form-control"
                         />
                     </Col>
     </>)
