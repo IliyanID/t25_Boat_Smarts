@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { Button, Label, Row, Col } from "reactstrap";
-import { placeToLatLng } from "../../../../utils/transformers";
-import { reverseGeocode } from "../../../../utils/reverseGeocode";
+import { placeToLatLng } from "../../../../../utils/transformers";
+import { reverseGeocode } from "../../../../../utils/reverseGeocode";
 import DefaultCoordinateSearch from "./DefaultCoordinateSearch";
 import DegreesMinutesSeconds from "./DegreesMinutesSeconds";
 

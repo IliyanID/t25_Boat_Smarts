@@ -12,7 +12,7 @@ import {
 import classnames from 'classnames';
 
 import DefaultSearch from "./SearchOptions/DefaultSearch";
-import CoordinateSearch from "./SearchOptions/CoordinateSearch";
+import CoordinateSearch from "./SearchOptions/CoordinateSearch/CoordinateSearch";
 import { getOriginalServerUrl } from "../../../utils/restfulAPI";
 
 export default function Search(props) {
