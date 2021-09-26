@@ -27,9 +27,9 @@ export default function DMS(props) {
 
     return (
         <>
-            <SingleInput classes="mb-1 pr-0" inputType="Degrees" inputSymbol="&#176;" inputValue={degrees} handleValueChange={e => {setDegrees(e.target.value)}} />
-            <SingleInput classes="mb-1 px-0 px-sm-1 px-md-2" inputType="Minutes" inputSymbol="'" inputValue={minutes} handleValueChange={e => {setMinutes(e.target.value)}} />
-            <SingleInput classes="mb-1 pl-0" inputType="Seconds" inputSymbol='"' inputValue={seconds} handleValueChange={e => {setSeconds(e.target.value)}} />
+            <SingleInput classes="mb-1 pr-1" inputType="Degrees" inputSymbol="&#176;" inputValue={degrees} handleValueChange={e => {setDegrees(e.target.value)}} />
+            <SingleInput classes="mb-1 px-1 px-sm-2 px-md-3 px-lg-4" inputType="Minutes" inputSymbol="'" inputValue={minutes} handleValueChange={e => {setMinutes(e.target.value)}} />
+            <SingleInput classes="mb-1 pl-1" inputType="Seconds" inputSymbol='"' inputValue={seconds} handleValueChange={e => {setSeconds(e.target.value)}} />
         </>
     );
 }
