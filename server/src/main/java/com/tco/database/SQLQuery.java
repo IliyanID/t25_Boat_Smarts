@@ -7,15 +7,7 @@ public class SQLQuery {
             +  " FROM world "
             +  "WHERE name LIKE '%" + searchStr + "%' "
             +  (searchStr.isEmpty() ? "ORDER BY rand() " : "")
-            +  "LIMIT " + Integer.toString(limit)
-            +  ";";
-    }
-
-    static String find(String searchStr, String columns) {
-        return "SELECT " + columns
-            +  " FROM world "
-            +  "WHERE name LIKE '%" + searchStr + "%' "
-            +  (searchStr.isEmpty() ? "ORDER BY rand() " : "")
+            +  (limit == 0 ? "" : "LIMIT " + Integer.toString(limit))
             +  ";";
     }
 

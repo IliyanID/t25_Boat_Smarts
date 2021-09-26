@@ -26,7 +26,7 @@ public class SQLDatabase {
             Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
             Statement query = conn.createStatement();
         
-            ResultSet results = (limit == 0)?query.executeQuery(SQLQuery.find(searchStr, FIND_COLUMNS)):query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
+            ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
