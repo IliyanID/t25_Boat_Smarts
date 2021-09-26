@@ -14,7 +14,7 @@ import com.tco.database.SQLQuery;
 
 public class SQLDatabase {
   
-    private final static String FIND_COLUMNS = "id,name,latitude,longitude,altitude,municipality,iso_country";
+    private final static String FIND_COLUMNS = "id,type,name,latitude,longitude,altitude,municipality,iso_country,iso_region";
 
     public static class Place extends HashMap<String, String> {}
     public static class Places extends ArrayList<Place> {}
