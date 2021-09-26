@@ -13,6 +13,7 @@ import classnames from 'classnames';
 
 import DefaultSearch from "./SearchOptions/DefaultSearch";
 import CoordinateSearch from "./SearchOptions/CoordinateSearch";
+import RandomSearch from "./SearchOptions/RandomSearch";
 import { getOriginalServerUrl } from "../../../utils/restfulAPI";
 
 export default function Search(props) {
@@ -25,8 +26,12 @@ export default function Search(props) {
     return (
         <>
         <Nav tabs>
-            <SingleTab tabId = "defaultSearch" tabLabel = "Search" activeTab={activeTab} setActiveTab={setActiveTab}/>
-            <SingleTab tabId = "coordinateSearch" tabLabel = "Coordinates" activeTab={activeTab} setActiveTab={setActiveTab}/>
+            <SingleTab tabId = "defaultSearch" tabLabel = "Search" 
+                    activeTab={activeTab} setActiveTab={setActiveTab} setSearchResults={props.setSearchResults}/>
+            <SingleTab tabId = "coordinateSearch" tabLabel = "Coordinates"
+                     activeTab={activeTab} setActiveTab={setActiveTab} setSearchResults={props.setSearchResults}/>
+            <SingleTab tabId = "randomSearch" tabLabel = "Random"
+                     activeTab={activeTab} setActiveTab={setActiveTab} setSearchResults={props.setSearchResults}/>
         </Nav>
         <TabContent activeTab={activeTab}>
             <TabPane tabId="defaultSearch">
@@ -43,15 +48,27 @@ export default function Search(props) {
                 </Col>
             </Row>
             </TabPane>
+            <TabPane tabId="randomSearch">
+            <Row>
+                <Col sm="12">
+                <RandomSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
+                </Col>
+            </Row>
+            </TabPane>
         </TabContent>
         </>
     );
 }
 
 export function SingleTab(props) {
+
     const toggle = (tab) => {
-        if (props.activeTab !== tab) props.setActiveTab(tab);
+        if (props.activeTab !== tab) {
+            props.setActiveTab(tab);
+            props.setSearchResults(null);
+        }
     };
+
     return (
         <>
         <NavItem>
