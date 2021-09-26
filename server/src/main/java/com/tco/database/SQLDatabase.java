@@ -14,8 +14,8 @@ import com.tco.database.SQLQuery;
 
 public class SQLDatabase {
   
-    //Additional columns; place name, id, and country name are always included
-    private final static String FIND_COLUMNS = "type,latitude,longitude,altitude,municipality,iso_country,iso_region";
+    //Additional columns; place name, id, iso_country, and country name are always included
+    private final static String FIND_COLUMNS = "type,latitude,longitude,altitude,municipality,iso_region";
 
     public static class Place extends HashMap<String, String> {}
     public static class Places extends ArrayList<Place> {}
@@ -55,12 +55,12 @@ public class SQLDatabase {
 
     static Places convertQueryResultsToPlaces(ResultSet results) throws SQLException {
         Places places = new Places();
-        String[] columns = FIND_COLUMNS.split(",");
+        
+        // Add back in columns with conflicting names across tables
+        String[] columns = ("name,id,country,region,iso_country,"+FIND_COLUMNS).split(",");
+
         while (results.next()) {
             Place place = new Place();
-            place.put("name", results.getString("name"));
-            place.put("country", results.getString("country"));
-            place.put("id", results.getString("id"));
             for (String column : columns){
                 place.put(column, results.getString(column));
             }
