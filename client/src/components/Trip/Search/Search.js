@@ -22,30 +22,11 @@ export default function Search(props) {
             
     let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
 
-    const toggle = (tab) => {
-        if (activeTab !== tab) setActiveTab(tab);
-    };
     return (
         <>
         <Nav tabs>
-            <NavItem>
-            <NavLink
-                className={classnames({ active: activeTab === "defaultSearch" })}
-                onClick={() => {
-                    toggle("defaultSearch");
-                }}>
-                Search
-            </NavLink>
-            </NavItem>
-            <NavItem>
-            <NavLink
-                className={classnames({ active: activeTab === "coordinateSearch" })}
-                onClick={() => {
-                    toggle("coordinateSearch");
-                }}>
-                Coordinates
-            </NavLink>
-            </NavItem>
+            <SingleTab tabId = "defaultSearch" tabLabel = "Search" activeTab={activeTab} setActiveTab={setActiveTab}/>
+            <SingleTab tabId = "coordinateSearch" tabLabel = "Coordinates" activeTab={activeTab} setActiveTab={setActiveTab}/>
         </Nav>
         <TabContent activeTab={activeTab}>
             <TabPane tabId="defaultSearch">
@@ -63,6 +44,25 @@ export default function Search(props) {
             </Row>
             </TabPane>
         </TabContent>
+        </>
+    );
+}
+
+export function SingleTab(props) {
+    const toggle = (tab) => {
+        if (props.activeTab !== tab) props.setActiveTab(tab);
+    };
+    return (
+        <>
+        <NavItem>
+            <NavLink
+                className={classnames({ active: props.activeTab === props.tabId })}
+                onClick={() => {
+                    toggle(props.tabId);
+                }}>
+                {props.tabLabel}
+            </NavLink>
+        </NavItem>
         </>
     );
 }
