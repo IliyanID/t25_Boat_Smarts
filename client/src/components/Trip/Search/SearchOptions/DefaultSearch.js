@@ -27,6 +27,8 @@ export default function DefaultSearch(props) {
     async function getResults() {
         const requestBody = createFindRequestBody();
 
+        if (props.activeTab !== "defaultSearch") return;
+
         if (userInput === ""){
             setSearchResults(null);
             return;
@@ -46,7 +48,8 @@ export default function DefaultSearch(props) {
         }
     }
 
-    useEffect(()=>{getResults();},[userInput]);
+    useEffect(()=>{getResults();},[userInput, props.activeTab]);
+
 
     return (
         <InputGroup>
