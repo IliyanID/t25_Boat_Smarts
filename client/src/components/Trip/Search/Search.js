@@ -37,7 +37,7 @@ export default function Search(props) {
             <TabPane tabId="defaultSearch">
             <Row>
                 <Col sm="12" className="my-2">
-                <DefaultSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
+                <DefaultSearch currentURL={currentURL} activeTab={activeTab} {...props}/>
                 </Col>
             </Row>
             </TabPane>
@@ -50,8 +50,8 @@ export default function Search(props) {
             </TabPane>
             <TabPane tabId="randomSearch">
             <Row>
-                <Col sm="12">
-                <RandomSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
+                <Col className="d-flex mt-3 mx-auto col-auto">
+                <RandomSearch currentURL={currentURL} activeTab = {activeTab} {...props}/>
                 </Col>
             </Row>
             </TabPane>
