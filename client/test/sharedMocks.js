@@ -9,9 +9,25 @@ export const INVALID_REQUEST = JSON.stringify({
 });
 
 export const MOCK_PLACES = [
-    { name: 'Place A', lat: 40.0, lng: 50.0 },
-    { name: 'Place B', lat: 45.0, lng: 55.0 }
+    { id: 1, name: 'Place A', lat: 40.0, lng: 50.0, iso_country: 'Unknown'},
+    { id: 2, name: 'Place B', lat: -45.0, lng: -55.0, iso_country: 'Unknown'}
 ];
+
+export const MOCK_RESULT_POSITIVE = {
+    name: 'Test Location',
+    latitude: '40',
+    longitude: '30',
+    iso_country: 'Testland',
+    id: 16
+}
+
+export const MOCK_RESULT_NEGATIVE = {
+    name: 'Other Test Location',
+    latitude: '-40',
+    longitude: '-30',
+    iso_country: 'Testland',
+    id: 17
+}
 
 export const REVERSE_GEOCODE_RESPONSE = JSON.stringify({
     "place_id": 259127396,

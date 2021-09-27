@@ -19,7 +19,7 @@ export default function SinglePlace(props) {
                 <h5 id={place.iso_country + place.id} className="mr-auto">{place.name}</h5>
                 <Button onClick={addResultToTrip} color="primary" className="align-self-center float-right">&#43;</Button>
             </div>
-            <UncontrolledCollapse toggler={place.iso_country + place.id}>
+            <UncontrolledCollapse toggler={place.iso_country + place.id} data-testid="place-collapse">
                 <br />
                 <p>
                     <strong>Municipality:</strong> {place.municipality}<br />

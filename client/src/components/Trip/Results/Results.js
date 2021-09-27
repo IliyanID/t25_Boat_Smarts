@@ -8,7 +8,7 @@ export default function Results(props) {
     const placesFound = results.found;
 
     return (
-        <ListGroup>
+        <ListGroup data-testid="results-list">
             {places && places.map((place, i) => <SinglePlace key={place.iso_country+place.id} place={place} index={i} {...props} />)}
             {placesFound && <p>Total results: {placesFound}</p>}
         </ListGroup>

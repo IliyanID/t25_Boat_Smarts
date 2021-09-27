@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it } from '@jest/globals';
 import { CLIENT_TEAM_NAME } from '../../src/utils/constants';
 import { VALID_CONFIG_RESPONSE } from '../sharedMocks';
 import Page from '../../src/components/Page';
+import { act } from 'react-dom/test-utils';
 
 describe('Page', () => {
     beforeEach(() => {
@@ -26,8 +27,10 @@ describe('Page', () => {
         expect(collapse.classList.contains('show')).toBe(true);
 
         const toggleButton = screen.getByRole('button', { name: /T[0-9][0-9]/i })
-        user.click(toggleButton);
-
+        act(() => {
+            user.click(toggleButton);
+        });
+        
         await waitFor(() => {
             expect(collapse.classList.contains('show')).toBe(false);
 

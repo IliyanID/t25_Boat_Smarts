@@ -2,6 +2,7 @@ import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
 import {describe, expect, it} from '@jest/globals';
 import DefaultSearch from '../../../src/components/Trip/Search/SearchOptions/DefaultSearch';
+import { act } from 'react-dom/test-utils';
 
 describe('Default Search', () => {
 
@@ -15,7 +16,9 @@ describe('Default Search', () => {
         const {getByRole} = render(<DefaultSearch />);
         fireEvent.change(getByRole('textbox'), {target: {value: 'Denver'}});
         expect(getByRole('textbox').value).toBe('Denver');
-        fireEvent.click(getByRole('search'));
+        act(() => {
+            fireEvent.click(getByRole('search'));
+        });
     });
 
 });
