@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DEFAULT_STARTING_PLACE } from "./constants";
 
 export function CurrentLocation (showMessage){
 
-    const [latitude, setLatitude] = useState(DEFAULT_STARTING_PLACE.latitude,);
+    const [latitude, setLatitude] = useState(DEFAULT_STARTING_PLACE.latitude);
     const [longitude, setLongitude] = useState(DEFAULT_STARTING_PLACE.longitude);
     
     if (!window.navigator.geolocation){
