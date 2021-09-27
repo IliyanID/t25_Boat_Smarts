@@ -12,6 +12,7 @@ import {
 import classnames from 'classnames';
 
 import DefaultSearch from "./SearchOptions/DefaultSearch";
+import RandomSearch from "./SearchOptions/RandomSearch";
 import CoordinateSearch from "./SearchOptions/CoordinateSearch/CoordinateSearch";
 import { getOriginalServerUrl } from "../../../utils/restfulAPI";
 
@@ -22,30 +23,15 @@ export default function Search(props) {
             
     let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
 
-    const toggle = (tab) => {
-        if (activeTab !== tab) setActiveTab(tab);
-    };
     return (
         <>
         <Nav tabs>
-            <NavItem>
-            <NavLink
-                className={classnames({ active: activeTab === "defaultSearch" })}
-                onClick={() => {
-                    toggle("defaultSearch");
-                }}>
-                Search
-            </NavLink>
-            </NavItem>
-            <NavItem>
-            <NavLink
-                className={classnames({ active: activeTab === "coordinateSearch" })}
-                onClick={() => {
-                    toggle("coordinateSearch");
-                }}>
-                Coordinates
-            </NavLink>
-            </NavItem>
+            <SingleTab tabId = "defaultSearch" tabLabel = "Search" 
+                    activeTab={activeTab} setActiveTab={setActiveTab} setSearchResults={props.setSearchResults}/>
+            <SingleTab tabId = "coordinateSearch" tabLabel = "Coordinates"
+                     activeTab={activeTab} setActiveTab={setActiveTab} setSearchResults={props.setSearchResults}/>
+            <SingleTab tabId = "randomSearch" tabLabel = "Random"
+                     activeTab={activeTab} setActiveTab={setActiveTab} setSearchResults={props.setSearchResults}/>
         </Nav>
         <TabContent activeTab={activeTab}>
             <TabPane tabId="defaultSearch">
@@ -62,7 +48,38 @@ export default function Search(props) {
                 </Col>
             </Row>
             </TabPane>
+            <TabPane tabId="randomSearch">
+            <Row>
+                <Col sm="12">
+                <RandomSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
+                </Col>
+            </Row>
+            </TabPane>
         </TabContent>
+        </>
+    );
+}
+
+export function SingleTab(props) {
+
+    const toggle = (tab) => {
+        if (props.activeTab !== tab) {
+            props.setActiveTab(tab);
+            props.setSearchResults(null);
+        }
+    };
+
+    return (
+        <>
+        <NavItem>
+            <NavLink
+                className={classnames({ active: props.activeTab === props.tabId })}
+                onClick={() => {
+                    toggle(props.tabId);
+                }}>
+                {props.tabLabel}
+            </NavLink>
+        </NavItem>
         </>
     );
 }
