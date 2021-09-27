@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {beforeEach, describe, expect, it} from '@jest/globals';
-import SinglePlace from '../../../src/components/Trip/Search/SinglePlace.js';
+import SinglePlace from '../../../src/components/Trip/Results/SinglePlace.js';
 import {MOCK_RESULT} from '../../sharedMocks.js';
 
 describe('Single Place', () => {
