@@ -9,7 +9,7 @@ describe('Single Place', () => {
     beforeEach(() => {
         render(<SinglePlace place={MOCK_RESULT}/>);
     });
-    it('renders to screen', async () => {
+    it('renders to screen', () => {
         expect(screen.getByRole('heading').textContent).toBe('Test Location');
     });
 

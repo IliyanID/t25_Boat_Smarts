@@ -11,7 +11,7 @@ describe('Results', () => {
         placesFound: 2
     }
 
-    it('renders to screen', async () => {
+    it('renders to screen', () => {
         render(<Results searchResults={MOCK_RESULTS} />);
     });
 
