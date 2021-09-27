@@ -12,10 +12,10 @@ export default class CurrentLocation extends Component{
     
     CurrentLocation(showMessage) {
 
-        let message = "Broswer Location not turned on. Adding default location."
-        showMessage(message,"warning")
-
+        
         if (!navigator.geolocation){
+            let message = "Broswer Location not turned on. Adding default location."
+            showMessage(message,"warning")
             //ToDo
             //Add popup for if the users browser doesnt have location services turned on
         }else{
