@@ -6,9 +6,6 @@ export default function Results(props) {
     const results = props.searchResults;
     const places = results.places;
     const placesFound = results.found;
-    const match = results.match;
-
-    if (!match) return (null);
 
     return (
         <ListGroup>
