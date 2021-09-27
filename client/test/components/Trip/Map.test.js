@@ -5,6 +5,7 @@ import { expect } from '@jest/globals';
 import { MOCK_PLACES } from "../../sharedMocks";
 
 import Map from '../../../src/components/Trip/Map/Map';
+import { act } from 'react-dom/test-utils';
 
 describe('Map', () => {
     const places = MOCK_PLACES;
@@ -21,7 +22,9 @@ describe('Map', () => {
     });
 
     it('appends calls append when the map is clicked', () => {
-        user.click(screen.getByRole('presentation'));
+        act(() => {
+            user.click(screen.getByRole('presentation'));
+        });
         expect(placeActions.append).toHaveBeenCalled();
     });
 });
