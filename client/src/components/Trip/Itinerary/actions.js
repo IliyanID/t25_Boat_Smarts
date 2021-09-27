@@ -11,11 +11,11 @@ export default class CurrentLocation extends Component{
     };
     
 findCurrentLocation = (props) => {
+    let message = "Broswer Location not turned on. Adding default location."
+    props.showMessage(message,"warning")
     if (!navigator.geolocation){
         //ToDo
         //Add popup for if the users browser doesnt have location services turned on
-        let message = "Broswer Location not turned on. Adding default location."
-        props.showMessage(message,"warning")
     }else{
         window.navigator.geolocation.getCurrentPosition(
         position => {
@@ -31,7 +31,7 @@ export function ItineraryActionsDropdown(props) {
 
      let userLocation = new CurrentLocation();
 
-     userLocation.findCurrentLocation(props);
+     userLocation.findCurrentLocation(props.showMessage);
 
     return (
         <ActionsDropdown {...props}>
