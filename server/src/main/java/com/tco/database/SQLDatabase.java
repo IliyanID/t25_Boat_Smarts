@@ -14,17 +14,20 @@ import com.tco.database.SQLQuery;
 
 public class SQLDatabase {
   
-    private final static String FIND_COLUMNS = "id,name,latitude,longitude,altitude,municipality,iso_country";
+    //Additional columns; place name, id, iso_country, and country name are always included
+    private final static String FIND_COLUMNS = "type,latitude,longitude,altitude,municipality,iso_region";
 
     public static class Place extends HashMap<String, String> {}
     public static class Places extends ArrayList<Place> {}
 
     public static Places findQuery(String searchStr, int limit) {
         SQLCredential db = new SQLCredential();
+
      	try (
-        Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
-        Statement query = conn.createStatement();
-        ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
+            Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
+            Statement query = conn.createStatement();
+        
+            ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
@@ -52,7 +55,10 @@ public class SQLDatabase {
 
     static Places convertQueryResultsToPlaces(ResultSet results) throws SQLException {
         Places places = new Places();
-        String[] columns = FIND_COLUMNS.split(",");
+        
+        // Add back in columns with conflicting names across tables
+        String[] columns = ("name,id,country,region,iso_country,"+FIND_COLUMNS).split(",");
+
         while (results.next()) {
             Place place = new Place();
             for (String column : columns){

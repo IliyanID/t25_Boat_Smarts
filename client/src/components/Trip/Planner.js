@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import Map from './Map/Map';
 import Search from './Search/Search';
-import Results from './Search/Results';
+import Results from './Results/Results';
 import Itinerary from './Itinerary/Itinerary';
 import { usePlaces } from '../../hooks/usePlaces';
 
