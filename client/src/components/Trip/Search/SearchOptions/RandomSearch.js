@@ -28,7 +28,7 @@ export default function RandomSearch(props){
     return (
         <>
         <br/>
-        <Button onClick={getResults}>Find Random Places</Button>
+        <Button color="primary" onClick={getResults}>Find Random Places</Button>
         </>
     );
 }

@@ -50,7 +50,7 @@ export default function Search(props) {
             </TabPane>
             <TabPane tabId="randomSearch">
             <Row>
-                <Col sm="12">
+                <Col className="d-flex mt-3 mx-auto col-auto">
                 <RandomSearch currentURL={currentURL} activeTab = {activeTab} {...props}/>
                 </Col>
             </Row>
