@@ -19,7 +19,7 @@ function Header(props) {
                 <th/>
                 <th>My Trip</th>
                 <th>
-                    <ItineraryActionsDropdown placeActions={props.placeActions} />
+                    <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage}/>
                 </th>
             </tr>
         </thead>
