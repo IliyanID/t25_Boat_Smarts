@@ -1,39 +1,17 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation } from 'react-icons/fa';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
+import { currentLocation } from '../../../utils/currentLocation';
 
-export default class CurrentLocation extends Component{
-    state = {
-        latitude: DEFAULT_STARTING_PLACE.latitude,
-        longitude: DEFAULT_STARTING_PLACE.longitude
-    };
-    
-findCurrentLocation = () => {
-    if (!navigator.geolocation){
-        //ToDo
-        //Add popup for if the users browser doesnt have location services turned on
-    }else{
-        window.navigator.geolocation.getCurrentPosition(
-        position => {
-            this.state.latitude = position.coords.latitude;
-            this.state.longitude = position.coords.longitude;
-        }
-        );
-    }
-
-};
-};
 export function ItineraryActionsDropdown(props) {
 
-     let userLocation = new CurrentLocation();
-
-     userLocation.findCurrentLocation();
+    let coord = currentLocation(props.showMessage);
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => props.placeActions.append(userLocation.state)} data-testid='home-button'>
+            <DropdownItem onClick={() => props.placeActions.append(coord)} data-testid='home-button'>
                 <FaHome />
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>
