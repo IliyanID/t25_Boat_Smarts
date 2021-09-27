@@ -5,7 +5,7 @@ import { placeToLatLng } from "../../../../../utils/transformers";
 import { reverseGeocode } from "../../../../../utils/reverseGeocode";
 import DefaultCoordinateSearch from "./DefaultCoordinateSearch";
 import DegreesMinutesSeconds from "./DegreesMinutesSeconds";
-import validateCoordinates from "../../../../utils/coordinateValidator";
+import validateCoordinates from "../../../../../utils/coordinateValidator";
 
 export default function CoordinateSearch(props) {
     const [latitude, setLatitude] = useState("");
