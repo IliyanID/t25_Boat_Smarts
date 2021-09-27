@@ -51,7 +51,7 @@ export default function Search(props) {
             <TabPane tabId="randomSearch">
             <Row>
                 <Col sm="12">
-                <RandomSearch currentURL={currentURL} setSearchResults={props.setSearchResults}/>
+                <RandomSearch currentURL={currentURL} activeTab = {activeTab} {...props}/>
                 </Col>
             </Row>
             </TabPane>
