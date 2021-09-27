@@ -23,7 +23,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Itinerary centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} {...props} />
+                <Itinerary centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
             </Section>
         </Container>
     );

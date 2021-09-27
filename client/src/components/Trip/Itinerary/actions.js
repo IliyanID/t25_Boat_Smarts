@@ -11,27 +11,33 @@ export default class CurrentLocation extends Component{
     };
     
     CurrentLocation(showMessage) {
-
-        
-        if (!navigator.geolocation){
-            let message = "Broswer Location not turned on. Adding default location."
-            showMessage(message,"warning")
+        if (!window.navigator.geolocation){
             //ToDo
             //Add popup for if the users browser doesnt have location services turned on
         }else{
             window.navigator.geolocation.getCurrentPosition(
-            position => {
-                this.state.latitude = position.coords.latitude;
-                this.state.longitude = position.coords.longitude;
+                position => {
+                    this.state.latitude = position.coords.latitude;
+                    this.state.longitude = position.coords.longitude;
+                },
+                error => {
+                    message = error.message
+                    showMessage(message,"warning")
+                }
+                );
             }
-            );
-        }
+            
+        };
+    }
+    export function ItineraryActionsDropdown(props) {
+        
 
-    };
-}
-export function ItineraryActionsDropdown(props) {
+    let userLocation = new CurrentLocation(props.showMessage);
 
-     let userLocation = new CurrentLocation(props.showMessage);
+    // if (window.navigator.geolocation){
+    //     let message = "Browser Location not turned on. Adding default location."
+    //     props.showMessage(message,"warning")
+    // }
 
      //userLocation.findCurrentLocation(props.showMessage);
 

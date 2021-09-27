@@ -16,7 +16,7 @@ export default function Page(props) {
 
 	return (
 		<>
-			<Header toggleAbout={toggleAbout} />
+			<Header showMessage = {props.showMessage} toggleAbout={toggleAbout} />
 			<div className="body">
 				<Collapse isOpen={showAbout}>
 					<About closePage={toggleAbout} />
