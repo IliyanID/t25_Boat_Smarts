@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DEFAULT_STARTING_PLACE } from "./constants";
 
-export function CurrentLocation (showMessage){
+export function currentLocation (showMessage){
 
     const [latitude, setLatitude] = useState(DEFAULT_STARTING_PLACE.latitude);
     const [longitude, setLongitude] = useState(DEFAULT_STARTING_PLACE.longitude);
@@ -16,8 +16,8 @@ export function CurrentLocation (showMessage){
                     setLongitude(position.coords.longitude);
                 },
                 error => {
-                    let message = error.message
-                    showMessage(message,"warning")
+                    let message = error.message;
+                    showMessage(message,"warning");
                 }
                 );
     }

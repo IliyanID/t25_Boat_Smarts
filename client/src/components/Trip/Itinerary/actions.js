@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation } from 'react-icons/fa';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
-import { CurrentLocation } from '../../../utils/currentLocation';
+import { currentLocation } from '../../../utils/currentLocation';
 
 export function ItineraryActionsDropdown(props) {
 
-    let coord = CurrentLocation(props.showMessage);
+    let coord = currentLocation(props.showMessage);
 
     return (
         <ActionsDropdown {...props}>
