@@ -7,13 +7,13 @@ import Itinerary from './Itinerary/Itinerary';
 import { usePlaces } from '../../hooks/usePlaces';
 
 export default function Planner(props) {
-    const {places, selectedIndex, placeActions} = usePlaces();
+    const {previousPlaces, places, selectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
     const [centerView,setCenterView] = useState(false)
     const [locationPreview, setLocationPreview] = useState();
 
     useEffect(()=>{
-        if(selectedIndex != -1 && selectedIndex === places.length-1 )
+        if(selectedIndex != -1 && places.length > previousPlaces.length )
             props.showMessage("Added to Trip " + places[selectedIndex].name,"info")
     },[places])
 
