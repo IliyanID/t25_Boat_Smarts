@@ -12,7 +12,6 @@ export default function CoordinateSearch(props) {
     const [validLatitude, setValidLatitude] = useState(false);
     const [longitude, setLongitude] = useState("");
     const [validLongitude, setValidLongitude] = useState(false);
-    const [location, setLocation] = useState({});
     const [searchType, setSearchType] = useState("decimal");
 
 
@@ -21,22 +20,32 @@ export default function CoordinateSearch(props) {
         setSearchType(e.target.value);
     }
 
-    async function handleClick(e) {
-        e.preventDefault();
-        showWarnings();
+    function handleFind() {
+        getResults();
     }
 
-    async function showWarnings() {
-        if (!validLatitude) {
-            props.showMessage("Invalid latitude.", "warning");
+    function handleAdd(){
+        if (validLatitude && validLongitude) {
+            props.placeActions.append({ latitude: latitude, longitude: longitude })
         }
-        if (!validLongitude) {
-            props.showMessage("Invalid longitude.", "warning");
+    }
+
+    async function getResults() {
+        if (validLatitude && validLongitude) {
+            let tempCords = placeToLatLng({ latitude: latitude, longitude: longitude })
+            const coordDetails = await reverseGeocode(tempCords);
+            props.setLocationPreview(coordDetails);
+        } else {
+            if (!validLatitude) {
+                props.showMessage("Invalid latitude.", "warning");
+            }
+            if (!validLongitude) {
+                props.showMessage("Invalid longitude.", "warning");
+            }
         }
     }
 
     useEffect(() => {
-        setLocation(placeToLatLng({ latitude: latitude, longitude: longitude }));
         validateCoordinates(latitude, longitude, setValidLatitude, setValidLongitude);
     }, [latitude, longitude]);
 
@@ -68,7 +77,8 @@ export default function CoordinateSearch(props) {
                     </select>
                 </Col>
                 <Col className="mt-3 col-auto">
-                    <Button onClick={handleClick}>Find</Button>
+                    <Button onClick={handleFind}>Find</Button>
+                    <Button style={{marginLeft:"5px"}} onClick={handleAdd}>Add</Button>
                 </Col>
             </Row>
         </>

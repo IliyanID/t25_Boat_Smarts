@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import Map from './Map/Map';
 import Search from './Search/Search';
@@ -10,15 +10,21 @@ export default function Planner(props) {
     const {places, selectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
     const [centerView,setCenterView] = useState(false)
+    const [locationPreview, setLocationPreview] = useState();
+
+    useEffect(()=>{
+        if(selectedIndex != -1 && selectedIndex === places.length-1 )
+            props.showMessage("Added to Trip " + places[selectedIndex].name,"info")
+    },[places])
 
     return (
         <Container>
             <Section>
-                <Map centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
+                <Map locationPreview={locationPreview} centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
             <br />
             <Section>
-                <Search searchResults={searchResults} setSearchResults={setSearchResults} {...props} />
+                <Search setLocationPreview={setLocationPreview} searchResults={searchResults} placeActions={placeActions} setSearchResults={setSearchResults} {...props} />
                 {searchResults && <><br /><Results searchResults={searchResults} placeActions={placeActions} /></>}
             </Section>
             <br />
