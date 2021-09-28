@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useRef } from 'react';
 import { Map as LeafletMap, Polyline, TileLayer } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
@@ -12,6 +12,8 @@ const MAP_MIN_ZOOM = 1;
 const MAP_MAX_ZOOM = 19;
 
 export default function Map(props) {
+    let ref = useRef()
+
     const [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
     useEffect(()=>{
        getCenter().then((result)=>{setCoordinates(result)});
@@ -21,7 +23,13 @@ export default function Map(props) {
         if( props.selectedIndex >=0 )
             setCoordinates(props.places[props.selectedIndex])
     },[props.centerView])
-    
+
+    useEffect(()=>{
+        console.log(props.locationPreview)
+        if(props.locationPreview && props.locationPreview.lat && props.locationPreview.lng){
+            setCoordinates(props.locationPreview)
+        }
+    },[props.locationPreview])
 
     function handleMapClick(mapClickInfo) {
         props.placeActions.append(latLngToPlace(mapClickInfo.latlng));
@@ -42,7 +50,7 @@ export default function Map(props) {
         >
             <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
             <TripLines places={props.places} />
-            <PlaceMarker places={props.places} selectedIndex={props.selectedIndex} />
+            <PlaceMarker  places={props.places} selectedIndex={props.selectedIndex} />
         </LeafletMap>
     );
 }
@@ -86,8 +94,10 @@ function computePaths(places) {
 }
 
 function PlaceMarker({places, selectedIndex}) {
-    if (selectedIndex === -1) {
-        return null;
+    if(selectedIndex >= 0){
+        return <Marker place={places[selectedIndex]} />;
     }
-    return <Marker place={places[selectedIndex]} />;
+    else
+        return null;
+    
 }
