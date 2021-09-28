@@ -1,19 +1,15 @@
 import { useState } from "react";
 import { DEFAULT_STARTING_PLACE } from "./constants";
 
-export function currentLocation (showMessage){
+export function currentLocation (showMessage,setCurrLatitude,setCurrLongitude){
 
-    const [latitude, setLatitude] = useState(DEFAULT_STARTING_PLACE.latitude);
-    const [longitude, setLongitude] = useState(DEFAULT_STARTING_PLACE.longitude);
     
     if (!window.navigator.geolocation){
-            //ToDo
-            //Add popup for if the users browser doesnt have location services turned on
     }else{
             window.navigator.geolocation.getCurrentPosition(
                 position => {
-                    setLatitude(position.coords.latitude);
-                    setLongitude(position.coords.longitude);
+                    setCurrLatitude(position.coords.latitude);
+                    setCurrLongitude(position.coords.longitude);
                 },
                 error => {
                     let message = error.message;
@@ -21,6 +17,5 @@ export function currentLocation (showMessage){
                 }
                 );
     }
-    return { latitude, longitude }
             
 };
