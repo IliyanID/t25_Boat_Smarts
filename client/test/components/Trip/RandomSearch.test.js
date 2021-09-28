@@ -23,7 +23,7 @@ describe('RandomSearch', () => {
     });
 
     it("does not set search results when no api response is received", () => {
-        fetch.mockResponseOnce(null);
+        fetch.mockRejectOnce(new Error('Rejected'));
         fireEvent.click(screen.getByText('Find Random Places'));
         expect(setSearchResults).toHaveBeenCalledTimes(0);
     })
