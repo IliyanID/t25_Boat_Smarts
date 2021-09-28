@@ -4,10 +4,11 @@ import { reverseGeocode } from '../utils/reverseGeocode';
 import { LOG } from '../utils/constants';
 
 export function usePlaces() {
+    const [previousPlaces, setPreviousPlaces] = useState([]);
     const [places, setPlaces] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(-1);
 
-    const context = { places, setPlaces, selectedIndex, setSelectedIndex };
+    const context = { places, setPlaces, selectedIndex, setSelectedIndex, previousPlaces, setPreviousPlaces };
 
     const placeActions = {
         append: async (place) => append(place, context),
@@ -16,12 +17,12 @@ export function usePlaces() {
         selectIndex: (index) => selectIndex(index, context)
     };
 
-    return {places, selectedIndex, placeActions};
+    return {previousPlaces, places, selectedIndex, placeActions};
 }
 
 async function append(place, context) {
-    const { places, setPlaces, setSelectedIndex } = context;
-
+    const { places, setPlaces, setSelectedIndex, setPreviousPlaces } = context;
+    setPreviousPlaces([...places]);
     const newPlaces = [...places];
 
     const fullPlace = await reverseGeocode(placeToLatLng(place));
@@ -33,12 +34,13 @@ async function append(place, context) {
 }
 
 function removeAtIndex(index, context) {
-    const { places, setPlaces, selectedIndex, setSelectedIndex } = context;
+    const { places, setPlaces, selectedIndex, setSelectedIndex, setPreviousPlaces } = context;
 
     if (index < 0 || index >= places.length) {
         LOG.error(`Attempted to remove index ${index} in places list of size ${places.length}.`);
         return;
     }
+    setPreviousPlaces([...places])
     const newPlaces = places.filter((place, i) => index !== i);
     setPlaces(newPlaces);
 
@@ -50,8 +52,8 @@ function removeAtIndex(index, context) {
 }
 
 function removeAll(context) {
-    const { setPlaces, setSelectedIndex } = context;
-
+    const { setPlaces, setSelectedIndex, setPreviousPlaces } = context;
+    setPreviousPlaces([]);
     setPlaces([]);
     setSelectedIndex(-1);
 }
