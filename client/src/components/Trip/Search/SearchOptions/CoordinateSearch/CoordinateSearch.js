@@ -30,10 +30,11 @@ export default function CoordinateSearch(props) {
         }
     }
 
-    function getResults() {
+    async function getResults() {
         if (validLatitude && validLongitude) {
-            props.setLocationPreview(placeToLatLng({ latitude: latitude, longitude: longitude }));
-            //const coordDetails = await reverseGeocode(props.locationPreview);
+            let tempCords = placeToLatLng({ latitude: latitude, longitude: longitude })
+            const coordDetails = await reverseGeocode(tempCords);
+            props.setLocationPreview(coordDetails);
         } else {
             if (!validLatitude) {
                 props.showMessage("Invalid latitude.", "warning");

@@ -13,6 +13,8 @@ const MAP_MAX_ZOOM = 19;
 
 export default function Map(props) {
     const [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
+    const [previewMarker,setPreviewMarker] = useState(false)
+
     useEffect(()=>{
        getCenter().then((result)=>{setCoordinates(result)});
     },[])
@@ -25,8 +27,13 @@ export default function Map(props) {
     useEffect(()=>{
         if(props.locationPreview && props.locationPreview.lat && props.locationPreview.lng){
             setCoordinates(props.locationPreview)
+            setPreviewMarker(true);
         }
     },[props.locationPreview])
+
+    useEffect(()=>{
+        setPreviewMarker(false)
+    },[props.places])
 
     function handleMapClick(mapClickInfo) {
         props.placeActions.append(latLngToPlace(mapClickInfo.latlng));
@@ -47,7 +54,11 @@ export default function Map(props) {
         >
             <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
             <TripLines places={props.places} />
-            <PlaceMarker  places={props.places} selectedIndex={props.selectedIndex} />
+            {(previewMarker)?
+                <Marker place={props.locationPreview} />
+                :
+                <PlaceMarker places={props.places} selectedIndex={props.selectedIndex} />
+            }
         </LeafletMap>
     );
 }
