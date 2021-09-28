@@ -7,11 +7,11 @@ import { currentLocation } from '../../../utils/currentLocation';
 
 export function ItineraryActionsDropdown(props) {
 
-    let coord = currentLocation(props.showMessage);
+    
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => props.placeActions.append(coord)} data-testid='home-button'>
+            <DropdownItem onClick={() => {let coord = currentLocation(props.showMessage);props.placeActions.append(coord);}} data-testid='home-button'>
                 <FaHome />
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>
