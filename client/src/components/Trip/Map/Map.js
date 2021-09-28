@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Map as LeafletMap, Polyline, TileLayer } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
@@ -12,8 +12,6 @@ const MAP_MIN_ZOOM = 1;
 const MAP_MAX_ZOOM = 19;
 
 export default function Map(props) {
-    let ref = useRef()
-
     const [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
     useEffect(()=>{
        getCenter().then((result)=>{setCoordinates(result)});
