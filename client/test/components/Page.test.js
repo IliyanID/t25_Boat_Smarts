@@ -11,7 +11,6 @@ describe('Page', () => {
     beforeEach(() => {
         fetch.resetMocks();
         fetch.mockResponse(VALID_CONFIG_RESPONSE);
-
         render(<Page />);
     });
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SingleInput from "./SingleInput";
 
-export default function DMS(props) {
+export default function DegreesMinutesSeconds(props) {
     const coordString = props.coordType;
     const [degrees, setDegrees] = useState("");
     const [minutes, setMinutes] = useState("");
