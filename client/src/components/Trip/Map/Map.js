@@ -91,10 +91,8 @@ function computePaths(places) {
 }
 
 function PlaceMarker({places, selectedIndex}) {
-    if(selectedIndex >= 0){
-        return <Marker place={places[selectedIndex]} />;
-    }
-    else
+    if (selectedIndex === -1) {
         return null;
-    
+    }
+    return <Marker place={places[selectedIndex]} />;
 }
