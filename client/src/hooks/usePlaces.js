@@ -27,8 +27,9 @@ async function append(place, context) {
     const fullPlace = await reverseGeocode(placeToLatLng(place));
     newPlaces.push(fullPlace);
 
-    setPlaces(newPlaces);
+
     setSelectedIndex(newPlaces.length - 1);
+    setPlaces(newPlaces);
 }
 
 function removeAtIndex(index, context) {

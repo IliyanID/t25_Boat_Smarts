@@ -15,7 +15,7 @@ export default function Planner(props) {
     useEffect(()=>{
         if(selectedIndex != -1 && selectedIndex === places.length-1 )
             props.showMessage("Added to Trip " + places[selectedIndex].name,"info")
-    },[selectedIndex])
+    },[places])
 
     return (
         <Container>
