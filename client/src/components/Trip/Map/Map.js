@@ -23,7 +23,6 @@ export default function Map(props) {
     },[props.centerView])
 
     useEffect(()=>{
-        console.log(props.locationPreview)
         if(props.locationPreview && props.locationPreview.lat && props.locationPreview.lng){
             setCoordinates(props.locationPreview)
         }
