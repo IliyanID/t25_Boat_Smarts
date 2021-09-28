@@ -23,21 +23,16 @@ export default function CoordinateSearch(props) {
 
     async function handleClick(e) {
         e.preventDefault();
-        getResults();
+        showWarnings();
     }
 
-    async function getResults() {
-        if (validLatitude && validLongitude) {
-            const coordDetails = await reverseGeocode(location);
-        } else {
-            if (!validLatitude) {
-                props.showMessage("Invalid latitude.", "warning");
-            }
-            if (!validLongitude) {
-                props.showMessage("Invalid longitude.", "warning");
-            }
+    async function showWarnings() {
+        if (!validLatitude) {
+            props.showMessage("Invalid latitude.", "warning");
         }
-        // use this for centering map and info in popup
+        if (!validLongitude) {
+            props.showMessage("Invalid longitude.", "warning");
+        }
     }
 
     useEffect(() => {
