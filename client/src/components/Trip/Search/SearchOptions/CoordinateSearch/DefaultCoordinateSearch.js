@@ -13,8 +13,8 @@ export default function DefaultCoordinateSearch(props) {
 
     return (
     <>
-        <SearchBox valid={props.validLatitude} searchFor="Latitude" value={props.latitude} handleValueChange={handleLatitudeChange} />
-        <SearchBox valid={props.validLongitude} searchFor="Longitude" value={props.longitude} handleValueChange={handleLongitudeChange} />
+        <SearchBox placeholder="Latitude" valid={props.validLatitude} searchFor="Latitude" value={props.latitude} handleValueChange={handleLatitudeChange} />
+        <SearchBox placeholder="Longitude" valid={props.validLongitude} searchFor="Longitude" value={props.longitude} handleValueChange={handleLongitudeChange} />
     </>)
 }
 
