@@ -29,6 +29,62 @@ export const MOCK_RESULT_NEGATIVE = {
     id: 17
 }
 
+export const MOCK_FIND_RESPONSE = JSON.stringify(
+    {
+        "match": "Reading",
+        "limit": 0,
+        "found": 5,
+        "places": [
+            {
+                "altitude": "70",
+                "iso_country": "US",
+                "latitude": "40.64440155029297",
+                "name": "Hess Port Reading Heliport",
+                "municipality": "Port Reading",
+                "id": "13JY",
+                "longitude": "-74.24530029296875"
+            },
+            {
+                "altitude": "224",
+                "iso_country": "US",
+                "latitude": "40.3317985534668",
+                "name": "Reading Hospital \u0026 Medical Center Heliport",
+                "municipality": "Reading",
+                "id": "96PN",
+                "longitude": "-75.95659637451172"
+            },
+            {
+                "altitude": "320",
+                "iso_country": "US",
+                "latitude": "40.33060073852539",
+                "name": "Reading Hospital Heliport",
+                "municipality": "West Reading",
+                "id": "9PS5",
+                "longitude": "-75.95020294189453"
+            },
+            {
+                "altitude": "344",
+                "iso_country": "US",
+                "latitude": "40.378501892089844",
+                "name": "Reading Regional Carl A Spaatz Field",
+                "municipality": "Reading",
+                "id": "KRDG",
+                "longitude": "-75.96520233154297"
+            },
+            {
+                "altitude": "700",
+                "iso_country": "US",
+                "latitude": "42.54999923706055",
+                "name": "Reading Airport",
+                "municipality": "Fennville",
+                "id": "MI76",
+                "longitude": "-86.2166976928711"
+            }
+        ],
+        "requestType": "find"
+    }
+)
+
 export const REVERSE_GEOCODE_RESPONSE = JSON.stringify({
     "place_id": 259127396,
     "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",

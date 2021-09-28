@@ -19,8 +19,7 @@ export default function RandomSearch(props){
         const requestBody = createFindRequestBody();
         const response = await sendAPIRequest(requestBody, props.currentURL);
     
-        if(response)
-            props.setSearchResults(response);
+        if(response) props.setSearchResults(response);
     }
 
     useEffect(() => {if (props.activeTab === "randomSearch") getResults();}, [props.activeTab])

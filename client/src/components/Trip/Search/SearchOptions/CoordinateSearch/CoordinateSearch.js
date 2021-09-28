@@ -43,7 +43,6 @@ export default function CoordinateSearch(props) {
                 props.showMessage("Invalid longitude.", "warning");
             }
         }
-        // use this for centering map and info in popup
     }
 
     useEffect(() => {
