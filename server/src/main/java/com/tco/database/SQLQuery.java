@@ -10,7 +10,7 @@ public class SQLQuery {
             +  "INNER JOIN region ON region.id = world.iso_region "
             +  "WHERE world.name LIKE '%" + searchStr + "%' "
             +  (searchStr.isEmpty() ? "ORDER BY rand() " : "")
-            +  (limit == 0 ? "" : "LIMIT " + Integer.toString(limit))
+            +  (limit == 0 ? "LIMIT 100" : "LIMIT " + Integer.toString(limit))
             +  ";";
     }
 
