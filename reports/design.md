@@ -163,7 +163,7 @@ We will be adding three components to the base architecture during this sprint.
 
 The Planner component will render the Search component. The Search component will render the Results component.
 
-![components1](images/ComponentsSprint2.png)
+![components1](images/ClientSprint2.png)
 
 ### Server Classes
 We will be adding two items to the server structure
