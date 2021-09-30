@@ -1,86 +1,92 @@
 import React, { useState, useEffect } from "react";
 
-import { Button, Label, Row, Col } from "reactstrap";
-import { placeToLatLng } from "../../../../../utils/transformers";
+import { Button, Input,  InputGroup, InputGroupAddon, InputGroupText, Label, Row, Col } from "reactstrap";
+import Coordinates from 'coordinate-parser';
 import { reverseGeocode } from "../../../../../utils/reverseGeocode";
-import DefaultCoordinateSearch from "./DefaultCoordinateSearch";
-import DegreesMinutesSeconds from "./DegreesMinutesSeconds";
-import validateCoordinates from "../../../../../utils/coordinateValidator";
 
 export default function CoordinateSearch(props) {
-    const [latitude, setLatitude] = useState("");
-    const [validLatitude, setValidLatitude] = useState(false);
-    const [longitude, setLongitude] = useState("");
-    const [validLongitude, setValidLongitude] = useState(false);
-    const [searchType, setSearchType] = useState("decimal");
-
-
-
-    function handleSelectChange(e) {
-        setSearchType(e.target.value);
-    }
+    const { inputText, latLng, validCoordinates, processInputChange } = useCoordinateValidation();
 
     function handleFind() {
         getResults();
     }
 
-    function handleAdd(){
-        if (validLatitude && validLongitude) {
-            props.placeActions.append({ latitude: latitude, longitude: longitude })
+    function handleAdd() {
+        if (latLng) {
+            props.placeActions.append(latLng);
         }
     }
 
     async function getResults() {
-        if (validLatitude && validLongitude) {
-            let tempCords = placeToLatLng({ latitude: latitude, longitude: longitude })
-            const coordDetails = await reverseGeocode(tempCords);
+        if (validCoordinates) {
+            const coordDetails = await reverseGeocode(latLng);
             props.setLocationPreview(coordDetails);
         } else {
-            if (!validLatitude) {
-                props.showMessage("Invalid latitude.", "warning");
-            }
-            if (!validLongitude) {
-                props.showMessage("Invalid longitude.", "warning");
-            }
+            props.showMessage("Invalid coordinates.", "warning");
         }
     }
 
-    useEffect(() => {
-        validateCoordinates(latitude, longitude, setValidLatitude, setValidLongitude);
-    }, [latitude, longitude]);
-
     return (
         <>
-
-            {searchType === "decimal" ? <Row><DefaultCoordinateSearch validLatitude={validLatitude} validLongitude={validLongitude} setLatitude={setLatitude} setLongitude={setLongitude} /></Row> :
-                <>
-                <Label className="mt-2 mb-0">Latitude:</Label>
-                <Row>
-                    <DegreesMinutesSeconds latitude={latitude} setLatitude={setLatitude} coordType="Latitude" longitude={longitude} setLongitude={setLongitude} />
-                </Row>
-                <Label className="mt-2 mb-0">Longitude:</Label>
-                <Row>
-                    <DegreesMinutesSeconds longitude={longitude} setLongitude={setLongitude} coordType="Longitude" latitude={latitude} setLatitude={setLatitude} />
-                </Row>
-                </>}
-
             <Row>
-                <Col className="mt-3 col-auto mr-auto">
-                    <select
-                        className=""
-                        name="coordinateSearchType"
-                        id="coordinateSearchType"
-                        onChange={handleSelectChange}
-                    >
-                        <option value="decimal">Decimal Degrees</option>
-                        <option value="dms">Degrees, Minutes, Seconds</option>
-                    </select>
+                <Col className="my-2 col-sm-12">
+                  <CoordinatesInput inputText={inputText} latLng={latLng} processInputChange={processInputChange} />
                 </Col>
-                <Col className="mt-3 col-auto">
-                    <Button onClick={handleFind}>Find</Button>
-                    <Button style={{marginLeft:"5px"}} onClick={handleAdd}>Add</Button>
+            </Row>
+            <Row>
+                <Col className="mx-auto my-1 px-auto col-auto">
+                    <Button className="mx-1" onClick={handleAdd}>Add to Trip</Button>
+                    <Button className="mx-1" onClick={handleFind}>Find</Button>
                 </Col>
             </Row>
         </>
     );
 }
+
+function useCoordinateValidation() {
+    const [inputText, setInputText] = useState("");
+    const [latLng, setLatLng] = useState(null);
+    const validCoordinates = latLng !== null;
+  
+    function processInputChange(onChangeEvent) {
+      const newInputText = onChangeEvent.target.value;
+      const newLatLng = getCoordinatesOrNull(newInputText);
+  
+      setInputText(newInputText);
+      setLatLng(newLatLng);
+    }
+  
+    return { inputText, latLng, validCoordinates, processInputChange };
+  }
+
+  function getCoordinatesOrNull(coordinatesString) {
+    try {
+      // uses Coordinates class from coordinate-parser
+      const convertedCoordinates = new Coordinates(coordinatesString);
+      return {
+        lat: convertedCoordinates.getLatitude(),
+        lng: convertedCoordinates.getLongitude()
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+  
+  
+  function CoordinatesInput(props) {
+    const validCoordinates = props.latLng != null;
+    const inputBoxEmpty = !props.inputText;
+    
+    return (
+      <InputGroup>
+        <InputGroupAddon addonType="prepend">Coordinates</InputGroupAddon>
+        <Input
+          placeholder="Latitude, Longitude"
+          onChange={props.processInputChange}
+          value={props.inputText}
+          valid={validCoordinates}
+          invalid={!validCoordinates && !inputBoxEmpty}
+        />
+      </InputGroup>
+    );
+  }
