@@ -43,6 +43,10 @@ The 'Where Am I?' epic will allow the user to add their current location to thei
 #### Highlight Place
 The 'Highlight Place' epic gives the user the ability to select a location in their trip and have the corresponding marker highlighted on the Map. 
 The Map will be centered around the selected location.
+#### Where is?
+The 'Where is?' epic will allow the user to look up where a place is on the map by entering latitude and longitude into a search bar. There will be a green checkmark on the search bar letting the user know they have entered a valid latitude and longitude. A marker on the map will be made and the user will have the ability to add it to the trip if they want to.
+#### Random
+The 'Random' epic will give the user a list of random places which they can add to their trip by clicking the '+' icon. They will be able to select one or more places and information can be found by clicking on the desired location. 
 
 ## Metrics
 
