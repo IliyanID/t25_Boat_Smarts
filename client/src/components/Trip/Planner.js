@@ -24,7 +24,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Search setLocationPreview={setLocationPreview} searchResults={searchResults} placeActions={placeActions} setSearchResults={setSearchResults} {...props} />
+                <Search locationPreview={locationPreview} setLocationPreview={setLocationPreview} searchResults={searchResults} placeActions={placeActions} setSearchResults={setSearchResults} {...props} />
                 {searchResults && <><br /><Results searchResults={searchResults} placeActions={placeActions} /></>}
             </Section>
             <br />
