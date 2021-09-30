@@ -4,6 +4,27 @@ import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { INVALID_REQUEST, MOCK_FIND_RESPONSE} from '../../sharedMocks';
 import { LOG } from '../../../src/utils/constants';
 import DefaultSearch from '../../../src/components/Trip/Search/SearchOptions/DefaultSearch';
+import Search from '../../../src/components/Trip/Search/Search';
+
+describe('Search', () => {
+    beforeEach(() => {
+        fetch.resetMocks();
+        fetch.mockResponse(MOCK_FIND_RESPONSE);
+        const setSearchResults = jest.fn();
+        render(<Search setSearchResults={setSearchResults} />);
+    });
+    it('toggles elements on tab click', () => {
+        fireEvent.click(screen.getByText('Random'));
+        expect(screen.getByRole('button', {name: /find random places/i})).toBeDefined();
+    });
+
+    it('does not change when clicking already active tab', () => {
+        fireEvent.click(screen.getAllByRole('listitem')[0]);
+        fireEvent.click(screen.getAllByRole('listitem')[0]);
+        expect(screen.getByRole('search')).toBeDefined();
+    });
+
+});
 
 describe('DefaultSearch', () => {
     beforeEach(() => {
