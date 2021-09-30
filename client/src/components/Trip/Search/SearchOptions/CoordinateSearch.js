@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Button, Input,  InputGroup, InputGroupAddon, InputGroupText, Label, Row, Col } from "reactstrap";
 import Coordinates from 'coordinate-parser';
-import { reverseGeocode } from "../../../../../utils/reverseGeocode";
+import { reverseGeocode } from "../../../../utils/reverseGeocode";
 
 export default function CoordinateSearch(props) {
     const { inputText, latLng, validCoordinates, processInputChange } = useCoordinateValidation();

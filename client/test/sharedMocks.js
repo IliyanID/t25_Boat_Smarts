@@ -13,6 +13,12 @@ export const MOCK_PLACES = [
     { id: 2, name: 'Place B', lat: -45.0, lng: -55.0, iso_country: 'Unknown'}
 ];
 
+export const MOCK_LATLNG_LOCATION = {
+    name: 'Lat Long',
+    lat: 40,
+    lng: -105
+}
+
 export const MOCK_RESULT_POSITIVE = {
     name: 'Test Location',
     latitude: '40',
