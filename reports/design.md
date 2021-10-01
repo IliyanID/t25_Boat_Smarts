@@ -166,14 +166,17 @@ The Planner component will render the Search component. The Search component wil
 ![components1](images/ClientSprint2.png)
 
 ### Server Classes
-We will be adding two items to the server structure
-* FindRequest.json will be used to validate the incoming find requests
-* FindRequest.java will handle querying the database and building the response
 
-The existing ConfigRequest class will be modified so that *find is listed as a supported operation.
+We are adding 5 items to the server structure
+* FindRequest.json is used to validate the incoming find requests
+* FindRequest.java handles recieving find requests and building the response
+* SQLDatabase.java oversees database queries
+* SQLCredential.java creates a valid url for the database with the required permissions
+* SQLQuery.java builds query strings from a given set of conditions
 
+The existing ConfigRequest class will be modified so that *find* is listed as a supported operation.
 
-
+![server2](images/ServerSprint2.png)
 
 # Sprint 3
 # Sprint 4 
