@@ -52,9 +52,9 @@ The 'Random' epic will give the user a list of random places which they can add 
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | 4 | *count* |
-| Tasks |  25   | *count* | 
-| Story Points |  45  | *sum* | 
+| Epics | 4 | 6 |
+| Tasks |  25   | 29 | 
+| Story Points |  45  | 76 | 
 
 It was difficult to get a good estimate of our abilities as a team last sprint since there was so little to be done. We decided that these 4 epics would give us enough to do and create a good v2 product without overwhelming us. We ended up waiting until the last minute with some parts of sprint 1 so we will have to keep on top of it and not get behind.
 
@@ -62,19 +62,36 @@ It was difficult to get a good estimate of our abilities as a team last sprint s
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* |  | 
+| 9/13 |  | #57, #58, #62, #85 |  | 
+| 9/15 | #57, #58, #62, #72, #76, #85 | #69, #77, #78 | |
+| 9/17 | #69, #77, #78 | #59, #61, #63, #95 | |
+| 9/20 | #61, #63 | #59, #60, #79, #95 | |
+| 9/22 | #59, #60, #79, #80, #95 |  #73, #74, #110, #113, #116 | |
+| 9/24 | #73, #74, #75, #109, #110 | #105, #111, #112, #114, #117 | |
+| 9/28 | #105, #111, #112, #113, #114, #116, #117 | #131 | |
+| 9/29 | #131 | | |
 
 
 ## Review
 
 ### Epics completed  
 
+Our team completed 6 epics: Find Places, Interoperability, Where am I?, Highlight Place, Where is?, and Random Places
+
 ### Epics not completed 
+
+We did not complete Type or Country.
 
 ## Retrospective
 
 ### Things that went well
 
+We were able to get all of the epics completed that we though we were going to be able to. We did a pretty good job of reviewing pull requests in a timely fashion, and for the most part, everyone was always working on something.
+
 ### Things we need to improve
 
+We did not have regular enough scrum meetings. While, we were very effective at accomplishing the tasks for this sprint that were set in Zen Hub, it was much more efficient when we met and talked about what we were each working on and what the next steps for the product should be.
+
 ### One thing we will change next time
+
+We will hold more regular scrum meetings so that we are all on the same page about the work that is being done and what needs to be done next.
