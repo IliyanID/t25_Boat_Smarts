@@ -180,6 +180,19 @@ The existing ConfigRequest class will be modified so that *find* is listed as a 
 
 # Sprint 3
 
+### User Interface
+
+The name of the trip can be changed by clicking on the name or pencil icon and typing in the input. To save the changes you can click off or click on the green checkmark. To revert the changes you can click on the red cancel button. Additionally, if the user wants to download or upload a trip they can click on the three dots next to the trip and select the upload or download icon. The total distance is listed next to the itinerary name. The individual distances are listed next to the options dots on each destination.
+
+![UI3](images/Sprint3Screen.png)
+
+When the user selects the download option a new screen will popup.  The user will have the option to set the default file type for the downloaded trip. The user has the option to change the file trip name and type. The name of the file defaults to the name of the trip. When pressing the download button the trip will be downloaded in the requested file type.
+
+![UI32](images/Sprint3Download.png)
+
+When the user selects the upload option a new screen will popup. There they can search and upload a pre-existing trip. Below that will be a list of supported file types that can be uploaded. If the user attempts to upload an unsupported file type an error message will popup on the bottom of the screen.
+![UI33](images/Sprint3Upload.png)
+
 ### Client Components
 
 We will be adding three components to the base architecture during this sprint.
