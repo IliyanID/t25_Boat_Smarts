@@ -179,5 +179,17 @@ The existing ConfigRequest class will be modified so that *find* is listed as a 
 ![server2](images/ServerSprint2.png)
 
 # Sprint 3
+
+### Client Components
+
+### Server Classes
+
+We are adding 3 items to the server
+* DistancesRequest.json is used to validate incoming distance requests
+* DistancesRequest.java handles recieving distances requests and building the response
+* DistanceCalculator.java calculates a single distance between a pair of coordinates
+
+![server3](images/ServerSprint3.png)
+
 # Sprint 4 
 # Sprint 5
