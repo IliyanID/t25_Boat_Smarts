@@ -37,6 +37,17 @@
 
 ## Planned Epics
 
+#### Distances
+The Distances epic allows the user to see the distance between the places in their trip as well as the cumulative distance at each location in the trip. The total distance of the trip will show at teh top of the trip list.
+
+#### Load Trip
+This Epic will give the user the ability to load a trip from their file system in the form of a json or csv file type.
+
+#### Save Trip
+Save Trip allows the user to make a trip on our site then save it as different file types to their file system. The user should be able to load this file into this program our others like Google Earth. The user can also deside their default by checking a check box.
+
+#### Trip Name
+The user will be allowed to now change the trip name. There will be a pencil icon by the default trip name of "My Trip". Once clicked the trip name becomes a editable text box. They will be able to saveteh name by clicking off of the name or clicked the save buttom which replaces the pencil when editing**
 
 ## Metrics
 
