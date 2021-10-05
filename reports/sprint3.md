@@ -46,6 +46,7 @@
 | Tasks |  *18*   | *count* | 
 | Story Points |  *34*  | *sum* | 
 
+This sprint we decided to only plan for 4 epics with the intention of spending more time focusing on following proper practice. We will attempt to write new code in a way that doesn't reduce maintainability so there is less time spent cleaning up afterwards. We will also focus more on proper test driven development. If we complete all of our planned epics with time to spare before the sprint deadline we will work to fix any code climate issues before deciding if we have time to take on an additional epic.
 
 ## Scrums
 
