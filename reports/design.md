@@ -179,5 +179,18 @@ The existing ConfigRequest class will be modified so that *find* is listed as a 
 ![server2](images/ServerSprint2.png)
 
 # Sprint 3
+
+### Client Components
+
+We will be adding three components to the base architecture during this sprint.
+* The Itinerary actions will handle file loading/saving.
+    * The LoadFile modal will allow the user to upload a file from their local file system and see the trip in the 'My Trip' section.
+    * The SaveFile modal will allow the user to save the current trip as a file to their local disk with options for file format.
+* The trip name will become its own component that will hold the trip name and will be applied as the default file name when saving. When loading a file, the data will be checked for a name, if it is not present, the file name will be used for the trip name.
+
+In addition to the new components, the places in the trip list will show the distances throughout the trip; from place A to B as well as overall total distance. 
+
+![components2](images/ComponentsSprint3.png)
+
 # Sprint 4 
 # Sprint 5
