@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.tco.database.SQLDatabase;
 
 public class DistanceCalculator {
-    public static ArrayList<Double> calculate(SQLDatabase.Places places) {
+    public static ArrayList<Double> calculate(SQLDatabase.Places places, int earthRadius) {
         return new ArrayList<Double>();
     }
 }

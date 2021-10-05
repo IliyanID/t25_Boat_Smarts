@@ -18,7 +18,7 @@ public class DistancesRequest extends Request {
 
     @Override
     public void buildResponse() {
-        distances = DistanceCalculator.calculate(places);
+        distances = DistanceCalculator.calculate(places, earthRadius);
         log.trace("buildResponse -> {}", this);
     }
 
