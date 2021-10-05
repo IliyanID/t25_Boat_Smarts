@@ -8,12 +8,18 @@ import { currentLocation } from '../../../utils/currentLocation';
 export function ItineraryActionsDropdown(props) {
     // const [latitude, setCurrLatitude] = useState(null);
     // const [longitude, setCurrLongitude] = useState(null);
+    //const [valCurrLatLng, setValCurrLatLng] = useState(false);
+
+    let curr = currentLocation(props.showMessage);
+
+    // if(curr.latitude != null){
+    //     setValCurrLatLng(true);
+    // }
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => 
-                    {currentLocation(props.showMessage); 
-                    props.placeActions.append({latitude,longitude});}} 
+            <DropdownItem onClick={() => {curr.latitude!=null ?
+                    props.placeActions.append(curr) : console.log("Nothing")}} 
                     data-testid='home-button'>
                 <FaHome />
             </DropdownItem>

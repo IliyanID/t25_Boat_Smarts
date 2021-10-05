@@ -19,4 +19,5 @@ export function currentLocation (showMessage){
                 }
                 );
     }
+    return {latitude,longitude};
 };
