@@ -9,7 +9,7 @@ export function ItineraryActionsDropdown(props) {
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => {currentLocation(props.showMessage,props.placeActions.append);}} data-testid='home-button'>
+            <DropdownItem onClick={() => {currentLocation(props.showMessage,props.placeActions);}} data-testid='home-button'>
                 <FaHome />
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>

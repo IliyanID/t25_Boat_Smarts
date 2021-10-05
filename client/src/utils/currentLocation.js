@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DEFAULT_STARTING_PLACE } from "./constants";
 
-export function currentLocation (showMessage,append){
+export function currentLocation (showMessage,placeActions){
 
     const [latitude, setCurrLatitude] = useState(DEFAULT_STARTING_PLACE.latitude);
     const [longitude, setCurrLongitude] = useState(DEFAULT_STARTING_PLACE.longitude);
@@ -10,7 +10,7 @@ export function currentLocation (showMessage,append){
         position => {
             setCurrLatitude(position.coords.latitude);
             setCurrLongitude(position.coords.longitude);
-            append({latitude,longitude});
+            placeActions.append({latitude,longitude});
         },
         error => {
             let message = error.message;
