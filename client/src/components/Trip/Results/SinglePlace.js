@@ -27,7 +27,8 @@ export default function SinglePlace(props) {
                     <strong>Region:</strong> {place.region}
                 </p>
                 <p>
-                    <strong>Type:</strong> {place.type}
+                    <strong>Type:</strong> {place.type}<br />
+                    <strong>ID:</strong> {place.id}
                 </p>
                 <p>
                     <strong>Coordinates:</strong> {latitude}&#176;{latitudeDirection} {longitude}&#176;{longitudeDirection}<br />
