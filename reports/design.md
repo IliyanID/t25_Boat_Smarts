@@ -192,5 +192,14 @@ In addition to the new components, the places in the trip list will show the dis
 
 ![components2](images/ComponentsSprint3.png)
 
+### Server Classes
+
+We are adding 3 items to the server
+* DistancesRequest.json is used to validate incoming distance requests
+* DistancesRequest.java handles recieving distances requests and building the response
+* DistanceCalculator.java calculates a single distance between a pair of coordinates
+
+![server3](images/ServerSprint3.png)
+
 # Sprint 4 
 # Sprint 5
