@@ -8,15 +8,27 @@ public class SQLQuery {
             +  columns
             +  " FROM world INNER JOIN country ON country.id = world.iso_country "
             +  "INNER JOIN region ON region.id = world.iso_region "
-            +  "WHERE world.name LIKE '%" + searchStr + "%' "
+            +  matchClause(searchStr)
             +  (searchStr.isEmpty() ? "ORDER BY rand() " : "")
             +  (limit == 0 ? "LIMIT 100" : "LIMIT " + Integer.toString(limit))
             +  ";";
     }
 
     static String count(String searchStr) {
-        return "SELECT COUNT(*) AS count " +
-               "FROM world " +
-               "WHERE name LIKE '%" + searchStr + "%';";
+        return "SELECT COUNT(*) AS count " 
+                +  "FROM world INNER JOIN country ON country.id = world.iso_country "
+                +  "INNER JOIN region ON region.id = world.iso_region "
+                +  matchClause(searchStr) 
+                +  ";";
     }
+
+    static String matchClause(String searchStr) {
+        return "WHERE world.name LIKE '%" + searchStr + "%' "
+            + "OR region.name LIKE '%" + searchStr + "%' "
+            + "OR country.name LIKE '%" + searchStr + "%' "
+            + "OR world.municipality LIKE '%" + searchStr + "%' "
+            + "OR world.id LIKE '%" + searchStr + "%' "
+            ;
+    }
+
 }
