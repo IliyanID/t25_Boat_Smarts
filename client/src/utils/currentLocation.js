@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { DEFAULT_STARTING_PLACE } from "./constants";
 
-export function currentLocation (showMessage,setCurrLatitude,setCurrLongitude){
+export function currentLocation (showMessage){
+
+    const [latitude, setCurrLatitude] = useState(null);
+    const [longitude, setCurrLongitude] = useState(null);
 
     if (!window.navigator.geolocation){
     }else{

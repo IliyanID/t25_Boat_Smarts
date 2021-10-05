@@ -6,12 +6,15 @@ import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import { currentLocation } from '../../../utils/currentLocation';
 
 export function ItineraryActionsDropdown(props) {
-    const [latitude, setCurrLatitude] = useState(DEFAULT_STARTING_PLACE.latitude);
-    const [longitude, setCurrLongitude] = useState(DEFAULT_STARTING_PLACE.longitude);
+    // const [latitude, setCurrLatitude] = useState(null);
+    // const [longitude, setCurrLongitude] = useState(null);
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => {currentLocation(props.showMessage,setCurrLatitude,setCurrLongitude); props.placeActions.append({latitude,longitude});}} data-testid='home-button'>
+            <DropdownItem onClick={() => 
+                    {currentLocation(props.showMessage); 
+                    props.placeActions.append({latitude,longitude});}} 
+                    data-testid='home-button'>
                 <FaHome />
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>
