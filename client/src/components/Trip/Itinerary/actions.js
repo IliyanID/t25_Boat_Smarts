@@ -2,24 +2,17 @@ import React, {useState} from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation } from 'react-icons/fa';
-import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
+import { DEFAULT_STARTING_PLACE, LOG } from '../../../utils/constants';
 import { currentLocation } from '../../../utils/currentLocation';
 
 export function ItineraryActionsDropdown(props) {
-    // const [latitude, setCurrLatitude] = useState(null);
-    // const [longitude, setCurrLongitude] = useState(null);
-    //const [valCurrLatLng, setValCurrLatLng] = useState(false);
 
     let curr = currentLocation(props.showMessage);
-
-    // if(curr.latitude != null){
-    //     setValCurrLatLng(true);
-    // }
 
     return (
         <ActionsDropdown {...props}>
             <DropdownItem onClick={() => {curr.latitude!=null ?
-                    props.placeActions.append(curr) : console.log("Nothing")}} 
+                    props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")}} 
                     data-testid='home-button'>
                 <FaHome />
             </DropdownItem>

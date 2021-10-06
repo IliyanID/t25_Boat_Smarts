@@ -14,7 +14,7 @@ export function currentLocation (showMessage){
                     setCurrLongitude(position.coords.longitude);
                 },
                 error => {
-                    let message = error.message;
+                    let message = error.message + " Please turn it on and reload the page.";
                     showMessage(message,"warning");
                 }
                 );
