@@ -2,17 +2,18 @@ import React, {useState} from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation } from 'react-icons/fa';
-import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
+import { DEFAULT_STARTING_PLACE, LOG } from '../../../utils/constants';
 import { currentLocation } from '../../../utils/currentLocation';
 
 export function ItineraryActionsDropdown(props) {
 
-    const [latitude, setCurrLatitude] = useState(DEFAULT_STARTING_PLACE.latitude);
-    const [longitude, setCurrLongitude] = useState(DEFAULT_STARTING_PLACE.longitude);
+    let curr = currentLocation(props.showMessage);
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => {currentLocation(props.showMessage,setCurrLatitude,setCurrLongitude); props.placeActions.append({latitude,longitude});}} data-testid='home-button'>
+            <DropdownItem onClick={() => {curr.latitude!=null ?
+                    props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")}} 
+                    data-testid='home-button'>
                 <FaHome />
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>

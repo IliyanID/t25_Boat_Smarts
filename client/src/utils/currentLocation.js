@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { DEFAULT_STARTING_PLACE } from "./constants";
 
-export function currentLocation (showMessage,setCurrLatitude,setCurrLongitude){
+export function currentLocation (showMessage){
 
-    
+    const [latitude, setCurrLatitude] = useState(null);
+    const [longitude, setCurrLongitude] = useState(null);
+
     if (!window.navigator.geolocation){
     }else{
             window.navigator.geolocation.getCurrentPosition(
@@ -12,10 +14,10 @@ export function currentLocation (showMessage,setCurrLatitude,setCurrLongitude){
                     setCurrLongitude(position.coords.longitude);
                 },
                 error => {
-                    let message = error.message;
+                    let message = error.message + " Please turn it on and reload the page.";
                     showMessage(message,"warning");
                 }
                 );
     }
-            
+    return {latitude,longitude};
 };
