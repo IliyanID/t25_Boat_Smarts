@@ -71,9 +71,9 @@ function TableRow(props) {
                 <small className="text-muted">{location}</small>
                 <br/>
                 {(distances.length > props.index && props.index != 0)&&
-                <small className="text-muted">
+                <small>
                     <th>
-                        Distance Between Last Place : {individualItem.distance} {(individualItem.distance <= 1)?"mile":"miles"} 
+                        Distance From Previous : {individualItem.distance} {(individualItem.distance <= 1)?"mile":"miles"} 
                     </th>
  
                     <th>
