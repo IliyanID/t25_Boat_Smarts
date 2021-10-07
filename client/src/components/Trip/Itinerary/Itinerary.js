@@ -23,7 +23,7 @@ function Header(props) {
             <tr>
                 <th/>
                 <th>My Trip</th>
-                <th style={{textAlign:"right",minWidth:"200px"}}>{(totalDistance > 0)&&<>Round Trip : {totalDistance}</>}</th>
+                <th style={{textAlign:"right",minWidth:"260px"}}>{(totalDistance > 0)&&<>Round Trip : {totalDistance}</>}</th>
                 <th>
                     <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
                 </th>
@@ -57,7 +57,7 @@ function TableRow(props) {
     let runningTotal = 0;
     distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
 
-
+    let individualItem = (props.index !=0)?cumalitiveDistances[props.index - 1].distance:-1;
     return (
         <tr>
             <th scope="row">{props.index + 1}</th>
@@ -66,15 +66,15 @@ function TableRow(props) {
                 <br/>
                 <small className="text-muted">{location}</small>
             </td>
-                <th style={{fontWeight:"200",textAlign:"right",minWidth:"260px"}}> 
+                <th style={{fontWeight:"200",textAlign:"right",minWidth:"280px"}}> 
                     {(distances.length > props.index && props.index != 0)&&
                     <>
                         <>
-                            Distance Between Last Place : {cumalitiveDistances[props.index].distance}
+                            Distance Between Last Place : {individualItem} {(individualItem <= 1)?"mile":"miles"}
                         </>
                         <br/>
                         <>
-                            Cumalitive Distance : {cumalitiveDistances[props.index].total}
+                            Cumalitive Distance : {100000* cumalitiveDistances[props.index - 1].total} miles
                         </>
                     </>}
                 </th>
