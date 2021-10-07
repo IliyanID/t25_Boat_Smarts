@@ -2,11 +2,14 @@ import React from 'react';
 import { Table } from 'reactstrap';
 import { ItineraryActionsDropdown, PlaceActionsDropdown } from './actions.js';
 import { latLngToText } from '../../../utils/transformers';
+import { useToggle } from '../../../hooks/useToggle.js';
+import FileUploadModal from './Modals/FileUploadModal.js';
 
 export default function Itinerary(props) {
+    const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
     return (
         <Table responsive striped>
-            <Header placeActions={props.placeActions} showMessage={props.showMessage}/>
+            <Header placeActions={props.placeActions} showMessage={props.showMessage} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} />
             <Body places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
@@ -19,7 +22,8 @@ function Header(props) {
                 <th/>
                 <th>My Trip</th>
                 <th>
-                    <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage}/>
+                    <ItineraryActionsDropdown {...props}/>
+                    <FileUploadModal fileUploadOpen={props.fileUploadOpen} toggleFileUploadOpen={props.toggleFileUploadOpen} />
                 </th>
             </tr>
         </thead>
