@@ -17,6 +17,7 @@ function Header(props) {
     let totalDistance = 0;
     let distances = (props.distances)? props.distances.distances:[-1];
     distances.map((distItem)=>{totalDistance += distItem})
+    totalDistance *= 2
 
     return (
         <thead>
