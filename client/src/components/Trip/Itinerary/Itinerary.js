@@ -22,8 +22,12 @@ function Header(props) {
         <thead>
             <tr>
                 <th/>
-                <th>My Trip</th>
-                <th style={{textAlign:"right",minWidth:"260px"}}>{(totalDistance > 0)&&<>Round Trip : {totalDistance}</>}</th>
+                <th>My Trip
+                <d style={{float:"right"}}>
+                    {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance <= 1)?"mile":"miles"} </>}
+                </d>
+                </th>
+                
                 <th>
                     <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
                 </th>
@@ -65,19 +69,18 @@ function TableRow(props) {
                 {name}
                 <br/>
                 <small className="text-muted">{location}</small>
+                <br/>
+                {(distances.length > props.index && props.index != 0)&&
+                <small className="text-muted">
+                    <th>
+                        Distance Between Last Place : {individualItem.distance} {(individualItem.distance <= 1)?"mile":"miles"} 
+                    </th>
+ 
+                    <th>
+                        Cumalitive Distance : {individualItem.total} {(individualItem.total <= 1)?"mile":"miles"}
+                    </th>
+                </small>}
             </td>
-                <th style={{fontWeight:"200",textAlign:"right",minWidth:"280px"}}> 
-                    {(distances.length > props.index && props.index != 0)&&
-                    <>
-                        <>
-                            Distance Between Last Place : {individualItem.distance} {(individualItem.distance <= 1)?"mile":"miles"}
-                        </>
-                        <br/>
-                        <>
-                            Cumalitive Distance : {individualItem.total} {(individualItem.total <= 1)?"mile":"miles"}
-                        </>
-                    </>}
-                </th>
             <td>
                 <PlaceActionsDropdown {...props} placeActions={props.placeActions} index={props.index} />
             </td>
