@@ -9,7 +9,7 @@ export default function Itinerary(props) {
     const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
     return (
         <Table responsive striped>
-            <Header placeActions={props.placeActions} showMessage={props.showMessage} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} />
+            <Header placeActions={props.placeActions} showMessage={props.showMessage} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} {...props} />
             <Body places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
