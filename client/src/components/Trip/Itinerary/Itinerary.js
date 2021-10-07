@@ -7,14 +7,15 @@ export default function Itinerary(props) {
     return (
         <Table responsive striped>
             <Header placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
-            <Body places={props.places} placeActions={props.placeActions} {...props}/>
+            <Body  places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
+
 }
 
 function Header(props) {
     let totalDistance = 0;
-    let distances = (props.distances)? props.distances.distances:[];
+    let distances = (props.distances)? props.distances.distances:[-1];
     distances.map((distItem)=>{totalDistance += distItem})
 
     return (
@@ -50,6 +51,8 @@ function Body(props) {
 function TableRow(props) {
     const name = props.place.name ? props.place.name : "-";
     const location = latLngToText(props.place);
+    let distances = (props.distances)? props.distances.distances:[-1];
+
 
     return (
         <tr>
@@ -59,7 +62,7 @@ function TableRow(props) {
                 <br/>
                 <small className="text-muted">{location}</small>
             </td>
-            {(props.distances.distances.length > props.index)&&<td style={{textAlign:"right",minWidth:"180px"}}>Distance : {props.distances.distances[props.index]}</td>}
+            {(distances.length > props.index)&&<td style={{textAlign:"right",minWidth:"180px"}}>Distance : {distances[props.index]}</td>}
             <td>
                 <PlaceActionsDropdown {...props} placeActions={props.placeActions} index={props.index} />
             </td>
