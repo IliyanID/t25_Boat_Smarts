@@ -23,7 +23,7 @@ function Header(props) {
             <tr>
                 <th/>
                 <th>My Trip</th>
-                {(totalDistance > 0)&&<th style={{textAlign:"right",minWidth:"180px"}}>Total Distance : {totalDistance}</th>}
+                {(totalDistance > 0)&&<th style={{textAlign:"right",minWidth:"180px"}}>Round Trip : {totalDistance}</th>}
                 <th>
                     <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
                 </th>
@@ -53,6 +53,10 @@ function TableRow(props) {
     const location = latLngToText(props.place);
     let distances = (props.distances)? props.distances.distances:[-1];
 
+    let cumalitiveDistances = [];
+    let runningTotal = 0;
+    distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
+
 
     return (
         <tr>
@@ -62,7 +66,15 @@ function TableRow(props) {
                 <br/>
                 <small className="text-muted">{location}</small>
             </td>
-            {(distances.length > props.index)&&<td style={{textAlign:"right",minWidth:"180px"}}>Distance : {distances[props.index]}</td>}
+            {(distances.length > props.index)&& <th style={{fontWeight:"200",textAlign:"right",minWidth:"200px"}}> 
+                                                    <>
+                                                        Distance Between Place : {cumalitiveDistances[props.index].distance}
+                                                    </>
+                                                    <br/>
+                                                    <>
+                                                        Cumalitive Distance : {cumalitiveDistances[props.index].total}
+                                                    </>
+                                                </th>}
             <td>
                 <PlaceActionsDropdown {...props} placeActions={props.placeActions} index={props.index} />
             </td>
