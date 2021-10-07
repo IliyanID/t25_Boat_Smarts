@@ -77,7 +77,7 @@ function TableRow(props) {
                     </th>
  
                     <th>
-                        Cumalitive Distance : {individualItem.total} {(individualItem.total <= 1)?"mile":"miles"}
+                        Cumulative Distance : {individualItem.total} {(individualItem.total <= 1)?"mile":"miles"}
                     </th>
                 </small>}
             </td>
