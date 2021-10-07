@@ -9,7 +9,7 @@ export default function Results(props) {
 
     return (
         <ListGroup data-testid="results-list">
-            {places && places.map((place, i) => <SinglePlace key={place.iso_country+place.id} place={place} index={i} {...props} />)}
+            {places && places.map((place, i) => <SinglePlace key={place.country+place.id} place={place} index={i} {...props} />)}
             {placesFound && <p>Total results: {placesFound}</p>}
         </ListGroup>
     );

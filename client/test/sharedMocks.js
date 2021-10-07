@@ -9,8 +9,9 @@ export const INVALID_REQUEST = JSON.stringify({
 });
 
 export const MOCK_PLACES = [
-    { id: 1, name: 'Place A', lat: 40.0, lng: 50.0, iso_country: 'Unknown'},
-    { id: 2, name: 'Place B', lat: -45.0, lng: -55.0, iso_country: 'Unknown'}
+    { id: 1, name: 'Place A', lat: 40.0, lng: 50.0, country: 'Unknown'},
+    { id: 2, name: 'Place B', lat: -45.0, lng: -55.0, country: 'Unknown'},
+    { id: 3, name: '', lat: 60.0, lng: -150.0, country: 'Unknown'}
 ];
 
 export const MOCK_LATLNG_LOCATION = {

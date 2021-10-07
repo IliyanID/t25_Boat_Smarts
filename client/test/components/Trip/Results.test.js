@@ -9,26 +9,26 @@ describe('Results', () => {
 
     const MOCK_RESULTS = {
         places: MOCK_PLACES,
-        found: 2
+        found: 3
     }
 
     it('renders to screen', () => {
         act(() => {
             render(<Results searchResults={MOCK_RESULTS} />);
         });
-        expect(screen.getByTestId('results-list').childNodes.length).toEqual(3);
+        expect(screen.getByTestId('results-list').childNodes.length).toEqual(4);
     });
 
     it('does not list total results when placesFound is undefined', () => {
         act(() => {
             render(<Results searchResults={{places: MOCK_PLACES}} />);
         });
-        expect(screen.getByTestId('results-list').childNodes.length).toEqual(2);
+        expect(screen.getByTestId('results-list').childNodes.length).toEqual(3);
     });
 
     it('does not return a list when "places" is undefined', () => {
         act(() => {
-            render(<Results searchResults={{found: 2}} />);
+            render(<Results searchResults={{found: 3}} />);
         });
         expect(screen.getByTestId('results-list').childNodes.length).toEqual(1);
     })
