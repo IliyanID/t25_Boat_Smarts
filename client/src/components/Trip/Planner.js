@@ -21,24 +21,22 @@ export default function Planner(props) {
     
 
     useEffect(()=>{
+        let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
+        let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
+
+        let convertedPlace = [];
+        places.map((place) => {convertedPlace.push(latLngToPlace(place))});
+
+        sendAPIRequest({
+            requestType:'distances',
+            places:convertedPlace,
+            earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles
+        },currentURL).then((response)=>{
+                if(response)
+                    setDistances(response)
+            })
         if(selectedIndex != -1 && places.length > previousPlaces.length ){
-            props.showMessage("Added to Trip " + places[selectedIndex].name,"info")
-            let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
-            let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
-
-            let convertedPlace = [];
-            places.map((place) => {convertedPlace.push(latLngToPlace(place))});
-
-            sendAPIRequest({
-                requestType:'distances',
-                places:convertedPlace,
-                earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles
-            },currentURL).then((response)=>{
-                    if(response)
-                        setDistances(response)
-                })
-
-            
+            props.showMessage("Added to Trip " + places[selectedIndex].name,"info")            
         }
     },[places])
 
