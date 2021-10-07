@@ -57,7 +57,7 @@ function TableRow(props) {
     let runningTotal = 0;
     distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
 
-    let individualItem = (props.index !=0)?cumalitiveDistances[props.index - 1].distance:-1;
+    let individualItem = (props.index !=0)?cumalitiveDistances[props.index - 1]:-1;
     return (
         <tr>
             <th scope="row">{props.index + 1}</th>
@@ -70,11 +70,11 @@ function TableRow(props) {
                     {(distances.length > props.index && props.index != 0)&&
                     <>
                         <>
-                            Distance Between Last Place : {individualItem} {(individualItem <= 1)?"mile":"miles"}
+                            Distance Between Last Place : {individualItem.distance} {(individualItem.distance <= 1)?"mile":"miles"}
                         </>
                         <br/>
                         <>
-                            Cumalitive Distance : {100000* cumalitiveDistances[props.index - 1].total} miles
+                            Cumalitive Distance : {individualItem.total} {(individualItem.total <= 1)?"mile":"miles"}
                         </>
                     </>}
                 </th>
