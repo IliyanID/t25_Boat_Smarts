@@ -17,7 +17,7 @@ export function ItineraryActionsDropdown(props) {
                 <FaHome />
             </DropdownItem>
             <DropdownItem data-testid='load-file-button'>
-                < FaFileUpload/>
+                <FaFileUpload/>
             </DropdownItem>
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>
                 <FaTrashAlt />
