@@ -6,20 +6,25 @@ import { latLngToText } from '../../../utils/transformers';
 export default function Itinerary(props) {
     return (
         <Table responsive striped>
-            <Header placeActions={props.placeActions} showMessage={props.showMessage}/>
+            <Header placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
             <Body places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
 }
 
 function Header(props) {
+    let totalDistance = 0;
+    let distances = (props.distances)? props.distances.distances:[];
+    distances.map((distItem)=>{totalDistance += distItem})
+
     return (
         <thead>
             <tr>
                 <th/>
                 <th>My Trip</th>
+                {(totalDistance > 0)&&<th style={{textAlign:"right",minWidth:"180px"}}>Total Distance : {totalDistance}</th>}
                 <th>
-                    <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage}/>
+                    <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
                 </th>
             </tr>
         </thead>
@@ -54,6 +59,7 @@ function TableRow(props) {
                 <br/>
                 <small className="text-muted">{location}</small>
             </td>
+            {(props.distances.distances.length > props.index)&&<td style={{textAlign:"right",minWidth:"180px"}}>Distance : {props.distances.distances[props.index]}</td>}
             <td>
                 <PlaceActionsDropdown {...props} placeActions={props.placeActions} index={props.index} />
             </td>

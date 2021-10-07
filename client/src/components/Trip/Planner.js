@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Col, Container, Row } from 'reactstrap';
+import { sendAPIRequest, getOriginalServerUrl } from "../../utils/restfulAPI"
+import { EARTH_RADIUS_UNITS_DEFAULT } from "../../utils/constants"
+import { latLngToPlace } from "../../utils/transformers"
 import Map from './Map/Map';
 import Search from './Search/Search';
 import Results from './Results/Results';
@@ -11,10 +14,32 @@ export default function Planner(props) {
     const [searchResults, setSearchResults] = useState({});
     const [centerView,setCenterView] = useState(false)
     const [locationPreview, setLocationPreview] = useState();
+    const [distances,setDistances] = useState({
+        distances: []
+    })
+
+    
 
     useEffect(()=>{
-        if(selectedIndex != -1 && places.length > previousPlaces.length )
+        if(selectedIndex != -1 && places.length > previousPlaces.length ){
             props.showMessage("Added to Trip " + places[selectedIndex].name,"info")
+            let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
+            let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
+
+            let convertedPlace = [];
+            places.map((place) => {convertedPlace.push(latLngToPlace(place))});
+
+            sendAPIRequest({
+                requestType:'distances',
+                places:convertedPlace,
+                earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles
+            },currentURL).then((response)=>{
+                    if(response)
+                        setDistances(response)
+                })
+
+            
+        }
     },[places])
 
     return (
@@ -29,7 +54,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Itinerary centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
+                <Itinerary distances={distances} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
             </Section>
         </Container>
     );
