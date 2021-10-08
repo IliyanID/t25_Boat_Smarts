@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { Table } from 'reactstrap';
 import { ItineraryActionsDropdown, PlaceActionsDropdown } from './actions.js';
 import { latLngToText } from '../../../utils/transformers';
 import { useToggle } from '../../../hooks/useToggle.js';
 import FileUploadModal from './Modals/FileUploadModal.js';
 
+import PencilIcon from '../../../static/images/pencil.svg'
+import CheckMark from '../../../static/images/checkmark.svg'
+import Cancel from '../../../static/images/cancel.svg'
+
+import '../../../static/styles/trip.scss'
+
 export default function Itinerary(props) {
     const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
+    const [tripName, setTripName] = useState("My Trip")
     return (
         <Table responsive striped>
-            <Header placeActions={props.placeActions} showMessage={props.showMessage} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} {...props} />
+            <Header tripName={tripName} setTripName={setTripName} placeActions={props.placeActions} showMessage={props.showMessage} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} {...props} />
             <Body places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
@@ -17,18 +24,51 @@ export default function Itinerary(props) {
 }
 
 function Header(props) {
+    const inputRef = useRef();
+    const [tempName,setTempName] = useState(props.tripName)
+    let [inFocus,setInFocus] = useState(false)
+
+
+
     let totalDistance = 0;
     let distances = (props.distances)? props.distances.distances:[-1];
     distances.map((distItem)=>{totalDistance += distItem})
+
+
+    let handleFocusOut = (e)=>{  
+        inFocus = false
+    }
+    document.addEventListener('focusout', handleFocusOut)
+
+    const setFocus = () =>{
+        setInFocus(true)
+        inputRef.current.focus()
+    }
+
+    let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
+
+    let buttonLayout;
+    if(!inFocus){
+        iconStyle["marginLeft"] = "30px"
+        buttonLayout = <img onClick={setFocus} style={iconStyle} src={PencilIcon}/>
+    }
+    else{
+        buttonLayout = (<>
+            <img style={iconStyle} onClick={()=>{console.log(props.tripName);setTempName(props.tripName)}} src={Cancel} />
+            <img style={iconStyle} onClick={()=>props.setTripName(tempName)} src={CheckMark} />
+        </>)
+    }
 
     return (
         <thead>
             <tr>
                 <th/>
-                <th>My Trip
-                <d style={{float:"right"}}>
-                    {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance <= 1)?"mile":"miles"} </>}
-                </d>
+                <th>
+                    {buttonLayout}
+                    <input ref={inputRef} onFocus={setFocus} className='tripNameInput' type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
+                    <dd style={{float:"right"}}>
+                        {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance <= 1)?"mile":"miles"} </>}
+                    </dd>
                 </th>
                 
                 <th>
