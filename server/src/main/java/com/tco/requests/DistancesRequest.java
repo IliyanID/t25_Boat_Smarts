@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 public class DistancesRequest extends Request {
     private SQLDatabase.Places places;
     private int earthRadius;
-    private ArrayList<Double> distances;
+    private ArrayList<Long> distances;
     private final transient Logger log = LoggerFactory.getLogger(DistancesRequest.class);
 
     @Override
