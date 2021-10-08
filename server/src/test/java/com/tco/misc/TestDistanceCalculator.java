@@ -22,6 +22,14 @@ public class TestDistanceCalculator {
     }
 
     @Test
+    @DisplayName("calculate on an null places array should return an empty list")
+    public void testDistanceNull(){
+        SQLDatabase.Places p1 = null;
+        ArrayList<Long> distances = DistanceCalculator.calculate(p1, EARTH_RADIUS);
+        assertTrue(distances.isEmpty());
+    }
+
+    @Test
     @DisplayName("calculate on an empty places array should return an empty list")
     public void testDistanceEmpty(){
         SQLDatabase.Places p1 = new SQLDatabase.Places();
