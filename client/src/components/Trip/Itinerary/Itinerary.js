@@ -31,9 +31,13 @@ function Header(props) {
     let distances = (props.distances)? props.distances.distances:[-1];
     distances.map((distItem)=>{totalDistance += distItem})
 
-    /*let handleFocusOut = (e)=>{  
+    let handleFocusOut = (e)=>{
+        //If the parent of the clicked item isn't the inputRef div
+        if(e.path[1] !== inputRef.current)
+            handleSubmit()  
     }
-    document.addEventListener('focusout', handleFocusOut)*/
+    document.addEventListener('click', handleFocusOut)
+
 
     const setFocus = () =>{
         setInFocus(true)
@@ -58,8 +62,8 @@ function Header(props) {
     }
     else{
         buttonLayout = (<>
-            <img style={iconStyle} onClick={handleSubmit} src={CheckMark} />
-            <img style={iconStyle} onClick={handleCancel} src={Cancel} />
+            <img id="submit" style={iconStyle} onClick={handleSubmit} src={CheckMark} />
+            <img id="cancel" style={iconStyle} onClick={handleCancel} src={Cancel} />
         </>)
     }
 
@@ -68,8 +72,10 @@ function Header(props) {
             <tr>
                 <th/>
                 <th>
-                    {buttonLayout}
-                    <input ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
+                    <div ref={inputRef}>
+                        {buttonLayout}
+                        <input onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
+                    </div>
                     <dd style={{float:"right"}}>
                         {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance = 1)?"mile":"miles"} </>}
                     </dd>
