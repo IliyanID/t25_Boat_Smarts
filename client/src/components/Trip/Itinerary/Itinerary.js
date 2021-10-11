@@ -23,6 +23,7 @@ export default function Itinerary(props) {
 }
 
 function Header(props) {
+    const inputContainer = useRef();
     const inputRef = useRef();
     const [tempName,setTempName] = useState(props.tripName)
     const [inFocus,setInFocus] = useState(false)
@@ -32,8 +33,10 @@ function Header(props) {
     distances.map((distItem)=>{totalDistance += distItem})
 
     let handleFocusOut = (e)=>{
+        console.log(e)
+
         //If the parent of the clicked item isn't the inputRef div
-        if(e && e.path && e.path[1] !== inputRef.current)
+        if(e && e.path && e.path[1] !== inputContainer.current)
             handleSubmit()  
     }
     document.addEventListener('click', handleFocusOut)
@@ -72,9 +75,9 @@ function Header(props) {
             <tr>
                 <th/>
                 <th>
-                    <div ref={inputRef}>
+                    <div ref={inputContainer}>
                         {buttonLayout}
-                        <input onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
+                        <input ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
                     </div>
                     <dd style={{float:"right"}}>
                         {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance = 1)?"mile":"miles"} </>}
