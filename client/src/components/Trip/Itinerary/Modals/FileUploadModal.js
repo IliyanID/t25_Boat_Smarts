@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
 export default function FileUploadModal(props) {
 
@@ -7,7 +7,7 @@ export default function FileUploadModal(props) {
         <Modal isOpen={props.fileUploadOpen} toggle={props.toggleFileUploadOpen}>
             <ModalHeader toggle={props.toggleFileUploadOpen}>Upload Trip</ModalHeader>
             <ModalBody>
-                
+                <Input type="file" />
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileUploadOpen}>Cancel</Button>
