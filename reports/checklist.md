@@ -7,7 +7,7 @@ The checklist will be updated as we identify new faults in our code that we wish
 
 ### Data faults
 * Are all program variables initialized before their values are used?
-* Have all constants been named?
+* Have all constants been named and put in the constants.js file?
 * Should the upper bound of arrays be equal to the size of the array or size-1?
 * If character strings are used, is a delimiter explicitly assigned?
 * Is there any possibility of a buffer overflow?
