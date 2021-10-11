@@ -21,13 +21,9 @@ export default function Itinerary(props) {
 }
 
 function Header(props) {
-
-
     let totalDistance = 0;
     let distances = (props.distances)? props.distances.distances:[-1];
     distances.map((distItem)=>{totalDistance += distItem})
-
-    
 
     return (
         <thead>
