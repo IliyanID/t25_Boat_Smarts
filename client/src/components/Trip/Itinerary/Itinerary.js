@@ -31,10 +31,9 @@ function Header(props) {
     let distances = (props.distances)? props.distances.distances:[-1];
     distances.map((distItem)=>{totalDistance += distItem})
 
-    let handleFocusOut = (e)=>{  
-       
+    /*let handleFocusOut = (e)=>{  
     }
-    document.addEventListener('focusout', handleFocusOut)
+    document.addEventListener('focusout', handleFocusOut)*/
 
     const setFocus = () =>{
         setInFocus(true)
