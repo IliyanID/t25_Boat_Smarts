@@ -33,7 +33,7 @@ function Header(props) {
 
     let handleFocusOut = (e)=>{
         //If the parent of the clicked item isn't the inputRef div
-        if(e.path[1] !== inputRef.current)
+        if(e && e.path && e.path[1] !== inputRef.current)
             handleSubmit()  
     }
     document.addEventListener('click', handleFocusOut)
