@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useRef, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Table } from 'reactstrap';
 import { ItineraryActionsDropdown, PlaceActionsDropdown } from './actions.js';
 import { latLngToText } from '../../../utils/transformers';
 import { useToggle } from '../../../hooks/useToggle.js';
 import FileUploadModal from './Modals/FileUploadModal.js';
 
-import PencilIcon from '../../../static/images/pencil.svg'
-import CheckMark from '../../../static/images/checkmark.svg'
-import Cancel from '../../../static/images/cancel.svg'
+import TripName from './TripName/TripName'
 
 
 export default function Itinerary(props) {
@@ -23,64 +21,22 @@ export default function Itinerary(props) {
 }
 
 function Header(props) {
-    const inputContainer = useRef();
-    const inputRef = useRef();
-    const [tempName,setTempName] = useState(props.tripName)
-    const [inFocus,setInFocus] = useState(false)
+
 
     let totalDistance = 0;
     let distances = (props.distances)? props.distances.distances:[-1];
     distances.map((distItem)=>{totalDistance += distItem})
 
-    let handleFocusOut = (e)=>{
-        console.log(e)
-
-        //If the parent of the clicked item isn't the inputRef div
-        if(e && e.path && e.path[1] !== inputContainer.current)
-            handleSubmit()  
-    }
-    document.addEventListener('click', handleFocusOut)
-
-
-    const setFocus = () =>{
-        setInFocus(true)
-        inputRef.current.focus()
-    }
-    const handleCancel = () =>{
-        setInFocus(false)
-        setTempName(props.tripName)
-    }
-    const handleSubmit = () =>{
-        setInFocus(false)
-        props.setTripName(tempName)
-    }
-
-    let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
-
-    let buttonLayout;
-    if(!inFocus){
-        //Shift to the right to make room for the cancel button when rendered so the input doesn't move around
-        iconStyle["marginLeft"] = "30px"
-        buttonLayout = <img onClick={setFocus} style={iconStyle} src={PencilIcon}/>
-    }
-    else{
-        buttonLayout = (<>
-            <img id="submit" style={iconStyle} onClick={handleSubmit} src={CheckMark} />
-            <img id="cancel" style={iconStyle} onClick={handleCancel} src={Cancel} />
-        </>)
-    }
+    
 
     return (
         <thead>
             <tr>
                 <th/>
                 <th>
-                    <div ref={inputContainer}>
-                        {buttonLayout}
-                        <input ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
-                    </div>
+                    <TripName {...props}/>
                     <dd style={{float:"right"}}>
-                        {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance = 1)?"mile":"miles"} </>}
+                        {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance == 1)?"mile":"miles"} </>}
                     </dd>
                 </th>
                 
@@ -130,11 +86,11 @@ function TableRow(props) {
                 {(distances.length > props.index && props.index != 0)&&
                 <small>
                     <th>
-                        Distance From Previous : {individualItem.distance} {(individualItem.distance = 1)?"mile":"miles"} 
+                        Distance From Previous : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
                     </th>
  
                     <th>
-                        Cumulative Distance : {individualItem.total} {(individualItem.total = 1)?"mile":"miles"}
+                        Cumulative Distance : {individualItem.total} {(individualItem.total == 1)?"mile":"miles"}
                     </th>
                 </small>}
             </td>
