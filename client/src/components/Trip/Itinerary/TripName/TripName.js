@@ -36,19 +36,19 @@ const TripName = (props) =>{
     if(!inFocus){
         //Shift to the right to make room for the cancel button when rendered so the input doesn't move around
         iconStyle["marginLeft"] = "30px"
-        buttonLayout = <img onClick={setFocus} style={iconStyle} src={PencilIcon}/>
+        buttonLayout = <img  data-testid="edit" onClick={setFocus} style={iconStyle} src={PencilIcon}/>
     }
     else{
         buttonLayout = (<>
-            <img id="submit" style={iconStyle} onClick={handleSubmit} src={CheckMark} />
-            <img id="cancel" style={iconStyle} onClick={handleCancel} src={Cancel} />
+            <img data-testid="submitName" id="submit" style={iconStyle} onClick={handleSubmit} src={CheckMark} />
+            <img data-testid="cancelName" id="cancel" style={iconStyle} onClick={handleCancel} src={Cancel} />
         </>)
     }
 
     return(
         <div ref={inputContainer}>
             {buttonLayout}
-            <input ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
+            <input data-testid="input" ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
         </div>
     )
     
