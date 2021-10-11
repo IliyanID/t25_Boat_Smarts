@@ -77,6 +77,7 @@ function Header(props) {
                 
                 <th>
                     <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
+                    <FileUploadModal {...props}/>
                 </th>
             </tr>
         </thead>
