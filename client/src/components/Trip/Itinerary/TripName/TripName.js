@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import PencilIcon from '../../../../static/images/pencil.svg'
+import { FaEdit } from 'react-icons/fa';
 import CheckMark from '../../../../static/images/checkmark.svg'
 import Cancel from '../../../../static/images/cancel.svg'
 
@@ -36,7 +36,7 @@ const TripName = (props) =>{
     if(!inFocus){
         //Shift to the right to make room for the cancel button when rendered so the input doesn't move around
         iconStyle["marginLeft"] = "30px"
-        buttonLayout = <img  data-testid="edit" onClick={setFocus} style={iconStyle} src={PencilIcon}/>
+        buttonLayout = <FaEdit  data-testid="edit" onClick={setFocus} style={iconStyle}/>
     }
     else{
         buttonLayout = (<>
