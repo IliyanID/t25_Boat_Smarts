@@ -7,7 +7,7 @@ The checklist will be updated as we identify new faults in our code that we wish
 
 ### Data faults
 * Are all program variables initialized before their values are used?
-* Have all constants been named and put in the constants.js file?
+* Have all constants been named meaningfully and put in the constants.js file?
 * Should the upper bound of arrays be equal to the size of the array or size-1?
 * If character strings are used, is a delimiter explicitly assigned?
 * Is there any possibility of a buffer overflow?
@@ -15,12 +15,15 @@ The checklist will be updated as we identify new faults in our code that we wish
 ### Control faults
 * For each conditional statement, is the condition correct?
 * Is each loop certain to terminate?
+* Can array indexes ever go out-of-bounds?
+* Are all objects (including Strings) compared with "equals" and not "=="? (Java)
 * Are compound statements correctly bracketed?
 * In case statements, are all possible cases accounted for?
 * If a break is required after each case in case statements, has it been included?
 
 ### Parameter faults
 * Are all input variables used?
+* Are variables declared in the proper scope?
 * Are values assigned to all output variables before they are output?
 * Can unexpected inputs cause corruption?
 
