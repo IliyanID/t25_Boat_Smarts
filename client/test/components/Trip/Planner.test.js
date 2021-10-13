@@ -13,7 +13,4 @@ describe('Planner', () => {
         screen.getByText('Leaflet');
     });
 
-    it('renders trip table', async () => {
-        screen.getByText('My Trip');
-    });
 });
