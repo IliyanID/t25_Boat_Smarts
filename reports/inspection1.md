@@ -15,7 +15,7 @@ We note the amount of time each person spent reviewing the code in preparation f
 
 | Name | Preparation Time |
 | ---- | ---- |
-| Caleb  |     |
+| Caleb  |  65 min   |
 | Derek  |     |
 | Andrew |  75 min |
 | Iliyan |     |
@@ -32,3 +32,5 @@ We add a GitHub issue for each defect that requires a modification to the system
 | ServerSettings.js:27 | Unreachble Code | | Andrew | |
 | ServerSettings.js:105 | Code running as "intentional side effect" of render. Causes extra warning messages | | Andrew | |
 | ServerSettings.js:96 | props.missingFeatures and missingFeatures refer to different variable types| | Andrew | |
+| ServerSettings.js:109-114 | Does Props.showMessage need to be in a try catch block, some places we do it, ours we don't| | Caleb ||
+| ServerSettings.js:106-107 | could you call missingFeatureExists to get the value or have just missingFeatures.Length > 0 in the If| | Caleb ||
