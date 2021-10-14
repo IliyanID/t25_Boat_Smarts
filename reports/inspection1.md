@@ -18,7 +18,7 @@ We note the amount of time each person spent reviewing the code in preparation f
 | Caleb  |  65 min   |
 | Derek  |     |
 | Andrew |  75 min |
-| Iliyan |     |
+| Iliyan |   60 min  |
 | Mathew |     |
 
 
@@ -34,3 +34,6 @@ We add a GitHub issue for each defect that requires a modification to the system
 | ServerSettings.js:96 | props.missingFeatures and missingFeatures refer to different variable types| | Andrew | |
 | ServerSettings.js:109-114 | Does Props.showMessage need to be in a try catch block, some places we do it, ours we don't| | Caleb ||
 | ServerSettings.js:106-107 | could you call missingFeatureExists to get the value or have just missingFeatures.Length > 0 in the If| | Caleb ||
+| ServerSettings.js:81-82 | Unrechable code| | Iliyan ||
+| Map.js:66-76 | Repeate geocode to center user at starting location| | Iliyan ||
+| Map.js.js:28 | Found bug for coordinates where lat or lng is 0 | | Iliyan ||
