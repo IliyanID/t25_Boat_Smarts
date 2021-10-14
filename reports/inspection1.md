@@ -17,7 +17,7 @@ We note the amount of time each person spent reviewing the code in preparation f
 | ---- | ---- |
 | Caleb  |     |
 | Derek  |     |
-| Andrew |     |
+| Andrew |  75 min |
 | Iliyan |     |
 | Mathew |     |
 
@@ -29,4 +29,6 @@ We add a GitHub issue for each defect that requires a modification to the system
 
 | file:line | problem | hi/med/low | who found | github#  |
 | --- | --- | :---: | :---: | --- |
-|  | | | | |
+| ServerSettings.js:27 | Unreachble Code | | Andrew | |
+| ServerSettings.js:105 | Code running as "intentional side effect" of render. Causes extra warning messages | | Andrew | |
+| ServerSettings.js:96 | props.missingFeatures and missingFeatures refer to different variable types| | Andrew | |
