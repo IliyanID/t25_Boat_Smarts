@@ -21,16 +21,8 @@ export function buildTripJSON(places, units, earthRadius) {
 export function buildTripCSV(places, units, earthRadius) {
     let retStr = '"earthRadius","units","latitude","longitude", "name"';
     for (const place of places) {
-        retStr += singleCSVRow(earthRadius, units, place);
+        retStr += `\n${earthRadius},"${units}","${place.lat}","${place.lng}","${place.name}"`;
     }
     return retStr;
 }
 
-function singleCSVRow(earthRadius, units, place){
-    let retStr = '\n' + earthRadius + ',';
-    retStr += '"' + units + '",';
-    retStr += '"' + place.lat + '",';
-    retStr += '"' + place.lng + '",';
-    retStr += '"' + place.name + '"';
-    return retStr;
-}
