@@ -5,7 +5,7 @@ We first identify the code we wish to inspect, determine the time we wish to mee
 
 |  | Details |
 | ----- | ----- |
-| Subject | *Serversetting.js* *Map.js* |
+| Subject | *Serversetting.js Map.js* |
 | Meeting | *Thursday - 14th, 7:00pm, Teams* |
 | Checklist | *./checklist.md* |
 
