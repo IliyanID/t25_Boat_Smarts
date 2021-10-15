@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import com.tco.database.SQLDatabase;
 
 public class DistanceCalculator {
-    public static ArrayList<Long> calculate(SQLDatabase.Places places, int earthRadius) {
+    public static ArrayList<Long> calculate(SQLDatabase.Places places, double earthRadius) {
         ArrayList<Long> temp = new ArrayList<>();
+        int convertEarthRadius = (int)Math.ceil(earthRadius);
         if(places != null)
             for(int i = 0; i < places.size(); i++){
-                temp.add(singleDistance(places.get(i), places.get((i+1)%places.size()), earthRadius));
+                temp.add(singleDistance(places.get(i), places.get((i+1)%places.size()), convertEarthRadius));
             }
 
 
