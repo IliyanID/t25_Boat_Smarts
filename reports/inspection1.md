@@ -29,11 +29,11 @@ We add a GitHub issue for each defect that requires a modification to the system
 
 | file:line | problem | hi/med/low | who found | github#  |
 | --- | --- | :---: | :---: | --- |
-| ServerSettings.js:27 | Unreachble Code | low | Andrew | |
-| ServerSettings.js:105 | Code running as "intentional side effect" of render. Causes extra warning messages | med | Andrew | |
-| ServerSettings.js:96 | props.missingFeatures and missingFeatures refer to different variable types| med | Andrew | |
-| ServerSettings.js:109-114 | Does Props.showMessage need to be in a try catch block, some places we do it, ours we don't| med | Caleb ||
-| ServerSettings.js:106-107 | could you call missingFeatureExists to get the value or have just missingFeatures.Length > 0 in the If| low | Caleb ||
-| ServerSettings.js:81-82 | Unrechable code| low | Iliyan ||
-| Map.js:66-76 | Repeate geocode to center user at starting location| low | Iliyan ||
-| Map.js.js:28 | Found bug for coordinates where lat or lng is 0 | high | Iliyan ||
+| ServerSettings.js:27 | Unreachble Code | low | Andrew | #210 |
+| ServerSettings.js:105 | Code running as "intentional side effect" of render. Causes extra warning messages | med | Andrew | #211 |
+| ServerSettings.js:96 | props.missingFeatures and missingFeatures refer to different variable types| med | Andrew | #211 |
+| ServerSettings.js:109-114 | Does Props.showMessage need to be in a try catch block, some places we do it, others we don't| med | Caleb | #213 |
+| ServerSettings.js:106-107 | could you call missingFeatureExists to get the value or have just missingFeatures.Length > 0 in the If| low | Caleb | #211 |
+| ServerSettings.js:81-82 | Unrechable code| low | Iliyan | #210 |
+| Map.js:66-76 | Repeate geocode to center user at starting location| low | Iliyan | #214 |
+| Map.js.js:28 | Found bug for coordinates where lat or lng is 0 | high | Iliyan | #212 |
