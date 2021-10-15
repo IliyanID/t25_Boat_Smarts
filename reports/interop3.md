@@ -12,6 +12,7 @@ This table lists each student in the team, the team they verified interoperabili
 | Name | Team | Time |
 | ---- | ---- | ---- |
 | Andrew Holmes | 08 | 10 |
+| Caleb Cluett | 18 | 15 |
 
 
 ### Client Problems found
@@ -21,6 +22,7 @@ We found these problems when connecting our client to another team's server.
 | team | problem | github# |
 | :--- |  :--- | --- |
 | 08  | None found (limited functionality on t08 server) | -- |
+| 18  | None found ( Doesn't have Distances ) |--|
 
 
 ### Server Problems found
@@ -30,3 +32,4 @@ We found these problems when connecting the other team's client to our server.
 | team |  problem | github# |
 | :--- |  :--- | --- |
 | 08 | None found (limited functionality on t08 client) | -- |
+| 18  | None found ( Doesn't have Distances ) |--|
