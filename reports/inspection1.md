@@ -5,7 +5,7 @@ We first identify the code we wish to inspect, determine the time we wish to mee
 
 |  | Details |
 | ----- | ----- |
-| Subject | *Serversetting.js* |
+| Subject | *Serversetting.js* *Map.js* |
 | Meeting | *Thursday - 14th, 7:00pm, Teams* |
 | Checklist | *./checklist.md* |
 
@@ -29,11 +29,11 @@ We add a GitHub issue for each defect that requires a modification to the system
 
 | file:line | problem | hi/med/low | who found | github#  |
 | --- | --- | :---: | :---: | --- |
-| ServerSettings.js:27 | Unreachble Code | | Andrew | |
-| ServerSettings.js:105 | Code running as "intentional side effect" of render. Causes extra warning messages | | Andrew | |
-| ServerSettings.js:96 | props.missingFeatures and missingFeatures refer to different variable types| | Andrew | |
-| ServerSettings.js:109-114 | Does Props.showMessage need to be in a try catch block, some places we do it, ours we don't| | Caleb ||
-| ServerSettings.js:106-107 | could you call missingFeatureExists to get the value or have just missingFeatures.Length > 0 in the If| | Caleb ||
-| ServerSettings.js:81-82 | Unrechable code| | Iliyan ||
-| Map.js:66-76 | Repeate geocode to center user at starting location| | Iliyan ||
-| Map.js.js:28 | Found bug for coordinates where lat or lng is 0 | | Iliyan ||
+| ServerSettings.js:27 | Unreachble Code | low | Andrew | |
+| ServerSettings.js:105 | Code running as "intentional side effect" of render. Causes extra warning messages | med | Andrew | |
+| ServerSettings.js:96 | props.missingFeatures and missingFeatures refer to different variable types| med | Andrew | |
+| ServerSettings.js:109-114 | Does Props.showMessage need to be in a try catch block, some places we do it, ours we don't| med | Caleb ||
+| ServerSettings.js:106-107 | could you call missingFeatureExists to get the value or have just missingFeatures.Length > 0 in the If| low | Caleb ||
+| ServerSettings.js:81-82 | Unrechable code| low | Iliyan ||
+| Map.js:66-76 | Repeate geocode to center user at starting location| low | Iliyan ||
+| Map.js.js:28 | Found bug for coordinates where lat or lng is 0 | high | Iliyan ||
