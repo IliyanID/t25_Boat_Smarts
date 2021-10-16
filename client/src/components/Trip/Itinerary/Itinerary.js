@@ -46,9 +46,14 @@ function Header(props) {
 }
 
 function Body(props) {
+    let distances = (props.distances)? props.distances.distances:[-1];
+    
+    let tempPlaces = [...props.places]
+    if(distances.length > 1)
+        tempPlaces.push(props.places[0])
     return (
         <tbody>
-            {props.places.map((place, index) => 
+            {tempPlaces.map((place, index) => 
                 <TableRow 
                     key={`table-${JSON.stringify(place)}-${index}`}
                     place={place}
@@ -79,10 +84,16 @@ function TableRow(props) {
                 <br/>
                 <small className="text-muted">{location}</small>
                 <br/>
-                {(distances.length > props.index && props.index != 0)&&
+                {(distances.length >= props.index && props.index != 0)&&
                 <small>
                     <th>
-                        Distance From Previous : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
+                        {
+                            (distances.length === props.index)?
+                                <>Distance From Start </>
+                                :
+                                <>Distance From Previous </>
+                        }
+                         : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
                     </th>
  
                     <th>
