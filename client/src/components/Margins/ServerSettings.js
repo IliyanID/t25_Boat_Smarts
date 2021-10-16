@@ -23,12 +23,6 @@ export function missingFeaturesExists(config,serverSettings){
             if(!serverSettings.serverConfig.features.includes(feature))
                 missingFeatures.push(feature)
         }
-    
-    else if(serverSettings && serverSettings.features)
-        for(let feature in existingClientFeatures){
-            if(!serverSettings.features.includes(feature))
-                missingFeatures.push(feature)
-        }
 
     return missingFeatures.length > 0;
 }
@@ -77,9 +71,6 @@ function getCurrentFeatures(config, serverSettings){
 
     else if(serverSettings.serverConfig && serverSettings.serverConfig.features)
         return "[" + serverSettings.serverConfig.features.map((item)=>{return item}) + "]";
-    
-    else if(serverSettings && serverSettings.features)
-        return "[" + serverSettings.features.map((item)=>{return item}) + "]";
     
     else
         return "None"
