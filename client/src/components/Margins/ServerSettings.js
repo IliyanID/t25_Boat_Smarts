@@ -18,7 +18,7 @@ export function missingFeaturesExists(config,serverSettings){
                 missingFeatures.push(feature)
         }
 
-    else if(serverSettings && serverSettings.features)
+    else if(serverSettings && serverSettings.serverConfig)
         for(let feature in existingClientFeatures){
             if(!serverSettings.serverConfig.features.includes(feature))
                 missingFeatures.push(feature)
