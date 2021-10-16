@@ -139,7 +139,7 @@ function run_server_and_hotloader {
 
 function run_server {
   kill_server
-  npm run server --prefix ${REPO_ROOT}/client &
+  nohup npm run server --prefix ${REPO_ROOT}/client &
   check_error $?
 }
 
@@ -224,4 +224,6 @@ build_server
 run_server
 run_newman_tests
 kill_server
+
+rm ./nohup.out
 
