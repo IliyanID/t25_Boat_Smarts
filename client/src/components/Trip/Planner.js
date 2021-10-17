@@ -7,13 +7,17 @@ import Map from './Map/Map';
 import Search from './Search/Search';
 import Results from './Results/Results';
 import Itinerary from './Itinerary/Itinerary';
+import FileUploadModal from './Itinerary/Modals/FileUploadModal';
 import { usePlaces } from '../../hooks/usePlaces';
+import { useToggle } from '../../hooks/useToggle.js';
+
 
 export default function Planner(props) {
     const {previousPlaces, places, selectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
     const [centerView,setCenterView] = useState(false)
     const [locationPreview, setLocationPreview] = useState();
+    const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
     const [distances,setDistances] = useState({
         distances: []
     })
@@ -52,8 +56,9 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Itinerary distances={distances} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
+                <Itinerary distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
             </Section>
+            <FileUploadModal fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} {...props}/>
         </Container>
     );
 }
