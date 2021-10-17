@@ -13,6 +13,7 @@ This table lists each student in the team, the team they verified interoperabili
 | ---- | ---- | ---- |
 | Andrew Holmes | 08 | 10 |
 | Caleb Cluett | 18 | 15 |
+| Iliyan Dimitrov | 6 | 12 |
 
 
 ### Client Problems found
@@ -23,6 +24,7 @@ We found these problems when connecting our client to another team's server.
 | :--- |  :--- | --- |
 | 08  | None found (limited functionality on t08 server) | -- |
 | 18  | None found ( Doesn't have Distances ) |--|
+| 6   | None found ( No Distances ) |--|
 
 
 ### Server Problems found
@@ -33,3 +35,5 @@ We found these problems when connecting the other team's client to our server.
 | :--- |  :--- | --- |
 | 08 | None found (limited functionality on t08 client) | -- |
 | 18  | None found ( Doesn't have Distances ) |--|
+| 6   | T06 doesn't support the ability to input our url into their client |--|
+
