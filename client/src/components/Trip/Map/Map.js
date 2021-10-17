@@ -25,8 +25,11 @@ export default function Map(props) {
     },[props.centerView])
 
     useEffect(()=>{
-        if(props.locationPreview && props.locationPreview.lat && props.locationPreview.lng){
-            setCoordinates(props.locationPreview)
+        const valid = (latlng)=>{
+            return latlng !== undefined
+        }
+        if(props.locationPreview && valid(props.locationPreview.lat) && valid(props.locationPreview.lng)){
+            setCoordinates({... props.locationPreview})
             setPreviewMarker(true);
         }
     },[props.locationPreview])
