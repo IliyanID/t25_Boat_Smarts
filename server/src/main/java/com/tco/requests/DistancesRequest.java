@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 
 public class DistancesRequest extends Request {
     private SQLDatabase.Places places;
-    private int earthRadius;
+    private double earthRadius;
     private ArrayList<Long> distances;
     private final transient Logger log = LoggerFactory.getLogger(DistancesRequest.class);
 
@@ -35,7 +35,7 @@ public class DistancesRequest extends Request {
         this.places = places;
     }
 
-    public int getEarthRadius() {
+    public double getEarthRadius() {
         return earthRadius;
     }
     public void setEarthRadius(int earthRadius) {

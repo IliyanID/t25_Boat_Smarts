@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import com.tco.database.SQLDatabase;
 
 public class DistanceCalculator {
-    public static ArrayList<Long> calculate(SQLDatabase.Places places, int earthRadius) {
+    public static ArrayList<Long> calculate(SQLDatabase.Places places, double earthRadius) {
         ArrayList<Long> temp = new ArrayList<>();
         if(places != null)
             for(int i = 0; i < places.size(); i++){
@@ -18,7 +18,7 @@ public class DistanceCalculator {
         return temp;
     }
 
-    private static long singleDistance(SQLDatabase.Place place1, SQLDatabase.Place place2, int earthRadius) {
+    private static long singleDistance(SQLDatabase.Place place1, SQLDatabase.Place place2, double earthRadius) {
         double lat1 = Double.parseDouble(place1.get("latitude"))/180 * Math.PI;
         double lat2 = Double.parseDouble(place2.get("latitude"))/180 * Math.PI;
         double lon1 = Double.parseDouble(place1.get("longitude"))/180 * Math.PI;
