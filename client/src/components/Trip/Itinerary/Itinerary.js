@@ -87,13 +87,7 @@ function TableRow(props) {
                 {(distances.length >= props.index && props.index != 0)&&
                 <small>
                     <th>
-                        {
-                            (distances.length === props.index)?
-                                <>Distance From Start </>
-                                :
-                                <>Distance From Previous </>
-                        }
-                         : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
+                         Distance from Previous : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
                     </th>
  
                     <th>
