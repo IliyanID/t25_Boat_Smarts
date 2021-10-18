@@ -4,9 +4,9 @@ import { useServerInputValidation } from '../../hooks/useServerInputValidation';
 import { SCHEMAS } from '../../utils/restfulAPI';
 import { LOG } from '../../utils/constants';
 
-export let missingFeatures = []
-export function missingFeaturesExists(config,serverSettings){
-    missingFeatures= [];
+
+export function missingFeatures(config,serverSettings){
+    let missingFeatures= [];
     let existingClientFeatures = {...SCHEMAS}
 
     //Uncomment Below to cause missing feature error
@@ -24,7 +24,7 @@ export function missingFeaturesExists(config,serverSettings){
                 missingFeatures.push(feature)
         }
 
-    return missingFeatures.length > 0;
+    return missingFeatures;
 }
 
 export default function ServerSettings(props) {
@@ -41,7 +41,7 @@ export default function ServerSettings(props) {
                 serverName={getCurrentServerName(config, props.serverSettings)}
                 validServer={validServer}
                 features={getCurrentFeatures(config,props.serverSettings)}
-                missingFeatures={missingFeaturesExists(config,props.serverSettings)}
+                missingFeatures={missingFeatures(config,props.serverSettings)}
                 showMessage={props.showMessage}
             />
             <Footer
@@ -89,22 +89,10 @@ function Body(props) {
         <Input
             value={props.serverInput}
             placeholder={props.serverSettings.serverUrl}
-            onChange={(e) => { props.setServerInput(e.target.value) }}
+            onChange={(e) => { props.setServerInput(e.target.value); warnMissingFeatures(props.missingFeatures); }}
             valid={props.validServer}
             invalid={!props.validServer}
         />;
-    if(props.missingFeatures){
-        const existMissingFeatures = missingFeatures.length > 0;
-        if(existMissingFeatures){
-            let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
-            try{
-                props.showMessage(message,"warning")
-            }
-            catch{
-                LOG.error("Failed to show warning message")
-            }
-        }
-    }
 
     return (
         <ModalBody>
@@ -112,10 +100,22 @@ function Body(props) {
                 <SettingsRow label="Name" value={props.serverName} />
                 <SettingsRow label="URL" value={urlInput} />
                 <SettingsRow label="Features" value={props.features} />
-                {(props.missingFeatures) && <SettingsRow label="Missing Features" value={'[' + missingFeatures.map((feature)=>{return feature}) + ']'}/>}
+                {(props.missingFeatures.length>0) && <SettingsRow label="Missing Features" value={'[' + props.missingFeatures.map((feature)=>{return feature}) + ']'}/>}
             </Container>
         </ModalBody>
     );
+}
+
+function warnMissingFeatures(missingFeatures) {
+    if(missingFeatures.length > 0){
+        let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
+        try{
+            props.showMessage(message,"warning")
+        }
+        catch{
+            LOG.error("Failed to show warning message")
+        }
+    }
 }
 
 function SettingsRow({label, value}) {
