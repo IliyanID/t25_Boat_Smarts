@@ -89,7 +89,7 @@ function Body(props) {
         <Input
             value={props.serverInput}
             placeholder={props.serverSettings.serverUrl}
-            onChange={(e) => { props.setServerInput(e.target.value); warnMissingFeatures(props.missingFeatures); }}
+            onChange={(e) => { props.setServerInput(e.target.value); warnMissingFeatures(props.missingFeatures, props.showMessage); }}
             valid={props.validServer}
             invalid={!props.validServer}
         />;
@@ -106,11 +106,11 @@ function Body(props) {
     );
 }
 
-function warnMissingFeatures(missingFeatures) {
+function warnMissingFeatures(missingFeatures, showMessage) {
     if(missingFeatures.length > 0){
         let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
         try{
-            props.showMessage(message,"warning")
+            showMessage(message,"warning")
         }
         catch{
             LOG.error("Failed to show warning message")
