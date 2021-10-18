@@ -95,7 +95,7 @@ function Body(props) {
         />;
 
     useEffect(() => {
-        warnMissingFeatures(props.missingFeatures, props.showMessage); ;
+        warnMissingFeatures(props.missingFeatures, props.showMessage, props.validServer);
     }, [props.missingFeatures]);
 
     return (
@@ -110,8 +110,8 @@ function Body(props) {
     );
 }
 
-function warnMissingFeatures(missingFeatures, showMessage) {
-    if(missingFeatures.length > 0){
+function warnMissingFeatures(missingFeatures, showMessage, validServer) {
+    if(missingFeatures.length > 0 && validServer){
         let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
         try{
             showMessage(message,"warning")
