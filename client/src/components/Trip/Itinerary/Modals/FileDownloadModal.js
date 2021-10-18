@@ -3,21 +3,7 @@ import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, Modal
 
 export default function FileDownloadModal(props) {
 
-    console.log(localStorage.getItem("fileType"));
-
-    const [fileType, setFileType] = useState("JSON");
-
-    const changeFileType = () => {
-        if(localStorage.getItem("fileType") == "CSV"){
-            localStorage.setItem("fileType","JSON");
-            setFileType("JSON");
-        }
-        if(localStorage.getItem("fileType") == "JSON"){
-            localStorage.setItem("fileType","CSV");
-            setFileType("CSV");
-        }
-    }
-
+    const [dropdownOpen,setDropdownOpen] = useState(false);
 
     return (
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
@@ -33,12 +19,22 @@ export default function FileDownloadModal(props) {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>File Type</InputGroupText>
                     </InputGroupAddon>
-                <Input type="select" defaultValue={fileType}> 
-                    <option onClick={() => {changeFileType()}}>JSON</option>
-                    <option onClick={() => {changeFileType()}}>CSV</option>
+                <Input type="select" defaultValue={localStorage.getItem("fileType")}> 
+                    <option onClick={() => localStorage.setItem("fileType","JSON")}>JSON</option>
+                    <option>CSV</option>
                 </Input>
-
                 </InputGroup><br/>
+
+                <Dropdown>
+                    <DropdownToggle>
+                        {localStorage.getItem("fileType")}
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem onClick={()=> localStorage.setItem("fileType","JSON")}>JSON</DropdownItem>
+                        <DropdownItem>JSON</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
