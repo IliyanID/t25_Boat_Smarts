@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Collapse } from 'reactstrap';
 import Header from './Margins/Header';
 import Footer from './Margins/Footer';
-import { missingFeatures, missingFeaturesExists } from './Margins/ServerSettings'
 import About from './About/About';
 import Planner from './Trip/Planner';
 import { useToggle } from '../hooks/useToggle';
@@ -51,16 +50,6 @@ function useServerSettings(showMessage) {
 	async function sendConfigRequest() {
 		const configResponse = await sendAPIRequest({ requestType: "config" }, serverUrl);
 		if (configResponse) {
-			if(missingFeaturesExists(configResponse,configResponse)){
-				let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
-				try{
-					showMessage(message,"warning")
-				}
-				catch{
-					// LOG.error("Failed to show warning message")
-				}
-			}
-
 			processServerConfigSuccess(configResponse, serverUrl);
 		} else {
 			setServerConfig(null);
