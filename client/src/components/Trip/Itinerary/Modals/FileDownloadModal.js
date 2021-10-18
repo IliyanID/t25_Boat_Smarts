@@ -10,14 +10,14 @@ export default function FileDownloadModal(props) {
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
             <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
             <ModalBody>
-                <Input type="textarea" placeholder="Trip Name" />
+                <Input type="textarea" placeholder="Trip Name" /><br/>
                 <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                     <DropdownToggle caret>
                         File Type
                     </DropdownToggle>
                     <DropdownMenu container="body">
-                        <DropdownItem onClick={localStorage.setItem("downloadFileType","JSON")}>JSON</DropdownItem>
-                        <DropdownItem onClick={localStorage.setItem("downloadFileType","CSV")}>CSV</DropdownItem>
+                        <DropdownItem onClick={() => localStorage.setItem("downloadFileType","JSON")}>JSON</DropdownItem>
+                        <DropdownItem onClick={() => localStorage.setItem("downloadFileType","CSV")}>CSV</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </ModalBody>
