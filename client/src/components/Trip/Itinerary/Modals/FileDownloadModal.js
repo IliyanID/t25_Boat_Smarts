@@ -17,7 +17,7 @@ export default function FileDownloadModal(props) {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>File Type</InputGroupText>
                     </InputGroupAddon>
-                <Input type="select" placeholder="File Type" onChange={handleSelectChange}> 
+                <Input type="select" placeholder="File Type"> 
                     <option onClick={() => localStorage.setItem("fileType", "JSON")}>JSON</option>
                     <option onClick={() => localStorage.setItem("fileType", "CSV")}>CSV</option>
                 </Input>
