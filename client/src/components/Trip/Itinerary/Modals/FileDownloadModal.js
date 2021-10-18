@@ -3,13 +3,12 @@ import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, Modal
 
 export default function FileDownloadModal(props) {
 
-    const [focusAfterClose, setFocusAfterClose] = useState(localStorage.getItem("fileType"));
     const handleSelectChange = ({target: {value}}) => {
         let fileType = JSON.parse(value);
         setFocusAfterClose(fileType);
-        console.log(fileType);
+        //console.log(fileType);
         localStorage.setItem("fileType", fileType);
-        console.log(localStorage.getItem("fileType"));
+        //console.log(localStorage.getItem("fileType"));
     }
 
     return (
@@ -35,7 +34,7 @@ export default function FileDownloadModal(props) {
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
-                <Button color="primary" onClick={props.toggleFileDownloadOpen}>Save</Button>
+                <Button color="primary" onClick={props.toggleFileDownloadOpen}>Download</Button>
             </ModalFooter>
         </Modal>
     )
