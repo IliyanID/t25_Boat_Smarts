@@ -3,14 +3,6 @@ import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, Modal
 
 export default function FileDownloadModal(props) {
 
-    const handleSelectChange = ({target: {value}}) => {
-        let fileType = JSON.parse(value);
-        setFocusAfterClose(fileType);
-        //console.log(fileType);
-        localStorage.setItem("fileType", fileType);
-        //console.log(localStorage.getItem("fileType"));
-    }
-
     return (
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
             <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
@@ -25,9 +17,9 @@ export default function FileDownloadModal(props) {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>File Type</InputGroupText>
                     </InputGroupAddon>
-                <Input type="select" placeholder="Flie Type" onChange={handleSelectChange}> 
-                    <option value="true">JSON</option>
-                    <option value="false">CSV</option>
+                <Input type="select" placeholder="File Type" onChange={handleSelectChange}> 
+                    <option onClick={() => localStorage.setItem("fileType", "JSON")}>JSON</option>
+                    <option onClick={() => localStorage.setItem("fileType", "CSV")}>CSV</option>
                 </Input>
 
                 </InputGroup><br/>
