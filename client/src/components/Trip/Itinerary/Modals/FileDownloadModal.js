@@ -30,7 +30,7 @@ export default function FileDownloadModal(props) {
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
-                <Button color="primary" onClick={() => console.log(localStorage.getItem("tripName"))}>Download</Button>
+                <Button color="primary" onClick={() => {}}>Download</Button>
             </ModalFooter>
         </Modal>
     )
