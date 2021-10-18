@@ -10,11 +10,11 @@ import TripName from './TripName/TripName'
 
 export default function Itinerary(props) {
     const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
-    const [fileDownloadOpen, toggleFileDownload] = useToggle(false);
+    const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
     const [tripName, setTripName] = useState("My Trip")
     return (
         <Table responsive striped>
-            <Header tripName={tripName} setTripName={setTripName} placeActions={props.placeActions} showMessage={props.showMessage} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} {...props} />
+            <Header tripName={tripName} setTripName={setTripName} placeActions={props.placeActions} showMessage={props.showMessage} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} fileDownloadOpen={fileDownloadOpen} toggleFileDownloadOpen = {toggleFileDownloadOpen}{...props} />
             <Body places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
