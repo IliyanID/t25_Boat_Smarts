@@ -15,7 +15,7 @@ export default function FileDownloadModal(props) {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>Trip Name</InputGroupText>
                     </InputGroupAddon>
-                <Input type="textarea" placeholder="Trip Name" />
+                    <Input type="textarea" placeholder="Trip Name" onChange={text => localStorage.setItem("tripName",text)}/>
                 </InputGroup><br/>
 
                 <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
@@ -30,7 +30,7 @@ export default function FileDownloadModal(props) {
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
-                <Button color="primary" onClick={props.toggleFileDownloadOpen}>Download</Button>
+                <Button color="primary" onClick={() => console.log(localStorage.getItem("tripName"))}>Download</Button>
             </ModalFooter>
         </Modal>
     )
