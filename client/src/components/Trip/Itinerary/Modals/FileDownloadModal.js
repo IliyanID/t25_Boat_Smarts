@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 export default function FileDownloadModal(props) {
 
@@ -10,12 +10,17 @@ export default function FileDownloadModal(props) {
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
             <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
             <ModalBody>
+                <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText>Trip Name</InputGroupText>
+                    </InputGroupAddon>
                 <Input type="textarea" placeholder="Trip Name" /><br/>
+                </InputGroup>
                 <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                     <DropdownToggle caret>
                         File Type
                     </DropdownToggle>
-                    <DropdownMenu container="body">
+                    <DropdownMenu>
                         <DropdownItem onClick={() => localStorage.setItem("downloadFileType","JSON")}>JSON</DropdownItem>
                         <DropdownItem onClick={() => localStorage.setItem("downloadFileType","CSV")}>CSV</DropdownItem>
                     </DropdownMenu>
