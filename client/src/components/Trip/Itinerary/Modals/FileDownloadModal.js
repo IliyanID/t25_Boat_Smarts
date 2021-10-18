@@ -16,8 +16,8 @@ export default function FileDownloadModal(props) {
                         File Type
                     </DropdownToggle>
                     <DropdownMenu container="body">
-                        <DropdownItem>JSON</DropdownItem>
-                        <DropdownItem>CSV</DropdownItem>
+                        <DropdownItem onClick={localStorage.setItem("downloadFileType","JSON")}>JSON</DropdownItem>
+                        <DropdownItem onClick={localStorage.setItem("downloadFileType","CSV")}>CSV</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </ModalBody>
