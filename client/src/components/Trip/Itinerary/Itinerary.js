@@ -3,7 +3,8 @@ import { Table } from 'reactstrap';
 import { ItineraryActionsDropdown, PlaceActionsDropdown } from './actions.js';
 import { latLngToText } from '../../../utils/transformers';
 import { useToggle } from '../../../hooks/useToggle.js';
-import {FileUploadModal,FileDownloadModal} from './Modals';
+import FileUploadModal from './Modals/FileUploadModal';
+import FileDownloadModal from './Modals/FileDownloadModal.js';
 
 import TripName from './TripName/TripName'
 
