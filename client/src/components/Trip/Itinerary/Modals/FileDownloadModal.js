@@ -7,7 +7,9 @@ export default function FileDownloadModal(props) {
     const handleSelectChange = ({target: {value}}) => {
         let fileType = JSON.parse(value);
         setFocusAfterClose(fileType);
-        localStorage.setItem("fileType", JSON.stringify(value));
+        console.log(fileType);
+        localStorage.setItem("fileType", fileType);
+        console.log(localStorage.getItem("fileType"));
     }
 
     return (
