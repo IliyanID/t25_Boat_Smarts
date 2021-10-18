@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Button, Col, Container, Input, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { useServerInputValidation } from '../../hooks/useServerInputValidation';
 import { SCHEMAS } from '../../utils/restfulAPI';
@@ -89,10 +89,14 @@ function Body(props) {
         <Input
             value={props.serverInput}
             placeholder={props.serverSettings.serverUrl}
-            onChange={(e) => { props.setServerInput(e.target.value); warnMissingFeatures(props.missingFeatures, props.showMessage); }}
+            onChange={(e) => { props.setServerInput(e.target.value); }}
             valid={props.validServer}
             invalid={!props.validServer}
         />;
+
+    useEffect(() => {
+        warnMissingFeatures(props.missingFeatures, props.showMessage); ;
+    }, [props.missingFeatures]);
 
     return (
         <ModalBody>
