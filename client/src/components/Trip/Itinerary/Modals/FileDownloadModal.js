@@ -5,6 +5,8 @@ export default function FileDownloadModal(props) {
 
     const [dropdownOpen,setDropdownOpen] = useState(false);
 
+    const toggle = () => setDropdownOpen(prevState => !prevState);
+
     return (
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
             <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
@@ -15,26 +17,16 @@ export default function FileDownloadModal(props) {
                     </InputGroupAddon>
                 <Input type="textarea" placeholder="Trip Name" />
                 </InputGroup><br/>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                        <InputGroupText>File Type</InputGroupText>
-                    </InputGroupAddon>
-                <Input type="select" defaultValue={localStorage.getItem("fileType")}> 
-                    <option onClick={() => localStorage.setItem("fileType","JSON")}>JSON</option>
-                    <option>CSV</option>
-                </Input>
-                </InputGroup><br/>
 
-                <Dropdown>
-                    <DropdownToggle>
+                <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
+                    <DropdownToggle caret>
                         {localStorage.getItem("fileType")}
                     </DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem onClick={()=> localStorage.setItem("fileType","JSON")}>JSON</DropdownItem>
-                        <DropdownItem>JSON</DropdownItem>
+                        <DropdownItem onClick={()=> localStorage.setItem("fileType","CSV")}>CSV</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
-
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
