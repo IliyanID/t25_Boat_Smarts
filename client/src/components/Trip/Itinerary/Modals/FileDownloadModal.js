@@ -3,9 +3,10 @@ import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, Modal
 
 export default function FileDownloadModal(props) {
 
-    const [dropdownOpen, setDropdownOpen] =  useState(false);
-    const toggle = () => setDropdownOpen(prevState => !prevState);
-
+    const [focusAfterClose, setFocusAfterClose] = useState(true);
+    const handleSelectChange = ({target: {value}}) => {
+        setFocusAfterClose(JSON.parse(value));
+    }
 
     return (
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
@@ -21,17 +22,12 @@ export default function FileDownloadModal(props) {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>File Type</InputGroupText>
                     </InputGroupAddon>
-                <Input type="select" placeholder="Flie Type" onChange />
+                <Input type="select" placeholder="Flie Type" onChange={handleSelectChange}> 
+                    <option value="true">JSON</option>
+                    <option value="false">CSV</option>
+                </Input>
+
                 </InputGroup><br/>
-                <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle caret>
-                        File Type
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem onClick={() => localStorage.setItem("downloadFileType","JSON")}>JSON</DropdownItem>
-                        <DropdownItem onClick={() => localStorage.setItem("downloadFileType","CSV")}>CSV</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
