@@ -6,6 +6,7 @@ export default function FileDownloadModal(props) {
     const [dropdownOpen, setDropdownOpen] =  useState(false);
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
+
     return (
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
             <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
@@ -14,8 +15,14 @@ export default function FileDownloadModal(props) {
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>Trip Name</InputGroupText>
                     </InputGroupAddon>
-                <Input type="textarea" placeholder="Trip Name" /><br/>
-                </InputGroup>
+                <Input type="textarea" placeholder="Trip Name" />
+                </InputGroup><br/>
+                <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText>File Type</InputGroupText>
+                    </InputGroupAddon>
+                <Input type="select" placeholder="Flie Type" onChange />
+                </InputGroup><br/>
                 <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                     <DropdownToggle caret>
                         File Type
