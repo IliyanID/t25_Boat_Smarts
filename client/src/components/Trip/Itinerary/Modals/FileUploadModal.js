@@ -28,7 +28,7 @@ export default function FileUploadModal(props) {
         <Modal isOpen={props.fileUploadOpen} toggle={props.toggleFileUploadOpen}>
             <ModalHeader toggle={props.toggleFileUploadOpen}>Upload Trip</ModalHeader>
             <ModalBody>
-                <Input type="file" valid={validFile} invalid={!validFile} onChange={handleFileLoad} />
+                <Input role="input" type="file" valid={validFile} invalid={!validFile} onChange={handleFileLoad} />
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileUploadOpen}>Cancel</Button>
