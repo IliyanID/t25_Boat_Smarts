@@ -13,7 +13,7 @@ import { useToggle } from '../../hooks/useToggle.js';
 
 
 export default function Planner(props) {
-    const {previousPlaces, places, setPlaces, selectedIndex, placeActions} = usePlaces();
+    const {previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
     const [centerView,setCenterView] = useState(false);
     const [locationPreview, setLocationPreview] = useState();
@@ -55,7 +55,7 @@ export default function Planner(props) {
             <Section>
                 <Itinerary distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
             </Section>
-            <FileUploadModal fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} places={places} setPlaces={setPlaces} placeActions={placeActions} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...props}/>
+            <FileUploadModal fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} places={places} setPlaces={setPlaces} setSelectedIndex={setSelectedIndex} placeActions={placeActions} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...props}/>
         </Container>
     );
 }

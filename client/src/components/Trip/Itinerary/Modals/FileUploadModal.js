@@ -9,9 +9,8 @@ import { placeToLatLng } from "../../../../utils/transformers";
 export default function FileUploadModal(props) {
     const [validFile, setValidFile] = useState(false);
     const [fileInput, setFileInput] = useState(null);
-    const filePlaces = props.filePlaces;
-    const setFilePlaces = props.setFilePlaces;
-    const context = { validFile, setValidFile, filePlaces, setFilePlaces };
+    const {setSelectedIndex, filePlaces, setFilePlaces} = props;
+    const context = { validFile, setValidFile, filePlaces, setFilePlaces, setSelectedIndex };
     const handleFileLoad = (e) => {
         setFileInput(e.target);
         validateFile(fileInput, context);
@@ -40,7 +39,7 @@ export default function FileUploadModal(props) {
 }
 
 function validateFile(input, context) {
-    const { validFile, setValidFile, setFilePlaces } = context;
+    const { validFile, setValidFile, filePlaces, setFilePlaces, setSelectedIndex } = context;
     if (input && 'files' in input && input.files.length > 0) {
         let reader = new FileReader();
         reader.readAsText(input.files[0]);
@@ -52,7 +51,10 @@ function validateFile(input, context) {
                 result = csvToJson(reader.result);
             } finally {
                 setValidFile(isJsonResponseValid(result, tripSchema));
-                if (validFile) setFilePlaces(result.places);
+                if (validFile) {
+                    setFilePlaces(result.places);
+                    setSelectedIndex(filePlaces.length - 1);
+                }
             }
         }
         reader.onerror = () => {
