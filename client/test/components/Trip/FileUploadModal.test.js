@@ -5,8 +5,6 @@ import FileUploadModal from '../../../src/components/Trip/Itinerary/Modals/FileU
 import { MOCK_FILE_INFO } from '../../sharedMocks';
 
 describe('FileUploadModal', () => {
-    const fs = jest.mock('fs');
-    fs.setMock(MOCK_FILE_INFO);
     const setPlaces = jest.fn();
     beforeEach(() => {
         fetch.resetMocks();
