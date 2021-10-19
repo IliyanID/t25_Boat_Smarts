@@ -23,7 +23,7 @@ export default function FileDownloadModal(props) {
                 <Form>
                     <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
                         <DropdownToggle caret>
-                            {localStorage.getItem("fileType") != null ? localStorage.getItem("fileType") : "JSON"}
+                            {localStorage.getItem("fileType") != null ? localStorage.getItem("fileType") : "File Type"}
                         </DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem onClick={()=> localStorage.setItem("fileType","JSON")}>JSON</DropdownItem>
