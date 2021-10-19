@@ -45,14 +45,33 @@ function validateFile(input, context) {
         let reader = new FileReader();
         reader.readAsText(input.files[0]);
         reader.onload = () => {
-            const result = JSON.parse(reader.result);
-            setValidFile(isJsonResponseValid(result, tripSchema));
-            if (validFile) {
-                setFilePlaces(result.places);
+            let result;
+            try {
+                result = JSON.parse(reader.result);
+            } catch (e) {
+                result = csvToJson(reader.result);
+            } finally {
+                setValidFile(isJsonResponseValid(result, tripSchema));
+                if (validFile) setFilePlaces(result.places);
             }
         }
         reader.onerror = () => {
             LOG.error(reader.error);
         }
     }
+}
+
+function csvToJson(stringFromFile) {
+    let json = {places: []};
+    const lines = stringFromFile.split('\n');
+    const properties = lines[0].split(',');
+    for (let i = 1; i < lines.length; i++) {
+        let curr = {};
+        const line = lines[i].split(',');
+        for (let j = 0; j < properties.length; j++) {
+            curr[properties[j]] = line[j]
+        }
+        json.places.push(curr);
+    }
+    return json;
 }
