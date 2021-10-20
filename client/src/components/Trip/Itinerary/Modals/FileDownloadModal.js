@@ -1,19 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { useToggle } from '../../../../hooks/useToggle.js';
 import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Row, Col } from "reactstrap";
-import {buildTripJSON, buildTripCSV} from "../../../../utils/fileBuilder";
-import { EARTH_RADIUS_UNITS_DEFAULT } from "../../../../utils/constants"
-
-
-
-const MIME_TYPE = {
-    JSON: "application/json",
-    CSV: "text/csv",
-    SVG: "image/svg+xml",
-    KML: "application/vnd.google-earth.kml+xml"
-};
-
-
 
 export default function FileDownloadModal(props) {
 
@@ -21,16 +8,7 @@ export default function FileDownloadModal(props) {
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
-    const [fileName, setFileName] = useState(props.tripName);
-    const [fileType, setFileType] = useState("JSON");
     const [saveToMem, setSaveToMem] = useToggle(localStorage.getItem("fileType") != null);
-
-    useEffect(()=>{setFileName(props.tripName)}, [props.tripName, props.fileDownloadOpen]);
-
-    function handleDownload() {
-        downloadFile(fileName, MIME_TYPE[fileType], props.places);
-        props.toggleFileDownloadOpen();
-    }
 
     return (
         <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
@@ -38,19 +16,18 @@ export default function FileDownloadModal(props) {
             <ModalBody>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
-                        <InputGroupText>File Name</InputGroupText>
+                        <InputGroupText>Trip Name</InputGroupText>
                     </InputGroupAddon>
-                    <Input value={fileName} placeholder="Enter File Name" onChange={(e)=>setFileName(e.target.value)}/>
+                    <Input type="textarea" placeholder="Trip Name"/>
                 </InputGroup><br/>
                 <Form>
                     <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
-                        <Label>File Type:&ensp;</Label>
                         <DropdownToggle caret>
-                            {fileType}
+                            {localStorage.getItem("fileType") != null ? localStorage.getItem("fileType") : "File Type"}
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem onClick={()=> setFileType("JSON")}>JSON</DropdownItem>
-                            <DropdownItem onClick={()=> setFileType("CSV")}>CSV</DropdownItem>
+                            <DropdownItem onClick={()=> localStorage.setItem("fileType","JSON")}>JSON</DropdownItem>
+                            <DropdownItem onClick={()=> localStorage.setItem("fileType","CSV")}>CSV</DropdownItem>
                         </DropdownMenu>
                     </Dropdown><br/>
                     <FormGroup check>
@@ -61,41 +38,8 @@ export default function FileDownloadModal(props) {
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
-                <Button color="primary" onClick={handleDownload} disabled={fileName===""}>Download</Button>
+                <Button color="primary" onClick={() => {saveToMem ? props.toggleFileDownloadOpen() : localStorage.removeItem("fileType")}}>Download</Button>
             </ModalFooter>
         </Modal>
     )
-}
-
-function downloadFile(fileName, mimeType, places) {
-    const fileNameWithExtension = addExtension(fileName, mimeType);
-    const fileText = buildFileText(mimeType, places);
-    const file = new Blob([fileText], {type: mimeType });
-    const link = document.createElement("a");
-    const url = URL.createObjectURL(file);
-    link.href = url;
-    link.download = fileNameWithExtension;
-    document.body.appendChild(link);
-    link.click();
-    setTimeout(function() {
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-    }, 0);
-}
-
-export function buildFileText(mimeType, places) {
-    if (mimeType === MIME_TYPE.JSON){
-        return buildTripJSON(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
-    } else if (mimeType === MIME_TYPE.CSV) {
-        return buildTripCSV(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
-    }
-}
-
-export function addExtension(fileName, mimeType){
-    const cleanName = fileName.replace(/ /g,"_")
-    if (mimeType === MIME_TYPE.JSON){
-        return cleanName + ".json";
-    } else if (mimeType === MIME_TYPE.CSV) {
-        return cleanName + ".csv";
-    }
 }
