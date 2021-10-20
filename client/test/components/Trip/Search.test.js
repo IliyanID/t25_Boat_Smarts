@@ -39,7 +39,7 @@ describe('DefaultSearch', () => {
         fireEvent.change(screen.getByRole('textbox'), {target: {value: 'Denver'}});
         fireEvent.click(screen.getByRole('search'));
         await waitFor(() => {
-            expect(setSearchResults).toHaveBeenCalled();
+            expect(setSearchResults).toHaveBeenCalledTimes(2); //once on input, once on search
         });
     });
 
@@ -50,7 +50,7 @@ describe('DefaultSearch', () => {
         fireEvent.change(screen.getByRole('textbox'), {target: {value: 'Denver'}});
         fireEvent.click(screen.getByRole('search'));
         await waitFor(() => {
-            expect(setSearchResults).toHaveBeenCalledTimes(2);
+            expect(setSearchResults).toHaveBeenCalledTimes(1); //rejected on input, succes on search
         });
         expect(LOG.error.mock.calls.length).toBeGreaterThanOrEqual(1);
     });
