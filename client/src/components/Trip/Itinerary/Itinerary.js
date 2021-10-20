@@ -44,6 +44,8 @@ function Header(props) {
 }
 
 function Body(props) {
+    let distances = (props.distances)? props.distances.distances:[-1];
+
     return (
         <tbody>
             {props.places.map((place, index) => 
@@ -68,7 +70,8 @@ function TableRow(props) {
     let runningTotal = 0;
     distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
 
-    let individualItem = (props.index !=0)?cumalitiveDistances[props.index - 1]:-1;
+
+    let individualItem = (cumalitiveDistances.length>0)?cumalitiveDistances[props.index]:[-1]
     return (
         <tr>
             <th scope="row">{props.index + 1}</th>
@@ -77,10 +80,15 @@ function TableRow(props) {
                 <br/>
                 <small className="text-muted">{location}</small>
                 <br/>
-                {(distances.length > props.index && props.index != 0)&&
+                {(distances.length > props.index && distances.length !== 1)&&
                 <small>
                     <th>
-                        Distance From Previous : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
+                        {(props.index === distances.length-1)?
+                            <>Distance to Start </>
+                            :
+                            <>Distance to Place #{props.index+2} </>
+                        }
+                        : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
                     </th>
  
                     <th>
