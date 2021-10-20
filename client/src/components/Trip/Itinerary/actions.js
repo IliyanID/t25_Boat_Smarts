@@ -19,7 +19,7 @@ export function ItineraryActionsDropdown(props) {
             <DropdownItem onClick={props.toggleFileUploadOpen} data-testid='load-file-button'>
                 <FaFileUpload/>
             </DropdownItem>
-            <DropdownItem data-testid='save-file-button'>
+            <DropdownItem onClick={props.toggleFileDownloadOpen} data-testid='save-file-button'>
                 <FaFileDownload/>
             </DropdownItem>    
             <DropdownItem onClick={() => props.placeActions.removeAll()} data-testid='delete-all-button'>
