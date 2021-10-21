@@ -1,7 +1,7 @@
 export const VALID_CONFIG_RESPONSE = JSON.stringify({
     requestType: 'config',
     serverName: 't99',
-    features: ['config']
+    features: ['config', 'find', 'distances']
 });
 
 export const INVALID_REQUEST = JSON.stringify({
