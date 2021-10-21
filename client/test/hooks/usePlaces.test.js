@@ -8,10 +8,16 @@ import { usePlaces } from '../../src/hooks/usePlaces';
 
 describe('usePlaces', () => {
     const mockPlace = {latitude: "40.570", longitude: "-105.085"};
+    const mockPlaceWithName = {name: 'CSU Oval', latitude: "40.570", longitude: "-105.085"};
     const mockPlaceResponse = {
         lat: 40.57,
         lng: -105.085,
         name: 'Colorado State University, South College Avenue, Fort Collins, Larimer County, Colorado, 80525-1725, United States'
+    };
+    const mockPlaceWithNameResponse = {
+        lat: 40.57,
+        lng: -105.085,
+        name: 'CSU Oval'
     };
 
     let hook;
@@ -32,6 +38,16 @@ describe('usePlaces', () => {
         });
 
         expect(hook.current.places).toEqual([mockPlaceResponse]);
+    });
+
+    it('appends a place with a name without reverse geocoding', async () => {
+        expect(hook.current.places).toEqual([]);
+
+        await act(async () => {
+            hook.current.placeActions.append(mockPlaceWithName);
+        });
+
+        expect(hook.current.places).toEqual([mockPlaceWithNameResponse]);
     });
 
     it('selects a place at an index', async () => {
