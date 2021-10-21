@@ -9,7 +9,7 @@ import { placeToLatLng } from "../../../../utils/transformers";
 export default function FileUploadModal(props) {
     const [validFile, setValidFile] = useState(false);
     const [fileInput, setFileInput] = useState(null);
-    const {setSelectedIndex, filePlaces, setFilePlaces} = props;
+    const {setSelectedIndex, filePlaces, setFilePlaces } = props;
     const context = { validFile, setValidFile, filePlaces, setFilePlaces, setSelectedIndex };
     const handleFileLoad = (e) => {
         setFileInput(e.target);
@@ -17,18 +17,18 @@ export default function FileUploadModal(props) {
     }
     const handleSaveClick = async (e) => {
         e.preventDefault();
-        const convertedPlaces = await Promise.all(filePlaces.map(place => reverseGeocode(placeToLatLng(place))));
+        const convertedPlaces = await Promise.all(filePlaces.map(place => convertPlace(place)));
         props.setPlaces(convertedPlaces);
         props.toggleFileUploadOpen();
     }
     useEffect(() => {
         validateFile(fileInput, context);
-    })
+    }, [fileInput]);
     return (
         <Modal isOpen={props.fileUploadOpen} toggle={props.toggleFileUploadOpen}>
             <ModalHeader toggle={props.toggleFileUploadOpen}>Upload Trip</ModalHeader>
             <ModalBody>
-                <Input role="input" type="file" valid={validFile} invalid={!validFile} onChange={handleFileLoad} />
+                <Input role="input" type="file" onChange={handleFileLoad} />
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileUploadOpen}>Cancel</Button>
@@ -51,9 +51,9 @@ function validateFile(input, context) {
                 result = csvToJson(reader.result);
             } finally {
                 setValidFile(isJsonResponseValid(result, tripSchema));
-                if (validFile) {
+                if (isJsonResponseValid(result, tripSchema)) {
                     setFilePlaces(result.places);
-                    setSelectedIndex(filePlaces.length - 1);
+                    setSelectedIndex(0);
                 }
             }
         }
@@ -76,4 +76,12 @@ function csvToJson(stringFromFile) {
         json.places.push(curr);
     }
     return json;
+}
+
+export function convertPlace(place) {
+    if (!('name' in place) || place.name === '' ){
+        return {...placeToLatLng(place), name: "Unknown"};
+    } else {
+        return {...placeToLatLng(place), name: place.name}
+    }
 }
