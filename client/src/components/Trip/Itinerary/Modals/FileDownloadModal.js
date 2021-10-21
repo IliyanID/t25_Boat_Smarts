@@ -29,10 +29,8 @@ export default function FileDownloadModal(props) {
 
     function handleDownload() {
         if (saveToMem){
-            console.log('saveToMemTrue ', saveToMem);
             localStorage.setItem("fileType",fileType);
         }else{
-            console.log('saveToMemFalse ', saveToMem);
             localStorage.removeItem("fileType");
         }
         downloadFile(fileName, MIME_TYPE[fileType], props.places);
