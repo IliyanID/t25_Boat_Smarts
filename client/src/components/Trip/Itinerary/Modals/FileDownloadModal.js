@@ -30,8 +30,6 @@ export default function FileDownloadModal(props) {
     function handleDownload() {
         if (saveToMem){
             localStorage.setItem("fileType",fileType);
-        }else{
-            localStorage.removeItem("fileType");
         }
         downloadFile(fileName, MIME_TYPE[fileType], props.places);
         props.toggleFileDownloadOpen();
