@@ -49,7 +49,6 @@ function resetModalImpl(serverUrl, close, context) {
     const { setServerInput, setValidServer, setConfig } = context;
 
     setServerInput(serverUrl);
-    setConfig(null);
     setValidServer(true);
     close();
 }
