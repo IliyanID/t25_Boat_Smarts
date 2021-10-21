@@ -25,7 +25,13 @@ async function append(place, context) {
     setPreviousPlaces([...places]);
     const newPlaces = [...places];
 
-    const fullPlace = await reverseGeocode(placeToLatLng(place));
+    let fullPlace;
+    if (!('name' in place) || place.name === '' ){
+        fullPlace = await reverseGeocode(placeToLatLng(place));
+    } else {
+        fullPlace = {...placeToLatLng(place), name: place.name}
+    }
+    
     newPlaces.push(fullPlace);
 
 
