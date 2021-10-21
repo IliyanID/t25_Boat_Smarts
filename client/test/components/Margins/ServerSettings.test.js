@@ -11,6 +11,7 @@ describe('Server Settings Modal', () => {
     const invalidUrl = 'BAD URL';
     const serverSettings = { 'serverUrl': validUrl, 'serverConfig': null };
     const toggleOpen = jest.fn();
+    const showMessage = jest.fn();
     const processServerConfigSuccess = jest.fn();
 
     let inputBox;
@@ -27,6 +28,7 @@ describe('Server Settings Modal', () => {
             isOpen={true}
             serverSettings={serverSettings}
             toggleOpen={toggleOpen}
+            showMessage={showMessage}
             processServerConfigSuccess={processServerConfigSuccess}
         />);
 

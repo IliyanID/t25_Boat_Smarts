@@ -113,12 +113,7 @@ function Body(props) {
 function warnMissingFeatures(missingFeatures, showMessage, validServer) {
     if(missingFeatures.length > 0 && validServer){
         let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
-        try{
-            showMessage(message,"warning")
-        }
-        catch{
-            LOG.error("Failed to show warning message")
-        }
+        showMessage(message,"warning");
     }
 }
 
