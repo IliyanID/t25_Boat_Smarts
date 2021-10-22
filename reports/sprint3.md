@@ -88,7 +88,7 @@ We accomplished everything that set out to. We also spent more time on clean cod
 
 ### Things we need to improve
 
-This sprint we took too long as a team to recognise that one of our members was actually stuck, and not just procrastinating like he claimed. In the future we need to press harder when somone just says that they are still working on something, especially if it has been multiple meetings. Our test coverage also dipped toward the end of the sprint because we didn't really know how to write unit tests for some of the funtionality, especially the files.
+This sprint we took too long as a team to recognize that one of our members was actually stuck, and not just procrastinating like he claimed. In the future we need to press harder when someone just says that they are still working on something, especially if it has been multiple meetings. Our test coverage also dipped toward the end of the sprint because we didn't really know how to write unit tests for some of the funtionality, especially the files.
 
 ### One thing we will change next time
 
