@@ -63,19 +63,33 @@ This sprint we decided to only plan for 4 epics with the intention of spending m
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* |  | 
-
+| *10/6* | *#160, #161, #168, #169* | *#159, #162, #163, #164* | none | 
+| *10/11* | *#159, #162, #163, #166, #167, #186* | *#164, #171, #174, #176* | none | 
+| *10/13* | *#171, #174, #172, #176, #177* | *#165, #173* | none | 
+| *10/15* | *#173, #212* | *#165, #170* | Trouble testing load file, Waiting on Matt to continue progress on download | 
+| *10/18* | *210, #211, #212* | *#165, #173* | Upload almost done, Iliyan will help Derek | 
+| *10/20* | *#165, #173, #203, #202* | *#204* | none | 
 
 ## Review
 
 ### Epics completed  
 
+We completed 4 epics this sprint: Distances, Load File, Save File, and Trip Name
+
 ### Epics not completed 
+
+We completed all the epics that we planned for.
 
 ## Retrospective
 
 ### Things that went well
 
+We accomplished everything that set out to. We also spent more time on clean code and testing. Almost all pull requests had accompanying tests. We also had much better scrum meetings every class, which were effective enough that we rarely had to meet outside of class time. One strategy that helped our planning was breaking up the first few epics into tasks with descriptions before our sprint planning meeting. That allowed us to spend more time on figuring out our UI design for each feature together as a team. 
+
 ### Things we need to improve
 
+This sprint we took too long as a team to recognize that one of our members was actually stuck, and not just procrastinating like he claimed. In the future we need to press harder when someone just says that they are still working on something, especially if it has been multiple meetings. Our test coverage also dipped toward the end of the sprint because we didn't really know how to write unit tests for some of the funtionality, especially the files.
+
 ### One thing we will change next time
+
+We will be more attentive to group members that are taking multiple days to complete their tasks, offering help sooner rather than later.
