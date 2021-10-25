@@ -1,4 +1,5 @@
-# Sprint 4 - *t25* - *Boat Smarts*
+# Sprint 4 - *25* - *Boat Smarts*
+
 
 ## Goal
 ### *Shorter tours!*
@@ -38,6 +39,7 @@
 
 ## Planned Epics
 
+
 #### Shorter Trip
 This will give the user the to choose a trip with a shorter trip. There will be two versions One-opt and Two-opt. Both of these algorithms should take under a second.
 The user will be able to see the new map and list before they decide to keep the shorter trip.
@@ -46,6 +48,7 @@ The user will be able to see the new map and list before they decide to keep the
 Team members will interview a non-cs314 person to give us feedback for the website. We will create a checklist for the feature we would like to try and use and a feedback form for
 the team to know what needs to be implemented next.
 
+
 ## Metrics
 
 | Statistic | # Planned | # Completed |
@@ -53,6 +56,7 @@ the team to know what needs to be implemented next.
 | Epics | *2* | *count* |
 | Tasks |  *15*   | *count* | 
 | Story Points |  *25*  | *sum* | 
+
 
 
 ## Scrums
