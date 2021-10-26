@@ -64,7 +64,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "git commit -a -m'Preliminary push commit' && npm run test"
+      "pre-push": "nohup git commit -a -m'Preliminary push commit' && npm run test"
     }
   },
   "jest": {
