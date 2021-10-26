@@ -220,6 +220,20 @@ We are adding 3 items to the server
 
 ### Client Components
 
+This sprint, our team will be adding two major components to the architechture of our code.
+* The SettingsModal will provide a modal to show user settings options. 
+    * This sprint we will add the option of selecting between miles, kilometers, or a user defined unit.
+* The FilterBy section will allow the user to pick values for type or country to filter the search results.
+    * The types will be available as check boxes.
+    * The countries will be available in a select dropdown (allowing for multiple selections).
+    * The filter by section will also show pills with the current active filter terms.
+
+Beyond the two new large components, some existing components will change to accommodate additional features. We will add a 'Shorter trip' button that will propose a shorter trip to the user. The user will be able to accept or decline the shorter trip before saving.
+
+The trip will also be modifiable. The user will be able to choose a new starting point, reverse the trip, reorder the destinations, and remove individual destinations within the trip.
+
+Further changes may arise as a result of the user experience interviews our team conducts with users outside of CS 314.
+
 ![components3](images/ComponentsSprint4.png)
 
 ### Server Classes
