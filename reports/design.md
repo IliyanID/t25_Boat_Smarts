@@ -215,4 +215,12 @@ We are adding 3 items to the server
 ![server3](images/ServerSprint3.png)
 
 # Sprint 4 
+
+### User Interface
+
+### Client Components
+
+![components3](images/ComponentsSprint4.png)
+
+### Server Classes
 # Sprint 5
