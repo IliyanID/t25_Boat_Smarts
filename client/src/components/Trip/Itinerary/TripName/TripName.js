@@ -12,9 +12,9 @@ const TripName = (props) =>{
 
 
     let handleFocusOut = (e)=>{
-        let userDidntPressCheckMark = e && e.path && e.path[1] !== inputContainer.current;
+        let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
         let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
-
+        console.log(e.path[1].id)
         //If the parent of the clicked item isn't the inputRef div
         if(userDidntPressCheckMark && userDidntPressSaveButton)
             handleSubmit()  
@@ -31,7 +31,7 @@ const TripName = (props) =>{
     }
     const handleSubmit = () =>{
         setInFocus(false)
-        if(props.tripName !== tempName)
+        //if(props.tripName !== tempName)
             props.setTripName(tempName)
     }
 
@@ -51,7 +51,7 @@ const TripName = (props) =>{
     }
 
     return(
-        <div ref={inputContainer}>
+        <div id="inputContainer" ref={inputContainer}>
             {buttonLayout}
             <input data-testid="input" ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
         </div>
