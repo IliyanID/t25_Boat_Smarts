@@ -11,10 +11,9 @@ import TripName from './TripName/TripName'
 
 export default function Itinerary(props) {
     const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
-    const [tripName, setTripName] = useState("My Trip")
     return (
         <Table responsive striped>
-            <Header tripName={tripName} setTripName={setTripName} placeActions={props.placeActions} showMessage={props.showMessage} fileDownloadOpen={fileDownloadOpen} toggleFileDownloadOpen = {toggleFileDownloadOpen}{...props} />
+            <Header placeActions={props.placeActions} showMessage={props.showMessage} fileDownloadOpen={fileDownloadOpen} toggleFileDownloadOpen = {toggleFileDownloadOpen}{...props} />
             <Body places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );
@@ -31,7 +30,7 @@ function Header(props) {
             <tr>
                 <th/>
                 <th>
-                    <TripName {...props}/>
+                    <TripName key={props.tripName} {...props}/>
                     <dd style={{float:"right"}}>
                         {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance == 1)?"mile":"miles"} </>}
                     </dd>

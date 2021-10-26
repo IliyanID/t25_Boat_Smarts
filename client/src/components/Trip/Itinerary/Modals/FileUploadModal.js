@@ -20,6 +20,10 @@ export default function FileUploadModal(props) {
         const convertedPlaces = await Promise.all(filePlaces.map(place => convertPlace(place)));
         props.setPlaces(convertedPlaces);
         props.toggleFileUploadOpen();
+
+        let tripName = fileInput.files[0].name;
+        tripName = tripName.substring(0,tripName.lastIndexOf('.')).replace('_',' ')
+        props.setTripName(tripName)
     }
     useEffect(() => {
         validateFile(fileInput, context);

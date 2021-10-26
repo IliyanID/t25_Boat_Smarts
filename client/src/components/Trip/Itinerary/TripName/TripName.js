@@ -5,14 +5,17 @@ import CheckMark from '../../../../static/images/checkmark.svg'
 import Cancel from '../../../../static/images/cancel.svg'
 
 const TripName = (props) =>{
-    const inputContainer = useRef();
+    const inputContainer= useRef();
     const inputRef = useRef();
     const [tempName,setTempName] = useState(props.tripName)
     const [inFocus,setInFocus] = useState(false)
 
     let handleFocusOut = (e)=>{
+        let userDidntPressCheckMark = e && e.path && e.path[1] !== inputContainer.current;
+        let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
+
         //If the parent of the clicked item isn't the inputRef div
-        if(e && e.path && e.path[1] !== inputContainer.current)
+        if(userDidntPressCheckMark && userDidntPressSaveButton)
             handleSubmit()  
     }
     document.addEventListener('click', handleFocusOut)
@@ -27,7 +30,8 @@ const TripName = (props) =>{
     }
     const handleSubmit = () =>{
         setInFocus(false)
-        props.setTripName(tempName)
+        if(props.tripName !== tempName)
+            props.setTripName(tempName)
     }
 
     let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
