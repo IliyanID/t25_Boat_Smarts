@@ -220,7 +220,7 @@ We are adding 3 items to the server
 We are adding a number of new buttons to the main page. A settings button will be added next to the random button which will house the Units epic. Next to the search bar there will be a Filter button which will open a filter modal. Under the three dots there will be the option to reverse the trip.
 ![Sprint4UI1](images/Sprint4PG1.png)
 
-Under the site settings modal the user will have the option to set the units to miles, kilometers, and a custom unit. 
+Under the site settings modal the user will have the option to set the units to miles, kilometers, and a custom unit. When the user chages the units a blue popup will come up confirming their choice.
 ![Sprint4UI2](images/Sprint4PG2.png)
 
 When the user selects the filter button this Search Filter modal will popup. There will be two options to select. Location types and Country can be selected by the user. Location Types will filter by type from the server. Country can be used to select the type of country to filter by. When the user selects a new option a blue popup will come up stating that the filter change is in effect.
