@@ -45,17 +45,22 @@ This will give the user the to choose a trip with a shorter trip. There will be 
 The user will be able to see the new map and list before they decide to keep the shorter trip.
 
 #### User Experience
-Team members will interview a non-cs314 person to give us feedback for the website. We will create a checklist for the feature we would like to try and use and a feedback form for
-the team to know what needs to be implemented next.
+Team members will interview a non-cs314 person to give us feedback for the website. We will create a checklist for the feature we would like to try and use and a feedback form for the team to know what needs to be implemented next.
+
+#### Modify Trip
+The Modify Trip epic will allow the user to select a new starting location while maintaining the order of the destination, reverse the order of the trip from the starting location, reorder individual destinations, and let the user remove destinations.
+
+#### Units
+This will allow the user to set different units for distances traveled. These include kilometers, nautical miles, and letting the user choose their unit name and earth radius. The setting should be remembered across sessions.
 
 
 ## Metrics
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | *2* | *count* |
-| Tasks |  *15*   | *count* | 
-| Story Points |  *25*  | *sum* | 
+| Epics | *4* | *count* |
+| Tasks |  *29*   | *count* | 
+| Story Points |  *57*  | *sum* | 
 
 
 
