@@ -64,7 +64,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "{nohup git commit -a -m'Automatic Preliminary Push Commit'}& ; npm run test ; find . -type f -name 'nohup.out' -delete"
+      "pre-push": "{nohup git commit -a -m'Automatic Preliminary Push Commit'}& ; npm run test && find . -type f -name 'nohup.out' -delete"
     }
   },
   "jest": {
