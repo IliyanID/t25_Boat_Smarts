@@ -217,10 +217,10 @@ We are adding 3 items to the server
 # Sprint 4 
 
 ### User Interface
-![Sprint4UI1](images/sprint1.md)
-![Sprint4UI2](images/sprint2.md)
-![Sprint4UI3](images/sprint3.md)
-![Sprint4UI4](images/sprint4.md)
+![Sprint4UI1](images/Sprint4PG1.png)
+![Sprint4UI2](images/Sprint4PG2.png)
+![Sprint4UI3](images/Sprint4PG3.png)
+![Sprint4UI4](images/Sprint4PG4.png)
 
 ### Client Components
 
