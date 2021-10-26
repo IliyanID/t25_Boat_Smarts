@@ -53,14 +53,19 @@ The Modify Trip epic will allow the user to select a new starting location while
 #### Units
 This will allow the user to set different units for distances traveled. These include kilometers, nautical miles, and letting the user choose their unit name and earth radius. The setting should be remembered across sessions.
 
+#### Types
+This will allow the user to find a place by their search criteria. This may include airport heliport, etc.
+		
+#### Country
+This allows the user to search within a specific country.
 
 ## Metrics
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
 | Epics | *4* | *count* |
-| Tasks |  *29*   | *count* | 
-| Story Points |  *57*  | *sum* | 
+| Tasks |  *37*   | *count* | 
+| Story Points |  *79*  | *sum* | 
 
 
 
