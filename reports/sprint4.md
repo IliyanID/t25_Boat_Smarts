@@ -65,7 +65,7 @@ This allows the user to search within a specific country.
 | --- | ---: | ---: |
 | Epics | *4* | *count* |
 | Tasks |  *37*   | *count* | 
-| Story Points |  *76*  | *sum* | 
+| Story Points |  *79*  | *sum* | 
 
 
 
