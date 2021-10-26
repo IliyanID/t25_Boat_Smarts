@@ -20,6 +20,7 @@ export default function Planner(props) {
     const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
     const [distances, setDistances] = useState({distances: []});
     const [filePlaces, setFilePlaces] = useState([]);
+    const [tripName, setTripName] = useState("My Trip")
 
     useEffect(()=>{
         let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
@@ -53,9 +54,9 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Itinerary distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
+                <Itinerary tripName={tripName} setTripName={setTripName} distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage = {props.showMessage} />
             </Section>
-            <FileUploadModal fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} places={places} setPlaces={setPlaces} setSelectedIndex={setSelectedIndex} placeActions={placeActions} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...props}/>
+            <FileUploadModal setTripName={setTripName} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} places={places} setPlaces={setPlaces} setSelectedIndex={setSelectedIndex} placeActions={placeActions} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...props}/>
         </Container>
     );
 }
