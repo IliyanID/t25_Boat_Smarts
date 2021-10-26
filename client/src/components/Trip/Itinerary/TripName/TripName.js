@@ -5,7 +5,6 @@ import CheckMark from '../../../../static/images/checkmark.svg'
 import Cancel from '../../../../static/images/cancel.svg'
 
 const TripName = (props) =>{
-    const inputContainer= useRef();
     const inputRef = useRef();
     const [tempName,setTempName] = useState(props.tripName)
     const [inFocus,setInFocus] = useState(false)
@@ -30,7 +29,7 @@ const TripName = (props) =>{
     }
     const handleSubmit = () =>{
         setInFocus(false)
-        //if(props.tripName !== tempName)
+        if(props.tripName !== tempName)
             props.setTripName(tempName)
     }
 
@@ -50,7 +49,7 @@ const TripName = (props) =>{
     }
 
     return(
-        <div id="inputContainer" ref={inputContainer}>
+        <div id="inputContainer">
             {buttonLayout}
             <input data-testid="input" ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
         </div>
