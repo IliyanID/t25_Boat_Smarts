@@ -22,7 +22,7 @@ export default function FileUploadModal(props) {
         props.toggleFileUploadOpen();
 
         let tripName = fileInput.files[0].name;
-        tripName = tripName.substring(0,tripName.lastIndexOf('.')).replace('_',' ')
+        tripName = tripName.substring(0,tripName.lastIndexOf('.')).replaceAll('_',' ')
         props.setTripName(tripName)
     }
     useEffect(() => {
