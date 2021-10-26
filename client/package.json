@@ -64,7 +64,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'precommit' && npm run test",
       "pre-push": "npm run test"
     }
   },
