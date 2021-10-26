@@ -14,7 +14,6 @@ const TripName = (props) =>{
     let handleFocusOut = (e)=>{
         let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
         let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
-        console.log(e.path[1].id)
         //If the parent of the clicked item isn't the inputRef div
         if(userDidntPressCheckMark && userDidntPressSaveButton)
             handleSubmit()  
