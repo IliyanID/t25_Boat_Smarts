@@ -35,8 +35,10 @@ server/*.iml
 client/dist
 client/dist/
 */node_modules
-*/node_modules/
 */package-lock.json
+**/node_modules/husky/
+**/node_modules/
+package-lock.json
 
 # Generated Java Files
 
