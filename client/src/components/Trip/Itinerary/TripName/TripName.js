@@ -10,7 +10,6 @@ const TripName = (props) =>{
     const [tempName,setTempName] = useState(props.tripName)
     const [inFocus,setInFocus] = useState(false)
 
-    ll
 
     let handleFocusOut = (e)=>{
         let userDidntPressCheckMark = e && e.path && e.path[1] !== inputContainer.current;
