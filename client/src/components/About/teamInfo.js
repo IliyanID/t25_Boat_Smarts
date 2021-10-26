@@ -4,7 +4,7 @@ import IliyanDimitrov from "../../static/images/Iliyan_Dimitrov_Bio_Picture.jpg"
 import calebPic from "../../static/images/CalebPic.jpg";
 import derekPic from "../../static/images/derekTeamPic.jpg";
 import andrewPic from "../../static/images/AndrewPhoto.jpg";
-import matthewPic from "../../static/images/matthewPic.jpg";
+import jakePic from "../../static/images/JakePhoto.jpg";
 
 export const teamData =
     {
@@ -27,10 +27,10 @@ export const memberData = [
         imagePath: IliyanDimitrov
     },
     {
-        name: "Matthew Flight",
-        bio: "Matthew is getting his undergraduate degree in Computer Science with a concentration in Networks and Security. He is interested in artificial intelligence and algorithms for security like blockchain. He also likes rock climbing and sleeping.",
-        homeTown: "Wheaton, Illinois",
-        imagePath: matthewPic
+        name: "Jake Ritz",
+        bio: "Jake is a third year student studying CS and Math at CSU. His interests consist of video game and software development. In his free time, he works on his personal video game that will soon be releasing to Steam. He also enjoys skiing and working on his Jeep.",
+        homeTown: "Littleton, CO",
+        imagePath: jakePic
     },
     {
         name: "Andrew Holmes",
