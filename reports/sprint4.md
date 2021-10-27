@@ -73,7 +73,7 @@ This allows the user to search within a specific country.
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* |  | 
+| *10/27* | *#282, #292, #256, #234, #270, #269* | *#175, #254,255* |  | 
 
 
 ## Review
