@@ -35,6 +35,11 @@ export function ItineraryActionsDropdown(props) {
 export function PlaceActionsDropdown(props) {
     return (
         <ActionsDropdown {...props}>
+            {(props.index !== 0)&&
+            <DropdownItem onClick={() => {props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} data-testid={`select-button-${props.index}`}>
+                <FaHome />
+            </DropdownItem>
+            }
             <DropdownItem onClick={() => props.placeActions.removeAtIndex(props.index)} data-testid={`delete-button-${props.index}`}>
                 <FaTrash />
             </DropdownItem>
