@@ -1,7 +1,6 @@
 import React from 'react'
 import { latLngToText } from '../../../../../utils/transformers';
 import { PlaceActionsDropdown } from '../../actions.js';
-import '../../../../../static/styles/dragStyles.css'
 import reorderIcon from '../../../../../static/images/reorder.png'
 
 const TableRow = (props) => {

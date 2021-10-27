@@ -1,7 +1,6 @@
 import React from 'react';
 import { List } from 'react-movable';
 import TableRow from './TableRow/TableRow'
-import '../../../../static/styles/dragStyles.css'
 
 const Body= (propsBody) => {
   return (
