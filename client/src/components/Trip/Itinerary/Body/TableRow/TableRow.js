@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {Tooltip } from 'reactstrap';
 import { latLngToText } from '../../../../../utils/transformers';
 import { PlaceActionsDropdown } from '../../actions.js';
 import reorderIcon from '../../../../../static/images/reorder.png'
@@ -13,6 +14,7 @@ const TableRow = (props) => {
     if(props.index === undefined)
         props.places.map((item,idx)=>{if(item.name == props.place.name)index = idx})
 
+    const [toolTip,setToolTip] = useState(false)
     return (
     <tr style={{minWidth:'900px'}} {...props.itemProps}>
         <th  scope="row">{index + 1}</th>
@@ -24,7 +26,10 @@ const TableRow = (props) => {
             <DistanceInfo index={index} {...props}/>
         </td>
         <td>
-            <img src={reorderIcon} alt="drager"/>
+            <img src={reorderIcon} id={`dragger-${index}`} alt={`dragger-${index}`}/>
+                <Tooltip placement="left" isOpen={toolTip} target={`dragger-${index}`} toggle={()=>setToolTip(!toolTip)}>
+                            Drag to re-order trip
+                </Tooltip>
             <button style={{border:'none',background:'none'}}><PlaceActionsDropdown {...props} placeActions={props.placeActions} index={index} /> </button>
         </td>
     </tr>
