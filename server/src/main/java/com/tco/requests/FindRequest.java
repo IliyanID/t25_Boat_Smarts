@@ -1,8 +1,6 @@
 package com.tco.requests;
 
 import java.util.ArrayList;
-
-import com.tco.misc.FindPlaces;
 import com.tco.database.SQLDatabase;
 
 import org.slf4j.Logger;

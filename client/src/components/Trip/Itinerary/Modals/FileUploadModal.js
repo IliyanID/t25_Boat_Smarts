@@ -36,15 +36,16 @@ export default function FileUploadModal(props) {
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileUploadOpen}>Cancel</Button>
-                <Button color="primary" onClick={handleSaveClick} disabled={!validFile}>Save</Button>
+                <Button role="saveUpload" color="primary" onClick={handleSaveClick} disabled={!validFile}>Save</Button>
             </ModalFooter>
         </Modal>
     )
 }
 
-function validateFile(input, context) {
+ export function validateFile(input, context) {
     const { validFile, setValidFile, filePlaces, setFilePlaces, setSelectedIndex } = context;
     if (input && 'files' in input && input.files.length > 0) {
+        console.log(input.files)
         let reader = new FileReader();
         reader.readAsText(input.files[0]);
         reader.onload = () => {
@@ -67,7 +68,7 @@ function validateFile(input, context) {
     }
 }
 
-function csvToJson(stringFromFile) {
+export function csvToJson(stringFromFile) {
     let json = {places: []};
     const lines = stringFromFile.split('\n');
     const properties = lines[0].split(',');
