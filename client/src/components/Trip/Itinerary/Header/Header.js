@@ -4,10 +4,6 @@ import { ItineraryActionsDropdown } from '../actions.js';
 import TripName from '../TripName/TripName'
 
 const Header = (props) => {
-    let totalDistance = 0;
-    let distances = (props.distances)? props.distances.distances:[-1];
-    distances.map((distItem)=>{totalDistance += distItem})
-
     return (
         <thead>
             <tr>
@@ -15,7 +11,7 @@ const Header = (props) => {
                 <th>
                     <TripName key={props.tripName} {...props}/>
                     <dd style={{float:"right"}}>
-                        {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance == 1)?"mile":"miles"} </>}
+                        {(props.totalDistance > 0)&&<>Round Trip : {props.totalDistance} {(props.totalDistance == 1)?"mile":"miles"} </>}
                     </dd>
                 </th>
                 
