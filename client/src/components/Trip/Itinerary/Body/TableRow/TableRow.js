@@ -13,17 +13,11 @@ const TableRow = (props) => {
         props.places.map((item,idx)=>{if(item.name == props.place.name)index = idx})
 
     let individualItem = props.cumalitiveDistances[index]
-    console.log(individualItem)
 
-    return (
-    <tr style={{minWidth:'900px'}} {...props.itemProps}>
-        <th  scope="row">{index + 1}</th>
-        <td>
-            {name}
-            <br/>
-            <small className="text-muted">{location}</small>
-            <br/>
-            {(props.distances.distances.length > index && props.distances.distances.length !== 1)&&
+
+    let distanceInfo = <></>
+    if(props.distances.distances && props.distances.distances.length > index && props.distances.distances.length !== 1){
+        distanceInfo=(
             <small>
                 <th>
                     {(index === props.distances.distances.length-1)?
@@ -37,7 +31,19 @@ const TableRow = (props) => {
                 <th>
                     Cumulative Distance : {individualItem.total} {(individualItem.total == 1)?"mile":"miles"}
                 </th>
-            </small>}
+            </small>
+        )
+    }
+
+    return (
+    <tr style={{minWidth:'900px'}} {...props.itemProps}>
+        <th  scope="row">{index + 1}</th>
+        <td>
+            {name}
+            <br/>
+            <small className="text-muted">{location}</small>
+            <br/>
+            {distanceInfo}
         </td>
         <td>
             <img src={reorderIcon} alt="drager"/>

@@ -7,13 +7,16 @@ import Header from './Header/Header'
 export default function Itinerary(props) {
     const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
 
-    let distances = [-1]
-    if(props.distances && props.distances.distances)
-        distances = props.distances.distances
-    let cumalitiveDistances = [];
-    let runningTotal = 0;
-    distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
 
+    
+    let cumalitiveDistances = [];
+
+    
+    
+    let runningTotal = 0;
+    try{
+        props.distances.distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
+    }catch{cumalitiveDistances = [{total:0,distance:0}]}
     return (
         <Table responsive striped>
             <Header totalDistance={runningTotal} placeActions={props.placeActions} showMessage={props.showMessage} fileDownloadOpen={fileDownloadOpen} toggleFileDownloadOpen = {toggleFileDownloadOpen}{...props} />
