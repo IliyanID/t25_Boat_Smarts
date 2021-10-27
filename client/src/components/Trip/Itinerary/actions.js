@@ -33,12 +33,19 @@ export function ItineraryActionsDropdown(props) {
 }
 
 export function PlaceActionsDropdown(props) {
-    const [toolTip,setToolTip] = useState([false,false,false])
+    const defaultArr = [false,false,false]
+    const [toolTip,setToolTip] = useState(defaultArr)
     const toggle = (index) =>{
         let temp =  [...toolTip]
         temp[index] = !temp[index]
         setToolTip(temp)
     }
+
+    const reset = (e) =>{
+        setToolTip(defaultArr)
+    }
+    document.addEventListener('click',reset)
+
     return (
         <ActionsDropdown {...props}>
             {(props.index !== 0)&&<>
