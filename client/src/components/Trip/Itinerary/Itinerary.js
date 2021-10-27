@@ -1,106 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Table } from 'reactstrap';
-import { ItineraryActionsDropdown, PlaceActionsDropdown } from './actions.js';
-import { latLngToText } from '../../../utils/transformers';
 import { useToggle } from '../../../hooks/useToggle.js';
-import FileDownloadModal from './Modals/FileDownloadModal.js';
-
-
-import TripName from './TripName/TripName'
-
+import Body from './Body/Body'
+import Header from './Header/Header'
 
 export default function Itinerary(props) {
     const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
+
+
+    
+    let cumalitiveDistances = [];
+
+    
+    
+    let runningTotal = 0;
+    try{
+        props.distances.distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
+    }catch{cumalitiveDistances = [{total:0,distance:0}]}
     return (
         <Table responsive striped>
-            <Header placeActions={props.placeActions} showMessage={props.showMessage} fileDownloadOpen={fileDownloadOpen} toggleFileDownloadOpen = {toggleFileDownloadOpen}{...props} />
-            <Body places={props.places} placeActions={props.placeActions} {...props}/>
+            <Header totalDistance={runningTotal} placeActions={props.placeActions} showMessage={props.showMessage} fileDownloadOpen={fileDownloadOpen} toggleFileDownloadOpen = {toggleFileDownloadOpen}{...props} />
+            <Body cumalitiveDistances={cumalitiveDistances}  places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
-    );
-
-}
-
-function Header(props) {
-    let totalDistance = 0;
-    let distances = (props.distances)? props.distances.distances:[-1];
-    distances.map((distItem)=>{totalDistance += distItem})
-
-    return (
-        <thead>
-            <tr>
-                <th/>
-                <th>
-                    <TripName key={props.tripName} {...props}/>
-                    <dd style={{float:"right"}}>
-                        {(totalDistance > 0)&&<>Round Trip : {totalDistance} {(totalDistance == 1)?"mile":"miles"} </>}
-                    </dd>
-                </th>
-                
-                <th>
-                    <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
-                    <FileDownloadModal {...props}/>
-                </th>
-            </tr>
-        </thead>
-    );
-}
-
-function Body(props) {
-    let distances = (props.distances)? props.distances.distances:[-1];
-
-    return (
-        <tbody>
-            {props.places.map((place, index) => 
-                <TableRow 
-                    key={`table-${JSON.stringify(place)}-${index}`}
-                    place={place}
-                    placeActions={props.placeActions}
-                    index={index}
-                    {...props}
-                />
-            )}
-        </tbody>
-    );
-}
-
-function TableRow(props) {
-    const name = props.place.name ? props.place.name : "-";
-    const location = latLngToText(props.place);
-    let distances = (props.distances)? props.distances.distances:[-1];
-
-    let cumalitiveDistances = [];
-    let runningTotal = 0;
-    distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
-
-
-    let individualItem = (cumalitiveDistances.length>0)?cumalitiveDistances[props.index]:[-1]
-    return (
-        <tr>
-            <th scope="row">{props.index + 1}</th>
-            <td>
-                {name}
-                <br/>
-                <small className="text-muted">{location}</small>
-                <br/>
-                {(distances.length > props.index && distances.length !== 1)&&
-                <small>
-                    <th>
-                        {(props.index === distances.length-1)?
-                            <>Distance to Start </>
-                            :
-                            <>Distance to Place #{props.index+2} </>
-                        }
-                        : {individualItem.distance} {(individualItem.distance == 1)?"mile":"miles"} 
-                    </th>
- 
-                    <th>
-                        Cumulative Distance : {individualItem.total} {(individualItem.total == 1)?"mile":"miles"}
-                    </th>
-                </small>}
-            </td>
-            <td>
-                <PlaceActionsDropdown {...props} placeActions={props.placeActions} index={props.index} />
-            </td>
-        </tr>
     );
 }

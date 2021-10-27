@@ -14,6 +14,41 @@ export const MOCK_PLACES = [
     { id: 3, name: '', lat: 60.0, lng: -150.0, country: 'Unknown'}
 ];
 
+export const MOCK_DISTANCES = [
+    {
+        "places": [
+            {
+                "latitude": "0",
+                "name": "Place A",
+                "longitude": "0"
+            },
+            {
+                "latitude": "90",
+                "name": "Place B",
+                "longitude": "90"
+            },
+            {
+                "latitude": "90",
+                "name": "Place C",
+                "longitude": "90"
+            },
+            {
+                "latitude": "-90",
+                "name": "Place D",
+                "longitude": "90"
+            }
+        ],
+        "earthRadius": 2.0902E7,
+        distances: [
+            32832785,
+            0,
+            65665570,
+            32832785
+        ],
+        "requestType": "distances"
+    }
+]
+
 export const MOCK_LATLNG_LOCATION = {
     name: 'Lat Long',
     lat: 40,
