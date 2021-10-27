@@ -56,10 +56,10 @@ export function PlaceActionsDropdown(props) {
                             Delete Trip
                 </Tooltip>
             
-            <DropdownItem onClick={() => {props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`center-button-${props.index}`} data-testid={`center-button-${props.index}`}>
+            <DropdownItem onClick={() => {props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`centerer-button-${props.index}`} data-testid={`center-button-${props.index}`}>
                 <FaSearchLocation />
             </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[2]} target={`center-button-${props.index}`} toggle={()=>toggle(2)}>
+                <Tooltip placement="left" isOpen={toolTip[2]} target={`centerer-button-${props.index}`} toggle={()=>toggle(2)}>
                             Center View on Trip
                 </Tooltip>
         </ActionsDropdown>
