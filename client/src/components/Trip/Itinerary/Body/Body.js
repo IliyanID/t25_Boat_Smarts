@@ -1,0 +1,33 @@
+import React from 'react';
+import { List } from 'react-movable';
+import TableRow from './TableRow/TableRow'
+import '../../../../static/styles/dragStyles.css'
+
+const Body= (propsBody) => {
+  return (
+    <List 
+        values={propsBody.places}
+
+        onChange =  {({ oldIndex, newIndex }) =>
+                        propsBody.placeActions.move(oldIndex, newIndex)
+                    }
+
+        renderList= {({ children, props }) =>   <tbody {...props}>
+                                                    {children}
+                                                </tbody>
+                    }
+        lockVertically={true}
+        renderItem= {({ value, props }) =>      <TableRow
+                                                    key={`table-${JSON.stringify(value)}-${props.key}`}
+                                                    place={value}
+                                                    placeActions={props.placeActions}
+                                                    itemProps={props}
+                                                    index={props.key}
+                                                    lockVertically={true}
+                                                    {...propsBody}
+                                                />
+                    }
+    />
+  );
+};
+export default Body;

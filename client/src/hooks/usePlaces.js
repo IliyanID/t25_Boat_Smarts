@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { placeToLatLng } from '../utils/transformers';
 import { reverseGeocode } from '../utils/reverseGeocode';
 import { LOG } from '../utils/constants';
+import { arrayMove } from 'react-movable'
 
 export function usePlaces() {
     const [previousPlaces, setPreviousPlaces] = useState([]);
@@ -14,7 +15,8 @@ export function usePlaces() {
         append: async (place) => append(place, context),
         removeAtIndex: (index) => removeAtIndex(index, context),
         removeAll: () => removeAll(context),
-        selectIndex: (index) => selectIndex(index, context)
+        selectIndex: (index) => selectIndex(index, context),
+        move: (oldIndex,newIndex) => moveItem(oldIndex,newIndex,context)
     };
 
     return {previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions};
@@ -73,4 +75,11 @@ function selectIndex(index, context) {
         return;
     }
     setSelectedIndex(index);
+}
+
+function moveItem(oldIndex,newIndex,context){
+    const { places, setPlaces, setSelectedIndex } = context;
+
+    setPlaces(arrayMove(places,oldIndex,newIndex))
+    setSelectedIndex(newIndex)
 }
