@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown, Tooltip } from 'reactstrap';
 import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation, FaFileUpload,FaFileDownload, FaRoute} from 'react-icons/fa';
@@ -7,15 +7,23 @@ import { DEFAULT_STARTING_PLACE, LOG } from '../../../utils/constants';
 import { currentLocation } from '../../../utils/currentLocation';
 
 export function ItineraryActionsDropdown(props) {
-
+    let defaultArr = [false,false,false,false,false,false];
     let curr = currentLocation(props.showMessage);
 
-    let [toolTip,setToolTip] = useState([false,false,false,false,false,false])
-    let toggle = (index) =>{
+
+    const [toolTip,setToolTip] = useState(defaultArr)
+    const toggle = (index) =>{
         let temp =  [...toolTip]
         temp[index] = !temp[index]
         setToolTip(temp)
     }
+
+    const reset = (e) =>{
+        setToolTip(defaultArr)
+    }
+    document.addEventListener('click',reset)
+
+
     return (
         <ActionsDropdown {...props}>
             <DropdownItem id="addHome" onClick={() => {curr.latitude!=null ?
