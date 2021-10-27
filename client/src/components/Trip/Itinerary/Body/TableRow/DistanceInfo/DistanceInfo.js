@@ -1,25 +1,26 @@
 import React from 'react'
 
 const DistanceInfo = (props) =>{
+    let individualItem = props.cumalitiveDistances[props.index]
+    let distances = props.distances.distances
+    
     const unit = (item) =>{
         if(item == 1)
             return item + ' mile'
-        else    
-            return item + ' miles'
+   
+        return item + ' miles'
     }
 
-    let individualItem = props.cumalitiveDistances[props.index]
-    let distances = props.distances.distances
+    let individualDistanceText = 'Distance to Start'
+    if(props.index === distances.length - 1)
+        individualDistanceText = 'Distance to Place #' + (props.index + 2)
+
+    
     if(distances && distances.length > props.index && distances.length !== 1){
         return(
             <small>
-                <th>
-                    {(props.index === distances.length-1)?
-                        <>Distance to Start </>
-                        :
-                        <>Distance to Place #{props.index+2} </>
-                    }
-                    : {unit(individualItem.distance)} 
+                <th>  
+                    {individualDistanceText} : {unit(individualItem.distance)} 
                 </th>
 
                 <th>
