@@ -78,8 +78,8 @@ function selectIndex(index, context) {
 }
 
 function moveItem(oldIndex,newIndex,context){
-    const { places, setPlaces, setSelectedIndex } = context;
-
+    const { places, setPlaces, setSelectedIndex,setPreviousPlaces } = context;
+    setPreviousPlaces(arrayMove(places,oldIndex,newIndex))
     setPlaces(arrayMove(places,oldIndex,newIndex))
     setSelectedIndex(newIndex)
 }

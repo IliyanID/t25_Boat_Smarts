@@ -17,7 +17,7 @@ const Body= (propsBody) => {
                                                 </tbody>
                     }
         lockVertically={true}
-        renderItem= {({ value, props }) =>      <TableRow
+        renderItem= {({ value, props, isDragged }) =>      <TableRow
                                                     key={`table-${JSON.stringify(value)}-${props.key}`}
                                                     place={value}
                                                     placeActions={props.placeActions}
@@ -25,9 +25,13 @@ const Body= (propsBody) => {
                                                     index={props.key}
                                                     lockVertically={true}
                                                     {...propsBody}
+                                                    isDragged={isDragged}
                                                 />
                     }
     />
+
+    
+
   );
 };
 export default Body;
