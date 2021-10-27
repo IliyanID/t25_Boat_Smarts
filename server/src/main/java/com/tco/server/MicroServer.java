@@ -40,6 +40,7 @@ class MicroServer {
             post("/config", (req, res) -> processHttpRequest(req, res, ConfigRequest.class));
             post("/find", (req, res) -> processHttpRequest(req, res, FindRequest.class));
             post("/distances", (req, res) -> processHttpRequest(req, res, DistancesRequest.class));
+            post("/tour", (req, res) -> processHttpRequest(req, res, TourRequest.class));
         });
     }
 
