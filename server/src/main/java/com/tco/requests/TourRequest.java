@@ -17,8 +17,13 @@ public class TourRequest extends Request {
 
     @Override
     public void buildResponse() {
-        places = ShorterTrip.oneOpt(places)
+        places = createShorterTrip(this.earthRadius);
         log.trace("buildResponse -> {}", this);
+    }
+
+    private SQLDatabase.Places createShorterTrip(double earthRadius) {
+        ShorterTrip shortTrip = new ShorterTrip(this.places, earthRadius);
+        return shortTrip.oneOpt();
     }
 
   /* The following methods exist only for testing purposes and are not used
