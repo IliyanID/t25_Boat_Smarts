@@ -19,10 +19,12 @@ export function ItineraryActionsDropdown(props) {
         setToolTip(temp)
     }
 
-    const reset = (e) =>{
+    const reset = () =>{
         setToolTip(defaultArr)
     }
-    
+    //To add new button make sure to add reset() to the onClick event or the ToolTip will bug out
+    //Make sure to add description of new button inside of descriptions
+    // also set the id of the button in the format id = {`index-{index of button in Items}`}
     let Items = [
     <DropdownItem id={`index-0`} onClick={() => {reset();curr.latitude!=null ?
             props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")}} 
