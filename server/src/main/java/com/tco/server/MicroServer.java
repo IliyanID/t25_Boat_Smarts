@@ -6,6 +6,7 @@ import com.tco.requests.ConfigRequest;
 import com.tco.requests.FindRequest;
 import com.tco.requests.Request;
 import com.tco.requests.DistancesRequest;
+import com.tco.requests.TourRequest;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
