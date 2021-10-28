@@ -21,12 +21,11 @@ export function ItineraryActionsDropdown(props) {
     const reset = (e) =>{
         setToolTip(defaultArr)
     }
-    document.addEventListener('click',reset)
 
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem id="addHome" onClick={() => {curr.latitude!=null ?
+            <DropdownItem id="addHome" onClick={() => {reset();curr.latitude!=null ?
                     props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")}} 
                     data-testid='home-button'>
                 <FaHome />
@@ -35,35 +34,35 @@ export function ItineraryActionsDropdown(props) {
                         Add starting Location
                 </Tooltip>
 
-            <DropdownItem id='load-file-button' onClick={props.toggleFileUploadOpen} data-testid='load-file-button'>
+            <DropdownItem id='load-file-button' onClick={()=>{reset();props.toggleFileUploadOpen()}} data-testid='load-file-button'>
                 <FaFileUpload/>
             </DropdownItem>
                 <Tooltip   Tooltip placement="left" isOpen={toolTip[1]} target="load-file-button" toggle={()=>toggle(1)}>
                         Load Trip From File
                 </Tooltip>
 
-            <DropdownItem onClick={props.toggleFileDownloadOpen} id='save-file-button' data-testid='save-file-button'>
+            <DropdownItem onClick={()=>{reset();props.toggleFileDownloadOpen()}} id='save-file-button' data-testid='save-file-button'>
                 <FaFileDownload/>
             </DropdownItem>
                 <Tooltip placement="left" isOpen={toolTip[2]} target="save-file-button" toggle={()=>toggle(2)}>
                         Save Trip To File
                 </Tooltip>
 
-            <DropdownItem onClick={() => {}} id='shorter-trip-button' data-testid='shorter-trip-button'>
+            <DropdownItem onClick={() => {reset();}} id='shorter-trip-button' data-testid='shorter-trip-button'>
                 <FaRoute />
             </DropdownItem> 
                 <Tooltip placement="left" isOpen={toolTip[3]} target="shorter-trip-button" toggle={()=>toggle(3)}>
                         Optimize Trip
                 </Tooltip>
 
-            <DropdownItem id='reverse-trip-buttom' data-testid='reverse-trip-buttom' onClick={() => props.placeActions.reverse()}>
+            <DropdownItem id='reverse-trip-buttom' data-testid='reverse-trip-buttom' onClick={() => {reset();props.placeActions.reverse()}}>
                 <AiOutlineRedo/>
             </DropdownItem>
                 <Tooltip placement="left" isOpen={toolTip[4]} target="reverse-trip-buttom" toggle={()=>toggle(4)}>
                         Reverse Trip
                 </Tooltip>
 
-            <DropdownItem onClick={() => props.placeActions.removeAll()} id='delete-all-button' data-testid='delete-all-button'>
+            <DropdownItem onClick={() => {reset();props.placeActions.removeAll()}} id='delete-all-button' data-testid='delete-all-button'>
                 <FaTrashAlt />
             </DropdownItem>
                 <Tooltip placement="left" isOpen={toolTip[5]} target="delete-all-button" toggle={()=>toggle(5)}>
