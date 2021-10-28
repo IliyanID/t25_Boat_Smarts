@@ -17,6 +17,7 @@ const TripName = (props) =>{
         if(userDidntPressCheckMark && userDidntPressSaveButton)
             handleSubmit()  
     }
+    
     document.addEventListener('click', handleFocusOut)
 
     const setFocus = () =>{
