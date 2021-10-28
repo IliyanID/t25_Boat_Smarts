@@ -16,7 +16,6 @@ const TripName = (props) =>{
         //If the parent of the clicked item isn't the inputRef div
         if(userDidntPressCheckMark && userDidntPressSaveButton && inFocus){
             handleSubmit(); 
-            setInFocus(false);
         }
     }
     useEffect(() => {
@@ -35,12 +34,12 @@ const TripName = (props) =>{
         setInFocus(false)
         if(props.tripName !== tempName){
             props.setTripName(tempName)
-            let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + tempName + "\'.";
-            props.showMessage(message,"info");
         }
     }
     
     const submitWithMessage = () =>{
+        let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + tempName + "\'.";
+        props.showMessage(message,"info");
         handleSubmit();
     }
 
