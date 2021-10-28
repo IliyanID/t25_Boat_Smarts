@@ -13,6 +13,7 @@ public class FindRequest extends Request {
     private String match;
     private int limit;
     private int found;
+    private ArrayList<String> type;
     private SQLDatabase.Places places;
     private final transient Logger log = LoggerFactory.getLogger(FindRequest.class);
 
@@ -37,6 +38,13 @@ public class FindRequest extends Request {
     }
     public void setmatch(String match){
         this.match = match;
+    }
+
+    public ArrayList<String> gettype(){
+        return this.type;
+    }
+    public void settype(ArrayList<String> type){
+        this.type = type;
     }
 
     public int getlimit(){
