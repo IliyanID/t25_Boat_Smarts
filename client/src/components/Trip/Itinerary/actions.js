@@ -46,6 +46,9 @@ export function PlaceActionsDropdown(props) {
         setToolTip(defaultArr)
     }
 
+    //To add new button make sure to add reset() to the onClick event or the ToolTip will bug out
+    //Make sure to add description of new button inside of descriptions
+    // also set the id of the bbuton in the format id = {`index-{index of button in Items}-${props.index}`}
     let Items = [
         <DropdownItem onClick={() => {reset();props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`index-0-${props.index}`} data-testid={`home-button-${props.index}`}>
             <FaHome />
