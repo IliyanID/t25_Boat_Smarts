@@ -29,8 +29,11 @@ const TripName = (props) =>{
     }
     const handleSubmit = () =>{
         setInFocus(false)
-        if(props.tripName !== tempName)
+        if(props.tripName !== tempName){
             props.setTripName(tempName)
+        }
+        let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + tempName + "\'.";
+        props.showMessage(message,"info")
     }
 
     let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
