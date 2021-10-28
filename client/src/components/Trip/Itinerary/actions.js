@@ -33,7 +33,8 @@ export function ItineraryActionsDropdown(props) {
 }
 
 export function PlaceActionsDropdown(props) {
-    const defaultArr = [false,false,false]
+    let descriptions=["Move Trip to Start","Delete Trip","Center View on Trip"]
+    let defaultArr = new Array(descriptions.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
     const toggle = (index) =>{
         let temp =  [...toolTip]
@@ -45,16 +46,14 @@ export function PlaceActionsDropdown(props) {
         setToolTip(defaultArr)
     }
 
-    let descriptions=["Move Trip to Start","Delete Trip","Center View on Trip"]
-
     let Items = [
-        <DropdownItem onClick={() => {reset();props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`home-button-${props.index}`} data-testid={`home-button-${props.index}`}>
+        <DropdownItem onClick={() => {reset();props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`index-0-${props.index}`} data-testid={`home-button-${props.index}`}>
             <FaHome />
         </DropdownItem>,
-        <DropdownItem onClick={() => {reset();props.placeActions.removeAtIndex(props.index)}} id={`delete-button-${props.index}`} data-testid={`delete-button-${props.index}`}>
+        <DropdownItem onClick={() => {reset();props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${props.index}`}>
             <FaTrash />
         </DropdownItem>,
-        <DropdownItem onClick={() => {reset();props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`centerer-button-${props.index}`} data-testid={`center-button-${props.index}`}>
+        <DropdownItem onClick={() => {reset();props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`index-2-${props.index}`} data-testid={`center-button-${props.index}`}>
             <FaSearchLocation />
         </DropdownItem>
     ]
@@ -68,7 +67,7 @@ export function PlaceActionsDropdown(props) {
                 return(
                     <>
                         {item}
-                        <Tooltip placement="left" isOpen={toolTip[index]} target={`centerer-button-${props.index}`} toggle={()=>toggle(index)}>
+                        <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}-${props.index}`} toggle={()=>toggle(index)}>
                             {descriptions[index]}
                         </Tooltip>
                     </>
