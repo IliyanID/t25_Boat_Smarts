@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import { FaEdit } from 'react-icons/fa';
 import CheckMark from '../../../../static/images/checkmark.svg'
@@ -14,11 +14,12 @@ const TripName = (props) =>{
         let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
         let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
         //If the parent of the clicked item isn't the inputRef div
-        if(userDidntPressCheckMark && userDidntPressSaveButton)
+        if(userDidntPressCheckMark && userDidntPressSaveButton && inFocus)
             handleSubmit()  
     }
-    
-    document.addEventListener('click', handleFocusOut)
+    useEffect(() => {
+        document.addEventListener('click', handleFocusOut)
+    })
 
     const setFocus = () =>{
         setInFocus(true)
@@ -33,8 +34,12 @@ const TripName = (props) =>{
         if(props.tripName !== tempName){
             props.setTripName(tempName)
             let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + tempName + "\'.";
-            props.showMessage(message,"info")
+            props.showMessage(message,"info");
         }
+    }
+    
+    const submitWithMessage = () =>{
+        handleSubmit();
     }
 
     let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
@@ -47,7 +52,7 @@ const TripName = (props) =>{
     }
     else{
         buttonLayout = (<>
-            <img data-testid="submitName" id="submit" style={iconStyle} onClick={handleSubmit} src={CheckMark} />
+            <img data-testid="submitName" id="submit" style={iconStyle} onClick={submitWithMessage} src={CheckMark} />
             <img data-testid="cancelName" id="cancel" style={iconStyle} onClick={handleCancel} src={Cancel} />
         </>)
     }
