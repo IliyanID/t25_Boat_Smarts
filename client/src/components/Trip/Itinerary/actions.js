@@ -7,7 +7,8 @@ import { DEFAULT_STARTING_PLACE, LOG } from '../../../utils/constants';
 import { currentLocation } from '../../../utils/currentLocation';
 
 export function ItineraryActionsDropdown(props) {
-    let defaultArr = [false,false,false,false,false,false];
+    let descriptions = ["Add starting Location","Load Trip From File","Save Trip To File","Optimize Trip","Reverse Trip","Delete all Trips"]
+    let defaultArr = new Array(descriptions.length).fill(false)
     let curr = currentLocation(props.showMessage);
 
 
@@ -21,53 +22,44 @@ export function ItineraryActionsDropdown(props) {
     const reset = (e) =>{
         setToolTip(defaultArr)
     }
-
+    
+    let Items = [
+    <DropdownItem id={`index-0`} onClick={() => {reset();curr.latitude!=null ?
+            props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")}} 
+            data-testid='home-button'>
+        <FaHome />
+    </DropdownItem>,
+    <DropdownItem id={`index-1`} onClick={()=>{reset();props.toggleFileUploadOpen()}} data-testid='load-file-button'>
+        <FaFileUpload/>
+    </DropdownItem>,
+    <DropdownItem onClick={()=>{reset();props.toggleFileDownloadOpen()}} id={`index-2`} data-testid='save-file-button'>
+        <FaFileDownload/>
+    </DropdownItem>,
+    <DropdownItem onClick={() => {reset();}} id={`index-3`} data-testid='shorter-trip-button'>
+        <FaRoute />
+    </DropdownItem>,
+    <DropdownItem id={`index-4`} data-testid='reverse-trip-buttom' onClick={() => {reset();props.placeActions.reverse()}}>
+        <AiOutlineRedo/>
+    </DropdownItem>,
+    <DropdownItem onClick={() => {reset();props.placeActions.removeAll()}} id={`index-5`} data-testid='delete-all-button'>
+        <FaTrashAlt />
+    </DropdownItem>
+    ]
 
     return (
         <ActionsDropdown {...props}>
-            <DropdownItem id="addHome" onClick={() => {reset();curr.latitude!=null ?
-                    props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")}} 
-                    data-testid='home-button'>
-                <FaHome />
-            </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[0]} target="addHome" toggle={()=>toggle(0)}>
-                        Add starting Location
-                </Tooltip>
-
-            <DropdownItem id='load-file-button' onClick={()=>{reset();props.toggleFileUploadOpen()}} data-testid='load-file-button'>
-                <FaFileUpload/>
-            </DropdownItem>
-                <Tooltip   Tooltip placement="left" isOpen={toolTip[1]} target="load-file-button" toggle={()=>toggle(1)}>
-                        Load Trip From File
-                </Tooltip>
-
-            <DropdownItem onClick={()=>{reset();props.toggleFileDownloadOpen()}} id='save-file-button' data-testid='save-file-button'>
-                <FaFileDownload/>
-            </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[2]} target="save-file-button" toggle={()=>toggle(2)}>
-                        Save Trip To File
-                </Tooltip>
-
-            <DropdownItem onClick={() => {reset();}} id='shorter-trip-button' data-testid='shorter-trip-button'>
-                <FaRoute />
-            </DropdownItem> 
-                <Tooltip placement="left" isOpen={toolTip[3]} target="shorter-trip-button" toggle={()=>toggle(3)}>
-                        Optimize Trip
-                </Tooltip>
-
-            <DropdownItem id='reverse-trip-buttom' data-testid='reverse-trip-buttom' onClick={() => {reset();props.placeActions.reverse()}}>
-                <AiOutlineRedo/>
-            </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[4]} target="reverse-trip-buttom" toggle={()=>toggle(4)}>
-                        Reverse Trip
-                </Tooltip>
-
-            <DropdownItem onClick={() => {reset();props.placeActions.removeAll()}} id='delete-all-button' data-testid='delete-all-button'>
-                <FaTrashAlt />
-            </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[5]} target="delete-all-button" toggle={()=>toggle(5)}>
-                        Delete all Trips
-                </Tooltip>
+                {
+                    Items.map((item,index)=>{
+                        return(
+                        <>
+                            {item}
+                            <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}`}  toggle={()=>toggle(index)}>
+                                {descriptions[index]}
+                            </Tooltip>
+                        </>
+                        )
+                    })
+                }
         </ActionsDropdown>
     );
 }

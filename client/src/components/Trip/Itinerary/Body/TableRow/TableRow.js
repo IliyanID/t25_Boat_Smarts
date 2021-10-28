@@ -25,7 +25,7 @@ const TableRow = (props) => {
         </td>
         <td>
             <img src={reorderIcon} alt="drager"/>
-            <button style={{border:'none',background:'none'}}><PlaceActionsDropdown {...props} placeActions={props.placeActions} index={index} /> </button>
+            <button id="actionDropDown" style={{border:'none',background:'none'}}><PlaceActionsDropdown {...props} placeActions={props.placeActions} index={index} /> </button>
         </td>
     </tr>
     );
