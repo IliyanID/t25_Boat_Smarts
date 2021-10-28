@@ -20,8 +20,8 @@ public class FindRequest extends Request {
 
     @Override
     public void buildResponse() {
-        places = SQLDatabase.findQuery(match, limit);
-        found = SQLDatabase.countQuery(match);
+        places = SQLDatabase.findQuery(match, limit, type);
+        found = SQLDatabase.countQuery(match, type);
         log.trace("buildResponse -> {}", this);
     }
 

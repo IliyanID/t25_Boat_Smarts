@@ -20,14 +20,14 @@ public class SQLDatabase {
     public static class Place extends HashMap<String, String> {}
     public static class Places extends ArrayList<Place> {}
 
-    public static Places findQuery(String searchStr, int limit) {
+    public static Places findQuery(String searchStr, int limit, ArrayList<String> type) {
         SQLCredential db = new SQLCredential();
 
      	try (
             Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
             Statement query = conn.createStatement();
         
-            ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS));
+            ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS,type));
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
@@ -38,12 +38,12 @@ public class SQLDatabase {
         	     
     }
 
-    public static int countQuery(String searchStr) {
+    public static int countQuery(String searchStr,ArrayList<String> type) {
         SQLCredential db = new SQLCredential();
      	try {
             Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
             Statement query = conn.createStatement();
-            ResultSet results = query.executeQuery(SQLQuery.count(searchStr));
+            ResultSet results = query.executeQuery(SQLQuery.count(searchStr,type));
             results.next();
             return results.getInt("count");
       	} catch (SQLException e) {
