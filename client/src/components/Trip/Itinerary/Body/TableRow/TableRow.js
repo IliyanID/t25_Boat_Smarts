@@ -25,8 +25,8 @@ const TableRow = (props) => {
             <br/>
             <DistanceInfo index={index} {...props}/>
         </td>
-        <td>
-            <img src={reorderIcon} id={`dragger-${index}`} alt={`dragger-${index}`}/>
+        <td style={{display:'flex',float:'right'}}>
+            <img  src={reorderIcon} id={`dragger-${index}`} alt={`dragger-${index}`}/>
                 <Tooltip placement="left" isOpen={toolTip} target={`dragger-${index}`} toggle={()=>setToolTip(!toolTip)}>
                             Drag to re-order trip
                 </Tooltip>

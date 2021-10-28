@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown, Tooltip } from 'reactstrap';
 import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
 import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation, FaFileUpload,FaFileDownload, FaRoute} from 'react-icons/fa';
@@ -44,26 +44,26 @@ export function PlaceActionsDropdown(props) {
     const reset = (e) =>{
         setToolTip(defaultArr)
     }
-    document.addEventListener('click',reset)
+
 
     return (
-        <ActionsDropdown {...props}>
+        <ActionsDropdown id={'test'}{...props}>
             {(props.index !== 0)&&<>
-            <DropdownItem onClick={() => {props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`home-button-${props.index}`} data-testid={`home-button-${props.index}`}>
+            <DropdownItem onClick={() => {reset();props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`home-button-${props.index}`} data-testid={`home-button-${props.index}`}>
                 <FaHome />
             </DropdownItem>
                 <Tooltip placement="left" isOpen={toolTip[0]} target={`home-button-${props.index}`} toggle={()=>toggle(0)}>
                        Move Trip to Start
                 </Tooltip></>
             }
-            <DropdownItem onClick={() => props.placeActions.removeAtIndex(props.index)} id={`delete-button-${props.index}`} data-testid={`delete-button-${props.index}`}>
+            <DropdownItem onClick={() => {reset();props.placeActions.removeAtIndex(props.index)}} id={`delete-button-${props.index}`} data-testid={`delete-button-${props.index}`}>
                 <FaTrash />
             </DropdownItem>
                 <Tooltip placement="left" isOpen={toolTip[1]} target={`delete-button-${props.index}`} toggle={()=>toggle(1)}>
                             Delete Trip
                 </Tooltip>
             
-            <DropdownItem onClick={() => {props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`centerer-button-${props.index}`} data-testid={`center-button-${props.index}`}>
+            <DropdownItem onClick={() => {reset();props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`centerer-button-${props.index}`} data-testid={`center-button-${props.index}`}>
                 <FaSearchLocation />
             </DropdownItem>
                 <Tooltip placement="left" isOpen={toolTip[2]} target={`centerer-button-${props.index}`} toggle={()=>toggle(2)}>
