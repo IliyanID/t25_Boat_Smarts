@@ -18,7 +18,7 @@ public class DistanceCalculator {
         return temp;
     }
 
-    private static long singleDistance(SQLDatabase.Place place1, SQLDatabase.Place place2, double earthRadius) {
+    protected static long singleDistance(SQLDatabase.Place place1, SQLDatabase.Place place2, double earthRadius) {
         double lat1 = Double.parseDouble(place1.get("latitude"))/180 * Math.PI;
         double lat2 = Double.parseDouble(place2.get("latitude"))/180 * Math.PI;
         double lon1 = Double.parseDouble(place1.get("longitude"))/180 * Math.PI;
