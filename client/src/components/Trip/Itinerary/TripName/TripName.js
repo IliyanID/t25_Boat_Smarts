@@ -14,7 +14,7 @@ const TripName = (props) =>{
         let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
         let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
         //If the parent of the clicked item isn't the inputRef div
-        if(userDidntPressCheckMark && userDidntPressSaveButton && inFocus){
+        if(userDidntPressCheckMark && userDidntPressSaveButton){
             handleSubmit(); 
         }
     }
@@ -38,8 +38,10 @@ const TripName = (props) =>{
     }
     
     const submitWithMessage = () =>{
-        let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + tempName + "\'.";
-        props.showMessage(message,"info");
+        if(props.tripName !== tempName){
+            let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + tempName + "\'.";
+            props.showMessage(message,"info");
+        }
         handleSubmit();
     }
 
