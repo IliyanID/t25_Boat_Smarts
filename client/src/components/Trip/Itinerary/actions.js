@@ -41,34 +41,40 @@ export function PlaceActionsDropdown(props) {
         setToolTip(temp)
     }
 
-    const reset = (e) =>{
+    const reset = () =>{
         setToolTip(defaultArr)
     }
 
+    let descriptions=["Move Trip to Start","Delete Trip","Center View on Trip"]
+
+    let Items = [
+        <DropdownItem onClick={() => {reset();props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`home-button-${props.index}`} data-testid={`home-button-${props.index}`}>
+            <FaHome />
+        </DropdownItem>,
+        <DropdownItem onClick={() => {reset();props.placeActions.removeAtIndex(props.index)}} id={`delete-button-${props.index}`} data-testid={`delete-button-${props.index}`}>
+            <FaTrash />
+        </DropdownItem>,
+        <DropdownItem onClick={() => {reset();props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`centerer-button-${props.index}`} data-testid={`center-button-${props.index}`}>
+            <FaSearchLocation />
+        </DropdownItem>
+    ]
 
     return (
         <ActionsDropdown id={'test'}{...props}>
-            {(props.index !== 0)&&<>
-            <DropdownItem onClick={() => {reset();props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`home-button-${props.index}`} data-testid={`home-button-${props.index}`}>
-                <FaHome />
-            </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[0]} target={`home-button-${props.index}`} toggle={()=>toggle(0)}>
-                       Move Trip to Start
-                </Tooltip></>
-            }
-            <DropdownItem onClick={() => {reset();props.placeActions.removeAtIndex(props.index)}} id={`delete-button-${props.index}`} data-testid={`delete-button-${props.index}`}>
-                <FaTrash />
-            </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[1]} target={`delete-button-${props.index}`} toggle={()=>toggle(1)}>
-                            Delete Trip
-                </Tooltip>
-            
-            <DropdownItem onClick={() => {reset();props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`centerer-button-${props.index}`} data-testid={`center-button-${props.index}`}>
-                <FaSearchLocation />
-            </DropdownItem>
-                <Tooltip placement="left" isOpen={toolTip[2]} target={`centerer-button-${props.index}`} toggle={()=>toggle(2)}>
-                            Center View on Trip
-                </Tooltip>
+        {
+            Items.map((item,index)=>{
+                if(props.index == 0 && index == 0)
+                    return <></>
+                return(
+                    <>
+                        {item}
+                        <Tooltip placement="left" isOpen={toolTip[index]} target={`centerer-button-${props.index}`} toggle={()=>toggle(index)}>
+                            {descriptions[index]}
+                        </Tooltip>
+                    </>
+                )
+            })
+        }
         </ActionsDropdown>
     );
 }
