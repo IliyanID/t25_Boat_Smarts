@@ -8,8 +8,9 @@ import TripName from '../../../src/components/Trip/Itinerary/TripName/TripName'
 describe("TripName",()=>{
     let tripName = "My Trip"
     beforeEach(()=>{
+        const showMessage = jest.fn();
         let setTripName = (value) => tripName = value
-        render(<TripName tripName={tripName} setTripName={setTripName} />);
+        render(<TripName tripName={tripName} setTripName={setTripName} showMessage={showMessage}/>);
     });
 
     it('toggleSubmit', () => {
