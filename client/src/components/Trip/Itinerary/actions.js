@@ -66,14 +66,51 @@ export function ItineraryActionsDropdown(props) {
 }
 
 export function PlaceActionsDropdown(props) {
+    let descriptions=["Move Trip to Start","Delete Trip","Center View on Trip"]
+    let defaultArr = new Array(descriptions.length).fill(false)
+    const [toolTip,setToolTip] = useState(defaultArr)
+    const toggle = (index) =>{
+        let temp =  [...toolTip]
+        temp[index] = !temp[index]
+        setToolTip(temp)
+    }
+
+    const reset = () =>{
+        setToolTip(defaultArr)
+    }
+
+    //To add new button make sure to add reset() to the onClick event or the ToolTip will bug out
+    //Make sure to add description of new button inside of descriptions
+    // also set the id of the bbuton in the format id = {`index-{index of button in Items}-${props.index}`}
+    let Items = [
+        <DropdownItem onClick={() => {reset();props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`index-0-${props.index}`} data-testid={`home-button-${props.index}`}>
+            <FaHome />
+        </DropdownItem>,
+        <DropdownItem onClick={() => {reset();props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${props.index}`}>
+            <FaTrash />
+        </DropdownItem>,
+        <DropdownItem onClick={() => {reset();props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`index-2-${props.index}`} data-testid={`center-button-${props.index}`}>
+            <FaSearchLocation />
+        </DropdownItem>
+    ]
+
     return (
-        <ActionsDropdown {...props}>
-            <DropdownItem onClick={() => props.placeActions.removeAtIndex(props.index)} data-testid={`delete-button-${props.index}`}>
-                <FaTrash />
-            </DropdownItem>
-            <DropdownItem onClick={() => {props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} data-testid={`select-button-${props.index}`}>
-                <FaSearchLocation />
-            </DropdownItem>
+        <ActionsDropdown id={'test'}{...props}>
+        {
+            Items.map((item,index)=>{
+                if(index === 0 && props.index === 0)
+                    return <div key={`index-${index}-${props.index}`}></div>
+
+                return(
+                <div key={`index-${index}-${props.index}`}>
+                    {item}
+                    <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}-${props.index}`}  toggle={()=>toggle(index)}>
+                        {descriptions[index]}
+                    </Tooltip>
+                </div>)
+
+            })
+        }
         </ActionsDropdown>
     );
 }
