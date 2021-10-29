@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useToggle } from 'react'
 
 import { FaEdit } from 'react-icons/fa';
 import CheckMark from '../../../../static/images/checkmark.svg'
@@ -8,15 +8,17 @@ const TripName = (props) =>{
     const inputRef = useRef();
     const [tempName,setTempName] = useState(props.tripName)
     const [inFocus,setInFocus] = useState(false)
+    const [infoMessage, setInfoMessage] = useState(true)
+
 
 
     let handleFocusOut = (e)=>{
         let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
         let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
         //If the parent of the clicked item isn't the inputRef div
-        if(userDidntPressCheckMark && userDidntPressSaveButton){
-            let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
-            props.showMessage(message,"info");
+        if(userDidntPressCheckMark && userDidntPressSaveButton && infoMessage){
+            if(props.tripName !== inputRef.current.value)
+                printMessage();
             handleSubmit(); 
         }
     }
@@ -26,6 +28,7 @@ const TripName = (props) =>{
 
     const setFocus = () =>{
         setInFocus(true)
+        setInfoMessage(false)
         inputRef.current.focus()
     }
     const handleCancel = () =>{
@@ -36,9 +39,13 @@ const TripName = (props) =>{
         setInFocus(false)
         if(props.tripName !== inputRef.current.value){
             props.setTripName(inputRef.current.value)
-            let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
-            props.showMessage(message,"info");
+            printMessage();
         }
+    }
+
+    const printMessage = () =>{
+        let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
+        props.showMessage(message,"info");
     }
 
     let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
