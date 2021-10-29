@@ -56,12 +56,10 @@ export default function Planner(props) {
         setOrigionalPlaces([...places])
         let currentURL = getServerURL();
         if(previewTripFocus){
-
-            let optimizedDistances =[];
             let convertedPlace = [];
             places.map((place) => {convertedPlace.push(latLngToPlace(place))});
             
-            /*sendAPIRequest({
+            sendAPIRequest({
                 requestType:'tour',
                 places:convertedPlace,
                 earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles,
@@ -73,15 +71,9 @@ export default function Planner(props) {
                         setPlaces(convertedPlaces);
                     }
                     else{
-                        let temp = [{name:"Unknown",lat:0,long:0}]
-                        setPlaces(temp)
+                        setPlaces([])
                     }
-                })*/
-
-                
-                let temp = [{"lat":0,"lng":0,"name":"Ya BUI"},{"lat":0,"lng":20,"name":"Ya BUI"}]
-                console.log('set')
-                setPlaces(temp)
+                })
         }
     },[previewTripFocus])
 
