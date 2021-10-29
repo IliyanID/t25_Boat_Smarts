@@ -65,16 +65,17 @@ export function PlaceActionsDropdown(props) {
         <ActionsDropdown id={'test'}{...props}>
         {
             Items.map((item,index)=>{
-                if(props.index == 0 && index == 0)
-                    return <></>
+                if(index === 0 && props.index === 0)
+                    return <div key={`index-${index}-${props.index}`}></div>
+
                 return(
-                    <>
-                        {item}
-                        <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}-${props.index}`} toggle={()=>toggle(index)}>
-                            {descriptions[index]}
-                        </Tooltip>
-                    </>
-                )
+                <div key={`index-${index}-${props.index}`}>
+                    {item}
+                    <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}-${props.index}`}  toggle={()=>toggle(index)}>
+                        {descriptions[index]}
+                    </Tooltip>
+                </div>)
+
             })
         }
         </ActionsDropdown>
