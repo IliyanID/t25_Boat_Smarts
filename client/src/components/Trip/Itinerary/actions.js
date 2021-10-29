@@ -52,14 +52,13 @@ export function ItineraryActionsDropdown(props) {
         <ActionsDropdown {...props}>
                 {
                     Items.map((item,index)=>{
-                        return(
                         <>
                             {item}
                             <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}`}  toggle={()=>toggle(index)}>
                                 {descriptions[index]}
                             </Tooltip>
                         </>
-                        )
+                        
                     })
                 }
         </ActionsDropdown>
