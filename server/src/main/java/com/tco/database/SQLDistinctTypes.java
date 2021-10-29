@@ -8,7 +8,7 @@ public class SQLDistinctTypes {
         if(type.size() == 0)
             return "";
 
-        String result = " AND ";
+        String result = "";
 
         if(type.indexOf("other") >= 0)
             result += otherUsed(type);
@@ -16,6 +16,7 @@ public class SQLDistinctTypes {
             result += otherNotUsed(type);
         
         return result;
+
     }
 
     static String otherUsed(ArrayList<String> type){
@@ -38,16 +39,13 @@ public class SQLDistinctTypes {
     
 
         for(int i = 0; i < defaultExcludeOther.size();i++){
-            result += " !(world.type LIKE '%" + defaultExcludeOther.get(i) + "%') ";
-            if(i != defaultExcludeOther.size() - 1)
-                result += " AND ";
-            
+            result += "AND !(world.type LIKE '%" + defaultExcludeOther.get(i) + "%') ";
         }
         type.add(otherIndex,"other");
         return result;
     }
     static String otherNotUsed(ArrayList<String> type){
-        String result = "( ";
+        String result = "AND ( ";
         for(int i = 0; i < type.size(); i++){
             String indivType = type.get(i);
             if(indivType.equals("other"))
