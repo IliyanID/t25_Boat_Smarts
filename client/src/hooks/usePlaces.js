@@ -16,7 +16,8 @@ export function usePlaces() {
         removeAtIndex: (index) => removeAtIndex(index, context),
         removeAll: () => removeAll(context),
         selectIndex: (index) => selectIndex(index, context),
-        move: (oldIndex,newIndex) => moveItem(oldIndex,newIndex,context)
+        move: (oldIndex,newIndex) => moveItem(oldIndex,newIndex,context),
+        reverse: () => reverse(context)
     };
 
     return {previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions};
@@ -82,4 +83,13 @@ function moveItem(oldIndex,newIndex,context){
     setPreviousPlaces(arrayMove(places,oldIndex,newIndex))
     setPlaces(arrayMove(places,oldIndex,newIndex))
     setSelectedIndex(newIndex)
+}
+
+function reverse (context){
+    const { places, setPlaces, setSelectedIndex,setPreviousPlaces } = context;
+    let temp = [...places]
+    temp.reverse();
+    setPlaces(temp)
+    setPreviousPlaces(temp)
+    setSelectedIndex(-1)
 }
