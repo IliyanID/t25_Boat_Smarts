@@ -8,47 +8,35 @@ public class SQLDistinctTypes {
         if(type.size() == 0)
             return "";
 
-        String result = "";
-
         if(type.indexOf("other") >= 0)
-            result += otherUsed(type);
+            return otherUsed(type);
         else
-            result += otherNotUsed(type);
-        
-        return result;
-
+            return otherNotUsed(type);
     }
 
     static String otherUsed(ArrayList<String> type){
         String result = "";
 
-        int otherIndex = type.indexOf("other");
-        type.remove(otherIndex);
-
-        ArrayList<String> defaultExcludeOther = new ArrayList<String>();
+        ArrayList<String> defaultExcludeOther = new ArrayList<String>(3);
         defaultExcludeOther.add("airport");
         defaultExcludeOther.add("balloonport");
         defaultExcludeOther.add("heliport");
 
         for(int i = 0; i < type.size(); i++){
-            String indivType = type.get(i);
-            int index = defaultExcludeOther.indexOf(indivType);
+            int index = defaultExcludeOther.indexOf(type.get(i));
             if(index >= 0)
                 defaultExcludeOther.remove(index);
         }
     
-
-        for(int i = 0; i < defaultExcludeOther.size();i++){
+        for(int i = 0; i < defaultExcludeOther.size();i++)
             result += "AND !(world.type LIKE '%" + defaultExcludeOther.get(i) + "%') ";
-        }
-        type.add(otherIndex,"other");
+        
         return result;
     }
     static String otherNotUsed(ArrayList<String> type){
         String result = "AND ( ";
         for(int i = 0; i < type.size(); i++){
-            String indivType = type.get(i);
-            result += "world.type LIKE '%" + indivType +"%'";
+            result += "world.type LIKE '%" + type.get(i) +"%'";
             if(i != type.size() - 1)
                 result += " OR ";
 
