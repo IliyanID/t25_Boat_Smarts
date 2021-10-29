@@ -22,14 +22,14 @@ public class SQLDistinctTypes {
         defaultExcludeOther.add("balloonport");
         defaultExcludeOther.add("heliport");
 
-        for(int i = 0; i < type.size(); i++){
-            int index = defaultExcludeOther.indexOf(type.get(i));
+        for(String individualType : type){
+            int index = defaultExcludeOther.indexOf(individualType);
             if(index >= 0)
                 defaultExcludeOther.remove(index);
         }
     
-        for(int i = 0; i < defaultExcludeOther.size();i++)
-            result += "AND !(world.type LIKE '%" + defaultExcludeOther.get(i) + "%') ";
+        for(String excludeType : defaultExcludeOther)
+            result += "AND !(world.type LIKE '%" + excludeType + "%') ";
         
         return result;
     }
@@ -39,8 +39,8 @@ public class SQLDistinctTypes {
             result += "world.type LIKE '%" + type.get(i) +"%'";
             if(i != type.size() - 1)
                 result += " OR ";
-
         }
+        
         return result += ")";
     }
 }
