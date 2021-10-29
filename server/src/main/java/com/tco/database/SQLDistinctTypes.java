@@ -48,8 +48,6 @@ public class SQLDistinctTypes {
         String result = "AND ( ";
         for(int i = 0; i < type.size(); i++){
             String indivType = type.get(i);
-            if(indivType.equals("other"))
-                continue;
             result += "world.type LIKE '%" + indivType +"%'";
             if(i != type.size() - 1)
                 result += " OR ";
