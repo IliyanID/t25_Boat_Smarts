@@ -2,7 +2,7 @@ package com.tco.database;
 import java.util.*;
 
 public class SQLDistinctTypes {
-    static String matchType(ArrayList<String> type){
+    public static String matchType(ArrayList<String> type){
         if(type == null)
             return "";
         if(type.size() == 0)
@@ -40,7 +40,7 @@ public class SQLDistinctTypes {
             if(i != type.size() - 1)
                 result += " OR ";
         }
-        
+
         return result += ")";
     }
 }
