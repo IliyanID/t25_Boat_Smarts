@@ -15,6 +15,8 @@ const TripName = (props) =>{
         let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
         //If the parent of the clicked item isn't the inputRef div
         if(userDidntPressCheckMark && userDidntPressSaveButton){
+            let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
+            props.showMessage(message,"info");
             handleSubmit(); 
         }
     }
