@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useToggle } from '../../../hooks/useToggle';
 import { Button, Tooltip } from 'reactstrap';
 import { AiFillInfoCircle } from 'react-icons/ai';
