@@ -63,15 +63,11 @@ export default function Planner(props) {
                 requestType:'tour',
                 places:convertedPlace,
                 earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles,
-                response: 1,
-                places:places
+                response: 1
             },currentURL).then((response)=>{
                     if(response){
                         let convertedPlaces = response.places.map(place => convertPlace(place))
                         setPlaces(convertedPlaces);
-                    }
-                    else{
-                        setPlaces([])
                     }
                 })
         }

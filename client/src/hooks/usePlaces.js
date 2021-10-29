@@ -7,6 +7,8 @@ import { arrayMove } from 'react-movable'
 export function usePlaces() {
     const [previousPlaces, setPreviousPlaces] = useState([]);
     const [places, setPlaces] = useState([]);
+
+
     const [selectedIndex, setSelectedIndex] = useState(-1);
 
     const context = { places, setPlaces, selectedIndex, setSelectedIndex, previousPlaces, setPreviousPlaces };
