@@ -7,10 +7,12 @@ import Planner from './Trip/Planner';
 import { useToggle } from '../hooks/useToggle';
 import { LOG } from '../utils/constants';
 import { getOriginalServerUrl, sendAPIRequest } from '../utils/restfulAPI';
+import OptizedTrip from './Trip/OptimizedTrip/OptimizedTrip';
 
 
 export default function Page(props) {
 	const [showAbout, toggleAbout] = useToggle(false);
+	const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
 	const [serverSettings, processServerConfigSuccess] = useServerSettings(props.showMessage);
 
 	return (
@@ -21,7 +23,8 @@ export default function Page(props) {
 					<About closePage={toggleAbout} />
 				</Collapse>
 				<Collapse isOpen={!showAbout} data-testid="planner-collapse">
-					<Planner showMessage={props.showMessage} serverSettings={serverSettings}/>
+					<OptizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus}/>
+					<Planner showMessage={props.showMessage} serverSettings={serverSettings} previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus}/>
 				</Collapse>
 			</div>
 			<Footer

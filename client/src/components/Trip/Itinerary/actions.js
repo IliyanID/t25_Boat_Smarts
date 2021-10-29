@@ -38,7 +38,7 @@ export function ItineraryActionsDropdown(props) {
     <DropdownItem onClick={()=>{reset(setToolTip,defaultArr);props.toggleFileDownloadOpen()}} id={`index-2`} data-testid='save-file-button'>
         <FaFileDownload/>
     </DropdownItem>,
-    <DropdownItem onClick={() => {reset(setToolTip,defaultArr);}} id={`index-3`} data-testid='shorter-trip-button'>
+    <DropdownItem onClick={() => {reset(setToolTip,defaultArr);props.togglePreviewTripFocus();}} id={`index-3`} data-testid='shorter-trip-button'>
         <FaRoute />
     </DropdownItem>,
     <DropdownItem id={`index-4`} data-testid='reverse-trip-buttom' onClick={() => {reset(setToolTip,defaultArr);props.placeActions.reverse()}}>
