@@ -21,7 +21,7 @@ export default function Page(props) {
 					<About closePage={toggleAbout} />
 				</Collapse>
 				<Collapse isOpen={!showAbout} data-testid="planner-collapse">
-					<Planner  showMessage={props.showMessage} serverSettings={serverSettings}/>
+					<Planner showMessage={props.showMessage} serverSettings={serverSettings} {...props}/>
 				</Collapse>
 			</div>
 			<Footer

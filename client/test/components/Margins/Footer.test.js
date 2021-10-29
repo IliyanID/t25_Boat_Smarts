@@ -22,6 +22,7 @@ describe('Footer', () => {
         render(<Footer
             serverSettings={serverSettings}
             processServerConfigSuccess={processServerConfigSuccess}
+            showMessage={()=>{}}
         />);
 
         serverSettingsLink = screen.getByText(`(${serverSettings.serverUrl}).`);
