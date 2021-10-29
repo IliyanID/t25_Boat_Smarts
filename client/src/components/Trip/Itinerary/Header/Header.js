@@ -9,7 +9,7 @@ const Header = (props) => {
             <tr>
                 <th/>
                 <th>
-                    <TripName key={props.tripName} {...props}/>
+                    <TripName key={props.tripName} showMessage={props.showMessage} {...props}/>
                     <dd style={{float:"right"}}>
                         {(props.totalDistance > 0)&&<>Round Trip : {props.totalDistance} {(props.totalDistance == 1)?"mile":"miles"} </>}
                     </dd>
