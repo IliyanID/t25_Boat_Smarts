@@ -26,7 +26,6 @@ export default function Planner(props) {
 	const [origionalPlaces,setOrigionalPlaces] = useState(...[places])
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
 
-
     const getServerURL = () =>{
         let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
         let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
@@ -79,7 +78,7 @@ export default function Planner(props) {
                 <OptimizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} setPlaces={setPlaces} origionalPlaces={origionalPlaces}/>
             </Section>
             <Section>
-                <Map locationPreview={locationPreview} centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
+                <Map previewTripFocus={previewTripFocus} locationPreview={locationPreview} centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
             <br />
             <Section>
