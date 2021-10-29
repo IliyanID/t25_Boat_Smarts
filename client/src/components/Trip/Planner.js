@@ -34,8 +34,6 @@ export default function Planner(props) {
         places.map((place) => {convertedPlaces.push(latLngToPlace(place))});
         return {currentURL,convertedPlaces}
     }
-    
-    console.log(places.length + ' : ' + previousPlaces.length)
 
     useEffect(()=>{
         const {currentURL,convertedPlaces} = prepForAPIRequest()
