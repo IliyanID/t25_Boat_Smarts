@@ -45,7 +45,7 @@ const TripName = (props) =>{
     }
 
     const printMessage = () =>{
-        let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
+        let message = "Trip Name has been changed from \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
         props.showMessage(message,"info");
     }
 
