@@ -15,7 +15,7 @@ import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 
 
 export default function Planner(props) {
-    const {previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
+    const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
     const [centerView,setCenterView] = useState(false);
     const [locationPreview, setLocationPreview] = useState();
@@ -26,21 +26,22 @@ export default function Planner(props) {
 	const [origionalPlaces,setOrigionalPlaces] = useState(...[places])
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
 
-    const getServerURL = () =>{
+  
+    const prepForAPIRequest = () =>{
         let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
         let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
-        return currentURL;
+        let convertedPlaces = [];
+        places.map((place) => {convertedPlaces.push(latLngToPlace(place))});
+        return {currentURL,convertedPlaces}
     }
+    
+    console.log(places.length + ' : ' + previousPlaces.length)
 
     useEffect(()=>{
-        let currentURL = getServerURL();
-        
-        let convertedPlace = [];
-        places.map((place) => {convertedPlace.push(latLngToPlace(place))});
-
+        const {currentURL,convertedPlaces} = prepForAPIRequest()
         sendAPIRequest({
             requestType:'distances',
-            places:convertedPlace,
+            places:convertedPlaces,
             earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles
         },currentURL).then((response)=>{
                 if(response)
@@ -52,30 +53,32 @@ export default function Planner(props) {
     },[places]);
 
     useEffect(()=>{
-        setOrigionalPlaces([...places])
-        let currentURL = getServerURL();
+        const {currentURL,convertedPlaces} = prepForAPIRequest()
         if(previewTripFocus){
-            let convertedPlace = [];
-            places.map((place) => {convertedPlace.push(latLngToPlace(place))});
-            
+            setOrigionalPlaces([...places])            
             sendAPIRequest({
                 requestType:'tour',
-                places:convertedPlace,
+                places:convertedPlaces,
                 earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles,
                 response: 1
             },currentURL).then((response)=>{
                     if(response){
                         let convertedPlaces = response.places.map(place => convertPlace(place))
-                        setPlaces(convertedPlaces);
+                        setAllPlaces(convertedPlaces);
                     }
                 })
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              })
         }
     },[previewTripFocus])
 
     return (
         <Container>
             <Section>
-                <OptimizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} setPlaces={setPlaces} origionalPlaces={origionalPlaces}/>
+                <OptimizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} setPlaces={setAllPlaces} origionalPlaces={origionalPlaces}/>
             </Section>
             <Section>
                 <Map previewTripFocus={previewTripFocus} locationPreview={locationPreview} centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />

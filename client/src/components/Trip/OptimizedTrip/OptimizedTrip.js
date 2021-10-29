@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { useToggle } from '../../../hooks/useToggle';
 import { Button, Tooltip } from 'reactstrap';
 import { AiFillInfoCircle } from 'react-icons/ai';
@@ -16,14 +16,9 @@ const OptimizedTrip = (props) =>{
 
     let [toolTip,toggleToolTip] = useToggle(false)
 
-    let titleRef = useRef()
-    if(props.previewTripFocus)
-        titleRef.current.scrollIntoView({behavior:'smooth',block:'center'})
-
     return  <>
-				<div ref={titleRef} className={(props.previewTripFocus)?'focus':'notFocus'}/>
-
-                {(props.previewTripFocus)&&
+                {(props.previewTripFocus)&&<>
+                <div className='focus'/>
                 <div className='OptimizationOption'>
                         <div className='OptimizedHeader'>
                             <h3>Planner is in Preview Mode</h3>
@@ -32,7 +27,7 @@ const OptimizedTrip = (props) =>{
                         </div>
                         <Button color="primary" onClick={hanleConfirm}>Confirm Optimized Trip</Button>
                         <Button color="secondary" onClick={handleReject}>Revert to Origional Trip</Button>
-                </div>}
+                </div></>}
             </>
 }
 
