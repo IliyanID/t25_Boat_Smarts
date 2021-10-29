@@ -20,7 +20,7 @@ const TripName = (props) =>{
     }
     useEffect(() => {
         document.addEventListener('click', handleFocusOut)
-    })
+    },[])
 
     const setFocus = () =>{
         setInFocus(true)
@@ -32,17 +32,11 @@ const TripName = (props) =>{
     }
     const handleSubmit = () =>{
         setInFocus(false)
-        if(props.tripName !== tempName){
-            props.setTripName(tempName)
-        }
-    }
-    
-    const submitWithMessage = () =>{
-        if(props.tripName !== tempName){
-            let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + tempName + "\'.";
+        if(props.tripName !== inputRef.current.value){
+            props.setTripName(inputRef.current.value)
+            let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
             props.showMessage(message,"info");
         }
-        handleSubmit();
     }
 
     let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
@@ -55,7 +49,7 @@ const TripName = (props) =>{
     }
     else{
         buttonLayout = (<>
-            <img data-testid="submitName" id="submit" style={iconStyle} onClick={submitWithMessage} src={CheckMark} />
+            <img data-testid="submitName" id="submit" style={iconStyle} onClick={handleSubmit} src={CheckMark} />
             <img data-testid="cancelName" id="cancel" style={iconStyle} onClick={handleCancel} src={Cancel} />
         </>)
     }
