@@ -74,6 +74,7 @@ This allows the user to search within a specific country.
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
 | *10/27* | *#282, #292, #256, #234, #270, #269* | *#175, #254,255* |  | 
+| *10/29* | *#261, #260, #175, #251, #252, #262, #141* | *#278, #277, #283, #254, #255, #275* | Modify Trip|
 
 
 ## Review
