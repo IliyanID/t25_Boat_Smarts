@@ -31,19 +31,19 @@ export function ItineraryActionsDropdown(props) {
             data-testid='home-button'>
         <FaHome />
     </DropdownItem>,
-    <DropdownItem id={`index-1`} onClick={()=>{;props.toggleFileUploadOpen()}} data-testid='load-file-button'>
+    <DropdownItem onClick={props.toggleFileUploadOpen} id={`index-1`} data-testid='load-file-button'>
         <FaFileUpload/>
     </DropdownItem>,
-    <DropdownItem onClick={()=>{;props.toggleFileDownloadOpen()}} id={`index-2`} data-testid='save-file-button'>
+    <DropdownItem onClick={props.toggleFileDownloadOpen} id={`index-2`} data-testid='save-file-button'>
         <FaFileDownload/>
     </DropdownItem>,
-    <DropdownItem onClick={() => {;props.togglePreviewTripFocus();}} id={`index-3`} data-testid='shorter-trip-button'>
+    <DropdownItem onClick={props.togglePreviewTripFocus} id={`index-3`} data-testid='shorter-trip-button'>
         <FaRoute />
     </DropdownItem>,
-    <DropdownItem id={`index-4`} data-testid='reverse-trip-buttom' onClick={() => {;props.placeActions.reverse()}}>
+    <DropdownItem onClick={props.placeActions.reverse} id={`index-4`} data-testid='reverse-trip-buttom'>
         <AiOutlineRedo/>
     </DropdownItem>,
-    <DropdownItem onClick={() => {;props.placeActions.removeAll()}} id={`index-5`} data-testid='delete-all-button'>
+    <DropdownItem onClick={props.placeActions.removeAll} id={`index-5`} data-testid='delete-all-button'>
         <FaTrashAlt />
     </DropdownItem>
     ]
@@ -74,13 +74,13 @@ export function PlaceActionsDropdown(props) {
     //Make sure to add description of new button inside of descriptions
     // also set the id of the bbuton in the format id = {`index-{index of button in Items}-${props.index}`}
     let Items = [
-        <DropdownItem onClick={() => {;props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`index-0-${props.index}`} data-testid={`home-button-${props.index}`}>
+        <DropdownItem onClick={() => {props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`index-0-${props.index}`} data-testid={`home-button-${props.index}`}>
             <FaHome />
         </DropdownItem>,
-        <DropdownItem onClick={() => {;props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${props.index}`}>
+        <DropdownItem onClick={() => {props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${props.index}`}>
             <FaTrash />
         </DropdownItem>,
-        <DropdownItem onClick={() => {;props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`index-2-${props.index}`} data-testid={`center-button-${props.index}`}>
+        <DropdownItem onClick={() => {props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`index-2-${props.index}`} data-testid={`center-button-${props.index}`}>
             <FaSearchLocation />
         </DropdownItem>
     ]
