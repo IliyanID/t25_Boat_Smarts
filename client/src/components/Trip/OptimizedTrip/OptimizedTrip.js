@@ -23,7 +23,7 @@ const OptimizedTrip = (props) =>{
                         <div className='OptimizedHeader'>
                             <h3>Planner is in Preview Mode</h3>
                             <AiFillInfoCircle id='previewMode'/>
-                            <Tooltip placement="right" isOpen={toolTip} toggle={toggleToolTip} target='previewMode'>All site features except for the map are temporarly disabled until the user confirms or denies the optimized trip.</Tooltip>
+                            <Tooltip placement="right" isOpen={toolTip} toggle={toggleToolTip} target='previewMode'>All site features, except for the map, are temporarily disabled until the user confirms or denies the optimized trip.</Tooltip>
                         </div>
                         <Button color="primary" onClick={hanleConfirm}>Confirm Optimized Trip</Button>
                         <Button color="secondary" onClick={handleReject}>Revert to Origional Trip</Button>
