@@ -31,7 +31,14 @@ export default function Planner(props) {
         let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
         let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
         let convertedPlaces = [];
-        places.map((place) => {convertedPlaces.push(latLngToPlace(place))});
+        
+        let convertPlacesFunc = (place) =>{
+            let temp = latLngToPlace(place);
+            temp['name'] = place.name;
+            convertedPlaces.push(temp);
+         }
+        places.map(convertPlacesFunc);
+
         return {currentURL,convertedPlaces}
     }
 
