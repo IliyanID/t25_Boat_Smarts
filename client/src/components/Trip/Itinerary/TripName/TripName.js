@@ -36,8 +36,7 @@ const TripName = (props) =>{
         setTempName(props.tripName)
     }
     const handleSubmit = () =>{
-        if(inFocus !== false)
-            setInFocus(false)
+        setInFocus(false)
         if(props.tripName !== inputRef.current.value){
             props.setTripName(inputRef.current.value)
             printMessage();
