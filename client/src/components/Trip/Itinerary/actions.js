@@ -12,10 +12,6 @@ const toggle = (index,toolTip,setToolTip) =>{
     setToolTip(temp)
 }
 
-const reset = (setToolTip,defaultArr) =>{
-    setToolTip(defaultArr)
-}
-
 export function ItineraryActionsDropdown(props) {
     let descriptions = ["Add starting Location","Load Trip From File","Save Trip To File","Optimize Trip","Reverse Trip","Delete all Trips"]
     let defaultArr = new Array(descriptions.length).fill(false)
@@ -54,7 +50,7 @@ export function ItineraryActionsDropdown(props) {
                     Items.map((item,index)=>{
                         return(
                         <div key={`index-${index}`}>
-                            <div onClick={()=>reset(setToolTip,defaultArr)}>{item}</div>
+                            <div onClick={()=>setToolTip(defaultArr)}>{item}</div>
                             <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}`}  toggle={()=>toggle(index,toolTip,setToolTip)}>
                                 {descriptions[index]}
                             </Tooltip>
@@ -94,7 +90,7 @@ export function PlaceActionsDropdown(props) {
 
                 return(
                 <div key={`index-${index}-${props.index}`}>
-                    <div onClick={()=>reset(setToolTip,defaultArr)}>
+                    <div onClick={()=>setToolTip(defaultArr)}>
                         {item}
                     </div>
                     <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}-${props.index}`}  toggle={()=>toggle(index,toolTip,setToolTip)}>
