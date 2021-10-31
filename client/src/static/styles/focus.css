@@ -48,15 +48,14 @@
     text-align: center;
     position:relative;
     z-index:4;
-    height: 0px;
-    animation: previewMode 1s forwards; 
+    animation: previewMode 1.5s forwards; 
 
 }
 .OptimizationOptionHide{
     text-align: center;
     position:relative;
     z-index:4;
-    animation: previewModeHide 1s forwards; 
+    animation: previewModeHide 1.5s forwards; 
 
 }
 .OptimizationOptionDefault{
@@ -65,18 +64,18 @@
 }
     @keyframes previewMode {
         from {
-            height: 0px;
+            max-height: 0px;
         }
         to{
-            height: 100px;
+            max-height: 200px;
         }
     }
     @keyframes previewModeHide {
         from {
-            height: 100px;
+            max-height: 200px;
         }
         to{
-            height: 0px;
+            max-height: 0px;
         }
     }
     .OptimizationOptionHide >*{
