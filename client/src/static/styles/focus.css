@@ -55,7 +55,7 @@
     text-align: center;
     position:relative;
     z-index:4;
-    animation: previewModeHide 1s forwards; 
+    animation: previewModeHide .5s forwards; 
 
 }
 .OptimizationOptionDefault{
