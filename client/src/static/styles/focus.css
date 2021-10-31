@@ -6,22 +6,87 @@
     position:fixed;
     z-index:2;
     background: rgb(2,0,36);
-    background: radial-gradient(circle, rgba(2,0,36,0) 50%, rgb(47, 47, 48) 100%);
+    background: radial-gradient(circle, rgba(2,0,36,0) 50%, rgba(47, 47, 48,1) 100%);
     overflow:none;
-
+    animation: radialBack 1s;
 }
+    @keyframes radialBack { 
+        from{opacity: 0}
+        to{opacity: 1.0}
+    }
+    .notInFocus{
+        width:100vw;
+        height:100vh;
+        top:0px;
+        left:0px;
+        position:fixed;
+ 
+        background: rgb(2,0,36);
+        background: radial-gradient(circle, rgba(2,0,36,0) 50%, rgba(47, 47, 48,1) 100%);
+        overflow:none;
+        opacity:1.0;
+        animation: radialOut 1s forwards;
+    }
+        @keyframes radialOut{
+            from{
+                opacity:1.0;
+            }
+            99%{
+                width:100vw;
+                height:100vh;
+            }
+            100%{
+                width: 0px;
+                height: 0px;
+            }
+            to{
+                opacity:0;
+            }
+        }
 
 .OptimizationOption{
     text-align: center;
     position:relative;
     z-index:4;
-    
+    height: 0px;
+    animation: previewMode 1s forwards; 
+
 }
+.OptimizationOptionHide{
+    text-align: center;
+    position:relative;
+    z-index:4;
+    animation: previewModeHide 1s forwards; 
+
+}
+.OptimizationOptionDefault{
+    height: 0px;
+
+}
+    @keyframes previewMode {
+        from {
+            height: 0px;
+        }
+        to{
+            height: 100px;
+        }
+    }
+    @keyframes previewModeHide {
+        from {
+            height: 100px;
+        }
+        to{
+            height: 0px;
+        }
+    }
+    .OptimizationOptionHide >*{
+        margin:5px;
+    }
     .OptimizationOption > *{
-        margin:5px;    
+        margin:5px;   
     }
         .OptimizedHeader > h3{
-            color:rgb(56, 56, 56);    
+            color:rgb(56, 56, 56);   
         }
         .OptimizedHeader >*{
             display:inline-block;
