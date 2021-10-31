@@ -3,12 +3,12 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from '@jest/globals';
-import { MOCK_PLACES } from "../../sharedMocks";
+import { MOCK_PLACES, MOCK_DISTANCES } from "../../sharedMocks";
 import Itinerary from '../../../src/components/Trip/Itinerary/Itinerary.js';
 
 describe('Itinerary', () => {
     beforeEach(() => {
-        render(<Itinerary places={MOCK_PLACES} placeActions={{append: jest.fn()}} />);
+        render(<Itinerary distances={MOCK_DISTANCES} places={MOCK_PLACES} placeActions={{append: jest.fn()}} />);
     });
 
     it('renders a cell with given place expected', () => {
