@@ -21,8 +21,8 @@ const OptimizedTrip = (props) =>{
 
     useEffect(()=>{
         if(firstMount.current)
-            return
-        if(props.previewTripFocus){
+            firstMount.current = false;
+        else if(props.previewTripFocus){
             blockerRef.current.classList = 'focus';
             buttonsRef.current.classList = 'OptimizationOption'
         }
@@ -31,10 +31,6 @@ const OptimizedTrip = (props) =>{
             buttonsRef.current.classList = 'OptimizationOptionHide'
         }
     },[props.previewTripFocus])
-
-    useEffect(()=>{
-        firstMount.current = false;
-    },[])
 
     return  <>
                 <div ref={blockerRef} data-testid='blocker'/>
