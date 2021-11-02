@@ -31,3 +31,4 @@
   },
   "required": ["requestType", "match", "limit"],
   "additionalProperties": false
+}
