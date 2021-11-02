@@ -36,8 +36,7 @@ const TripName = (props) =>{
         setTempName(props.tripName)
     }
     const handleSubmit = () =>{
-        if(inFocus !== false)
-            setInFocus(false)
+        setInFocus(false)
         if(props.tripName !== inputRef.current.value){
             props.setTripName(inputRef.current.value)
             printMessage();
@@ -45,7 +44,7 @@ const TripName = (props) =>{
     }
 
     const printMessage = () =>{
-        let message = "Trip Name has been changed form \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
+        let message = "Trip Name has been changed from \'" + props.tripName + "\' to \'" + inputRef.current.value + "\'.";
         props.showMessage(message,"info");
     }
 

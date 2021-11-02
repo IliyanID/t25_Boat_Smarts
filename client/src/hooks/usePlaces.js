@@ -7,6 +7,11 @@ import { arrayMove } from 'react-movable'
 export function usePlaces() {
     const [previousPlaces, setPreviousPlaces] = useState([]);
     const [places, setPlaces] = useState([]);
+    const setAllPlaces =(newPlaces) =>{
+        setPreviousPlaces([...newPlaces])
+        setPlaces([...newPlaces])
+    }
+
     const [selectedIndex, setSelectedIndex] = useState(-1);
 
     const context = { places, setPlaces, selectedIndex, setSelectedIndex, previousPlaces, setPreviousPlaces };
@@ -20,7 +25,7 @@ export function usePlaces() {
         reverse: () => reverse(context)
     };
 
-    return {previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions};
+    return { setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions };
 }
 
 async function append(place, context) {

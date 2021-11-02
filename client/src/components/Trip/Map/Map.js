@@ -39,7 +39,8 @@ export default function Map(props) {
     },[props.places])
 
     function handleMapClick(mapClickInfo) {
-        props.placeActions.append(latLngToPlace(mapClickInfo.latlng));
+        if(!props.previewTripFocus)
+            props.placeActions.append(latLngToPlace(mapClickInfo.latlng));
     }
 
     return (

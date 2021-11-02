@@ -3,17 +3,19 @@ import { Col, Container, Row } from 'reactstrap';
 import { sendAPIRequest, getOriginalServerUrl } from "../../utils/restfulAPI"
 import { EARTH_RADIUS_UNITS_DEFAULT } from "../../utils/constants"
 import { latLngToPlace } from "../../utils/transformers"
+import { useToggle } from '../../hooks/useToggle';
 import Map from './Map/Map';
 import Search from './Search/Search';
 import Results from './Results/Results';
 import Itinerary from './Itinerary/Itinerary';
 import FileUploadModal from './Itinerary/Modals/FileUploadModal';
-import { usePlaces } from '../../hooks/usePlaces';
-import { useToggle } from '../../hooks/useToggle.js';
+import { usePlaces } from '../../hooks/usePlaces';;
+import { convertPlace } from './Itinerary/Modals/FileUploadModal'
+import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 
 
 export default function Planner(props) {
-    const {previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
+    const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
     const [searchResults, setSearchResults] = useState({});
     const [centerView,setCenterView] = useState(false);
     const [locationPreview, setLocationPreview] = useState();
@@ -21,17 +23,30 @@ export default function Planner(props) {
     const [distances, setDistances] = useState({distances: []});
     const [filePlaces, setFilePlaces] = useState([]);
     const [tripName, setTripName] = useState("My Trip")
+	const [origionalPlaces,setOrigionalPlaces] = useState(...[places])
+    const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
+
+  
+    const prepForAPIRequest = () =>{
+        let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
+        let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
+        let convertedPlaces = [];
+        
+        let convertPlacesFunc = (place) =>{
+            let temp = latLngToPlace(place);
+            temp['name'] = place.name;
+            convertedPlaces.push(temp);
+         }
+        places.map(convertPlacesFunc);
+
+        return {currentURL,convertedPlaces}
+    }
 
     useEffect(()=>{
-        let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
-        let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
-        
-        let convertedPlace = [];
-        places.map((place) => {convertedPlace.push(latLngToPlace(place))});
-
+        const {currentURL,convertedPlaces} = prepForAPIRequest()
         sendAPIRequest({
             requestType:'distances',
-            places:convertedPlace,
+            places:convertedPlaces,
             earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles
         },currentURL).then((response)=>{
                 if(response)
@@ -42,10 +57,36 @@ export default function Planner(props) {
         }
     },[places]);
 
+    useEffect(()=>{
+        const {currentURL,convertedPlaces} = prepForAPIRequest()
+        if(previewTripFocus){
+            setOrigionalPlaces([...places])            
+            sendAPIRequest({
+                requestType:'tour',
+                places:convertedPlaces,
+                earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles,
+                response: 1
+            },currentURL).then((response)=>{
+                    if(response){
+                        let convertedPlaces = response.places.map(place => convertPlace(place))
+                        setAllPlaces(convertedPlaces);
+                    }
+                })
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              })
+        }
+    },[previewTripFocus])
+
     return (
         <Container>
             <Section>
-                <Map locationPreview={locationPreview} centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
+                <OptimizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} setPlaces={setAllPlaces} origionalPlaces={origionalPlaces}/>
+            </Section>
+            <Section>
+                <Map previewTripFocus={previewTripFocus} locationPreview={locationPreview} centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
             </Section>
             <br />
             <Section>
@@ -54,7 +95,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Itinerary tripName={tripName} setTripName={setTripName} distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} showMessage={props.showMessage} />
+                <Itinerary togglePreviewTripFocus={togglePreviewTripFocus} tripName={tripName} setTripName={setTripName} distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} {...props}/>
             </Section>
             <FileUploadModal setTripName={setTripName} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} places={places} setPlaces={setPlaces} setSelectedIndex={setSelectedIndex} placeActions={placeActions} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...props}/>
         </Container>
