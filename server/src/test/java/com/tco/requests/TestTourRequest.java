@@ -17,6 +17,9 @@ public class TestTourRequest {
     @BeforeEach
     public void createConfigurationForTestCases() {
         conf = new TourRequest();
+        SQLDatabase.Places places = new SQLDatabase.Places();
+        conf.setPlaces(places);
+        conf.setEarthRadius(0);
         conf.buildResponse();
     }
 
