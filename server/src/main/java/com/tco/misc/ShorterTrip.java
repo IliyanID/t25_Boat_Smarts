@@ -31,13 +31,10 @@ public class ShorterTrip {
             for (int j = 0; j < this.distances[i].length; j++) {
                 this.distances[i][j] = DistanceCalculator.singleDistance(places.get(i), places.get(j), earthRadius);
                 if(this.distances[i][j] == 0){
-                    this.distances[i][j] = 99999999;
+                    this.distances[i][j] = Integer.MAX_VALUE;
                 }
-                //System.out.print(this.distances[i][j] + " ");
             }
-            //System.out.println();
         }
-        //System.out.println();
     }
 
     public SQLDatabase.Places oneOpt() {
@@ -46,14 +43,10 @@ public class ShorterTrip {
 
 
         for (int i = 0; i < this.distances.length; i++) {
-
-            //System.out.println("\n\nStarting Location: " + i);
-
             int[] testShortTrip = new int[this.shorterTrip.length];
             this.visited = new boolean[this.shorterTrip.length];
             double newMinDistance = 0;
-            
-            //this.visited[i] = true;
+        
 
             int currentPlace = i;
             testShortTrip[0] = currentPlace;
@@ -66,7 +59,6 @@ public class ShorterTrip {
                 }
                 
             }
-            //System.out.println("Temp Running Total:" + newMinDistance);
             if(newMinDistance < minDistance){
                 minDistance = newMinDistance;
                 this.shorterTrip = testShortTrip;
@@ -77,9 +69,7 @@ public class ShorterTrip {
         }
 
         SQLDatabase.Places result = new SQLDatabase.Places();
-        //System.out.println("result:");
         for(int index : this.shorterTrip){
-            //System.out.println(index);
             result.add(this.places.get(index));
         }
         return result;
@@ -93,13 +83,11 @@ public class ShorterTrip {
 
 
         for (int i = 0; i < this.distances[currPlace].length; i++) {
-            //System.out.println(this.distances[currPlace][i] + " < " + shortestDistance + " | Visited: " + this.visited[i] );
             if (this.distances[currPlace][i] < shortestDistance && !this.visited[i]) {
                 shortestDistance = this.distances[currPlace][i];
                 closestPlace = i;
             }
         }
-        //System.out.println("closest to" + currPlace + " is " + closestPlace + "\n");
         return closestPlace;
     }
 
