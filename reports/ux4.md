@@ -64,6 +64,7 @@ Age, nationality, and other background information can sometimes be helpful unde
 | Pseudonym | Demographics |
 | :--- | :--- |
 | Throck the Traveller | Age: 19, Nationality: American, Major: CS, Gender: male |
+| Gerald | Age: 19, Nationality: American, Major: CS, Gender: male |
 
 
 ### Observations
@@ -79,3 +80,5 @@ Add issues to GitHub for any changes necessary to the system.
 | Highlight Place | highlight place somewhat hard to find |  | | 
 | Searching / random | Should have something so the user know they can click each result for more info |  | | 
 | Upload a CSV | CSV that had just been downloaded didn't validate, investigate further |  | | 
+| Trip Options | Hard to find trip options. Changing 3 dots to button would help |  | | 
+| Distances | Making distances between places more clear would help |  | | 
