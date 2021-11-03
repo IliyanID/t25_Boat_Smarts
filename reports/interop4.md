@@ -13,6 +13,7 @@ This table lists each student in the team, the team they verified interoperabili
 | ---- | ---- | ---- |
 | Iliyan | 11 | 20 minutes | 
 | Andrew | 18 | 20 minutes | 
+| Derek  | 08 | 20 minutes |
 
 
 ### Client Problems found
@@ -23,6 +24,7 @@ We found these problems when connecting our client to another team's server.
 | :--- |  :--- | --- |
 | 11 | None Found |  |
 | 18 | None Found |  |
+| 08 | api/distances and api/tour return 404 |  |
 
 
 ### Server Problems found
@@ -33,3 +35,4 @@ We found these problems when connecting the other team's client to our server.
 | :--- |  :--- | --- |
 | 11 | None Found |  |
 | 18 | None Found |  |
+| 08 | None Found |  |
