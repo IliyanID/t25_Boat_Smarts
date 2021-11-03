@@ -6,7 +6,7 @@ import {
     Button,
     Image
 } from 'reactstrap';
-import { FaFilter }from 'react-icons/fa'
+import { FaFilter,FaSearch }from 'react-icons/fa'
 import {sendAPIRequest} from "../../../../utils/restfulAPI";
 
 export default function DefaultSearch(props) {
@@ -34,7 +34,7 @@ export default function DefaultSearch(props) {
             <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
                 <Button role="filter"><FaFilter/></Button>
-                <Button role="search" onClick={handleClick}>Search</Button>
+                <Button role="search" onClick={handleClick}><FaSearch/></Button>
             </InputGroupAddon>
         </InputGroup>
     )
