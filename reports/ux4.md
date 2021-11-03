@@ -65,6 +65,7 @@ Age, nationality, and other background information can sometimes be helpful unde
 | :--- | :--- |
 | Throck the Traveller | Age: 19, Nationality: American, Major: CS, Gender: male |
 | Gerald | Age: 19, Nationality: American, Major: CS, Gender: male |
+| Tyler | Age: 19, Nationality: American, Major: CS, Gender: male |
 
 
 ### Observations
@@ -82,3 +83,9 @@ Add issues to GitHub for any changes necessary to the system.
 | Upload a CSV | CSV that had just been downloaded didn't validate, investigate further |  | | 
 | Trip Options | Hard to find trip options. Changing 3 dots to button would help |  | | 
 | Distances | Making distances between places more clear would help |  | | 
+| Highlight Function |Suggested that that we update the highlight button. Have the map centered when you click highlight so no scrolling |  | | 
+| Random Places | The total number didnt make sense to the user |  | | 
+| Naming Trip | if the user types "name.json" then the save will be named "name.json.json" |  | | 
+| Trip | Define a start and finish on the map |  | | 
+| Search by coords | Delimeters should be knwon for the user |  | | 
+| Search for trip | Said that he can use infinite amount of characters |  | | 
