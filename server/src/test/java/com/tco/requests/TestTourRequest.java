@@ -17,10 +17,10 @@ public class TestTourRequest {
     @BeforeEach
     public void createConfigurationForTestCases() {
         conf = new TourRequest();
-        SQLDatabase.Places places = new SQLDatabase.Places();
-        conf.setPlaces(places);
-        conf.setEarthRadius(0);
-        conf.buildResponse();
+        //SQLDatabase.Places places = new SQLDatabase.Places();
+        //conf.setPlaces(places);
+        //conf.setEarthRadius(0);
+        //conf.buildResponse();
     }
 
     @Test
@@ -33,14 +33,27 @@ public class TestTourRequest {
     @Test
     @DisplayName("sets places")
     public void testSetPlaces() {
+        conf = new TourRequest();
         SQLDatabase.Places places = new SQLDatabase.Places();
+        
         SQLDatabase.Place place1 = new SQLDatabase.Place();
-        place1.put("test", "testing");
+        place1.put("name","place1");
+        place1.put("latitude","0");
+        place1.put("longitude","0");
+ 
         SQLDatabase.Place place2 = new SQLDatabase.Place();
-        place2.put("test2", "testing2");
+        place2.put("name","place1");
+        place2.put("latitude","50");
+        place2.put("longitude","50");
+        
         places.add(place1);
         places.add(place2);
+
         conf.setPlaces(places);
+        conf.setEarthRadius(1000);
+        conf.setResponse(1);
+        conf.buildResponse();
+
         assertEquals(places, conf.getPlaces());
     }
 

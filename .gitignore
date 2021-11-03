@@ -38,7 +38,9 @@ client/dist/
 */package-lock.json
 **/node_modules/husky/
 **/node_modules/
+**/coverage/
 package-lock.json
+T25WorkSpace.code-workspace
 
 # Generated Java Files
 

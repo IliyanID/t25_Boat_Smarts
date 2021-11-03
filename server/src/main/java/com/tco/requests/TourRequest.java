@@ -13,9 +13,9 @@ import com.google.gson.Gson;
 
 public class TourRequest extends Request {
 
-    private SQLDatabase.Places places;
-    private double earthRadius;
-    private double response;
+    private SQLDatabase.Places places = new SQLDatabase.Places();
+    private double earthRadius = 0;
+    private double response = 0;
     private final transient Logger log = LoggerFactory.getLogger(DistancesRequest.class);
 
     @Override
