@@ -34,3 +34,4 @@ We add a GitHub issue for each defect that requires a modification to the system
 | TableRow.js:15 | If two places have the same name like 'Unknown" index is same | low | Iliyan |  |
 | TripName.js:20-21 | Unrecheable Code | low | Iliyan |  |
 | FileUploadModal.js:21 | Unwanted showMessage appears on succesful file upload | med | Iliyan |  |
+| ShorterTrip.java:95 | If distance between places is 0 it returns repeats of same place | high | Iliyan |  |
