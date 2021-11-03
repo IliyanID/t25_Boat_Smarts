@@ -8,7 +8,7 @@
 | McCracken |    Derek   |dsmcc      |dsmccracken      |dsmcc@colostate.edu|
 |Cluett     |Caleb       |ccuett     |CalebCluett      |ccluett@colostate.edu|
 |Dimitrov   |Iliyan      |iliyan     |IliyanID         |iliyan@colostate.edu|
-|    Flight |    Matthew |   mstrikr |  matthewflight1 |mstrikr@rams.colostate.edu|
+| Ritz      |    Jake    |jritz11    |jake-ritz11      |jritz11@colostate.edu|
 
 # Team Preferences
 Boat Smarts will be working together to complete as many Epics as we can, and we will be making sure that each feature is fully functional before demo day. We will be trying our best to plan ahead to ensure everyone knows what to do and Epics will be completed on time. Each team member will try to get at least 6 hours of work done each week completing tasks on a first come first serve basis unless someone has a specific interest in a task. Major decisions will be made by more than two members, and smaller ones can be made by two.
