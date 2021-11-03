@@ -56,6 +56,7 @@ public class ShorterTrip {
                     this.visited[nextClosestPlace] = true;
                     testShortTrip[j] = nextClosestPlace;
                     newMinDistance += this.distances[currentPlace][nextClosestPlace];
+                    currentPlace = nextClosestPlace;
                 }
                 
             }
