@@ -35,4 +35,4 @@ We found these problems when connecting the other team's client to our server.
 | :--- |  :--- | --- |
 | 11 | None Found |  |
 | 18 | None Found |  |
-| 08 | None Found |  |
+| 08 | Search results in Uncaught TypeError: cannot read properties of undefined |  |
