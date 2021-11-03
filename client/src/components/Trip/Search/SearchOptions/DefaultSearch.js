@@ -3,12 +3,17 @@ import {
     InputGroup,
     InputGroupAddon,
     Input,
-    Button
+    Button,
+    Image
 } from 'reactstrap';
+import { FaFilter,FaSearch }from 'react-icons/fa'
 import {sendAPIRequest} from "../../../../utils/restfulAPI";
 
 export default function DefaultSearch(props) {
     const [userInput, setUserInput] = useState("");
+    const [dropdownOpen,setDropdownOpen] = useState(false);
+
+    const toggle = () => setDropdownOpen(prevState => !prevState);
 
     async function handleChange(e) {
         setUserInput(e.target.value);
@@ -28,7 +33,8 @@ export default function DefaultSearch(props) {
         <InputGroup>
             <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
-                <Button role="search" onClick={handleClick}>Search</Button>
+                <Button role="filter"><FaFilter/></Button>
+                <Button role="search" onClick={handleClick}><FaSearch/></Button>
             </InputGroupAddon>
         </InputGroup>
     )
