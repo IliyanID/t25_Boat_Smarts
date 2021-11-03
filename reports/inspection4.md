@@ -5,7 +5,7 @@ We first identify the code we wish to inspect, determine the time we wish to mee
 
 |  | Details |
 | ----- | ----- |
-| Subject | *file and methods/line range to review for meeting* |
+| Subject | actions.js |
 | Meeting | *date, time, location* |
 | Checklist | *reference, URL, etc.* |
 
@@ -14,8 +14,8 @@ We first identify the code we wish to inspect, determine the time we wish to mee
 We note the amount of time each person spent reviewing the code in preparation for the meeting.
 
 | Name | Preparation Time |
-| ---- | ---- |
-|  |  |
+| ----- | ----- |
+|Jake| 45min |
 
 
 ### Problems found
@@ -24,5 +24,9 @@ We list each potential defect we found in the code during our preparation so we 
 We add a GitHub issue for each defect that requires a modification to the system.
 
 | file:line | problem | hi/med/low | who found | github#  |
-| --- | --- | :---: | :---: | --- |
-|  | | | | |
+| ----- | ----- | ----- | ----- | ----- |
+| actions.js:30 | dublicate code | low | Jake | #321 |
+| actions.js:33 | dublicate code | low | Jake | #321 |
+| actions.js:36 | dublicate code | low | Jake | #321 |
+| actions.js:65 | Function PlaceActionsDropdown has 33 lines of code (exceeds 25 allowed).| low | Jake | #322 |
+| actions.js:15 | Function ItineraryActionsDropdown has 41 lines of code (exceeds 25 allowed).| low | Jake | #323 |
