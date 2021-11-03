@@ -89,7 +89,7 @@ public class ShorterTrip {
 
 
         for (int i = 0; i < this.distances[currPlace].length; i++) {
-            System.out.println(this.distances[currPlace][i] + " < " + shortestDistance + " | Visited: " + this.visited[i] );
+            //System.out.println(this.distances[currPlace][i] + " < " + shortestDistance + " | Visited: " + this.visited[i] );
             if (this.distances[currPlace][i] < shortestDistance && !this.visited[i]) {
                 shortestDistance = this.distances[currPlace][i];
                 closestPlace = i;
