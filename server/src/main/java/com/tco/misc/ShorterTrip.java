@@ -66,7 +66,7 @@ public class ShorterTrip {
             }
             //System.out.println("Temp Running Total:" + newMinDistance);
             newMinDistance += this.distances[testShortTrip[0]][testShortTrip[testShortTrip.length - 1]];
-            
+
             if(newMinDistance < minDistance){
                 minDistance = newMinDistance;
                 this.shorterTrip = testShortTrip;
@@ -99,11 +99,5 @@ public class ShorterTrip {
         }
         //System.out.println("closest to" + currPlace + " is " + closestPlace + "\n");
         return closestPlace;
-    }
-
-    private void resetVisited() {
-        for (int i = 0; i < this.visited.length; i++) {
-            this.visited[i] = false;
-        }
     }
 }
