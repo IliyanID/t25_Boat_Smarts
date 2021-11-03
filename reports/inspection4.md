@@ -16,6 +16,7 @@ We note the amount of time each person spent reviewing the code in preparation f
 | Name | Preparation Time |
 | ----- | ----- |
 |Jake| 45min |
+|Iliyan| 60min |
 
 
 ### Problems found
@@ -30,3 +31,5 @@ We add a GitHub issue for each defect that requires a modification to the system
 | actions.js:36 | dublicate code | low | Jake | #321 |
 | actions.js:65 | Function PlaceActionsDropdown has 33 lines of code (exceeds 25 allowed).| low | Jake | #322 |
 | actions.js:15 | Function ItineraryActionsDropdown has 41 lines of code (exceeds 25 allowed).| low | Jake | #323 |
+| TableRow.js:15 | If two places have the same name like 'Unknown" index is same | low | Iliyan |  |
+| TripName.js:20-21 | Unrecheable Code | low | Iliyan |  |
