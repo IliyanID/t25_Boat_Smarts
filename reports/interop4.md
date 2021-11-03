@@ -28,7 +28,7 @@ We found these problems when connecting our client to another team's server.
 | 18 | None Found |  |
 | 08 | api/distances and api/tour return 404 |  |
 | 19 | None Found |  |
-| 04 | None Found |  |
+| 04 | doesnt have tour implemented |  |
 
 
 ### Server Problems found
@@ -41,4 +41,4 @@ We found these problems when connecting the other team's client to our server.
 | 18 | None Found |  |
 | 08 | Search results in Uncaught TypeError: cannot read properties of undefined |  |
 | 19 | None Found |  |
-| 04 | None Found |  |
+| 04 | doesnt have tour implemented |  |
