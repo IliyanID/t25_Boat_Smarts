@@ -33,3 +33,4 @@ We add a GitHub issue for each defect that requires a modification to the system
 | actions.js:15 | Function ItineraryActionsDropdown has 41 lines of code (exceeds 25 allowed).| low | Jake | #323 |
 | TableRow.js:15 | If two places have the same name like 'Unknown" index is same | low | Iliyan |  |
 | TripName.js:20-21 | Unrecheable Code | low | Iliyan |  |
+| FileUploadModal.js:21 | Unwanted showMessage appears on succesful file upload | med | Iliyan |  |
