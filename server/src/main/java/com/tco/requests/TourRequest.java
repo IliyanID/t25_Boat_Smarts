@@ -3,6 +3,7 @@ package com.tco.requests;
 import java.util.ArrayList;
 
 import com.tco.database.SQLDatabase;
+import com.tco.misc.ShorterTrip;
 import com.tco.misc.DistanceCalculator;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 
 public class TourRequest extends Request {
+
     private SQLDatabase.Places places;
     private double earthRadius;
     private double response;
@@ -18,7 +20,7 @@ public class TourRequest extends Request {
 
     @Override
     public void buildResponse() {
-        // do the optim
+        places = new ShorterTrip(this.places, this.earthRadius).oneOpt();
         log.trace("buildResponse -> {}", this);
     }
 
@@ -38,6 +40,7 @@ public class TourRequest extends Request {
     public double getEarthRadius() {
         return earthRadius;
     }
+
     public void setEarthRadius(double earthRadius) {
         this.earthRadius = earthRadius;
     }
@@ -49,3 +52,4 @@ public class TourRequest extends Request {
         this.response = response;
     }
 }
+
