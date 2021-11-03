@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {beforeEach, describe, expect, it, jest} from '@jest/globals';
-import FileUploadModal, {convertPlace} from '../../../src/components/Trip/Itinerary/Modals/FileUploadModal';
+import FileUploadModal, {convertPlace,csvToJson} from '../../../src/components/Trip/Itinerary/Modals/FileUploadModal';
 import { MOCK_FILE_INFO } from '../../sharedMocks';
 
 describe('FileUploadModal', () => {
@@ -38,6 +38,9 @@ describe('FileUploadModal', () => {
     });
     it('converts places with a name', () => {
         expect(convertPlace(mockPlaceWithName)).toEqual(mockPlaceWithNameResponse);
+    });
+    it('csvtojson', () => {
+        csvToJson(' \n , \n')
     });
     
 });

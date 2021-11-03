@@ -14,7 +14,6 @@ const MIME_TYPE = {
 };
 
 
-
 export default function FileDownloadModal(props) {
 
     const [dropdownOpen,setDropdownOpen] = useState(false);
@@ -23,10 +22,10 @@ export default function FileDownloadModal(props) {
 
     const [fileName, setFileName] = useState(props.tripName);
     const [fileType, setFileType] = useState(localStorage.getItem("fileType") != null ? localStorage.getItem("fileType") : "JSON");
-    const [saveToMem, setSaveToMem] = useToggle(localStorage.getItem("fileType") != null);
 
     useEffect(()=>{setFileName(props.tripName)}, [props.tripName, props.fileDownloadOpen]);
 
+    const [saveToMem, setSaveToMem] = useToggle(localStorage.getItem("fileType") != null);
     function handleDownload() {
         if (saveToMem){
             localStorage.setItem("fileType",fileType);
@@ -64,13 +63,13 @@ export default function FileDownloadModal(props) {
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
-                <Button color="primary" onClick={handleDownload} disabled={fileName===""}>Download</Button>
+                <Button color="primary" onClick={handleDownload} disabled={fileName===""} data-testid="download">Download</Button>
             </ModalFooter>
         </Modal>
     )
 }
 
-function downloadFile(fileName, mimeType, places) {
+export function downloadFile(fileName, mimeType, places) {
     const fileNameWithExtension = addExtension(fileName, mimeType);
     const fileText = buildFileText(mimeType, places);
     const file = new Blob([fileText], {type: mimeType });

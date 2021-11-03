@@ -36,7 +36,7 @@ export default function FileUploadModal(props) {
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileUploadOpen}>Cancel</Button>
-                <Button role="saveUpload" color="primary" onClick={handleSaveClick} disabled={!validFile}>Save</Button>
+                <Button role="saveUpload" color="primary" onClick={handleSaveClick} disabled={!validFile} data-testid='save' >Save</Button>
             </ModalFooter>
         </Modal>
     )

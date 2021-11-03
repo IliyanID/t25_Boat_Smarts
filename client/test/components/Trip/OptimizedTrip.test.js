@@ -32,6 +32,7 @@ describe('OptimizedTrip', () => {
         fireEvent.click(screen.getByTestId('DenyTrip'));
         expect(previewTripFocus).toEqual(false)
         expect(setPlaces).toHaveBeenCalledTimes(1);
+        previewTripFocus = !previewTripFocus
     });
 
 });

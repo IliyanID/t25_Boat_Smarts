@@ -3,6 +3,15 @@
         "**/.idea/**": true,
         "**/bin/server/**": true,
         "**/server/.m2/**": true,
-        "**/target/**": true
-    }
+        "**/target/**": true,
+    },
+    "jest.showCoverageOnLoad": true,
+    "jest.rootPath":"/client",
+    "java.test.config": {
+            "name": "Default",
+            "workingDirectory": "${workspaceFolder}/server",
+    },
+    "java.test.defaultConfig": "Default",
+    "java.project.sourcePaths": [],
+    "maven.view": "hierarchical"
 }

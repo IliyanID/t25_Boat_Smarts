@@ -6,7 +6,7 @@ import { AiOutlineRedo} from 'react-icons/ai';
 import { DEFAULT_STARTING_PLACE, LOG } from '../../../utils/constants';
 import { currentLocation } from '../../../utils/currentLocation';
 
-const toggle = (index,toolTip,setToolTip) =>{
+export const toggle = (index,toolTip,setToolTip) =>{
     let temp =  [...toolTip]
     temp[index] = !temp[index]
     setToolTip(temp)
