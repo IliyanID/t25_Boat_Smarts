@@ -7,11 +7,7 @@ import Header from './Header/Header'
 export default function Itinerary(props) {
     const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
 
-
-    
     let cumalitiveDistances = [];
-
-    
     
     let runningTotal = 0;
     try{
