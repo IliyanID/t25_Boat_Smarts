@@ -5,6 +5,7 @@ import { expect } from '@jest/globals';
 import { MOCK_PLACES } from "../../sharedMocks";
 
 import Map from '../../../src/components/Trip/Map/Map';
+import Marker from '../../../src/components/Trip/Map/Marker';
 import { act } from 'react-dom/test-utils';
 
 describe('Map', () => {
@@ -17,14 +18,19 @@ describe('Map', () => {
         Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
     });
 
-    beforeEach(() => {
-        render(<Map places={places} placeActions={placeActions} />);
-    });
+
 
     it('appends calls append when the map is clicked', () => {
+        render(<Map previewTripFocus={false} places={places} locationPreview={{lat:1,lng:2}} selectedIndex={1} placeActions={placeActions} />);
         act(() => {
             user.click(screen.getByRole('presentation'));
         });
         expect(placeActions.append).toHaveBeenCalled();
     });
+
+    it('marker', () => {
+        render(<Marker />)
+    });
+
+
 });
