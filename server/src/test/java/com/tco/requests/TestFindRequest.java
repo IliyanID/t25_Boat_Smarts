@@ -25,7 +25,7 @@ public class TestFindRequest {
     }
 
     @Test
-    @DisplayName("Request type is \"distances\"")
+    @DisplayName("Request type is \"find\"")
     public void testType() {
         String type = conf.getRequestType();
         assertEquals("find", type);
