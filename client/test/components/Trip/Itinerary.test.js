@@ -9,12 +9,14 @@ import DistanceInfo from '../../../src/components/Trip/Itinerary/Body/TableRow/D
 
 describe('Itinerary', () => {
     beforeEach(() => {
-        render(<Itinerary distances={MOCK_DISTANCES} places={MOCK_PLACES} placeActions={{append: jest.fn()}} />);
+        render(<Itinerary distances={{distances:MOCK_DISTANCES}} places={MOCK_PLACES} placeActions={{append: jest.fn()}} />);
     });
 
     it('renders a cell with given place expected', () => {
         expect(screen.getByRole('cell', { name: /40.0/i }).textContent)
             .toContain('40.00, 50.00');
+
+            render(<Itinerary distances={MOCK_DISTANCES} places={MOCK_PLACES} placeActions={{append: jest.fn()}} />);
     });
 
     it('renders the name attribute', () => {
