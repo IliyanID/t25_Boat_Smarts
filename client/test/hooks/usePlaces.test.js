@@ -22,11 +22,13 @@ describe('usePlaces', () => {
 
     let hook;
 
+
     beforeEach(() => {
         jest.clearAllMocks();
         fetch.resetMocks();
         const { result } = renderHook(() => usePlaces());
         hook = result;
+
     });
 
     it('appends a place', async () => {
@@ -154,4 +156,37 @@ describe('usePlaces', () => {
         });
         expect(hook.current.places).toEqual([]);
     });
+
+    it('move places', async () => {
+        fetch.mockResponse(REVERSE_GEOCODE_RESPONSE);
+
+        for (let i = 0; i < 5; i++) {
+            await act(async () => {
+                hook.current.placeActions.append(mockPlace);
+            });
+        }
+   
+
+        act(() => {
+            hook.current.placeActions.move(0,1);
+        });
+        
+    });
+
+    it('reverse places', async () => {
+        fetch.mockResponse(REVERSE_GEOCODE_RESPONSE);
+
+        for (let i = 0; i < 5; i++) {
+            await act(async () => {
+                hook.current.placeActions.append(mockPlace);
+            });
+        }
+   
+
+        act(() => {
+            hook.current.placeActions.reverse();
+        });
+        
+    });
+
 });

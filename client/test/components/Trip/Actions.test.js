@@ -41,6 +41,13 @@ describe('Render ItineraryActionsDropdown', () => {
         toggle(index,toolTip,setToolTips)
     });
 
+    it('toggle', async () => {
+        let index = 0;
+        let toolTip = [false]
+        let setToolTips = (i)=>{}
+        toggle(index,toolTip,setToolTips)
+    });
+
 
 
 })
