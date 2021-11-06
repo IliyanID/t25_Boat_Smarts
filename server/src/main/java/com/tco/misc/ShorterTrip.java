@@ -1,7 +1,11 @@
 package com.tco.misc;
 import com.tco.database.SQLDatabase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class ShorterTrip {
+    private final transient Logger log = LoggerFactory.getLogger(ShorterTrip.class);
 
     private int[] shorterTrip;
     private boolean[] visited;
@@ -94,7 +98,7 @@ public class ShorterTrip {
         for (int i = 0; i < this.distances[currPlace].length; i++) {
             double elapsedNanoSeconds =  System.nanoTime() - this.beginTime;
             if(elapsedNanoSeconds >= this.maxNanoSeconds - 1000){
-                System.out.println("Hit Max time | max time : " + this.maxNanoSeconds/1000000000 + " | elapsedTime " + elapsedNanoSeconds/1000000000);
+                log.info("Hit Tour Max time | max time : " + this.maxNanoSeconds/1000000000 + " | elapsedTime " + elapsedNanoSeconds/1000000000);
                 this.hitMaxTime = true;
                 break;
             }
