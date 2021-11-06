@@ -10,6 +10,7 @@ export function usePlaces() {
     const setAllPlaces =(newPlaces) =>{
         setPreviousPlaces([...newPlaces])
         setPlaces([...newPlaces])
+        setSelectedIndex(-1);
     }
 
     const [selectedIndex, setSelectedIndex] = useState(-1);

@@ -20,7 +20,9 @@ public class TourRequest extends Request {
 
     @Override
     public void buildResponse() {
-        places = new ShorterTrip(this.places, this.earthRadius).oneOpt();
+        double maxNanoSeconds = ((this.places.size() > 500)? this.response - (this.places.size() * .00125) : this.response)*1000000000;
+
+        places = new ShorterTrip(this.places, this.earthRadius, maxNanoSeconds).oneOpt();
         log.trace("buildResponse -> {}", this);
     }
 
