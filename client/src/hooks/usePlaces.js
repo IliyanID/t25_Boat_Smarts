@@ -94,6 +94,7 @@ function reverse (context){
     const { places, setPlaces, setSelectedIndex,setPreviousPlaces } = context;
     let temp = [...places]
     temp.reverse();
+    temp = arrayMove(temp,temp.length - 1,0);
     setPlaces(temp)
     setPreviousPlaces(temp)
     setSelectedIndex(-1)
