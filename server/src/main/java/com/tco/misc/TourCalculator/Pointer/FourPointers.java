@@ -32,6 +32,8 @@ public class FourPointers{
 
 
     public FourPointers(int[] shorterTrip,double currentCumalitiveDistance,long[][]distances){
+        pointer = new int[]{0,1,2,3};
+
         //Intentially set this way so they can modify outside variables
         this.shorterTrip = shorterTrip;
         this.currentCumalitiveDistance = currentCumalitiveDistance;
@@ -120,16 +122,16 @@ public class FourPointers{
         //edge case of pointer pair being (100,0)
         if(bestPointer[2] < bestPointer[3])
             for(int i = bestPointer[3]; i < this.shorterTrip.length; i++)
-                newShortestPath[newShortTripIndex++] =this.shorterTrip[i];
+                newShortestPath[newShortTripIndex++] = this.shorterTrip[i];
             
         //Go from second cross to beginning of trip
         for(int i = 0; i < bestPointer[0]; i++)
-            newShortestPath[newShortTripIndex++] =this.shorterTrip[i];
-        
+            newShortestPath[newShortTripIndex++] = this.shorterTrip[i];
         
         //Apply best Trip to Shorter Trip
-        for(int i = 0; i < newShortTripIndex; i++)
+        for(int i = 0; i < newShortTripIndex; i++){
             this.shorterTrip[i] = newShortestPath[i];
+        }
         
     }
 }

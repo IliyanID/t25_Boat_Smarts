@@ -50,9 +50,13 @@ public abstract class TourCalculator {
     }
 
     private void initializeShorterTrip(){
-        for (int i = 0; i < this.shorterTrip.length-1; i++){
+        for (int i = 0; i < this.shorterTrip.length; i++){
             this.shorterTrip[i] = i;
-            this.currentCumalitiveDistance += this.distances[i][i+1];
+
+            if(i == this.shorterTrip.length - 1)
+                this.currentCumalitiveDistance += this.distances[i][0];
+            else
+                this.currentCumalitiveDistance += this.distances[i][i+1];
         }
         //Add distance from end to start
         this.currentCumalitiveDistance += this.distances[0][this.shorterTrip.length -1 ];
@@ -96,6 +100,15 @@ public abstract class TourCalculator {
         for (int i = 0; i < d; i++) {
             this.shorterTrip[i + n - d] = temp[i];
         }
+    }
+
+    protected boolean checkHitMaxTime(){
+        double elapsedNanoSeconds =  System.nanoTime() - this.beginTime;
+        if(elapsedNanoSeconds >= (this.maxNanoSeconds)){
+            log.info("Hit Tour Max time | max time : " + this.maxNanoSeconds/1000000000 + " | elapsedTime " + elapsedNanoSeconds/1000000000);
+            this.hitMaxTime = true;
+        }
+        return this.hitMaxTime;
     }
 
 }

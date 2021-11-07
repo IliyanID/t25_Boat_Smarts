@@ -3,13 +3,15 @@ import com.tco.database.SQLDatabase;
 
 public class OneOpt extends TourCalculator{
     private boolean[] visited;
-    protected double cumalitiveDistance;
+    protected double currentCumalitiveDistance;
     public OneOpt(SQLDatabase.Places places,double maxNanoSeconds,double earthRadius){
         super(places,maxNanoSeconds,earthRadius);
         calculateDistances(places);
 
-        this.cumalitiveDistance = Double.POSITIVE_INFINITY;
+        this.currentCumalitiveDistance =  super.currentCumalitiveDistance;
 
+        //Allow NN to run for 70% of the time and Two-OPT to run 30% of the response time
+        super.maxNanoSeconds = super.maxNanoSeconds * .7;
 
         /*for(int i = 0; i < super.distances.length; i++){
             for(int j = 0; j < super.distances[i].length; j++){
@@ -50,8 +52,11 @@ public class OneOpt extends TourCalculator{
             //System.out.println("Temp Running Total:" + newMinDistance);
             newMinDistance += super.distances[testShortTrip[0]][testShortTrip[testShortTrip.length - 1]];
 
-            if(!super.hitMaxTime && newMinDistance < this.cumalitiveDistance){
-                this.cumalitiveDistance = newMinDistance;
+            //If we haven't hit the max time
+            //If new distance is better than lasst
+            //If new distance is better than
+            if(!super.hitMaxTime && newMinDistance < this.currentCumalitiveDistance){
+                this.currentCumalitiveDistance = newMinDistance;
                 super.shorterTrip = testShortTrip;
             }
         }
@@ -63,20 +68,21 @@ public class OneOpt extends TourCalculator{
         int closestPlace = -1;
 
         for (int i = 0; i < super.distances[currPlace].length; i++) {
-            double elapsedNanoSeconds =  System.nanoTime() - super.beginTime;
-            if(elapsedNanoSeconds >= super.maxNanoSeconds - 1000){
-                log.info("Hit Tour Max time | max time : " + super.maxNanoSeconds/1000000000 + " | elapsedTime " + elapsedNanoSeconds/1000000000);
-                super.hitMaxTime = true;
+            if(super.checkHitMaxTime())
                 break;
-            }
+            
 
             //System.out.println(super.distances[currPlace][i] + " < " + shortestDistance this.Visited: " + this.visited[i] );
-            if (super.distances[currPlace][i] < shortestDistance && !this.visited[i]) {
+            if (super.distances[currPlace][i] <= shortestDistance && !this.visited[i]) {
                 shortestDistance = super.distances[currPlace][i];
                 closestPlace = i;
             }
         }
         //System.out.println("closest to" + currPlace + " is " + closestPlace + "\n");
         return closestPlace;
+    }
+
+    protected double getbeginTime(){
+        return super.beginTime;
     }
 }
