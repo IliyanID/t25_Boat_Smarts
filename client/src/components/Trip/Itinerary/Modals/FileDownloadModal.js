@@ -31,9 +31,7 @@ export default function FileDownloadModal(props) {
     }
 
     return (
-        <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
-            <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
-            <ModalBody>
+        <ModalWrapper handleDownload={handleDownload} fileName={fileName} {...props}>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>File Name</InputGroupText>
@@ -41,10 +39,20 @@ export default function FileDownloadModal(props) {
                     <Input value={fileName} placeholder="Enter File Name" onChange={(e)=>setFileName(e.target.value)}/>
                 </InputGroup><br/>
                 <FileTypeSelector saveToMem={saveToMem} setSaveToMem={setSaveToMem} fileType={fileType} setFileType={setFileType} />
+        </ModalWrapper>   
+    )
+}
+
+export function ModalWrapper(props) {
+    return (
+        <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
+            <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
+            <ModalBody>
+                {props.children}
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
-                <Button color="primary" onClick={handleDownload} disabled={fileName===""} data-testid="download">Download</Button>
+                <Button color="primary" onClick={props.handleDownload} disabled={props.fileName===""} data-testid="download">Download</Button>
             </ModalFooter>
         </Modal>
     )
