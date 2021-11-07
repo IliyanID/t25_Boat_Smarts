@@ -52,7 +52,7 @@ public class TestTourRequest {
         conf.setPlaces(places);
         conf.setEarthRadius(1000);
         conf.setResponse(1);
-        //conf.buildResponse();
+        conf.buildResponse();
 
         assertEquals(places, conf.getPlaces());
     }
