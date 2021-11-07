@@ -1,7 +1,4 @@
 package com.tco.misc.Pointer;
-import java.util.ArrayList;
-
-
 
 public class FourPointers{
     public static int[] pointer = new int[]{0,1,2,3};

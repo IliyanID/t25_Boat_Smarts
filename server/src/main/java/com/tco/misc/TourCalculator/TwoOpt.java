@@ -1,7 +1,6 @@
 package com.tco.misc.TourCalculator;
-import com.tco.database.SQLDatabase;
 import com.tco.misc.Pointer.FourPointers;
-import java.util.ArrayList;
+import com.tco.database.SQLDatabase;
 
 public class TwoOpt extends TourCalculator{
     private int[] shorterTrip;  
