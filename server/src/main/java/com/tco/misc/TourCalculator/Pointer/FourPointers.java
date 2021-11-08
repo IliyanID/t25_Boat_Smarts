@@ -32,6 +32,8 @@ public class FourPointers{
 
 
     public FourPointers(int[] shorterTrip,double currentCumalitiveDistance,long[][]distances){
+        iterations = 0;
+        currentBest=0;
         pointer = new int[]{0,1,2,3};
 
         //Intentially set this way so they can modify outside variables
