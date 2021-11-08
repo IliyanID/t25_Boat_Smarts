@@ -26,7 +26,6 @@ export default function Planner(props) {
 	const [origionalPlaces,setOrigionalPlaces] = useState(...[places])
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
 
-
   
     const prepForAPIRequest = () =>{
         let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
