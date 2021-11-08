@@ -24,6 +24,7 @@ public class SQLQuery {
     }
 
     static String matchClause(String searchStr,ArrayList<String> type) {
+        searchStr = searchStr.replaceAll("('|;)", "\\\\$1");
         return "WHERE (world.name LIKE '%" + searchStr + "%' "
             + "OR region.name LIKE '%" + searchStr + "%' "
             + "OR country.name LIKE '%" + searchStr + "%' "
