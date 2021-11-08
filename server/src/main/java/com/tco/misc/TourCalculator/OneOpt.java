@@ -12,13 +12,6 @@ public class OneOpt extends TourCalculator{
 
         //Allow NN to run for 70% of the time and Two-OPT to run 30% of the response time
         super.maxNanoSeconds = super.maxNanoSeconds * .7;
-
-        /*for(int i = 0; i < super.distances.length; i++){
-            for(int j = 0; j < super.distances[i].length; j++){
-                System.out.print(super.distances[i][j] + " ");
-            }
-            System.out.println();
-        }*/
     }
 
     @Override
@@ -50,12 +43,13 @@ public class OneOpt extends TourCalculator{
                 }
             }
             //System.out.println("Temp Running Total:" + newMinDistance);
-            newMinDistance += super.distances[testShortTrip[0]][testShortTrip[testShortTrip.length - 1]];
-
+            double endToStartDistance = super.distances[testShortTrip[0]][testShortTrip[testShortTrip.length - 1]];
+            newMinDistance += endToStartDistance;
             //If we haven't hit the max time
+            //If the cumalitive distance is not just the end to start
             //If new distance is better than lasst
-            //If new distance is better than
-            if(!super.hitMaxTime && newMinDistance < this.currentCumalitiveDistance){
+            if(!super.hitMaxTime && newMinDistance != endToStartDistance && newMinDistance < this.currentCumalitiveDistance){
+                System.out.println("newMinDistance: " + newMinDistance);
                 this.currentCumalitiveDistance = newMinDistance;
                 super.shorterTrip = testShortTrip;
             }

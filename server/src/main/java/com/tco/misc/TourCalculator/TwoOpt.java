@@ -31,6 +31,10 @@ public class TwoOpt extends TourCalculator{
 
         double lastCumalitiveDistance =  this.currentCumalitiveDistance;
 
+        /*for(int i : shorterTrip){
+            System.out.print(i + " ");
+        }
+        System.out.println();*/
 
         while(true){
             //System.out.println("lastCumalitiveDistance : " + lastCumalitiveDistance);
