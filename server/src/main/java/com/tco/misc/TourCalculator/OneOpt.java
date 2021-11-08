@@ -49,7 +49,6 @@ public class OneOpt extends TourCalculator{
             //If the cumalitive distance is not just the end to start
             //If new distance is better than lasst
             if(!super.hitMaxTime && newMinDistance != endToStartDistance && newMinDistance < this.currentCumalitiveDistance){
-                System.out.println("newMinDistance: " + newMinDistance);
                 this.currentCumalitiveDistance = newMinDistance;
                 super.shorterTrip = testShortTrip;
             }
