@@ -16,16 +16,12 @@ const MIME_TYPE = {
 
 export default function FileDownloadModal(props) {
 
-    const [dropdownOpen,setDropdownOpen] = useState(false);
-
-    const toggle = () => setDropdownOpen(prevState => !prevState);
-
     const [fileName, setFileName] = useState(props.tripName);
     const [fileType, setFileType] = useState(localStorage.getItem("fileType") != null ? localStorage.getItem("fileType") : "JSON");
 
     useEffect(()=>{setFileName(props.tripName)}, [props.tripName, props.fileDownloadOpen]);
 
-    const [saveToMem, setSaveToMem] = useToggle(localStorage.getItem("fileType") != null);
+    const [saveToMem, setSaveToMem] = useToggle(false);
     function handleDownload() {
         if (saveToMem){
             localStorage.setItem("fileType",fileType);
@@ -35,37 +31,55 @@ export default function FileDownloadModal(props) {
     }
 
     return (
-        <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
-            <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
-            <ModalBody>
+        <ModalWrapper handleDownload={handleDownload} fileName={fileName} {...props}>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>File Name</InputGroupText>
                     </InputGroupAddon>
                     <Input value={fileName} placeholder="Enter File Name" onChange={(e)=>setFileName(e.target.value)}/>
                 </InputGroup><br/>
+                <FileTypeSelector saveToMem={saveToMem} setSaveToMem={setSaveToMem} fileType={fileType} setFileType={setFileType} />
+        </ModalWrapper>   
+    )
+}
+
+export function ModalWrapper(props) {
+    return (
+        <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
+            <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
+            <ModalBody>
+                {props.children}
+            </ModalBody>
+            <ModalFooter>
+                <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
+                <Button color="primary" onClick={props.handleDownload} disabled={props.fileName===""} data-testid="download">Download</Button>
+            </ModalFooter>
+        </Modal>
+    )
+}
+
+export function FileTypeSelector(props) {
+    const [dropdownOpen,setDropdownOpen] = useState(false);
+
+    const toggle = () => setDropdownOpen(prevState => !prevState);
+
+    return (
                 <Form>
                     <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
                         <Label>File Type:&ensp;</Label>
                         <DropdownToggle caret>
-                            {fileType}
+                            {props.fileType}
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem onClick={()=> setFileType("JSON")}>JSON</DropdownItem>
-                            <DropdownItem onClick={()=> setFileType("CSV")}>CSV</DropdownItem>
+                            <DropdownItem onClick={()=> props.setFileType("JSON")}>JSON</DropdownItem>
+                            <DropdownItem onClick={()=> props.setFileType("CSV")}>CSV</DropdownItem>
                         </DropdownMenu>
                     </Dropdown><br/>
                     <FormGroup check>
-                        <Input type="checkbox" onClick={setSaveToMem} defaultChecked={localStorage.getItem("fileType") != null}/>
+                        <Input type="checkbox" onClick={props.setSaveToMem} defaultChecked={props.saveToMem}/>
                         <Label>Save Settings For Later</Label>
                     </FormGroup>
                 </Form>
-            </ModalBody>
-            <ModalFooter>
-                <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
-                <Button color="primary" onClick={handleDownload} disabled={fileName===""} data-testid="download">Download</Button>
-            </ModalFooter>
-        </Modal>
     )
 }
 
