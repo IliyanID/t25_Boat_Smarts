@@ -58,7 +58,7 @@ const FilterSearchModal = (props) =>{
             <ModalHeader toggle={props.toggleFilterSearch}>Search Filter</ModalHeader>
             <ModalBody className="filterSearchOptions">
                 <Multiselect
-                    style={{padding:"15px"}}
+                    style={{optionContainer:{maxHeight:"100px"}}}
                     options={typesResponse} // Options to display in the dropdown
                     selectedValues={typesRequest} // Preselected value to persist in dropdown
                     onSelect={handleWhereChange} // Function will trigger on select event
@@ -68,6 +68,7 @@ const FilterSearchModal = (props) =>{
                 />
 
                 <Multiselect
+                    style={{optionContainer:{maxHeight:"100px"}}}
                     options={whereResponse} // Options to display in the dropdown
                     selectedValues={whereRequest} // Preselected value to persist in dropdown
                     onSelect={handleTypesChange} // Function will trigger on select event
