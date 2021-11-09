@@ -25,7 +25,11 @@ export default function DefaultSearch(props) {
     }
 
     useEffect(()=>{
-        getResults(userInput, props.activeTab, props.currentURL, props.setSearchResults);
+        if(props.activeTab !== "defaultSearch")
+            return
+        let requestBody = createFindRequestBody(userInput,props.limitTypes.request,props.limitWhere.request)
+        getResults(requestBody, props.currentURL, props.setSearchResults,userInput);
+        
     },[userInput, props.activeTab]);
 
 
@@ -33,35 +37,36 @@ export default function DefaultSearch(props) {
         <InputGroup>
             <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
-                <Button role="filter"><FaFilter/></Button>
+                <Button role="filter" onClick={props.toggleFilterSearch}><FaFilter/></Button>
                 <Button role="search" onClick={handleClick}><FaSearch/></Button>
             </InputGroupAddon>
         </InputGroup>
     )
 };
 
-async function getResults(userInput, activeTab, currentURL, setSearchResults) {
-    const requestBody = createFindRequestBody(userInput);
-
-    if (activeTab !== "defaultSearch") return;
-
+async function getResults(requestBody, currentURL, setSearchResults,userInput) {
     if (userInput === ""){
         setSearchResults(null);
-        return;
-    }
-
+        return
+        }
     const response = await sendAPIRequest(requestBody, currentURL);
-
     if(response){
         setSearchResults(response);
     }
 };
 
-function createFindRequestBody(userInput) {
-    return {
+function createFindRequestBody(userInput,types,where) {
+    let request = {
         requestType: 'find',
         match: userInput,
         limit: 10
     }
+    if(types && types.length !== 0)
+        request['type'] = types;
+
+    if(where && where.length !== 0)
+        request['where'] = where;
+
+    return request
 };
 

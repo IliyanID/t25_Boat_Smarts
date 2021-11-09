@@ -16,7 +16,16 @@ import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 
 export default function Planner(props) {
     const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
+    let packagedPlaces = {
+        setAllPlaces:setAllPlaces,places:places,setPlaces:setPlaces,
+        previousPlaces:previousPlaces,
+        selectedIndex:selectedIndex,setSelectedIndex:setSelectedIndex,
+        placeActions:placeActions
+    }
+
     const [searchResults, setSearchResults] = useState({});
+    let packagedSearchResults = {searchResults:searchResults,setSearchResults:setSearchResults}
+
     const [centerView,setCenterView] = useState(false);
     const [locationPreview, setLocationPreview] = useState();
     const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
@@ -25,8 +34,16 @@ export default function Planner(props) {
     const [tripName, setTripName] = useState("My Trip")
 	const [origionalPlaces,setOrigionalPlaces] = useState(...[places])
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
+    
+    const [filterSearchOpen,toggleFilterSearch] = useToggle(false);
+    const [limitTypes,setLimitTypes] = useState({request:[],response:[]})
+    const [limitWhere,setLimitWhere] = useState({request:[],response:[]})
+    let packagedLimitTypeProps = {
+        filterSearchOpen:filterSearchOpen,toggleFilterSearch,toggleFilterSearch,
+        limitTypes:limitTypes,setLimitTypes:setLimitTypes,
+        limitWhere:limitWhere,setLimitWhere:setLimitWhere
+    }
 
-  
     const prepForAPIRequest = () =>{
         let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
         let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
@@ -41,6 +58,30 @@ export default function Planner(props) {
 
         return {currentURL,convertedPlaces}
     }
+
+    useEffect(()=>{
+        const {currentURL} = prepForAPIRequest()
+
+        if(filterSearchOpen)
+            sendAPIRequest({
+                requestType:'config',
+            },currentURL).then((response)=>{
+                    if(!response)
+                        return
+                    
+                    if(response.type){
+                        let temp = {...limitTypes}
+                        temp.response = response.type;
+                        setLimitTypes(temp)
+                    }
+
+                    if(response.where){
+                        let temp = {...limitWhere}
+                        temp.response = response.type;
+                        setLimitWhere(temp)
+                    }
+                })
+    },[filterSearchOpen]);
 
     useEffect(()=>{
         const {currentURL,convertedPlaces} = prepForAPIRequest()
@@ -83,21 +124,21 @@ export default function Planner(props) {
     return (
         <Container>
             <Section>
-                <OptimizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} setPlaces={setAllPlaces} origionalPlaces={origionalPlaces}/>
+                <OptimizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} origionalPlaces={origionalPlaces} {...packagedPlaces}/>
             </Section>
             <Section>
-                <Map previewTripFocus={previewTripFocus} locationPreview={locationPreview} centerView={centerView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} />
+                <Map previewTripFocus={previewTripFocus} locationPreview={locationPreview} centerView={centerView} {...packagedPlaces} />
             </Section>
             <br />
             <Section>
-                <Search locationPreview={locationPreview} setLocationPreview={setLocationPreview} searchResults={searchResults} placeActions={placeActions} setSearchResults={setSearchResults} {...props} />
-                {searchResults && <><br /><Results searchResults={searchResults} placeActions={placeActions} /></>}
+                <Search {...packagedLimitTypeProps} locationPreview={locationPreview} setLocationPreview={setLocationPreview} {...packagedSearchResults} {...packagedPlaces} {...props} />
+                {searchResults && <><br /><Results {...packagedSearchResults} placeActions={placeActions} /></>}
             </Section>
             <br />
             <Section>
-                <Itinerary togglePreviewTripFocus={togglePreviewTripFocus} tripName={tripName} setTripName={setTripName} distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} places={places} selectedIndex={selectedIndex} placeActions={placeActions} {...props}/>
+                <Itinerary togglePreviewTripFocus={togglePreviewTripFocus} tripName={tripName} setTripName={setTripName} distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} {...packagedPlaces} {...props}/>
             </Section>
-            <FileUploadModal setTripName={setTripName} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} places={places} setPlaces={setPlaces} setSelectedIndex={setSelectedIndex} placeActions={placeActions} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...props}/>
+            <FileUploadModal setTripName={setTripName} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...packagedPlaces} {...props}/>
         </Container>
     );
 }

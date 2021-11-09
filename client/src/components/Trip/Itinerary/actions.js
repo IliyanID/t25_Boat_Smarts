@@ -36,7 +36,7 @@ export function ItineraryActionsDropdown(props) {
     <DropdownItem onClick={props.togglePreviewTripFocus} id={`index-3`} data-testid='shorter-trip-button'>
         <FaRoute />
     </DropdownItem>,
-    <DropdownItem onClick={props.placeActions.reverse} id={`index-4`} data-testid='reverse-trip-buttom'>
+    <DropdownItem onClick={()=>{if(props.places.length !== 0){props.placeActions.reverse(); props.showMessage("Succesfully Reversed Trip from Starting Location","info")}}} id={`index-4`} data-testid='reverse-trip-buttom'>
         <AiOutlineRedo/>
     </DropdownItem>,
     <DropdownItem onClick={props.placeActions.removeAll} id={`index-5`} data-testid='delete-all-button'>
