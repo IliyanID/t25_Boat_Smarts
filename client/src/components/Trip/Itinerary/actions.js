@@ -23,8 +23,9 @@ export function ItineraryActionsDropdown(props) {
     let Items = [
     <DropdownItem id={`index-0`} onClick={() => {
             currentLocation().then((curr)=>{
-                curr.latitude!=null ?
-                props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")
+                props.placeActions.append(curr) 
+            }).catch((e)=>{
+                props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")
             })
         }}
             
