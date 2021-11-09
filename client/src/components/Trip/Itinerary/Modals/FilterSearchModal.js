@@ -38,28 +38,25 @@ const generateTypeProps = (props) =>{
     const limitTypesChange = (e)=>handleChange(e,props.limitTypes,props.setLimitTypes)
     const typesResponse = formatLimits(props.limitTypes.response);
     const typesRequest = formatLimits(props.limitTypes.request);
-    let result = {
-        options:typesResponse,
-        selectedValues:typesRequest,
-        onSelect:limitTypesChange,
-        onRemove:limitTypesChange,
-        placeholder:"Filter By Type"
-    }
+    let result = generateShared(typesResponse,typesRequest,limitTypesChange,"Filter By Type")
     return result;
 }
 const generateWhereProps = (props) =>{
     const limitWhereChange = (e)=>handleChange(e,props.limitWhere,props.setLimitWhere)
     const whereResponse = formatLimits(props.limitWhere.response);
     const whereRequest = formatLimits(props.limitWhere.request);
-    let result ={
-        options:whereResponse,
-        selectedValues:whereRequest,
-        onSelect:limitWhereChange,
-        onRemove:limitWhereChange,
-        placeholder:"Filter By Countries"
-    }
+    let result = generateShared(whereResponse,whereRequest,limitWhereChange,"Filter By Countries")
     return result;
 }
+    const generateShared = (options,selectedValues,onSelect,onRemove,placeHolder) => {
+        return {
+            options:options,
+            selectedValues:selectedValues,
+            onSelect:onSelect,
+            onRemove:onRemove,
+            placeHolder:placeHolder
+        }
+    }
 
 const handleChange = (e,limit,setLimit) =>{
     let tempRequest = formatLimitsBack(e);
