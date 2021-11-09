@@ -10,18 +10,24 @@ public class ConfigRequest extends Request {
     private String serverName;
     private final transient Logger log = LoggerFactory.getLogger(ConfigRequest.class);
     private ArrayList<String> features;
-    //private ArrayList<String> type;
+    private ArrayList<String> type;
     //private ArrayList<String> where;
 
     @Override
     public void buildResponse() {
         serverName = "t25 Boat Smarts";
         features = new ArrayList<>();
+        type = new ArrayList<>();
         features.add("config");
         features.add("find");
         features.add("distances");
         features.add("tour");
         features.add("type");
+
+        type.add("airport");
+        type.add("heliport");
+        type.add("balloonport");
+        type.add("other");
         log.trace("buildResponse -> {}", this);
     }
 

@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import FilterSearchModal from '../Itinerary/Modals/FilterSearchModal'
+import { useToggle } from '../../../hooks/useToggle';
 
 import {
     Nav,
@@ -18,6 +20,7 @@ import { getOriginalServerUrl } from "../../../utils/restfulAPI";
 
 export default function Search(props) {
     const [activeTab, setActiveTab] = useState("defaultSearch");
+    const [filterSearchOpen,toggleFilterSearch] = useToggle(false);
         
     let serverURLSet = props.serverSettings && props.serverSettings.serverUrl
             
@@ -37,7 +40,8 @@ export default function Search(props) {
             <TabPane tabId="defaultSearch">
             <Row>
                 <Col sm="12" className="my-2">
-                <DefaultSearch currentURL={currentURL} activeTab={activeTab} {...props}/>
+                <DefaultSearch currentURL={currentURL} activeTab={activeTab} toggleFilterSearch={toggleFilterSearch} {...props}/>
+                <FilterSearchModal {...props} />
                 </Col>
             </Row>
             </TabPane>
