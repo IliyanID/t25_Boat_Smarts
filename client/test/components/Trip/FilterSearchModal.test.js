@@ -8,7 +8,7 @@ describe('FileUploadModal', () => {
     let toggleFilterSearch = jest.fn();
     let filterSearchOpen = true;
     beforeEach(() => {
-        render(<FilterSearchModal filterSearchOpen={filterSearchOpen} toggleFilterSearch={toggleFilterSearch} />);
+        render(<FilterSearchModal setLimitTypes={()=>jest.fn()} limitTypes={{response:[],request:['rains','down','in']}} limitWhere={{response:[],request:['Africa']}} setLimitWhere={()=>jest.fn()} filterSearchOpen={filterSearchOpen} toggleFilterSearch={toggleFilterSearch} />);
     });
     it('renders when fileUploadOpen is true', () => {
         

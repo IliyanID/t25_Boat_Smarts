@@ -9,7 +9,7 @@ describe('Default Search', () => {
     beforeEach(() => {
         fetch.resetMocks();
         fetch.mockResponse(MOCK_RESULT_POSITIVE);
-        render(<DefaultSearch setSearchResults={jest.fn()} />)
+        render(<DefaultSearch  limitTypes={{request:['rains','down','in']}} limitWhere={{request:['Africa']}} setSearchResults={jest.fn()} />)
     });
 
     it('renders to screen', async () => {

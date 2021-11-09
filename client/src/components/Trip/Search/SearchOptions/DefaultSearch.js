@@ -63,10 +63,10 @@ function createFindRequestBody(userInput,types,where) {
         match: userInput,
         limit: 10
     }
-    if(types.length !== 0)
+    if(types && types.length !== 0)
         request['type'] = types;
 
-    if(where.length !== 0)
+    if(where && where.length !== 0)
         request['where'] = where;
 
     return request
