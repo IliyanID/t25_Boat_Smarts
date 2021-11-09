@@ -25,18 +25,11 @@ export default function DefaultSearch(props) {
     }
 
     useEffect(()=>{
-        if (userInput === ""){
-            try{
-            setSearchResults(null);
-            }catch{}//unmounted component
-            return;
-        }
-        else if(props.activeTab !== "defaultSearch")
+        if(props.activeTab !== "defaultSearch")
             return
-        else{
-            let requestBody = createFindRequestBody(userInput,props.limitTypes.request,props.limitWhere.request)
-            getResults(requestBody, props.currentURL, props.setSearchResults);
-        }
+        let requestBody = createFindRequestBody(userInput,props.limitTypes.request,props.limitWhere.request)
+        getResults(requestBody, props.currentURL, props.setSearchResults,userInput);
+        
     },[userInput, props.activeTab]);
 
 
@@ -51,7 +44,10 @@ export default function DefaultSearch(props) {
     )
 };
 
-async function getResults(requestBody, currentURL, setSearchResults) {
+async function getResults(requestBody, currentURL, setSearchResults,userInput) {
+    if (userInput === ""){
+        setSearchResults(null);
+        }
     const response = await sendAPIRequest(requestBody, currentURL);
     if(response){
         setSearchResults(response);
