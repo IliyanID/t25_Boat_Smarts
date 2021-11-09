@@ -36,8 +36,9 @@ export default function Planner(props) {
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
     
     const [filterSearchOpen,toggleFilterSearch] = useToggle(false);
-    const [limitTypes,setLimitTypes] = useState({request:[],response:[]})
-    const [limitWhere,setLimitWhere] = useState({request:[],response:[]})
+    let defaultLimit = {request:[],response:[]}
+    const [limitTypes,setLimitTypes] = useState(defaultLimit)
+    const [limitWhere,setLimitWhere] = useState(defaultLimit)
     let packagedLimitTypeProps = {
         filterSearchOpen:filterSearchOpen,toggleFilterSearch,toggleFilterSearch,
         limitTypes:limitTypes,setLimitTypes:setLimitTypes,
@@ -59,13 +60,15 @@ export default function Planner(props) {
         return {currentURL,convertedPlaces}
     }
 
+    console.log(limitTypes)
+
     useEffect(()=>{
         const {currentURL} = prepForAPIRequest()
 
-        if(filterSearchOpen)
             sendAPIRequest({
                 requestType:'config',
             },currentURL).then((response)=>{
+                    
                     if(!response)
                         return
                     
@@ -75,13 +78,18 @@ export default function Planner(props) {
                         setLimitTypes(temp)
                     }
 
+                    else
+                        setLimitTypes(defaultLimit)
+
                     if(response.where){
                         let temp = {...limitWhere}
-                        temp.response = response.type;
+                        temp.response = response.where;
                         setLimitWhere(temp)
                     }
+                    else 
+                        setLimitWhere(defaultLimit)
                 })
-    },[filterSearchOpen]);
+    },[props.serverSettings]);
 
     useEffect(()=>{
         const {currentURL,convertedPlaces} = prepForAPIRequest()
