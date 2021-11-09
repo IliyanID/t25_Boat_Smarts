@@ -60,7 +60,6 @@ export default function Planner(props) {
         return {currentURL,convertedPlaces}
     }
 
-    console.log(limitTypes)
 
     useEffect(()=>{
         const {currentURL} = prepForAPIRequest()
