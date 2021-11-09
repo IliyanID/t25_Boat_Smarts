@@ -8,7 +8,6 @@ const TripName = (props) =>{
     const inputRef = useRef();
     const [tempName,setTempName] = useState(props.tripName)
     const [inFocus,setInFocus] = useState(false)
-    const [infoMessage, setInfoMessage] = useState(true)
 
 
 
@@ -16,9 +15,7 @@ const TripName = (props) =>{
         let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
         let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
         //If the parent of the clicked item isn't the inputRef div
-        if(userDidntPressCheckMark && userDidntPressSaveButton && infoMessage){
-            if(props.tripName !== inputRef.current.value)
-                printMessage();
+        if(userDidntPressCheckMark && userDidntPressSaveButton){
             handleSubmit(); 
         }
     }
@@ -28,7 +25,6 @@ const TripName = (props) =>{
 
     const setFocus = () =>{
         setInFocus(true)
-        setInfoMessage(false)
         inputRef.current.focus()
     }
     const handleCancel = () =>{
@@ -38,8 +34,8 @@ const TripName = (props) =>{
     const handleSubmit = () =>{
         setInFocus(false)
         if(props.tripName !== inputRef.current.value){
-            props.setTripName(inputRef.current.value)
             printMessage();
+            props.setTripName(inputRef.current.value)
         }
     }
 
