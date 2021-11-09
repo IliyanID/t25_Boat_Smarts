@@ -47,6 +47,7 @@ export default function DefaultSearch(props) {
 async function getResults(requestBody, currentURL, setSearchResults,userInput) {
     if (userInput === ""){
         setSearchResults(null);
+        return
         }
     const response = await sendAPIRequest(requestBody, currentURL);
     if(response){
