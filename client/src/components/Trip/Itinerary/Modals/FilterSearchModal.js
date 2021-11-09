@@ -11,31 +11,33 @@ const FilterSearchModal = (props) =>{
 
     const whereResponse = formatLimits(props.limitWhere.response);
     const whereRequest = formatLimits(props.limitWhere.request);
+    let sharedProps = {
+        style:{optionContainer:{maxHeight:"100px"}},
+        displayValue:"name"
+    }
 
-    let sharedStyles = {optionContainer:{maxHeight:"100px"}}
-
+    const limitTypesChange = (e)=>handleChange(e,props.limitTypes,props.setLimitTypes)
+    const limitWhereChange = (e)=>handleChange(e,props.limitWhere,props.setLimitWhere)
     return (
         <Modal isOpen={props.filterSearchOpen} toggle={props.toggleFilterSearch}>
             <ModalHeader toggle={props.toggleFilterSearch}>Search Filter</ModalHeader>
             <ModalBody className="filterSearchOptions">
                 <Multiselect
-                    style={sharedStyles}
                     options={typesResponse} // Options to display in the dropdown
                     selectedValues={typesRequest} // Preselected value to persist in dropdown
-                    onSelect={(e)=>handleChange(e,props.limitTypes,props.setLimitTypes)} // Function will trigger on select event
-                    onRemove={(e)=>handleChange(e,props.limitTypes,props.setLimitTypes)} // Function will trigger on remove event
-                    displayValue="name" // Property name to display in the dropdown options
+                    onSelect={limitTypesChange} // Function will trigger on select event
+                    onRemove={limitTypesChange} // Function will trigger on remove event
                     placeholder="Filter By Type"
+                    {...sharedProps}
                 />
 
                 <Multiselect
-                    style={sharedStyles}
                     options={whereResponse} // Options to display in the dropdown
                     selectedValues={whereRequest} // Preselected value to persist in dropdown
-                    onSelect={(e)=>handleChange(e,props.limitWhere,props.setLimitWhere)} // Function will trigger on select event
-                    onRemove={(e)=>handleChange(e,props.limitWhere,props.setLimitWhere)} // Function will trigger on remove event
-                    displayValue="name" // Property name to display in the dropdown options
+                    onSelect={limitWhereChange} // Function will trigger on select event
+                    onRemove={limitWhereChange} // Function will trigger on remove event
                     placeholder="Filter By Countries"
+                    {...sharedProps}
                 />
             </ModalBody>
             <ModalFooter>
