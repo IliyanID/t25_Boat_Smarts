@@ -20,8 +20,8 @@ const FilterSearchModal = (props) =>{
                     style={{optionContainer:{maxHeight:"100px"}}}
                     options={typesResponse} // Options to display in the dropdown
                     selectedValues={typesRequest} // Preselected value to persist in dropdown
-                    onSelect={handleWhereChange} // Function will trigger on select event
-                    onRemove={handleWhereChange} // Function will trigger on remove event
+                    onSelect={(e)=>handleChange(e,props.limitTypes,props.setLimitTypes)} // Function will trigger on select event
+                    onRemove={(e)=>handleChange(e,props.limitTypes,props.setLimitTypes)} // Function will trigger on remove event
                     displayValue="name" // Property name to display in the dropdown options
                     placeholder="Filter By Type"
                 />
@@ -30,8 +30,8 @@ const FilterSearchModal = (props) =>{
                     style={{optionContainer:{maxHeight:"100px"}}}
                     options={whereResponse} // Options to display in the dropdown
                     selectedValues={whereRequest} // Preselected value to persist in dropdown
-                    onSelect={handleTypesChange} // Function will trigger on select event
-                    onRemove={handleTypesChange} // Function will trigger on remove event
+                    onSelect={(e)=>handleChange(e,props.limitWhere,props.setLimitWhere)} // Function will trigger on select event
+                    onRemove={(e)=>handleChange(e,props.limitWhere,props.setLimitWhere)} // Function will trigger on remove event
                     displayValue="name" // Property name to display in the dropdown options
                     placeholder="Filter By Countries"
                 />
@@ -44,18 +44,11 @@ const FilterSearchModal = (props) =>{
 
 }
 
-const handleTypesChange = (e) =>{
-    let tempRequestType = formatLimitsBack(e);
-    let temp = {...globalProps.limitTypes};
-    temp.request = tempRequestType;
-    globalProps.setLimitTypes(temp);
-}
-
-const handleWhereChange = (e) =>{
-    let tempRequestWhere = formatLimitsBack(e);
-    let temp = {...globalProps.limitWhere};
-    temp.request = tempRequestWhere;
-    globalProps.setLimitTypes(temp);
+const handleChange = (e,limit,setLimit) =>{
+    let tempRequest = formatLimitsBack(e);
+    let temp = {...limit};
+    temp.request = tempRequest;
+    setLimit(temp);
 }
 
 const formatLimitsBack = (formatedArr) =>{
