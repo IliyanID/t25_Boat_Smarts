@@ -15,15 +15,19 @@ export const toggle = (index,toolTip,setToolTip) =>{
 export function ItineraryActionsDropdown(props) {
     let descriptions = ["Add starting Location","Load Trip From File","Save Trip To File","Optimize Trip","Reverse Trip","Delete all Trips"]
     let defaultArr = new Array(descriptions.length).fill(false)
-    let curr = currentLocation(props.showMessage);
 
     const [toolTip,setToolTip] = useState(defaultArr)
 
     //Make sure to add description of new button inside of descriptions
     // also set the id of the button in the format id = {`index-{index of button in Items}`}
     let Items = [
-    <DropdownItem id={`index-0`} onClick={() => {;curr.latitude!=null ?
-            props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")}} 
+    <DropdownItem id={`index-0`} onClick={() => {
+            currentLocation().then((curr)=>{
+                curr.latitude!=null ?
+                props.placeActions.append(curr) : props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")
+            })
+        }}
+            
             data-testid='home-button'>
         <FaHome />
     </DropdownItem>,
