@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from "reactstrap";
+import React from 'react'
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import Multiselect from 'multiselect-react-dropdown';
-import '../../../../../static/styles/student-styles.scss'
+import '../../../../static/styles/student-styles.scss'
 
 let globalProps;
 const FilterSearchModal = (props) =>{
