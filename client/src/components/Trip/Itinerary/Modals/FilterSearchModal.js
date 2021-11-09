@@ -10,8 +10,8 @@ const FilterSearchModal = (props) =>{
         style:{optionContainer:{maxHeight:"100px"}},
         displayValue:"name"
     }
-    let typeProps = generateTypeProps(props);
-    let whereProps = generateWhereProps(props);
+    let typeProps = generateProps(props.limitTypes,props.setLimitTypes,"Filter By Type")
+    let whereProps = generateProps(props.limitWhere,props.setLimitWhere,"Filter By Country")
     return (
         <Modal isOpen={props.filterSearchOpen} toggle={props.toggleFilterSearch}>
             <ModalHeader toggle={props.toggleFilterSearch}>Search Filter</ModalHeader>
@@ -34,29 +34,19 @@ const FilterSearchModal = (props) =>{
 
 }
 
-const generateTypeProps = (props) =>{
-    const limitTypesChange = (e)=>handleChange(e,props.limitTypes,props.setLimitTypes)
-    const typesResponse = formatLimits(props.limitTypes.response);
-    const typesRequest = formatLimits(props.limitTypes.request);
-    let result = generateShared(typesResponse,typesRequest,limitTypesChange,"Filter By Type")
-    return result;
-}
-const generateWhereProps = (props) =>{
-    const limitWhereChange = (e)=>handleChange(e,props.limitWhere,props.setLimitWhere)
-    const whereResponse = formatLimits(props.limitWhere.response);
-    const whereRequest = formatLimits(props.limitWhere.request);
-    let result = generateShared(whereResponse,whereRequest,limitWhereChange,"Filter By Countries")
-    return result;
-}
-    const generateShared = (options,selectedValues,onSelect,onRemove,placeHolder) => {
-        return {
-            options:options,
-            selectedValues:selectedValues,
-            onSelect:onSelect,
-            onRemove:onRemove,
-            placeHolder:placeHolder
-        }
+const generateProps = (limit,setLimit,placeholder)=>{
+    const limitChange = (e)=>handleChange(e,limit,setLimit)
+    const response = formatLimits(limit.response);
+    const request = formatLimits(limit.request);
+    return {
+        options:response,
+        selectedValues:request,
+        onSelect:limitChange,
+        onRemove:limitChange,
+        placeholder:placeholder
     }
+}
+
 
 const handleChange = (e,limit,setLimit) =>{
     let tempRequest = formatLimitsBack(e);
