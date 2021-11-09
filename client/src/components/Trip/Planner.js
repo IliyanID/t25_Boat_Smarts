@@ -25,8 +25,11 @@ export default function Planner(props) {
     const [tripName, setTripName] = useState("My Trip")
 	const [origionalPlaces,setOrigionalPlaces] = useState(...[places])
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
+    
+    const [filterSearchOpen,toggleFilterSearch] = useToggle(false);
+    const [limitTypes,setLimitTypes] = useState({request:[],response:[]})
+    const [limitWhere,setLimitWhere] = useState({request:[],response:[]})
 
-  
     const prepForAPIRequest = () =>{
         let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
         let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
@@ -41,6 +44,30 @@ export default function Planner(props) {
 
         return {currentURL,convertedPlaces}
     }
+
+    useEffect(()=>{
+        const {currentURL} = prepForAPIRequest()
+
+        if(filterSearchOpen)
+            sendAPIRequest({
+                requestType:'config',
+            },currentURL).then((response)=>{
+                    if(!response)
+                        return
+                    
+                    if(response.type){
+                        let temp = {...limitTypes}
+                        temp.response = response.type;
+                        setLimitTypes(temp)
+                    }
+
+                    if(response.where){
+                        let temp = {...limitWhere}
+                        temp.response = response.type;
+                        setLimitWhere(temp)
+                    }
+                })
+    },[filterSearchOpen]);
 
     useEffect(()=>{
         const {currentURL,convertedPlaces} = prepForAPIRequest()
@@ -90,7 +117,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <Search locationPreview={locationPreview} setLocationPreview={setLocationPreview} searchResults={searchResults} placeActions={placeActions} setSearchResults={setSearchResults} {...props} />
+                <Search setLimitWhere={setLimitWhere} limitWhere={limitWhere} setLimitTypes={setLimitTypes} limitTypes={limitTypes} filterSearchOpen={filterSearchOpen} toggleFilterSearch={toggleFilterSearch} locationPreview={locationPreview} setLocationPreview={setLocationPreview} searchResults={searchResults} placeActions={placeActions} setSearchResults={setSearchResults} {...props} />
                 {searchResults && <><br /><Results searchResults={searchResults} placeActions={placeActions} /></>}
             </Section>
             <br />
