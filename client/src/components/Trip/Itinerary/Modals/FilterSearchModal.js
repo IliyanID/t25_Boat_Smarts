@@ -57,7 +57,7 @@ const handleTypesChange = (e) =>{
 
 const handleWhereChange = (e) =>{
     let tempRequestWhere = formatLimitsBack(e);
-    let temp = {...globalProps.limitTypes};
+    let temp = {...globalProps.limitWhere};
     temp.request = tempRequestWhere;
     globalProps.setLimitTypes(temp);
 }
