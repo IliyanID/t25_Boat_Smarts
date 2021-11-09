@@ -49,28 +49,30 @@ const FilterSearchModal = (props) =>{
 }
 
 const handleTypesChange = (e) =>{
-    let tempRequest = [];
-    e.map((item)=>{
-        tempRequest.push(item.name);
-    })
+    let tempRequestType = formatLimitsBack(e);
     let temp = {...globalProps.limitTypes};
-    temp.request = tempRequest;
+    temp.request = tempRequestType;
     globalProps.setLimitTypes(temp);
 }
 
 const handleWhereChange = (e) =>{
-    let tempRequest = [];
-    e.map((item)=>{
-        tempRequest.push(item.name);
-    })
+    let tempRequestWhere = formatLimitsBack(e);
     let temp = {...globalProps.limitTypes};
-    temp.request = tempRequest;
+    temp.request = tempRequestWhere;
     globalProps.setLimitTypes(temp);
 }
 
-const formatLimits = (arr) =>{
+const formatLimitsBack = (formatedArr) =>{
+    let formatLimitsBackResult = [];
+    formatedArr.map((item)=>{
+        formatLimitsBackResult.push(item.name);
+    })
+    return formatLimitsBackResult
+}
+
+const formatLimits = (unFormatedArr) =>{
     let result = [];
-    arr.map((item,index)=>{
+    unFormatedArr.map((item,index)=>{
         result.push({name:item,id:index})
     })
     return result;
