@@ -6,10 +6,6 @@ import '../../../../static/styles/student-styles.scss'
 let globalProps;
 const FilterSearchModal = (props) =>{
     globalProps = props;
-    const handleSaveClick = ()=>{
-        props.toggleFilterSearch();
-    }
-
     const typesResponse = formatLimits(props.limitTypes.response);
     const typesRequest = formatLimits(props.limitTypes.request);
 
@@ -41,7 +37,7 @@ const FilterSearchModal = (props) =>{
                 />
             </ModalBody>
             <ModalFooter>
-                <Button role="saveFilterSettings" onClick={handleSaveClick} color="primary"  data-testid='save' >Save</Button>
+                <Button role="saveFilterSettings" onClick={props.toggleFilterSearch} color="primary"  data-testid='save' >Save</Button>
             </ModalFooter>
         </Modal>
     )
