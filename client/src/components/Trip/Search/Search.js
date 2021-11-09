@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import FilterSearchModal from '../Itinerary/Modals/FilterSearchModal'
+import FilterSearchModal from '../Itinerary/Modals/FilterSearchModal/FilterSearchModal'
 import { useToggle } from '../../../hooks/useToggle';
 
 import {

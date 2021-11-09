@@ -1,57 +1,20 @@
 import React, { useState } from 'react'
 import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from "reactstrap";
 import Multiselect from 'multiselect-react-dropdown';
-import '../../../../static/styles/student-styles.scss'
+import '../../../../../static/styles/student-styles.scss'
 
+let globalProps;
 const FilterSearchModal = (props) =>{
+    globalProps = props;
     const handleSaveClick = ()=>{
         props.toggleFilterSearch();
     }
 
-    const handleTypesChange = (e) =>{
-        let tempRequest = [];
-        e.map((item)=>{
-            tempRequest.push(item.name);
-        })
-        let temp = {...props.limitTypes};
-        temp.request = tempRequest;
-        props.setLimitTypes(temp);
-    }
+    const typesResponse = formatLimits(props.limitTypes.response);
+    const typesRequest = formatLimits(props.limitTypes.request);
 
-    const handleWhereChange = (e) =>{
-        let tempRequest = [];
-        e.map((item)=>{
-            tempRequest.push(item.name);
-        })
-        let temp = {...props.limitTypes};
-        temp.request = tempRequest;
-        props.setLimitTypes(temp);
-    }
-
-
-
-
-    const typesResponse = []
-    props.limitTypes.response.map((limit,index)=>{
-        typesResponse.push({name:limit,id:index})
-    })
-
-    const typesRequest = []
-    props.limitTypes.request.map((limit,index)=>{
-        typesRequest.push({name:limit,id:index})
-    })
-
-    const whereResponse = []
-    props.limitWhere.response.map((limit,index)=>{
-        whereResponse.push({name:limit,id:index})
-    })
-
-    const whereRequest = []
-    props.limitWhere.request.map((limit,index)=>{
-        whereRequest.push({name:limit,id:index})
-    })
-
-  
+    const whereResponse = formatLimits(props.limitWhere.response);
+    const whereRequest = formatLimits(props.limitWhere.request);
 
     return (
         <Modal isOpen={props.filterSearchOpen} toggle={props.toggleFilterSearch}>
@@ -83,5 +46,33 @@ const FilterSearchModal = (props) =>{
         </Modal>
     )
 
+}
+
+const handleTypesChange = (e) =>{
+    let tempRequest = [];
+    e.map((item)=>{
+        tempRequest.push(item.name);
+    })
+    let temp = {...globalProps.limitTypes};
+    temp.request = tempRequest;
+    globalProps.setLimitTypes(temp);
+}
+
+const handleWhereChange = (e) =>{
+    let tempRequest = [];
+    e.map((item)=>{
+        tempRequest.push(item.name);
+    })
+    let temp = {...globalProps.limitTypes};
+    temp.request = tempRequest;
+    globalProps.setLimitTypes(temp);
+}
+
+const formatLimits = (arr) =>{
+    let result = [];
+    arr.map((item,index)=>{
+        result.push({name:item,id:index})
+    })
+    return result;
 }
 export default FilterSearchModal;
