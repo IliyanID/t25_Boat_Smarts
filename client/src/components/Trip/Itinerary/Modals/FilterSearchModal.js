@@ -12,12 +12,14 @@ const FilterSearchModal = (props) =>{
     const whereResponse = formatLimits(props.limitWhere.response);
     const whereRequest = formatLimits(props.limitWhere.request);
 
+    let sharedStyles = {optionContainer:{maxHeight:"100px"}}
+
     return (
         <Modal isOpen={props.filterSearchOpen} toggle={props.toggleFilterSearch}>
             <ModalHeader toggle={props.toggleFilterSearch}>Search Filter</ModalHeader>
             <ModalBody className="filterSearchOptions">
                 <Multiselect
-                    style={{optionContainer:{maxHeight:"100px"}}}
+                    style={sharedStyles}
                     options={typesResponse} // Options to display in the dropdown
                     selectedValues={typesRequest} // Preselected value to persist in dropdown
                     onSelect={(e)=>handleChange(e,props.limitTypes,props.setLimitTypes)} // Function will trigger on select event
@@ -27,7 +29,7 @@ const FilterSearchModal = (props) =>{
                 />
 
                 <Multiselect
-                    style={{optionContainer:{maxHeight:"100px"}}}
+                    style={sharedStyles}
                     options={whereResponse} // Options to display in the dropdown
                     selectedValues={whereRequest} // Preselected value to persist in dropdown
                     onSelect={(e)=>handleChange(e,props.limitWhere,props.setLimitWhere)} // Function will trigger on select event

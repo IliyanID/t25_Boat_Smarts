@@ -25,7 +25,8 @@ export default function DefaultSearch(props) {
     }
 
     useEffect(()=>{
-        getResults(userInput, props.activeTab, props.currentURL, props.setSearchResults,props.limitTypes.request,props.limitWhere.request);
+        let requestBody = createFindRequestBody(userInput,props.limitTypes.request,props.limitWhere.request)
+        getResults(userInput,requestBody, props.activeTab, props.currentURL, props.setSearchResults);
     },[userInput, props.activeTab]);
 
 
@@ -40,9 +41,7 @@ export default function DefaultSearch(props) {
     )
 };
 
-async function getResults(userInput, activeTab, currentURL, setSearchResults,types,where) {
-    const requestBody = createFindRequestBody(userInput,types,where);
-
+async function getResults(userInput,requestBody, activeTab, currentURL, setSearchResults) {
     if (activeTab !== "defaultSearch") return;
 
     if (userInput === ""){
