@@ -11,7 +11,7 @@ public class ConfigRequest extends Request {
     private final transient Logger log = LoggerFactory.getLogger(ConfigRequest.class);
     private ArrayList<String> features;
     private ArrayList<String> type;
-    //private ArrayList<String> where;
+    private ArrayList<String> where;
 
     @Override
     public void buildResponse() {
