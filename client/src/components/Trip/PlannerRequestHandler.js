@@ -23,6 +23,16 @@ const prepForAPIRequest = (props,packagedUtilPlaces) =>{
 export const handleConfigRequest = (allPackages,props) =>{
     return useEffect(()=>{
         const {currentURL} = prepForAPIRequest({...props},{...allPackages})
+        
+        const checkAndApplyLimit = (limit,setLimit,response)=>{
+            if(response){
+                let temp = {...limit}
+                temp.response = response;
+                setLimit(temp)
+            }
+            else
+                setLimit({request:[],response:[]})
+        }
 
             sendAPIRequest({
                 requestType:'config',
@@ -31,22 +41,8 @@ export const handleConfigRequest = (allPackages,props) =>{
                     if(!response)
                         return
                     
-                    if(response.type){
-                        let temp = {...allPackages.limitTypes}
-                        temp.response = response.type;
-                        allPackages.setLimitTypes(temp)
-                    }
-
-                    else
-                        allPackages.setLimitTypes({request:[],response:[]})
-
-                    if(response.where){
-                        let temp = {...allPackages.limitWhere}
-                        temp.response = response.where;
-                        allPackages.setLimitWhere(temp)
-                    }
-                    else 
-                        allPackages.setLimitWhere({request:[],response:[]})
+                    checkAndApplyLimit(allPackages.limitTypes,allPackages.setLimitTypes,response.type)
+                    checkAndApplyLimit(allPackages.limitWhere,allPackages.setLimitWhere,response.where)
                 })
     },[props.serverSettings]);
 } 
