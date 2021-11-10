@@ -22,14 +22,19 @@
         "enum": ["airport","balloonport","heliport","other"]
       }
     },
+    "where": {
+      "description": "a list of items from the config where filters.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "limit": {
       "description":"the maximum number of matching places that may be returned.",
       "type":"integer",
       "minimum":0
     }
   },
-    
-
   "required": ["requestType", "match", "limit"],
   "additionalProperties": false
 }
