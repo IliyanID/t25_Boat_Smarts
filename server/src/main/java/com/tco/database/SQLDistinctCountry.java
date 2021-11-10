@@ -12,6 +12,7 @@ public class SQLDistinctCountry {
                 result += " OR ";
             }
         }
+        result += ")";
         return result;
     }
 }
