@@ -87,7 +87,7 @@ const packageUtilTripName = () =>{
 
 
 
-const combineAllPackes = (props) =>{
+const combineAllPackages = (props) =>{
     const packagedUtilPlaces = packageUtilPlaces();
     const packagedUtilSearch = packageUtilSearch();
     const packagedUtilDistances = packageUtilDistances();
@@ -110,7 +110,7 @@ const combineAllPackes = (props) =>{
 }
 
 export default function Planner(props) {
-    const allPackages = combineAllPackes(props)
+    const allPackages = combineAllPackages(props)
 
     handleConfigRequest(allPackages,props);
     handleDistancesRequest(allPackages,props);
