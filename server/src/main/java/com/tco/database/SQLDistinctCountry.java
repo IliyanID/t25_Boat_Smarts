@@ -9,7 +9,7 @@ public class SQLDistinctCountry {
         for (int i = 0; i < where.size(); ++i) {
             result += "country.name LIKE '%" + where.get(i) + "%' ";
             if(i != where.size() - 1) {
-                result += " OR ";
+                result += "OR ";
             }
         }
         result += ")";
