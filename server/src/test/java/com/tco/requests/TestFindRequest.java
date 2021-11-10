@@ -18,9 +18,11 @@ public class TestFindRequest {
     public void createConfigurationForTestCases() {
         conf = new FindRequest();
         ArrayList<String> type = new ArrayList<>();
+        ArrayList<String> where = new ArrayList<>();
         conf.setlimit(1);
         conf.setmatch("");
         conf.settype(type);
+        conf.setwhere(where);
         conf.buildResponse();
     }
 
@@ -32,6 +34,7 @@ public class TestFindRequest {
         conf.gettype();
         conf.getmatch();
         conf.getlimit();
+        conf.getwhere();
     }
 
 

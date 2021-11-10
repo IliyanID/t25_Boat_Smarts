@@ -14,14 +14,15 @@ public class FindRequest extends Request {
     private int limit;
     private int found;
     private ArrayList<String> type;
+    private ArrayList<String> where;
     private SQLDatabase.Places places;
     private final transient Logger log = LoggerFactory.getLogger(FindRequest.class);
 
 
     @Override
     public void buildResponse() {
-        places = SQLDatabase.findQuery(match, limit, type);
-        found = SQLDatabase.countQuery(match, type);
+        places = SQLDatabase.findQuery(match, limit, type, where);
+        found = SQLDatabase.countQuery(match, type, where);
         log.trace("buildResponse -> {}", this);
     }
 
@@ -45,6 +46,13 @@ public class FindRequest extends Request {
     }
     public void settype(ArrayList<String> type){
         this.type = type;
+    }
+
+    public ArrayList<String> getwhere(){
+        return this.where;
+    }
+    public void setwhere(ArrayList<String> where){
+        this.where = where;
     }
 
     public int getlimit(){
