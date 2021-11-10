@@ -66,6 +66,7 @@ Age, nationality, and other background information can sometimes be helpful unde
 | Throck the Traveller | Age: 19, Nationality: American, Major: CS, Gender: male |
 | Gerald | Age: 19, Nationality: American, Major: CS, Gender: male |
 | Tyler | Age: 19, Nationality: American, Major: CS, Gender: male |
+| Hannah | Age:22, Nationality: American, Masters: Microbiology, Gender: female |
 
 
 ### Observations
@@ -89,3 +90,5 @@ Add issues to GitHub for any changes necessary to the system.
 | Trip | Define a start and finish on the map |  | | 
 | Search by coords | Delimeters should be knwon for the user |  | | 
 | Search for trip | Said that he can use infinite amount of characters |  | | 
+| Trip Opt | Fix Spelling in Cancel |||
+| Set Map max zoom out | Set map to a maximum zoom out becasue you will see to USAs | | |
