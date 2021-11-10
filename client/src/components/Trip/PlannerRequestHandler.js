@@ -57,6 +57,8 @@ export const handleDistancesRequest = (allPackages,props) =>{
         },currentURL).then((response)=>{
                 if(response)
                     allPackages.setDistances(response)
+                else    
+                    allPackages.setDistances({distances: []});
             })
         if(allPackages.selectedIndex != -1 && allPackages.places.length > allPackages.previousPlaces.length ){
             props.showMessage("Added to Trip " + allPackages.places[allPackages.selectedIndex].name,"info")            
