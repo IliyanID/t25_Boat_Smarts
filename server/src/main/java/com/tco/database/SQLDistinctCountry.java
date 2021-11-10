@@ -3,7 +3,7 @@ import java.util.*;
 
 public class SQLDistinctCountry {
     public static String matchWhere(ArrayList<String> where){
-        if (where.isEmpty()) return "";
+        if (where == null || where.isEmpty()) return "";
         String result = "";
         result += "AND (";
         for (int i = 0; i < where.size(); ++i) {
