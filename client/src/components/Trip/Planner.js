@@ -1,8 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { Col, Container, Row } from 'reactstrap';
-import { sendAPIRequest, getOriginalServerUrl } from "../../utils/restfulAPI"
-import { EARTH_RADIUS_UNITS_DEFAULT } from "../../utils/constants"
-import { latLngToPlace } from "../../utils/transformers"
 import { useToggle } from '../../hooks/useToggle';
 import Map from './Map/Map';
 import Search from './Search/Search';
@@ -10,142 +7,132 @@ import Results from './Results/Results';
 import Itinerary from './Itinerary/Itinerary';
 import FileUploadModal from './Itinerary/Modals/FileUploadModal';
 import { usePlaces } from '../../hooks/usePlaces';;
-import { convertPlace } from './Itinerary/Modals/FileUploadModal'
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
+import { handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
 
-
-export default function Planner(props) {
+const packageUtilPlaces = () =>{
     const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
-    let packagedPlaces = {
+    let Curpackage = {
         setAllPlaces:setAllPlaces,places:places,setPlaces:setPlaces,
         previousPlaces:previousPlaces,
         selectedIndex:selectedIndex,setSelectedIndex:setSelectedIndex,
         placeActions:placeActions
     }
+    return Curpackage;
+}
 
+const packageUtilSearch = () =>{
     const [searchResults, setSearchResults] = useState({});
-    let packagedSearchResults = {searchResults:searchResults,setSearchResults:setSearchResults}
 
-    const [centerView,setCenterView] = useState(false);
-    const [locationPreview, setLocationPreview] = useState();
-    const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
-    const [distances, setDistances] = useState({distances: []});
-    const [filePlaces, setFilePlaces] = useState([]);
-    const [tripName, setTripName] = useState("My Trip")
-	const [origionalPlaces,setOrigionalPlaces] = useState(...[places])
-    const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
-    
     const [filterSearchOpen,toggleFilterSearch] = useToggle(false);
     let defaultLimit = {request:[],response:[]}
     const [limitTypes,setLimitTypes] = useState(defaultLimit)
     const [limitWhere,setLimitWhere] = useState(defaultLimit)
-    let packagedLimitTypeProps = {
+    let Curpackage = {
         filterSearchOpen:filterSearchOpen,toggleFilterSearch,toggleFilterSearch,
         limitTypes:limitTypes,setLimitTypes:setLimitTypes,
-        limitWhere:limitWhere,setLimitWhere:setLimitWhere
+        limitWhere:limitWhere,setLimitWhere:setLimitWhere,
+        searchResults:searchResults,setSearchResults:setSearchResults
     }
 
-    const prepForAPIRequest = () =>{
-        let serverURLSet = props.serverSettings && props.serverSettings.serverUrl;
-        let currentURL = serverURLSet ? props.serverSettings.serverUrl : getOriginalServerUrl();
-        let convertedPlaces = [];
-        
-        let convertPlacesFunc = (place) =>{
-            let temp = latLngToPlace(place);
-            temp['name'] = place.name;
-            convertedPlaces.push(temp);
-         }
-        places.map(convertPlacesFunc);
+    return Curpackage;
+}
 
-        return {currentURL,convertedPlaces}
+const packageUtilDistances = () =>{
+    const [distances, setDistances] = useState({distances: []});
+    let Curpackage = {
+        distances:distances,setDistances:setDistances
     }
+    return Curpackage;
+}
+
+const packageUtilTour = (packagedUtilPlaces) =>{
+    const [origionalPlaces,setOrigionalPlaces] = useState(...[packagedUtilPlaces.places])
+    const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
+    let Curpackage = {
+        origionalPlaces:origionalPlaces,setOrigionalPlaces:setOrigionalPlaces,
+        previewTripFocus:previewTripFocus,togglePreviewTripFocus:togglePreviewTripFocus
+    }
+    return Curpackage;
+}
+
+const packageUtilMap = () =>{
+    const [centerView,setCenterView] = useState(false);
+    const [locationPreview, setLocationPreview] = useState();
+    let Curpackage = {
+        centerView:centerView,setCenterView:setCenterView,
+        locationPreview:locationPreview,setLocationPreview:setLocationPreview
+    }
+    return Curpackage;
+}
+
+const packageUtilFiles = () =>{
+    const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
+    const [filePlaces, setFilePlaces] = useState([]);
+    let Curpackage = {
+        fileUploadOpen:fileUploadOpen,toggleFileUploadOpen:toggleFileUploadOpen,
+        filePlaces:filePlaces,setFilePlaces:setFilePlaces
+    }
+    return Curpackage;
+}
+
+const packageUtilTripName = () =>{
+    const [tripName, setTripName] = useState("My Trip")
+    let Curpackage = {
+        tripName:tripName,setTripName:setTripName
+    }
+    return Curpackage;
+}
 
 
-    useEffect(()=>{
-        const {currentURL} = prepForAPIRequest()
 
-            sendAPIRequest({
-                requestType:'config',
-            },currentURL).then((response)=>{
-                    
-                    if(!response)
-                        return
-                    
-                    if(response.type){
-                        let temp = {...limitTypes}
-                        temp.response = response.type;
-                        setLimitTypes(temp)
-                    }
 
-                    else
-                        setLimitTypes(defaultLimit)
+const combineAllPackes = (props) =>{
+    const packagedUtilPlaces = packageUtilPlaces();
+    const packagedUtilSearch = packageUtilSearch();
+    const packagedUtilDistances = packageUtilDistances();
+    const packagedUtilTour = packageUtilTour(packagedUtilPlaces);
+    const packagedUtilMap = packageUtilMap();
+    const packagedUtilFiles = packageUtilFiles();
+    const packagedUtilTripName = packageUtilTripName();
 
-                    if(response.where){
-                        let temp = {...limitWhere}
-                        temp.response = response.where;
-                        setLimitWhere(temp)
-                    }
-                    else 
-                        setLimitWhere(defaultLimit)
-                })
-    },[props.serverSettings]);
+    const allPackages = {
+        ...packagedUtilPlaces,
+        ...packagedUtilSearch,
+        ...packagedUtilDistances,
+        ...packagedUtilTour,
+        ...packagedUtilMap,
+        ...packagedUtilFiles,
+        ...packagedUtilTripName,
+        ...props
+    } 
+    return allPackages;
+}
 
-    useEffect(()=>{
-        const {currentURL,convertedPlaces} = prepForAPIRequest()
-        sendAPIRequest({
-            requestType:'distances',
-            places:convertedPlaces,
-            earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles
-        },currentURL).then((response)=>{
-                if(response)
-                    setDistances(response)
-            })
-        if(selectedIndex != -1 && places.length > previousPlaces.length ){
-            props.showMessage("Added to Trip " + places[selectedIndex].name,"info")            
-        }
-    },[places]);
+export default function Planner(props) {
+    const allPackages = combineAllPackes(props)
 
-    useEffect(()=>{
-        const {currentURL,convertedPlaces} = prepForAPIRequest()
-        if(previewTripFocus){
-            setOrigionalPlaces([...places])            
-            sendAPIRequest({
-                requestType:'tour',
-                places:convertedPlaces,
-                earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles,
-                response: 1
-            },currentURL).then((response)=>{
-                    if(response){
-                        let convertedPlaces = response.places.map(place => convertPlace(place))
-                        setAllPlaces(convertedPlaces);
-                    }
-                })
-
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-              })
-        }
-    },[previewTripFocus])
-
+    handleConfigRequest(allPackages,props);
+    handleDistancesRequest(allPackages,props);
+    handleTourRequest(allPackages,props);
     return (
         <Container>
             <Section>
-                <OptimizedTrip previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} origionalPlaces={origionalPlaces} {...packagedPlaces}/>
+                <OptimizedTrip {...allPackages}/>
             </Section>
             <Section>
-                <Map previewTripFocus={previewTripFocus} locationPreview={locationPreview} centerView={centerView} {...packagedPlaces} />
+                <Map {...allPackages} />
             </Section>
             <br />
             <Section>
-                <Search {...packagedLimitTypeProps} locationPreview={locationPreview} setLocationPreview={setLocationPreview} {...packagedSearchResults} {...packagedPlaces} {...props} />
-                {searchResults && <><br /><Results {...packagedSearchResults} placeActions={placeActions} /></>}
+                <Search {...allPackages} />
+                {allPackages.searchResults && <><br /><Results {...allPackages} /></>}
             </Section>
             <br />
             <Section>
-                <Itinerary togglePreviewTripFocus={togglePreviewTripFocus} tripName={tripName} setTripName={setTripName} distances={distances} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} centerView={centerView} setCenterView = {setCenterView} {...packagedPlaces} {...props}/>
+                <Itinerary {...allPackages}/>
             </Section>
-            <FileUploadModal setTripName={setTripName} fileUploadOpen={fileUploadOpen} toggleFileUploadOpen={toggleFileUploadOpen} filePlaces={filePlaces} setFilePlaces={setFilePlaces} {...packagedPlaces} {...props}/>
+            <FileUploadModal {...allPackages}/>
         </Container>
     );
 }
