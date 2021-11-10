@@ -15,19 +15,19 @@ import com.tco.database.SQLQuery;
 public class SQLDatabase {
   
     //Additional columns; place name, id, iso_country, and country name are always included
-    private final static String FIND_COLUMNS = "type,latitude,longitude,altitude,municipality,iso_region";
+    final static String FIND_COLUMNS = "type,latitude,longitude,altitude,municipality,iso_region";
 
     public static class Place extends HashMap<String, String> {}
     public static class Places extends ArrayList<Place> {}
 
-    public static Places findQuery(String searchStr, int limit, ArrayList<String> type) {
+    public static Places findQuery(String searchStr, int limit, ArrayList<String> type, ArrayList<String> where) {
         SQLCredential db = new SQLCredential();
 
      	try (
             Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
             Statement query = conn.createStatement();
         
-            ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, FIND_COLUMNS,type));
+            ResultSet results = query.executeQuery(SQLQuery.find(searchStr, limit, type, where));
           ) {
         return convertQueryResultsToPlaces(results);
       	} catch (SQLException e) {
@@ -38,12 +38,12 @@ public class SQLDatabase {
         	     
     }
 
-    public static int countQuery(String searchStr,ArrayList<String> type) {
+    public static int countQuery(String searchStr,ArrayList<String> type,ArrayList<String> where) {
         SQLCredential db = new SQLCredential();
      	try {
             Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
             Statement query = conn.createStatement();
-            ResultSet results = query.executeQuery(SQLQuery.count(searchStr,type));
+            ResultSet results = query.executeQuery(SQLQuery.count(searchStr,type, where));
             results.next();
             return results.getInt("count");
       	} catch (SQLException e) {

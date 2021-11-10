@@ -13,15 +13,17 @@ public class TestSQLDatabase {
     @DisplayName("findQuery")
     public void testfindQuery(){
         ArrayList<String> type = new ArrayList<>();
-        SQLDatabase.findQuery("",1,type);
-        assertTrue(SQLDatabase.findQuery("",1,type).size() == 1);
+        ArrayList<String> where = new ArrayList<>();
+        SQLDatabase.findQuery("",1,type,where);
+        assertTrue(SQLDatabase.findQuery("",1,type,where).size() == 1);
     }
 
     @Test
     @DisplayName("countQuery")
     public void countQuery(){
         ArrayList<String> type = new ArrayList<>();
-        assertTrue(SQLDatabase.countQuery("",type) >= 1);
+        ArrayList<String> where = new ArrayList<>();
+        assertTrue(SQLDatabase.countQuery("",type,where) >= 1);
     }
 
 
