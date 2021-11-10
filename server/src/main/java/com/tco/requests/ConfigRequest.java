@@ -24,6 +24,7 @@ public class ConfigRequest extends Request {
         features.add("distances");
         features.add("tour");
         features.add("type");
+        features.add("where");
 
         type.add("airport");
         type.add("heliport");
