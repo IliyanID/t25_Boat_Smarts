@@ -1,6 +1,7 @@
 package com.tco.requests;
 
 import java.util.ArrayList;
+import com.tco.database.SQLDatabase;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +24,14 @@ public class ConfigRequest extends Request {
         features.add("distances");
         features.add("tour");
         features.add("type");
+        features.add("where");
 
         type.add("airport");
         type.add("heliport");
         type.add("balloonport");
         type.add("other");
+
+        where = SQLDatabase.countryQuery();
         log.trace("buildResponse -> {}", this);
     }
 

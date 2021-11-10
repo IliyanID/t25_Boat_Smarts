@@ -69,5 +69,23 @@ public class SQLDatabase {
         return places;
     }
 
+    public static ArrayList<String> countryQuery() {
+        SQLCredential db = new SQLCredential();
+        ArrayList<String> list = new ArrayList<>();
+     	try {
+            Connection conn = DriverManager.getConnection(db.url(), db.USER, db.PASSWORD);
+            Statement query = conn.createStatement();
+            ResultSet results = query.executeQuery("SELECT name FROM country;");
+            
+            while (results.next()) {
+            	list.add(results.getString("name"));
+            }
+      	} catch (SQLException e) {
+       		e.printStackTrace();
+       	}
+        	
+       	return list;
+    }
+
 
 }
