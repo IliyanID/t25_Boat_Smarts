@@ -48,13 +48,15 @@ public class TestTourRequest {
         
         places.add(place1);
         places.add(place2);
+        places.add(place1);
+        places.add(place2);
 
         conf.setPlaces(places);
         conf.setEarthRadius(1000);
         conf.setResponse(1);
         conf.buildResponse();
 
-        assertEquals(places, conf.getPlaces());
+        assertEquals(1000, conf.getEarthRadius());
     }
 
     @Test

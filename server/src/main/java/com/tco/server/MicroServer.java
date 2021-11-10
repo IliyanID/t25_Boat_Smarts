@@ -84,8 +84,7 @@ class MicroServer {
                 + request.ip() + " "
                 + "\"" + request.requestMethod() + " "
                 + request.pathInfo() + " "
-                + request.protocol() + "\" "
-                + "[" + request.body() + "]";
+                + request.protocol() + "\" ";
         log.info(message);
     }
 
