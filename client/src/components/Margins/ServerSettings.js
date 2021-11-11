@@ -7,22 +7,15 @@ import { LOG } from '../../utils/constants';
 
 export function missingFeatures(config,serverSettings){
     let missingFeatures= [];
-    let existingClientFeatures = {...SCHEMAS}
 
     //Uncomment Below to cause missing feature error
     //existingClientFeatures['where'] = 'S'
 
     if(config && config.features)
-        for(let feature in existingClientFeatures){
-            if(!config.features.includes(feature))
-                missingFeatures.push(feature)
-        }
+        missingFeatures = Object.keys(SCHEMAS).map(feature => !config.features.includes(feature));
 
     else if(serverSettings && serverSettings.serverConfig && serverSettings.serverConfig.features)
-        for(let feature in existingClientFeatures){
-            if(!serverSettings.serverConfig.features.includes(feature))
-                missingFeatures.push(feature)
-        }
+        missingFeatures = Object.keys(SCHEMAS).map(feature => !serverSettings.serverConfig.features.includes(feature));
 
     return missingFeatures;
 }
