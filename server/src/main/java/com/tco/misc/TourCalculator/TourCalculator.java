@@ -41,14 +41,14 @@ public abstract class TourCalculator {
     public void calculateDistances(SQLDatabase.Places places) {
         for (int i = 0; i < this.distances.length; i++) {
             for (int j = 0; j < this.distances[i].length; j++) {
-                //System.out.print(DistanceCalculator.singleDistance(places.get(i), places.get(j), this.earthRadius) + " ");
-                if(i==j)
-                    this.distances[i][j] = Integer.MAX_VALUE;
-                else
-                    this.distances[i][j] = DistanceCalculator.singleDistance(places.get(i), places.get(j), this.earthRadius);
+                setDistanceValue(i, j);
             }
-            //System.out.println();
         }
+    }
+
+    private void setDistanceValue(int i, int j) {
+        if(i==j) this.distances[i][j] = Integer.MAX_VALUE;
+        else this.distances[i][j] = DistanceCalculator.singleDistance(places.get(i), places.get(j), this.earthRadius);
     }
 
     private void initializeShorterTrip(){
