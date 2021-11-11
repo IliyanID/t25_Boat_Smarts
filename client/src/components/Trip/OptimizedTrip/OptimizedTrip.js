@@ -14,7 +14,7 @@ const OptimizedTrip = (props) =>{
     
     const handleReject = () =>{
         props.togglePreviewTripFocus();
-        props.setPlaces(props.origionalPlaces)
+        props.setAllPlaces(props.origionalPlaces)
     }
 
     let [toolTip,toggleToolTip] = useToggle(false)

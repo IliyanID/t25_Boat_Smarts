@@ -8,7 +8,7 @@ describe('OptimizedTrip', () => {
     let setPlaces = jest.fn();
     beforeEach(() => {
         const togglePreviewTripFocus = () => {previewTripFocus=!previewTripFocus};
-        render(<OptimizedTrip  previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} setPlaces={setPlaces} origionalPlaces={[]}/>);
+        render(<OptimizedTrip  previewTripFocus={previewTripFocus} togglePreviewTripFocus={togglePreviewTripFocus} setAllPlaces={setPlaces} origionalPlaces={[]}/>);
     });
 
     afterEach(() => {
