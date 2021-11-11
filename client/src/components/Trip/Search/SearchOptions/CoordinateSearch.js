@@ -23,17 +23,18 @@ export default function CoordinateSearch(props) {
     if (validCoordinates) {
       const coordDetails = await reverseGeocode(latLng);
       props.setLocationPreview(coordDetails);
-    } else {
-      try {
-        props.showMessage("Invalid coordinates.", "warning");
-      } catch (e) {
-        LOG.error('Failed to show invalid coordinate message');
-      }
-
-    }
+    } else showInvalidCoordinateMessage(props.showMessage);
   }
 
   return <CoordinateSearchElement inputText={inputText} latLng={latLng} processInputChange={processInputChange} handleFind={handleFind} handleAdd={handleAdd} />;
+}
+
+function showInvalidCoordinateMessage(showMessage) {
+  try {
+    showMessage("Invalid coordinates.", "warning");
+  } catch (e) {
+    LOG.error('Failed to show invalid coordinate message');
+  }
 }
 
 function CoordinateSearchElement(props) {
