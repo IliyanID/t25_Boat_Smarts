@@ -19,6 +19,7 @@ We note the amount of time each person spent reviewing the code in preparation f
 |Iliyan| 60min |
 |Caleb| 45min |
 |Andrew| 30min |
+|Derek| 30min |
 
 
 ### Problems found
@@ -42,3 +43,6 @@ We add a GitHub issue for each defect that requires a modification to the system
 | actions.js:3 | react-icon BiSleepy is imported but never used | low | Andrew |  |
 | actions.js:3 | react-icons FaTrash and FaTrashAlt are both being used, do they need to be different? | low | Andrew |  |
 | actions.js:25 | Arrow function for on-click of home button is a bit hard to read | low | Andrew |  |
+| ServerSettings.js:8 | Don't copy SCHEMAS object, and use map instead of for loop | low | Derek | |
+| CoordinateSearch.js:26 | Move CoordinateSearch return to separate element | low | Derek | |
+| TourCalculator.java:44 | use setDistance function inside nested loop | low | Derek | |
