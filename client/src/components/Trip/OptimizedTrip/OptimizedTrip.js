@@ -41,7 +41,7 @@ const OptimizedTrip = (props) =>{
                             <Tooltip placement="right" isOpen={toolTip} toggle={toggleToolTip} target='previewMode'>All site features, except for the map, are temporarily disabled until the user confirms or denies the optimized trip.</Tooltip>
                         </div>
                         <Button color="primary" onClick={hanleConfirm} data-testid='ConfirmTrip'>Confirm Optimized Trip</Button>
-                        <Button color="secondary" onClick={handleReject} data-testid='DenyTrip'>Revert to Origional Trip</Button>
+                        <Button color="secondary" onClick={handleReject} data-testid='DenyTrip'>Revert to Original Trip</Button>
                 </div>
             </>
 }
