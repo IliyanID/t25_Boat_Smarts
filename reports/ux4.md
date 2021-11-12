@@ -79,18 +79,17 @@ Add issues to GitHub for any changes necessary to the system.
 
 | Task | problem, aid, observation | hi/med/low | github#  |
 | :--- | :--- | :---: | :---: | 
-| Searching by coordinates | didn't see the coordinate tab |  | | 
-| Highlight Place | highlight place somewhat hard to find |  | | 
-| Searching / random | Should have something so the user know they can click each result for more info |  | | 
-| Upload a CSV | CSV that had just been downloaded didn't validate, investigate further |  | | 
-| Trip Options | Hard to find trip options. Changing 3 dots to button would help |  | | 
-| Distances | Making distances between places more clear would help |  | | 
-| Highlight Function |Suggested that that we update the highlight button. Have the map centered when you click highlight so no scrolling |  | | 
-| Random Places | The total number didnt make sense to the user |  | | 
-| Naming Trip | if the user types "name.json" then the save will be named "name.json.json" |  | | 
-| Trip | Define a start and finish on the map |  | | 
-| Search by coords | Delimeters should be knwon for the user |  | | 
-| Search for trip | Said that he can use infinite amount of characters |  | | 
-| Trip Opt | Fix Spelling in Cancel |||
-| Set Map max zoom out | Set map to a maximum zoom out becasue you will see to USAs | | |
-| Page | recommended a welcome modal to explain what the page is for | | |
+| Searching by coordinates | didn't see the coordinate tab | Non-issue | | 
+| Searching / random | Should have something so the user know they can click each result for more info | med | | 
+| Upload a CSV | CSV that had just been downloaded didn't validate, investigate further | high | #350 | 
+| Trip Options | Hard to find trip options. Changing 3 dots to bigger button would help | med | | 
+| Distances | Making distances between places more clear would help | low | | 
+| Highlight Function |Suggested that that we update the highlight button. Have the map centered when you click highlight so no scrolling | med | | 
+| Random Places | The total number didnt make sense to the user | med | | 
+| Naming Trip | if the user types "name.json" then the save will be named "name.json.json" | Non-issue | | 
+| Trip | Define a start and finish on the map | low | | 
+| Search by coords | Delimeters should be knwon for the user | Non-issue | | 
+| Search for trip | Said that he can use infinite amount of characters | Non-issue | | 
+| Trip Opt | Fix Spelling in Cancel | high | #371 |
+| Set Map max zoom out | Set map to a maximum zoom out becasue you will see to USAs | high | |
+| Page | recommended a welcome modal to explain what the page is for | low | |
