@@ -249,13 +249,16 @@ Further changes may arise as a result of the user experience interviews our team
 
 ### Server Classes
 
-We are adding 4 items to the server structure
+We added 5 items to the server structure for tour requests
 * TourRequest.json is used to validate incoming tour requests
 * TourRequest.java handles receiving tour requests and building the response
-* NearestNeighbor.java Optimizes a trip using the Nearest Neighbor algorithm
+* TourCalculator.java oversees optimization of the trip
+* OneOpt.java Optimizes a trip using the Nearest Neighbor algorithm
 * TwoOpt.java optimizes a trip using the 2-opt algorithm
 
-We will also be modifying FindRequest.java and SQLQuery.java to handle Type and Where features in find requests
+We also added 2 items to manage type and where specification
+ * DistinctTypes.java generates an SQL clause for matching the type
+ * DistinctCountry.java generates an SQL clause for matching country names
 
 ![server4](images/ServerSprint4.png)
 
