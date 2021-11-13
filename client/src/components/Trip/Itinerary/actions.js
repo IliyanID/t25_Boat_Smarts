@@ -86,6 +86,7 @@ export function PlaceActionsDropdown(props) {
         </DropdownItem>
     ]
 
+    return Items[1]
     return (
         <ActionsDropdown id={'test'}{...props}>
         {
@@ -112,7 +113,7 @@ export function PlaceActionsDropdown(props) {
 function ActionsDropdown(props) {
     return (
         <UncontrolledDropdown direction="left">
-            <DropdownToggle tag="div" data-testid={`row-toggle-${props.index}`}>
+            <DropdownToggle style={{width:'40px'}} tag="div" data-testid={`row-toggle-${props.index}`}>
                 <BiDotsVerticalRounded size="1.5em" />
             </DropdownToggle>
             <DropdownMenu>

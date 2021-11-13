@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Map as LeafletMap, Polyline, TileLayer } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
@@ -14,14 +14,24 @@ const MAP_MAX_ZOOM = 19;
 export default function Map(props) {
     const [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
     const [previewMarker,setPreviewMarker] = useState(false)
+    const mapRef = useRef()
+    const [zoom,setZoom] = useState(15)
 
+    const centerView = (currentCords) =>{
+        setCoordinates(currentCords)
+        let currentZoom = mapRef.current.leafletElement.getZoom();
+        setZoom(currentZoom)
+    }
+
+
+    
     useEffect(()=>{
        getCenter().then((result)=>{setCoordinates(result)});
     },[])
 
     useEffect(()=>{
         if( props.selectedIndex >=0 )
-            setCoordinates(props.places[props.selectedIndex])
+            centerView(props.places[props.selectedIndex])
     },[props.centerView])
 
     useEffect(()=>{
@@ -39,16 +49,24 @@ export default function Map(props) {
     },[props.places])
 
     function handleMapClick(mapClickInfo) {
-        if(!props.previewTripFocus)
-            props.placeActions.append(latLngToPlace(mapClickInfo.latlng));
+        let latlng = mapClickInfo.latlng
+        if(latlng.lat < -90 || latlng.lat > 90 || latlng.lng < -180 || latlng.lng > 180){
+            props.showMessage('Location is out of bounds','error')
+            return;
+        }
+        if(!props.previewTripFocus){
+            props.placeActions.append(latLngToPlace(latlng));
+            centerView(latlng)
+        }
     }
 
     return (
         <LeafletMap
+            ref={mapRef}
             className="mapStyle"
             boxZoom={false}
             useFlyTo={true}
-            zoom={15}
+            zoom={zoom}
             minZoom={MAP_MIN_ZOOM}
             maxZoom={MAP_MAX_ZOOM}
             maxBounds={MAP_BOUNDS}

@@ -11,7 +11,7 @@ const Body= (propsBody) => {
                         propsBody.placeActions.move(oldIndex, newIndex)
                     }
 
-        renderList= {({ children, props }) =>   <tbody {...props}>
+        renderList= {({ children, props }) =>   <tbody styles={{overflow:'none'}}{...props}>
                                                     {children}
                                                 </tbody>
                     }

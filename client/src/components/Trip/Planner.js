@@ -121,7 +121,7 @@ export default function Planner(props) {
                 <OptimizedTrip {...allPackages}/>
             </Section>
             <Section>
-                <Map {...allPackages} />
+                <Map {...allPackages}/>
             </Section>
             <br />
             <Section>

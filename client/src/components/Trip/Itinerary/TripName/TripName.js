@@ -60,7 +60,7 @@ const TripName = (props) =>{
     }
 
     return(
-        <div id="inputContainer">
+        <div style={props.style} id="inputContainer">
             {buttonLayout}
             <input data-testid="input" ref={inputRef} onFocus={setFocus} style={{border:"none"}} type="text" onChange={(e)=>setTempName(e.target.value)} value={tempName}/>
         </div>

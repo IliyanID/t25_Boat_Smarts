@@ -1,36 +1,56 @@
 import React, { useState } from 'react'
 import {Tooltip } from 'reactstrap';
 import { latLngToText } from '../../../../../utils/transformers';
-import { PlaceActionsDropdown } from '../../actions.js';
+import { PlaceActionsDropdown, toggle } from '../../actions.js';
 import reorderIcon from '../../../../../static/images/reorder.png'
 import DistanceInfo from './DistanceInfo/DistanceInfo'
+
+const handleSelect = (props,containerPackage)=>{
+    props.placeActions.selectIndex(containerPackage.index);
+    window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              })
+    containerPackage.setToolTip(containerPackage.defaultArr)
+    props.setCenterView(!props.centerView)
+
+}
 
 const TableRow = (props) => {
     const name = props.place.name ? props.place.name : "-";
     const location = latLngToText(props.place);
    
-    
+    let componentIsDragged = props.index === undefined; 
     let index = props.index
-    if(props.index === undefined)
+    if(componentIsDragged)
         props.places.map((item,idx)=>{if(item.name == props.place.name)index = idx})
 
-    const [toolTip,setToolTip] = useState(false)
+    let defaultArr = new Array(2).fill(false)
+    const [toolTip,setToolTip] = useState(defaultArr)
+    let containerPackage = {toolTip,setToolTip,defaultArr,index,defaultArr}
+  
+
+    let noStyleButton = {border:'none',background:'none'}
     return (
-    <tr style={{minWidth:'900px'}} {...props.itemProps}>
-        <th  scope="row">{index + 1}</th>
-        <td>
-            {name}
+    <tr className={(props.selectedIndex == index) ? 'selectedPlace':'' + ' selectedRow'} {...props.itemProps}>
+        <th className='tripNumber' scope="row">{index + 1} 
+        </th>
+        <td className='tripDetails'>
+            <button id={`trip-focus-${index}`} onClick={()=>handleSelect(props,containerPackage)} style={noStyleButton}>{name}</button>
+            <Tooltip target={`trip-focus-${index}`} placement='bottom' isOpen={toolTip[0]} toggle={()=>toggle(0,toolTip,setToolTip)}>
+                Focus Map on Location #{props.index+1}
+            </Tooltip>
             <br/>
             <small className="text-muted">{location}</small>
             <br/>
-            <DistanceInfo index={index} {...props}/>
+            <DistanceInfo componentIsDragged={componentIsDragged} index={index} {...props}/>
         </td>
-        <td style={{display:'flex',float:'right'}}>
+        <td className='tripIcons'>
             <img  src={reorderIcon} id={`dragger-${index}`} alt={`dragger-${index}`}/>
-                <Tooltip placement="left" isOpen={toolTip} target={`dragger-${index}`} toggle={()=>setToolTip(!toolTip)}>
+                <Tooltip placement="left" isOpen={toolTip[1]} target={`dragger-${index}`} toggle={()=>toggle(1,toolTip,setToolTip)}>
                             Drag to re-order trip
                 </Tooltip>
-            <button style={{border:'none',background:'none'}}><PlaceActionsDropdown {...props} placeActions={props.placeActions} index={index} /> </button>
+            <button style={noStyleButton}><PlaceActionsDropdown {...props} placeActions={props.placeActions} index={index} /> </button>
         </td>
     </tr>
     );

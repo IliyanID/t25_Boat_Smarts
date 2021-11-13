@@ -5,5 +5,63 @@
  */
 
  .filterSearchOptions > *{
-     margin:5px;
+     margin-bottom:100px;
  }
+ 
+ .distances{
+    background-color:#95afc0;
+     height:37px;
+     position:absolute;
+     text-align: center;
+     border-bottom: 1px solid rgb(196, 196, 196);
+     
+ }
+    .invdividualDistance{
+      margin-bottom:-10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:200vw;
+    }
+    .draggedDistance{
+        height: 0px;
+    }
+        .distancesContainer{
+            color:#130f40;
+            position:absolute;
+            left:50%;
+            transform:translate(-50%);
+            justify-content: center;
+            display:flex;
+            align-items: center;
+            height:37px;
+        }
+        
+ .tableRow{
+     padding-top:2.5px;
+     max-width:100vw;
+ }
+    .selectedPlace{
+        background-color:rgb(160, 160, 160)!important;
+    }
+
+    .tripNumber{
+        padding:10px;
+        padding-left:12.5px;
+        max-width:10px!important;
+    }
+    .tripDetails{
+        padding-left:18px;
+        width:55vw;
+        padding-bottom:1000px;
+        overflow:hidden;
+    }
+    .tripIcons{
+        display:float;
+        right:0px;
+        width:140px;
+        padding-left:5px;
+    }
+
+.unitContainer{
+    width:150px;
+}
