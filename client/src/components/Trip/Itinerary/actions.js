@@ -68,7 +68,7 @@ export function ItineraryActionsDropdown(props) {
 }
 
 export function PlaceActionsDropdown(props) {
-    let descriptions=["Move Trip to Start","Delete Trip","Center View on Trip"]
+    let descriptions=["Move Trip to Start","Delete Place","Center View on Trip"]
     let defaultArr = new Array(descriptions.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
 
@@ -86,7 +86,16 @@ export function PlaceActionsDropdown(props) {
         </DropdownItem>
     ]
 
-    return Items[1]
+    return (
+                <div key={`index-${1}-${props.index}`}>
+                    <div onClick={()=>setToolTip(defaultArr)}>
+                        {Items[1]}
+                    </div>
+                    <Tooltip placement="left" isOpen={toolTip[1]} target={`index-${1}-${props.index}`}  toggle={()=>toggle(1,toolTip,setToolTip)}>
+                        {descriptions[1]}
+                    </Tooltip>
+                </div>
+    )
     return (
         <ActionsDropdown id={'test'}{...props}>
         {
