@@ -17,7 +17,7 @@ export const ItineraryActionsDropdown = (props) => {
    
         {
             icon:<FaHome/>,
-            onChange:()=>{
+            onClick:()=>{
                 currentLocation().then((curr)=>{
                     curr.name='Current Location'
                     props.placeActions.append(curr)
@@ -29,28 +29,28 @@ export const ItineraryActionsDropdown = (props) => {
         },
         {
             icon:<FaFileUpload/>,
-            onChange:()=>{
+            onClick:()=>{
                 props.toggleFileUploadOpen()
             },
             description:'Load Trip From File'
         },
         {
             icon:<FaFileDownload/>,
-            onChange:()=>{
+            onClick:()=>{
                 props.toggleFileDownloadOpen()
             },
             description:'Save Trip To File' 
         },
         {
             icon:<FaRoute/>,
-            onChange:()=>{
+            onClick:()=>{
                 props.togglePreviewTripFocus(); 
             },
             description:'Create shorter trip'
         },
         {
             icon:<TiArrowRepeat/>,
-            onChange:()=>{
+            onClick:()=>{
                 if(props.places.length !== 0){
                     props.placeActions.reverse()
                     props.showMessage('Reversed Trip from Starting Location','info')
@@ -60,14 +60,14 @@ export const ItineraryActionsDropdown = (props) => {
         },
         {
             icon:<RiSettings5Fill/>,
-            onChange:()=>{
+            onClick:()=>{
                 props.toggleTripSettingsOpen();
             },
             description:'Trip Settings'
         },
         {
             icon:<FaTrashAlt/>,
-            onChange:()=>{
+            onClick:()=>{
                 props.placeActions.removeAll()
             },
             description:'Delete Current Trip'
@@ -82,10 +82,10 @@ export const ItineraryActionsDropdown = (props) => {
     <ButtonGroup style={{float:'right',marginBottom:'10px'}}>
         {
             data.map((item,index)=>{
-                let id = `home-location-${index}`
+                let id = `home-row-${index}`
                 return(
                 <Fragment key={id}>
-                    <Button id={id} onClick={() => { setToolTip(defaultArr); item.onChange() }}>{item.icon}</Button>
+                    <Button id={id} onClick={() => { setToolTip(defaultArr); item.onClick() }}>{item.icon}</Button>
                     <Tooltip placement="bottom" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                         {item.description}
                     </Tooltip>
