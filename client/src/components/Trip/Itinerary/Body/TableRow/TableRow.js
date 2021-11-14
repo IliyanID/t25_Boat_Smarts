@@ -23,7 +23,7 @@ const TableRow = (props) => {
     let componentIsDragged = props.index === undefined; 
     let index = props.index
     if(componentIsDragged)
-        props.places.map((item,idx)=>{if(item.name == props.place.name)index = idx})
+        props.places.map((item,idx)=>{if(item.lat == props.place.lat && item.lng == item.lng)index = idx})
 
     let defaultArr = new Array(2).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)

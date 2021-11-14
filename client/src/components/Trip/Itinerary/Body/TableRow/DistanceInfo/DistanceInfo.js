@@ -1,6 +1,8 @@
 import React from 'react'
 import {CgArrowsShrinkV} from 'react-icons/cg'
 import { RiArrowGoForwardLine, RiArrowGoBackLine } from 'react-icons/ri'
+import prettyNum from 'pretty-num';
+
 
 const DistanceInfo = (props) =>{
     let individualItem = props.cumalitiveDistances[props.index]
@@ -9,40 +11,36 @@ const DistanceInfo = (props) =>{
     if(!distances || !(distances.length > props.index) || !(distances.length !== 1))
         return <></>
 
-    let individualDistanceText = 'Distance to Place #' + (props.index + 2)
-    if(props.index === distances.length - 1)
-        individualDistanceText = 'Distance to Start'
-
     return(
-        <>
-            
-            <div className={(props.componentIsDragged)?'draggedDistance':'invdividualDistance' + ' distances'}>
-                <div className='distancesContainer'>
-                    {(props.index !== distances.length - 1)?
-                        <>
-                            <CgArrowsShrinkV size={30}/>
-                                <div className='unitContainer'>{unit(individualItem.distance)}</div>
-                            <CgArrowsShrinkV size={30}/>
-                        </>
-                        :
-                        <>
-
+    <>    
+        <div className={(props.componentIsDragged)?'draggedDistance':'invdividualDistance' + ' distances'}>
+            <div className='distancesContainer'>
+                {(props.index !== distances.length - 1)?
+                    <>
+                        <CgArrowsShrinkV size={30}/>
+                            <div className='unitContainer'>{unit(individualItem.distance)}</div>
+                        <CgArrowsShrinkV size={30}/>
+                    </>
+                    :
+                    <>
                         <RiArrowGoForwardLine size={30} style={{transform:'rotate(270deg)'}}/>
-                            <div className='unitContainer'>{unit(individualItem.distance)} to start</div>
+                            <div className='unitContainer'>{unit(individualItem.distance)} To Start</div>
                         <RiArrowGoBackLine size={30} style={{transform:'rotate(90deg)'}}/>
-                        </>
-                    }
-                </div>
-
+                    </>
+                }
             </div>
-            <br/>
-        </>
-   ) 
+
+        </div>
+        
+        <br/>
+    </>
+    ) 
 }
 const unit = (item) =>{
+    let itemStr = prettyNum(item,{thousandsSeparator:','})
     if(item == 1)
-        return item + ' mile'
+        return itemStr + ' Mile'
 
-    return item + ' miles'
+    return itemStr + ' Miles'
 }
 export default DistanceInfo;

@@ -22,7 +22,7 @@ const Header = (props) => {
                     (props.totalDistance > 0)?
                         <div> 
                             <img style={{float:'right',height:'20px',margin:'5px'}} src={RoundTrip} alt='round-trip'/>
-                            <div id='round-trip' style={{float:'right'}}>{prettyNum(props.totalDistance,{thousandsSeparator:','})} {(props.totalDistance === 1)?"mile":"miles"}</div>
+                            <div id='round-trip' style={{float:'right'}}>{prettyNum(props.totalDistance,{thousandsSeparator:','})} {(props.totalDistance === 1)?"Mile":"Miles"}</div>
                             <Tooltip toggle={toggleToolTip} isOpen={toolTip} placement='bottom' target='round-trip'>Round Trip</Tooltip>
                         </div>:<></>
                         
