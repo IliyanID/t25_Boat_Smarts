@@ -9,7 +9,8 @@ const OptimizedTrip = (props) =>{
     let blockerRef = useRef();
     let buttonsRef = useRef();
     const hanleConfirm = () =>{
-        props.togglePreviewTripFocus()
+        if(props.previewTripFocus)
+            props.togglePreviewTripFocus()
     }
     
     const handleReject = () =>{
@@ -22,7 +23,7 @@ const OptimizedTrip = (props) =>{
     useEffect(()=>{
         if(firstMount.current)
             firstMount.current = false;
-        else if(props.previewTripFocus){
+        else if(props.previewTripFocus && !props.disablePreviewMode){
             blockerRef.current.classList = 'focus';
             buttonsRef.current.classList = 'OptimizationOption'
         }
@@ -31,7 +32,8 @@ const OptimizedTrip = (props) =>{
             buttonsRef.current.classList = 'OptimizationOptionHide'
         }
     },[props.previewTripFocus])
-
+    if(props.disablePreviewMode)
+            hanleConfirm()
     return  <>
                 <div ref={blockerRef} data-testid='blocker'/>
                 <div ref={buttonsRef} className='OptimizationOptionDefault'>

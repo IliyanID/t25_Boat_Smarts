@@ -69,7 +69,7 @@ export const handleDistancesRequest = (allPackages,props) =>{
 export const handleTourRequest = (allPackages,props) =>{
     return useEffect(()=>{
         const {currentURL,convertedPlaces} = prepForAPIRequest({...props},{...allPackages})
-        if(allPackages.previewTripFocus){
+        if((allPackages.previewTripFocus || allPackages.automaticallyRunTour) && allPackages.places.length > allPackages.previousPlaces.length){
             allPackages.setOrigionalPlaces([...allPackages.places])            
             sendAPIRequest({
                 requestType:'tour',
@@ -88,5 +88,5 @@ export const handleTourRequest = (allPackages,props) =>{
                 behavior: 'smooth'
               })
         }
-    },[allPackages.previewTripFocus])
+    },[allPackages.previewTripFocus,allPackages.automaticallyRunTour,allPackages.places])
 }

@@ -52,9 +52,13 @@ const packageUtilDistances = () =>{
 const packageUtilTour = (packagedUtilPlaces) =>{
     const [origionalPlaces,setOrigionalPlaces] = useState(...[packagedUtilPlaces.places])
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
+    const [disablePreviewMode,toggleDisablePreviewMode] = useToggle(false)
+    const [automaticallyRunTour,toggleAutomaticallyRunTour] = useToggle(false)
     let Curpackage = {
         origionalPlaces:origionalPlaces,setOrigionalPlaces:setOrigionalPlaces,
-        previewTripFocus:previewTripFocus,togglePreviewTripFocus:togglePreviewTripFocus
+        previewTripFocus:previewTripFocus,togglePreviewTripFocus:togglePreviewTripFocus,
+        disablePreviewMode,toggleDisablePreviewMode,
+        automaticallyRunTour,toggleAutomaticallyRunTour
     }
     return Curpackage;
 }
