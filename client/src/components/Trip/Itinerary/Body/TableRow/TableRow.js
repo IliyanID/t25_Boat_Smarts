@@ -32,14 +32,11 @@ const TableRow = (props) => {
 
     let noStyleButton = {border:'none',background:'none'}
     return (
-    <tr className={(props.selectedIndex == index) ? 'selectedPlace':'' + ' selectedRow'} {...props.itemProps}>
+    <tr className={(props.selectedIndex == index) ? 'selectedPlace':'notSelected' + ' selectedRow'} {...props.itemProps}>
         <th className='tripNumber' scope="row">{index + 1} 
         </th>
         <td className='tripDetails'>
             <button id={`trip-focus-${index}`} onClick={()=>handleSelect(props,containerPackage)} style={noStyleButton}>{name}</button>
-            <Tooltip target={`trip-focus-${index}`} placement='bottom' isOpen={toolTip[0]} toggle={()=>toggle(0,toolTip,setToolTip)}>
-                Focus Map on Location #{props.index+1}
-            </Tooltip>
             <br/>
             <small className="text-muted">{location}</small>
             <br/>

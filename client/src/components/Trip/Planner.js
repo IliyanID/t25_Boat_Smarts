@@ -9,6 +9,8 @@ import FileUploadModal from './Itinerary/Modals/FileUploadModal';
 import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 import { handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
+import { ItineraryActionsDropdown } from './Itinerary/actions';
+import FileDownloadModal from './Itinerary/Modals/FileDownloadModal'
 
 const packageUtilPlaces = () =>{
     const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
@@ -67,11 +69,13 @@ const packageUtilMap = () =>{
 }
 
 const packageUtilFiles = () =>{
+    const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
     const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
     const [filePlaces, setFilePlaces] = useState([]);
     let Curpackage = {
         fileUploadOpen:fileUploadOpen,toggleFileUploadOpen:toggleFileUploadOpen,
-        filePlaces:filePlaces,setFilePlaces:setFilePlaces
+        filePlaces:filePlaces,setFilePlaces:setFilePlaces,
+        fileDownloadOpen,toggleFileDownloadOpen
     }
     return Curpackage;
 }
@@ -130,7 +134,9 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
+                <ItineraryActionsDropdown {...allPackages}/>
                 <Itinerary {...allPackages}/>
+                <FileDownloadModal {...allPackages}/>
             </Section>
             <FileUploadModal {...allPackages}/>
         </Container>
