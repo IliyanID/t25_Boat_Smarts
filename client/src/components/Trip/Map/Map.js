@@ -56,7 +56,6 @@ export default function Map(props) {
         }
         if(!props.previewTripFocus){
             props.placeActions.append(latLngToPlace(latlng));
-            centerView(latlng)
         }
     }
 
