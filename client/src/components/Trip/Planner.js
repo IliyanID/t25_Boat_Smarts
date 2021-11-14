@@ -8,7 +8,7 @@ import Itinerary from './Itinerary/Itinerary';
 import FileUploadModal from './Itinerary/Modals/FileUploadModal';
 import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
-import { handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
+import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
 import { ItineraryActionsDropdown } from './Itinerary/actions';
 import FileDownloadModal from './Itinerary/Modals/FileDownloadModal'
 import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
@@ -58,7 +58,7 @@ const packageUtilTour = (packagedUtilPlaces) =>{
         origionalPlaces:origionalPlaces,setOrigionalPlaces:setOrigionalPlaces,
         previewTripFocus:previewTripFocus,togglePreviewTripFocus:togglePreviewTripFocus,
         disablePreviewMode,toggleDisablePreviewMode,
-        automaticallyRunTour,toggleAutomaticallyRunTour
+    automaticallyRunTour:automaticallyRunTour,toggleAutomaticallyRunTour:toggleAutomaticallyRunTour
     }
     return Curpackage;
 }
@@ -132,6 +132,7 @@ export default function Planner(props) {
     handleConfigRequest(allPackages,props);
     handleDistancesRequest(allPackages,props);
     handleTourRequest(allPackages,props);
+    handleAutoTour(allPackages,props)
     return (
         <Container>
             <Section>
