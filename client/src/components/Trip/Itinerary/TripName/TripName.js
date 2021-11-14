@@ -33,7 +33,7 @@ const TripName = (props) =>{
     }
     const handleSubmit = () =>{
         setInFocus(false)
-        if(props.tripName !== inputRef.current.value){
+        if(inputRef.current && props.tripName !== inputRef.current.value){
             printMessage();
             props.setTripName(inputRef.current.value)
         }

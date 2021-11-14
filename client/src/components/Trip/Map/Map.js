@@ -51,7 +51,7 @@ export default function Map(props) {
     function handleMapClick(mapClickInfo) {
         let latlng = mapClickInfo.latlng
         if(latlng.lat < -90 || latlng.lat > 90 || latlng.lng < -180 || latlng.lng > 180){
-            props.showMessage('Location is out of bounds','error')
+            props.showMessage(`Out of Bounds. Bounds are -90 < Latitude < 90 and -180 < Longitude < 180. Received ${Math.round(latlng.lat)} , ${Math.round(latlng.lng)}`,'error')
             return;
         }
         if(!props.previewTripFocus){

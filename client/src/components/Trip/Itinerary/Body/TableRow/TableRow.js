@@ -6,11 +6,15 @@ import reorderIcon from '../../../../../static/images/reorder.png'
 import DistanceInfo from './DistanceInfo/DistanceInfo'
 
 const handleSelect = (props,containerPackage)=>{
+    if(props.selectedIndex === containerPackage.index){
+        props.placeActions.selectIndex(-1)
+        return;
+    }
     props.placeActions.selectIndex(containerPackage.index);
-    window.scrollTo({
+    /*window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
-              })
+              })*/
     containerPackage.setToolTip(containerPackage.defaultArr)
     props.setCenterView(!props.centerView)
 

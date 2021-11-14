@@ -14,6 +14,13 @@ export default function CoordinateSearch(props) {
   }
 
   function handleAdd() {
+    if(!latLng)
+      return
+    
+    if(latLng.lat < -90 || latLng.lat > 90 || latLng.lng < -180 || latLng.lng > 180){
+      props.showMessage('Out of Bounds. Bounds are -90 < Latitude < 90 and -180 < Longitude < 180','error')
+      return
+    }
     if (latLng) {
       props.placeActions.append(latLngToPlace(latLng));
     }
