@@ -24,6 +24,7 @@
     "react-leaflet": "^2.7.0",
     "react-leaflet-control": "^2.1.2",
     "react-movable": "^2.5.4",
+    "react-switch": "^6.0.0",
     "reactstrap": "^8.4.1",
     "ulog": "^1.1.0"
   },
