@@ -61,7 +61,7 @@ export const ItineraryActionsDropdown = (props) => {
         {
             icon:<RiSettings5Fill/>,
             onChange:()=>{
-
+                props.toggleTripSettingsOpen();
             },
             description:'Trip Settings'
         },

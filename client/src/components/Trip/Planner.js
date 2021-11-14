@@ -11,6 +11,7 @@ import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 import { handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
 import { ItineraryActionsDropdown } from './Itinerary/actions';
 import FileDownloadModal from './Itinerary/Modals/FileDownloadModal'
+import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
 
 const packageUtilPlaces = () =>{
     const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
@@ -88,7 +89,13 @@ const packageUtilTripName = () =>{
     return Curpackage;
 }
 
-
+const packageTripSettings = (allPackages) =>{
+    const [tripSettingsOpen,toggleTripSettingsOpen] = useToggle(false)
+    let Curpackage = {
+        tripSettingsOpen,toggleTripSettingsOpen
+    }
+    return Curpackage;
+}
 
 
 const combineAllPackages = (props) =>{
@@ -99,6 +106,7 @@ const combineAllPackages = (props) =>{
     const packagedUtilMap = packageUtilMap();
     const packagedUtilFiles = packageUtilFiles();
     const packagedUtilTripName = packageUtilTripName();
+    const packagedTripSettings = packageTripSettings();
 
     const allPackages = {
         ...packagedUtilPlaces,
@@ -108,6 +116,7 @@ const combineAllPackages = (props) =>{
         ...packagedUtilMap,
         ...packagedUtilFiles,
         ...packagedUtilTripName,
+        ...packagedTripSettings,
         ...props
     } 
     return allPackages;
@@ -137,6 +146,7 @@ export default function Planner(props) {
                 <ItineraryActionsDropdown {...allPackages}/>
                 <Itinerary {...allPackages}/>
                 <FileDownloadModal {...allPackages}/>
+                <TripSettingsModal {...allPackages}/>
             </Section>
             <FileUploadModal {...allPackages}/>
         </Container>
