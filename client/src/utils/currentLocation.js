@@ -1,3 +1,9 @@
+import React, { useState, useEffect } from "react";
+
+import { Button, Input, InputGroup, InputGroupAddon, InputGroupText, Label, Row, Col } from "reactstrap";
+import Coordinates from 'coordinate-parser';
+import { reverseGeocode } from "../../../../utils/reverseGeocode";
+import { LOG } from "../../../../utils/constants";
 
 
 export async function currentLocation (){
@@ -12,12 +18,4 @@ function getPosition() {
     return new Promise((res, rej) => {
         navigator.geolocation.getCurrentPosition(res, rej);
     });
-}
-
-export const checkBounds = (latLng,showMessage) =>{
-     if(latLng.lat < -90 || latLng.lat > 90 || latLng.lng < -180 || latLng.lng > 180){
-      showMessage('Out of Bounds', 'error')
-      return true
-    }
-    return false
 }
