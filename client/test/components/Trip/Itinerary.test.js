@@ -23,7 +23,13 @@ describe('Itinerary', () => {
         screen.getByRole('cell', { name: /Place A/i });
     });
 
+    it('toggles row dropdown when clicked', () => {
+        const dropdown = screen.getByTestId('row-toggle-0');
+        expect(dropdown.getAttribute('aria-expanded')).toEqual('false');
 
+        user.click(dropdown);
+        expect(dropdown.getAttribute('aria-expanded')).toEqual('true');
+    });
 
     it('Distance Info', () => {
         render(<DistanceInfo index={0} cumalitiveDistances={[{total:50,distance:50}]} distances={{distances:[50,60]}} />);
