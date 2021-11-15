@@ -15,12 +15,8 @@ export default function CoordinateSearch(props) {
   }
 
   function handleAdd() {
-    if(!latLng)
-      return
-    if(checkBounds(latLng,props.showMessage))
-      return
-   
-    props.placeActions.append(latLngToPlace(latLng));
+    if(latLng && !checkBounds(latLng,props.showMessage))
+      props.placeActions.append(latLngToPlace(latLng));
   }
 
   async function getResults() {
