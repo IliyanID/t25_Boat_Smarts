@@ -21,9 +21,7 @@ export default function CoordinateSearch(props) {
       props.showMessage('Out of Bounds. Bounds are -90 < Latitude < 90 and -180 < Longitude < 180','error')
       return
     }
-    if (latLng) {
-      props.placeActions.append(latLngToPlace(latLng));
-    }
+    props.placeActions.append(latLngToPlace(latLng));
   }
 
   async function getResults() {
