@@ -16,51 +16,51 @@ const packageTripName = (props) =>{
     }
 }
 let handleFocusOut = (e,allPackages)=>{
-        let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
-        let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
-        //If the parent of the clicked item isn't the inputRef div
-        if(userDidntPressCheckMark && userDidntPressSaveButton){
-            handleSubmit(allPackages); 
-        }
+    let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
+    let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
+    //If the parent of the clicked item isn't the inputRef div
+    if(userDidntPressCheckMark && userDidntPressSaveButton){
+        handleSubmit(allPackages); 
     }
+}
 
-    const setFocus = (allPackages) =>{
-        allPackages.setInFocus(true)
-        allPackages.inputRef.current.focus()
+const setFocus = (allPackages) =>{
+    allPackages.setInFocus(true)
+    allPackages.inputRef.current.focus()
+}
+const handleCancel = (allPackages) =>{
+    allPackages.setInFocus(false)
+    allPackages.setTempName(allPackages.tripName)
+}
+const handleSubmit = (allPackages) =>{
+    allPackages.setInFocus(false)
+    if(allPackages.inputRef.current && allPackages.tripName !== allPackages.inputRef.current.value){
+        printMessage(allPackages);
+        allPackages.setTripName(allPackages.inputRef.current.value)
     }
-    const handleCancel = (allPackages) =>{
-        allPackages.setInFocus(false)
-        allPackages.setTempName(allPackages.tripName)
-    }
-  const handleSubmit = (allPackages) =>{
-        allPackages.setInFocus(false)
-        if(allPackages.inputRef.current && allPackages.tripName !== allPackages.inputRef.current.value){
-            printMessage(allPackages);
-            allPackages.setTripName(allPackages.inputRef.current.value)
-        }
-    }
+}
 
-    const printMessage = (allPackages) =>{
-        let message = "Trip Name has been changed from \'" + allPackages.tripName + "\' to \'" + allPackages.inputRef.current.value + "\'.";
-        allPackages.showMessage(message,"info");
+const printMessage = (allPackages) =>{
+    let message = "Trip Name has been changed from \'" + allPackages.tripName + "\' to \'" + allPackages.inputRef.current.value + "\'.";
+    allPackages.showMessage(message,"info");
+}
+let cancelPackage = [
+    {
+        id:'submitName',
+        onClick:(allPackages)=>handleSubmit(allPackages),
+        src:CheckMark
+    },
+    {
+        id:'cancelName',
+        onClick:(allPackages)=>handleCancel(allPackages),
+        src:Cancel
     }
-   let cancelPackage = [
-        {
-            id:'submitName',
-            onClick:(allPackages)=>handleSubmit(allPackages),
-            src:CheckMark
-        },
-        {
-            id:'cancelName',
-            onClick:(allPackages)=>handleCancel(allPackages),
-            src:Cancel
-        }
-    ]
+]
 
-    const getButtonLayout = (allPackages) =>{
+const getButtonLayout = (allPackages) =>{
     let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
     let buttonLayout;
- 
+
     if(!allPackages.inFocus){
         //Shift to the right to make room for the cancel button when rendered so the input doesn't move around
         iconStyle["marginLeft"] = "30px"
@@ -72,7 +72,7 @@ let handleFocusOut = (e,allPackages)=>{
         })
     }
     return buttonLayout;
-    }
+}
 
 const TripName = (props) =>{
     const states = packageTripName(props)
