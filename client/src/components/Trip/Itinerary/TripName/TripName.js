@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect, useToggle } from 'react'
 import { FaEdit } from 'react-icons/fa';
 import CheckMark from '../../../../static/images/checkmark.svg'
 import Cancel from '../../../../static/images/cancel.svg'
+import { NavItem } from 'reactstrap';
 
 const packageTripName = (props) =>{
     const inputRef = useRef();
@@ -54,16 +55,27 @@ const TripName = (props) =>{
     let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
 
     let buttonLayout;
+    let cancelPackage = [
+        {
+        id:'submitName',
+        onClick:()=>handleSubmit(allPackages),
+        src:CheckMark
+        },
+        {
+        id:'cancelName',
+        onClick:()=>handleCancel(allPackages),
+        src:Cancel
+        }
+    ]
     if(!allPackages.inFocus){
         //Shift to the right to make room for the cancel button when rendered so the input doesn't move around
         iconStyle["marginLeft"] = "30px"
         buttonLayout = <FaEdit  data-testid="edit" onClick={()=>setFocus(allPackages)} style={iconStyle}/>
     }
     else{
-        buttonLayout = (<>
-            <img data-testid="submitName" id="submit" style={iconStyle} onClick={()=>handleSubmit(allPackages)} src={CheckMark} />
-            <img data-testid="cancelName" id="cancel" style={iconStyle} onClick={()=>handleCancel(allPackages)} src={Cancel} />
-        </>)
+        buttonLayout = cancelPackage.map(item=>{
+            return <img data-testid={item.id} style={iconStyle} onClick={item.onClick} src={item.src}></img>
+        })
     }
 
     return(
