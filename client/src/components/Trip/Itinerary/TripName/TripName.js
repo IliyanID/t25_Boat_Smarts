@@ -29,7 +29,7 @@ let handleFocusOut = (e,allPackages)=>{
     }
     const handleCancel = (allPackages) =>{
         allPackages.setInFocus(false)
-        allPackages.setTempName(props.tripName)
+        allPackages.setTempName(allPackages.tripName)
     }
   const handleSubmit = (allPackages) =>{
         allPackages.setInFocus(false)
