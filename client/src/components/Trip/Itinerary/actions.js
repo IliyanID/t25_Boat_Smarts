@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from 'react';
-import { ButtonGroup, Tooltip, Button } from 'reactstrap';
-import { FaHome, FaTrashAlt, FaFileUpload,FaFileDownload, FaRoute} from 'react-icons/fa';
-import { AiOutlineClose, AiOutlineRedo} from 'react-icons/ai';
-import { TiArrowRepeat } from 'react-icons/ti'
-import { RiSettings5Fill } from 'react-icons/ri'
+import React, { useState, useEffect } from 'react';
+import { ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown, Tooltip } from 'reactstrap';
+import { BiDotsVerticalRounded, BiSleepy } from 'react-icons/bi';
+import { FaHome, FaTrash, FaTrashAlt, FaSearchLocation, FaFileUpload,FaFileDownload, FaRoute} from 'react-icons/fa';
+import { AiOutlineRedo} from 'react-icons/ai';
+import { DEFAULT_STARTING_PLACE, LOG } from '../../../utils/constants';
 import { currentLocation } from '../../../utils/currentLocation';
 
 export const toggle = (index,toolTip,setToolTip) =>{
@@ -11,93 +11,115 @@ export const toggle = (index,toolTip,setToolTip) =>{
     temp[index] = !temp[index]
     setToolTip(temp)
 }
-    const data = [
-   
-        {
-            icon:<FaHome/>,
-            onClick:(props)=>{
-                currentLocation().then((curr)=>{
-                    curr.name='Current Location'
-                    props.placeActions.append(curr)
-                }).catch(()=>{
-                    props.showMessage('Geolocation disabled. Please turn it on and reload the page','warning')
-                })
-            },
-            description:'Add starting Location'
-        },
-        {
-            icon:<FaFileUpload/>,
-            onClick:(props)=>{
-                props.toggleFileUploadOpen()
-            },
-            description:'Load Trip From File'
-        },
-        {
-            icon:<FaFileDownload/>,
-            onClick:(props)=>{
-                props.toggleFileDownloadOpen()
-            },
-            description:'Save Trip To File' 
-        },
-        {
-            icon:<FaRoute/>,
-            onClick:(props)=>{
-                props.togglePreviewTripFocus(); 
-            },
-            description:'Create shorter trip'
-        },
-        {
-            icon:<TiArrowRepeat/>,
-            onClick:(props)=>{
-                if(props.places.length !== 0){
-                    props.placeActions.reverse()
-                    props.showMessage('Reversed Trip from Starting Location','info')
-                }
-            },
-            description:'Reverse trip from start'
-        },
-        {
-            icon:<RiSettings5Fill/>,
-            onClick:(props)=>{
-                props.toggleTripSettingsOpen();
-            },
-            description:'Trip Settings'
-        },
-        {
-            icon:<FaTrashAlt/>,
-            onClick:(props)=>{
-                props.placeActions.removeAll()
-            },
-            description:'Delete Current Trip'
-        }
-    ]
-export const ItineraryActionsDropdown = (props) => {
-    let defaultArr = new Array(data.length).fill(false)
+
+export function ItineraryActionsDropdown(props) {
+    let descriptions = ["Add starting Location","Load Trip From File","Save Trip To File","Optimize Trip","Reverse Trip","Delete all Trips"]
+    let defaultArr = new Array(descriptions.length).fill(false)
+
     const [toolTip,setToolTip] = useState(defaultArr)
-    return (
-    <ButtonGroup style={{float:'right',marginBottom:'10px'}}>
-        {
-            data.map((item,index)=>{
-                let id = `home-row-${index}`
-                return(
-                <Fragment key={id}>
-                    <Button id={id} onClick={() => { setToolTip(defaultArr); item.onClick(props) }}>{item.icon}</Button>
-                    <Tooltip placement="bottom" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
-                        {item.description}
-                    </Tooltip>
-                </Fragment>)
+
+    //Make sure to add description of new button inside of descriptions
+    // also set the id of the button in the format id = {`index-{index of button in Items}`}
+    let Items = [
+    <DropdownItem id={`index-0`} onClick={() => {
+            currentLocation().then((curr)=>{
+                props.placeActions.append(curr) 
+            }).catch((e)=>{
+                props.showMessage("User denied Geolocation. Please turn it on and reload the page.","warning")
             })
-        }
-    </ButtonGroup>
+        }}
+            
+            data-testid='home-button'>
+        <FaHome />
+    </DropdownItem>,
+    <DropdownItem onClick={props.toggleFileUploadOpen} id={`index-1`} data-testid='load-file-button'>
+        <FaFileUpload/>
+    </DropdownItem>,
+    <DropdownItem onClick={props.toggleFileDownloadOpen} id={`index-2`} data-testid='save-file-button'>
+        <FaFileDownload/>
+    </DropdownItem>,
+    <DropdownItem onClick={props.togglePreviewTripFocus} id={`index-3`} data-testid='shorter-trip-button'>
+        <FaRoute />
+    </DropdownItem>,
+    <DropdownItem onClick={()=>{if(props.places.length !== 0){props.placeActions.reverse(); props.showMessage("Succesfully Reversed Trip from Starting Location","info")}}} id={`index-4`} data-testid='reverse-trip-buttom'>
+        <AiOutlineRedo/>
+    </DropdownItem>,
+    <DropdownItem onClick={props.placeActions.removeAll} id={`index-5`} data-testid='delete-all-button'>
+        <FaTrashAlt />
+    </DropdownItem>
+    ]
+
+    return (
+        <ActionsDropdown {...props}>
+                {
+                    Items.map((item,index)=>{
+                        return(
+                        <div key={`index-${index}`}>
+                            <div onClick={()=>setToolTip(defaultArr)}>{item}</div>
+                            <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}`}  toggle={()=>toggle(index,toolTip,setToolTip)}>
+                                {descriptions[index]}
+                            </Tooltip>
+                        </div>)
+                        
+                    })
+                }
+        </ActionsDropdown>
     );
 }
 
-export const PlaceActionsDropdown = (props) => {
+export function PlaceActionsDropdown(props) {
+    let descriptions=["Move Trip to Start","Delete Trip","Center View on Trip"]
+    let defaultArr = new Array(descriptions.length).fill(false)
+    const [toolTip,setToolTip] = useState(defaultArr)
+
+    //Make sure to add description of new button inside of descriptions
+    // also set the id of the bbuton in the format id = {`index-{index of button in Items}-${props.index}`}
+    let Items = [
+        <DropdownItem onClick={() => {props.placeActions.move(props.index,0);props.setCenterView(!props.centerView);}} id={`index-0-${props.index}`} data-testid={`home-button-${props.index}`}>
+            <FaHome />
+        </DropdownItem>,
+        <DropdownItem onClick={() => {props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${props.index}`}>
+            <FaTrash />
+        </DropdownItem>,
+        <DropdownItem onClick={() => {props.placeActions.selectIndex(props.index);props.setCenterView(!props.centerView);}} id={`index-2-${props.index}`} data-testid={`center-button-${props.index}`}>
+            <FaSearchLocation />
+        </DropdownItem>
+    ]
+
     return (
-        <div>
-            <div onClick={()=>setToolTip(defaultArr)}>
-                <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${(props).index}`}/>
-            </div>
-        </div>
-    )
+        <ActionsDropdown id={'test'}{...props}>
+        {
+            Items.map((item,index)=>{
+                if(index === 0 && props.index === 0)
+                    return <div key={`index-${index}-${props.index}`}></div>
+
+                return(
+                <div key={`index-${index}-${props.index}`}>
+                    <div onClick={()=>setToolTip(defaultArr)}>
+                        {item}
+                    </div>
+                    <Tooltip placement="left" isOpen={toolTip[index]} target={`index-${index}-${props.index}`}  toggle={()=>toggle(index,toolTip,setToolTip)}>
+                        {descriptions[index]}
+                    </Tooltip>
+                </div>)
+
+            })
+        }
+        </ActionsDropdown>
+    );
+}
+
+function ActionsDropdown(props) {
+    return (
+        <UncontrolledDropdown direction="left">
+            <DropdownToggle tag="div" data-testid={`row-toggle-${props.index}`}>
+                <BiDotsVerticalRounded size="1.5em" />
+            </DropdownToggle>
+            <DropdownMenu>
+                <ButtonGroup>
+                    {props.children}
+                </ButtonGroup>
+            </DropdownMenu>
+        </UncontrolledDropdown>
+    );
 }

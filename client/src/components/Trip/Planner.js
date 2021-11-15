@@ -8,10 +8,7 @@ import Itinerary from './Itinerary/Itinerary';
 import FileUploadModal from './Itinerary/Modals/FileUploadModal';
 import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
-import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
-import { ItineraryActionsDropdown } from './Itinerary/actions';
-import FileDownloadModal from './Itinerary/Modals/FileDownloadModal'
-import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
+import { handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
 
 const packageUtilPlaces = () =>{
     const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
@@ -52,13 +49,9 @@ const packageUtilDistances = () =>{
 const packageUtilTour = (packagedUtilPlaces) =>{
     const [origionalPlaces,setOrigionalPlaces] = useState(...[packagedUtilPlaces.places])
     const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
-    const [disablePreviewMode,toggleDisablePreviewMode] = useToggle(false)
-    const [automaticallyRunTour,toggleAutomaticallyRunTour] = useToggle(false)
     let Curpackage = {
         origionalPlaces:origionalPlaces,setOrigionalPlaces:setOrigionalPlaces,
-        previewTripFocus:previewTripFocus,togglePreviewTripFocus:togglePreviewTripFocus,
-        disablePreviewMode,toggleDisablePreviewMode,
-    automaticallyRunTour:automaticallyRunTour,toggleAutomaticallyRunTour:toggleAutomaticallyRunTour
+        previewTripFocus:previewTripFocus,togglePreviewTripFocus:togglePreviewTripFocus
     }
     return Curpackage;
 }
@@ -74,13 +67,11 @@ const packageUtilMap = () =>{
 }
 
 const packageUtilFiles = () =>{
-    const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
     const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
     const [filePlaces, setFilePlaces] = useState([]);
     let Curpackage = {
         fileUploadOpen:fileUploadOpen,toggleFileUploadOpen:toggleFileUploadOpen,
-        filePlaces:filePlaces,setFilePlaces:setFilePlaces,
-        fileDownloadOpen,toggleFileDownloadOpen
+        filePlaces:filePlaces,setFilePlaces:setFilePlaces
     }
     return Curpackage;
 }
@@ -93,13 +84,7 @@ const packageUtilTripName = () =>{
     return Curpackage;
 }
 
-const packageTripSettings = (allPackages) =>{
-    const [tripSettingsOpen,toggleTripSettingsOpen] = useToggle(false)
-    let Curpackage = {
-        tripSettingsOpen,toggleTripSettingsOpen
-    }
-    return Curpackage;
-}
+
 
 
 const combineAllPackages = (props) =>{
@@ -110,7 +95,6 @@ const combineAllPackages = (props) =>{
     const packagedUtilMap = packageUtilMap();
     const packagedUtilFiles = packageUtilFiles();
     const packagedUtilTripName = packageUtilTripName();
-    const packagedTripSettings = packageTripSettings();
 
     const allPackages = {
         ...packagedUtilPlaces,
@@ -120,7 +104,6 @@ const combineAllPackages = (props) =>{
         ...packagedUtilMap,
         ...packagedUtilFiles,
         ...packagedUtilTripName,
-        ...packagedTripSettings,
         ...props
     } 
     return allPackages;
@@ -132,14 +115,13 @@ export default function Planner(props) {
     handleConfigRequest(allPackages,props);
     handleDistancesRequest(allPackages,props);
     handleTourRequest(allPackages,props);
-    handleAutoTour(allPackages,props)
     return (
         <Container>
             <Section>
                 <OptimizedTrip {...allPackages}/>
             </Section>
             <Section>
-                <Map {...allPackages}/>
+                <Map {...allPackages} />
             </Section>
             <br />
             <Section>
@@ -148,7 +130,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <ItineraryActionsDropdown {...allPackages}/><Itinerary {...allPackages}/><FileDownloadModal {...allPackages}/><TripSettingsModal {...allPackages}/>
+                <Itinerary {...allPackages}/>
             </Section>
             <FileUploadModal {...allPackages}/>
         </Container>
