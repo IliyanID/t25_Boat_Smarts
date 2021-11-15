@@ -20,8 +20,7 @@ const DistanceInfo = (props) =>{
                         <CgArrowsShrinkV size={30}/>
                             <div className='unitContainer'>{unit(individualItem.distance)}</div>
                         <CgArrowsShrinkV size={30}/>
-                    </>
-                    :
+                    </>:
                     <>
                         <RiArrowGoForwardLine size={30} style={{transform:'rotate(270deg)'}}/>
                             <div className='unitContainer'>{unit(individualItem.distance)} To Start</div>
@@ -37,10 +36,9 @@ const DistanceInfo = (props) =>{
     ) 
 }
 const unit = (item) =>{
-    let itemStr = prettyNum(item,{thousandsSeparator:','})
     if(item == 1)
-        return itemStr + ' Mile'
+        return prettyNum(item,{thousandsSeparator:','}) + ' Mile'
 
-    return itemStr + ' Miles'
+    return prettyNum(item,{thousandsSeparator:','}) + ' Miles'
 }
 export default DistanceInfo;
