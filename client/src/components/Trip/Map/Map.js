@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Map as LeafletMap, Polyline, TileLayer } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
+import { checkBounds } from '../../../utils/currentLocation';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
 
@@ -11,58 +12,84 @@ const MAP_LAYER_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const MAP_MIN_ZOOM = 1;
 const MAP_MAX_ZOOM = 19;
 
-export default function Map(props) {
+const packageStates = () =>{
     const [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
     const [previewMarker,setPreviewMarker] = useState(false)
+    const mapRef = useRef()
+    const [zoom,setZoom] = useState(15)
+    return {
+        coordinates,setCoordinates,
+        previewMarker,setPreviewMarker,
+        mapRef,
+        zoom,setZoom
+    }
+}
+const centerView = (allPackages,currentCords) =>{
+    allPackages.setCoordinates(currentCords)
+    let currentZoom = allPackages.mapRef.current.leafletElement.getZoom();
+    allPackages.setZoom(currentZoom)
+}
 
-    useEffect(()=>{
-       getCenter().then((result)=>{setCoordinates(result)});
-    },[])
+function handleMapClick(allPackagees,mapClickInfo) {
+    let latlng = mapClickInfo.latlng
+    if(checkBounds(latlng,allPackagees.showMessage))
+        return
+    if(!allPackagees.previewTripFocus){
+        allPackagees.placeActions.append(latLngToPlace(latlng));
+    }
+}
 
-    useEffect(()=>{
-        if( props.selectedIndex >=0 )
-            setCoordinates(props.places[props.selectedIndex])
-    },[props.centerView])
+const componentDidMount = (allPackages) =>{
+    return   useEffect(()=>{
+            getCenter().then((result)=>{allPackages.setCoordinates(result)});
+        },[])
+}
 
-    useEffect(()=>{
+const handleCenterView = (allPackages) =>{
+    return useEffect(()=>{
+        if( allPackages.selectedIndex >=0 )
+            centerView(allPackages,allPackages.places[allPackages.selectedIndex])
+    },[allPackages.centerView])
+
+}
+
+const handleLocationPreview = (allPackages)=>{
+    return   useEffect(()=>{
         const valid = (latlng)=>{
             return latlng !== undefined
         }
-        if(props.locationPreview && valid(props.locationPreview.lat) && valid(props.locationPreview.lng)){
-            setCoordinates({... props.locationPreview})
-            setPreviewMarker(true);
+        if(allPackages.locationPreview && valid(allPackages.locationPreview.lat) && valid(allPackages.locationPreview.lng)){
+            allPackages.setCoordinates({... allPackages.locationPreview})
+            allPackages.setPreviewMarker(true);
         }
-    },[props.locationPreview])
+    },[allPackages.locationPreview])
 
-    useEffect(()=>{
-        setPreviewMarker(false)
-    },[props.places])
+}
 
-    function handleMapClick(mapClickInfo) {
-        if(!props.previewTripFocus)
-            props.placeActions.append(latLngToPlace(mapClickInfo.latlng));
-    }
+const handlePlaces = (allPackages)=>{
+    return    useEffect(()=>{
+        allPackages.setPreviewMarker(false)
+    },[allPackages.places])
+
+}
+
+export default function Map(props) {
+    const states = packageStates()
+    const allPackages = {...states,...props}
+    componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
 
     return (
         <LeafletMap
-            className="mapStyle"
-            boxZoom={false}
-            useFlyTo={true}
-            zoom={15}
-            minZoom={MAP_MIN_ZOOM}
-            maxZoom={MAP_MAX_ZOOM}
-            maxBounds={MAP_BOUNDS}
-            center={coordinates}
-            onClick={handleMapClick}
+            ref={allPackages.mapRef} className="mapStyle"
+            boxZoom={false} useFlyTo={true}
+            zoom={allPackages.zoom} minZoom={MAP_MIN_ZOOM} maxZoom={MAP_MAX_ZOOM} maxBounds={MAP_BOUNDS}
+            center={allPackages.coordinates}
+            onClick={(e)=>handleMapClick(allPackages,e)}
             data-testid="Map"
         >
             <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
-            <TripLines places={props.places} />
-            {(previewMarker)?
-                <Marker place={props.locationPreview} />
-                :
-                <PlaceMarker places={props.places} selectedIndex={props.selectedIndex} />
-            }
+            <TripLines places={allPackages.places} />
+            {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
         </LeafletMap>
     );
 }
