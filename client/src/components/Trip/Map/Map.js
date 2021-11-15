@@ -76,18 +76,12 @@ const handlePlaces = (allPackages)=>{
 export default function Map(props) {
     const states = packageStates()
     const allPackages = {...states,...props}
-    
-    componentDidMount(allPackages)
-    handleCenterView(allPackages)
-    handleLocationPreview(allPackages)
-    handlePlaces(allPackages)    
+    componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
 
     return (
         <LeafletMap
-            ref={allPackages.mapRef}
-            className="mapStyle"
-            boxZoom={false}
-            useFlyTo={true}
+            ref={allPackages.mapRef} className="mapStyle"
+            boxZoom={false} useFlyTo={true}
             zoom={allPackages.zoom} minZoom={MAP_MIN_ZOOM} maxZoom={MAP_MAX_ZOOM} maxBounds={MAP_BOUNDS}
             center={allPackages.coordinates}
             onClick={(e)=>handleMapClick(allPackages,e)}
@@ -95,11 +89,7 @@ export default function Map(props) {
         >
             <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
             <TripLines places={allPackages.places} />
-            {(allPackages.previewMarker)?
-                <Marker place={allPackages.locationPreview} />
-                :
-                <PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />
-            }
+            {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
         </LeafletMap>
     );
 }
