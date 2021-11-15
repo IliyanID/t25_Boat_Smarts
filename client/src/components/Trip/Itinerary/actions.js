@@ -11,13 +11,11 @@ export const toggle = (index,toolTip,setToolTip) =>{
     temp[index] = !temp[index]
     setToolTip(temp)
 }
-
-export const ItineraryActionsDropdown = (props) => {
-    let data = [
+    const data = [
    
         {
             icon:<FaHome/>,
-            onClick:()=>{
+            onClick:(props)=>{
                 currentLocation().then((curr)=>{
                     curr.name='Current Location'
                     props.placeActions.append(curr)
@@ -29,28 +27,28 @@ export const ItineraryActionsDropdown = (props) => {
         },
         {
             icon:<FaFileUpload/>,
-            onClick:()=>{
+            onClick:(props)=>{
                 props.toggleFileUploadOpen()
             },
             description:'Load Trip From File'
         },
         {
             icon:<FaFileDownload/>,
-            onClick:()=>{
+            onClick:(props)=>{
                 props.toggleFileDownloadOpen()
             },
             description:'Save Trip To File' 
         },
         {
             icon:<FaRoute/>,
-            onClick:()=>{
+            onClick:(props)=>{
                 props.togglePreviewTripFocus(); 
             },
             description:'Create shorter trip'
         },
         {
             icon:<TiArrowRepeat/>,
-            onClick:()=>{
+            onClick:(props)=>{
                 if(props.places.length !== 0){
                     props.placeActions.reverse()
                     props.showMessage('Reversed Trip from Starting Location','info')
@@ -60,24 +58,22 @@ export const ItineraryActionsDropdown = (props) => {
         },
         {
             icon:<RiSettings5Fill/>,
-            onClick:()=>{
+            onClick:(props)=>{
                 props.toggleTripSettingsOpen();
             },
             description:'Trip Settings'
         },
         {
             icon:<FaTrashAlt/>,
-            onClick:()=>{
+            onClick:(props)=>{
                 props.placeActions.removeAll()
             },
             description:'Delete Current Trip'
         }
     ]
+export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
-
-  
-
     return (
     <ButtonGroup style={{float:'right',marginBottom:'10px'}}>
         {
@@ -85,7 +81,7 @@ export const ItineraryActionsDropdown = (props) => {
                 let id = `home-row-${index}`
                 return(
                 <Fragment key={id}>
-                    <Button id={id} onClick={() => { setToolTip(defaultArr); item.onClick() }}>{item.icon}</Button>
+                    <Button id={id} onClick={() => { setToolTip(defaultArr); item.onClick(props) }}>{item.icon}</Button>
                     <Tooltip placement="bottom" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                         {item.description}
                     </Tooltip>
@@ -100,7 +96,7 @@ export const PlaceActionsDropdown = (props) => {
     return (
         <div>
             <div onClick={()=>setToolTip(defaultArr)}>
-                <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${props.index}`}/>
+                <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${(props).index}`}/>
             </div>
         </div>
     )
