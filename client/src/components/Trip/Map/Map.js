@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Map as LeafletMap, Polyline, TileLayer } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
+import { checkBounds } from '../../../utils/currentLocation';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
 
@@ -50,10 +51,8 @@ export default function Map(props) {
 
     function handleMapClick(mapClickInfo) {
         let latlng = mapClickInfo.latlng
-        if(latlng.lat < -90 || latlng.lat > 90 || latlng.lng < -180 || latlng.lng > 180){
-            props.showMessage(`Out of Bounds. Bounds are -90 < Latitude < 90 and -180 < Longitude < 180. Received ${Math.round(latlng.lat)} , ${Math.round(latlng.lng)}`,'error')
-            return;
-        }
+        if(checkBounds(latlng,props.showMessage))
+            return
         if(!props.previewTripFocus){
             props.placeActions.append(latLngToPlace(latlng));
         }
