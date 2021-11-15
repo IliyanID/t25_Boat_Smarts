@@ -44,6 +44,36 @@ let handleFocusOut = (e,allPackages)=>{
         let message = "Trip Name has been changed from \'" + allPackages.tripName + "\' to \'" + allPackages.inputRef.current.value + "\'.";
         allPackages.showMessage(message,"info");
     }
+   let cancelPackage = [
+        {
+            id:'submitName',
+            onClick:(allPackages)=>handleSubmit(allPackages),
+            src:CheckMark
+        },
+        {
+            id:'cancelName',
+            onClick:(allPackages)=>handleCancel(allPackages),
+            src:Cancel
+        }
+    ]
+
+    const getButtonLayout = (allPackages) =>{
+    let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
+    let buttonLayout;
+ 
+    if(!allPackages.inFocus){
+        //Shift to the right to make room for the cancel button when rendered so the input doesn't move around
+        iconStyle["marginLeft"] = "30px"
+        buttonLayout = <FaEdit  data-testid="edit" onClick={()=>setFocus(allPackages)} style={iconStyle}/>
+    }
+    else{
+        buttonLayout = cancelPackage.map(item=>{
+            return <img data-testid={item.id} style={iconStyle} onClick={()=>item.onClick(allPackages)} src={item.src}></img>
+        })
+    }
+    return buttonLayout;
+    }
+
 const TripName = (props) =>{
     const states = packageTripName(props)
     const allPackages = {...states,...props}
@@ -52,31 +82,8 @@ const TripName = (props) =>{
         document.addEventListener('click', (e)=>handleFocusOut(e,allPackages))
     },[])
 
-    let iconStyle = {width:"20px",cursor:"pointer",marginRight:"10px"}
-
-    let buttonLayout;
-    let cancelPackage = [
-        {
-        id:'submitName',
-        onClick:()=>handleSubmit(allPackages),
-        src:CheckMark
-        },
-        {
-        id:'cancelName',
-        onClick:()=>handleCancel(allPackages),
-        src:Cancel
-        }
-    ]
-    if(!allPackages.inFocus){
-        //Shift to the right to make room for the cancel button when rendered so the input doesn't move around
-        iconStyle["marginLeft"] = "30px"
-        buttonLayout = <FaEdit  data-testid="edit" onClick={()=>setFocus(allPackages)} style={iconStyle}/>
-    }
-    else{
-        buttonLayout = cancelPackage.map(item=>{
-            return <img data-testid={item.id} style={iconStyle} onClick={item.onClick} src={item.src}></img>
-        })
-    }
+    const buttonLayout = getButtonLayout(allPackages)
+    
 
     return(
         <div style={allPackages.style} id="inputContainer">
