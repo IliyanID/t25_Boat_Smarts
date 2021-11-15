@@ -1,9 +1,3 @@
-import React, { useState, useEffect } from "react";
-
-import { Button, Input, InputGroup, InputGroupAddon, InputGroupText, Label, Row, Col } from "reactstrap";
-import Coordinates from 'coordinate-parser';
-import { reverseGeocode } from "../../../../utils/reverseGeocode";
-import { LOG } from "../../../../utils/constants";
 
 
 export async function currentLocation (){
