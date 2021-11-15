@@ -148,10 +148,7 @@ export default function Planner(props) {
             </Section>
             <br />
             <Section>
-                <ItineraryActionsDropdown {...allPackages}/>
-                <Itinerary {...allPackages}/>
-                <FileDownloadModal {...allPackages}/>
-                <TripSettingsModal {...allPackages}/>
+                <ItineraryActionsDropdown {...allPackages}/><Itinerary {...allPackages}/><FileDownloadModal {...allPackages}/><TripSettingsModal {...allPackages}/>
             </Section>
             <FileUploadModal {...allPackages}/>
         </Container>
