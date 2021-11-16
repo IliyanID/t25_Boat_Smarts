@@ -22,7 +22,7 @@ export function missingFeatures(config,serverSettings){
     else if(serverSettings && serverSettings.serverConfig && serverSettings.serverConfig.features){
         missingFeatures = []
         Object.keys(SCHEMAS).forEach(feature => {
-            if(serverSettings.serverConfig.features.includes(feature))
+            if(!serverSettings.serverConfig.features.includes(feature))
                missingFeatures.push(feature)
         });
     }
