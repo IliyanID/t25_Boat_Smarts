@@ -41,10 +41,6 @@ const GetTableContentsData = (allPackages) =>{
     ]
 }
 const SearchTab = (allPackages) =>{
-    const SingleTabProps = {
-        activeTab:allPackages.activeTab,setActiveTab:allPackages.setActiveTab,setSearchResults:allPackages.setSearchResults
-    }
-
     return <Nav tabs>
             <SingleTab tabId = "defaultSearch" tabLabel = "Search" 
                     {...allPackages}/>
