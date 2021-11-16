@@ -70,24 +70,18 @@ export default function Search(props) {
     }
     const TableContentsData = GetTableContentsData(allPackages)
     return (
-        <>
-        {SearchTab(allPackages)} 
+        <>{SearchTab(allPackages)} 
         <TabContent activeTab={activeTab}>
-            {
-                TableContentsData.map(tab=>{
-                    return (
-                        <TabPane tabId={tab.tabId}>
+            {TableContentsData.map(tab=>{
+                return (<TabPane tabId={tab.tabId}>
                             <Row>
                                 <Col className={tab.className}>
                                     {tab.tabContent}
                                 </Col>
                             </Row>
-                        </TabPane>
-                    )
-                })
-            }
-        </TabContent>
-        </>
+                        </TabPane>)
+            })}
+        </TabContent></>
     );
 }
 
