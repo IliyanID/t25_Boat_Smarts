@@ -15,14 +15,12 @@ export default function Page(props) {
 	const [hideMargins,setMargins] = useState(true)
 
 	useEffect(()=>{
-		let lastY = -1
 		document.addEventListener('scroll',(e)=>{
-			if(window.scrollY < 100 || window.scrollY < lastY){
+			if(window.scrollY < 100){
 				setMargins(true)
 			}
 			else
 				setMargins(false)
-			lastY = window.scrollY;
 		})
 	},[])
 

@@ -75,4 +75,8 @@
 .buttonGroup{
     margin-bottom:10px;
 }
-
+.mapContainer{
+    position:sticky;
+    top:0px;
+    z-index:500;
+}

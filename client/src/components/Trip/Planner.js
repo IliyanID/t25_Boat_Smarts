@@ -135,10 +135,8 @@ export default function Planner(props) {
     handleAutoTour(allPackages,props)
     return (
         <Container>
-            <Section>
+            <Section className='mapContainer'>
                 <OptimizedTrip {...allPackages}/>
-            </Section>
-            <Section>
                 <Map {...allPackages}/>
             </Section>
             <br />
@@ -156,8 +154,9 @@ export default function Planner(props) {
 }
 
 function Section(props) {
+    console.log(props.className)
     return (
-        <Row>
+        <Row className={props.className}>
             <Col sm={12} md={{ size: 10, offset: 1 }}>
                 {props.children}
             </Col>
