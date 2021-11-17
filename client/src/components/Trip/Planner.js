@@ -152,7 +152,6 @@ export default function Planner(props) {
 }
 
 function Section(props) {
-    console.log(props.className)
     return (
         <Row className={props.className}>
             <Col sm={12} md={{ size: 10, offset: 1 }}>

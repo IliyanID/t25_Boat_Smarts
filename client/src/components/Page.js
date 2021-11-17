@@ -26,14 +26,17 @@ export default function Page(props) {
 
 				let footerDis = window.scrollY - 10;
 				if(footerDis >= 0)
-				footer.current.style.transform = `translateY(${footerDis}%)`
+					footer.current.style.transform = `translateY(${footerDis}%)`
 				setMargins(true)
 
 				//if(header.current)
 					//header.current.style.transform = `translateY(-${windows.scrollY}%)`
 			}
-			else
+			else{
+				header.current.style.transform = `translateY(-${90}%)`
+				footer.current.style.transform = `translateY(${80}%)`
 				setMargins(false)
+			}
 		})
 	},[header])
 
