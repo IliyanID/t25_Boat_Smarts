@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest --coverageDirectory=${BUILD_DIRECTORY_PREFIX}/target/coverage/client/",
+    "test": "jest --coverageDirectory=${BUILD_DIRECTORY_PREFIX}/target/coverage/client/ --silent",
     "postman": "newman run ../server/src/test/postman/314-api-tests.postman_collection.json",
     "devClient": "webpack-dev-server -d --env.CLIENT_PORT=3000 --env.SERVER_PORT=8000 --env.CLIENT_LOG_LEVEL=INFO --env.BUILD_DIRECTORY_PREFIX=$BUILD_DIRECTORY_PREFIX",
     "prodClient": "webpack -p --env.CLIENT_LOG_LEVEL=ERROR --env.BUILD_DIRECTORY_PREFIX=$BUILD_DIRECTORY_PREFIX",
@@ -18,11 +18,13 @@
     "newman": "^5.1.2",
     "node-sass": "^4.14.1",
     "notistack": "1.0.10",
+    "pretty-num": "^0.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-leaflet": "^2.7.0",
     "react-leaflet-control": "^2.1.2",
     "react-movable": "^2.5.4",
+    "react-switch": "^6.0.0",
     "reactstrap": "^8.4.1",
     "ulog": "^1.1.0"
   },

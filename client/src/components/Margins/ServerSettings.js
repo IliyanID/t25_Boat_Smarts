@@ -11,11 +11,21 @@ export function missingFeatures(config,serverSettings){
     //Uncomment Below to cause missing feature error
     //existingClientFeatures['where'] = 'S'
 
-    if(config && config.features)
-        missingFeatures = Object.keys(SCHEMAS).map(feature => !config.features.includes(feature));
+    if(config && config.features){
+        missingFeatures = [];
+        Object.keys(SCHEMAS).forEach(feature => {
+            if(!config.features.includes(feature))
+                missingFeatures.push(feature)
+        });
+    }
 
-    else if(serverSettings && serverSettings.serverConfig && serverSettings.serverConfig.features)
-        missingFeatures = Object.keys(SCHEMAS).map(feature => !serverSettings.serverConfig.features.includes(feature));
+    else if(serverSettings && serverSettings.serverConfig && serverSettings.serverConfig.features){
+        missingFeatures = []
+        Object.keys(SCHEMAS).forEach(feature => {
+            if(!serverSettings.serverConfig.features.includes(feature))
+               missingFeatures.push(feature)
+        });
+    }
 
     return missingFeatures;
 }
