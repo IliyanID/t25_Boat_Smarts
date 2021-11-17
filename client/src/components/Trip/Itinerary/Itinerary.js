@@ -5,7 +5,7 @@ import Body from './Body/Body'
 import Header from './Header/Header'
 
 export default function Itinerary(props) {
-    const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
+    
 
     let cumalitiveDistances = [];
     
@@ -14,8 +14,8 @@ export default function Itinerary(props) {
         props.distances.distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
     }catch{cumalitiveDistances = [{total:50,distance:0}]}
     return (
-        <Table responsive striped>
-            <Header totalDistance={runningTotal} placeActions={props.placeActions} showMessage={props.showMessage} fileDownloadOpen={fileDownloadOpen} toggleFileDownloadOpen = {toggleFileDownloadOpen}{...props} />
+        <Table style={{overflow:'hidden'}} responsive striped>
+            <Header totalDistance={runningTotal} placeActions={props.placeActions} showMessage={props.showMessage} {...props} />
             <Body cumalitiveDistances={cumalitiveDistances}  places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
     );

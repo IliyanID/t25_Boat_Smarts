@@ -123,7 +123,7 @@ function bundle_client {
 }
 
 function build_server {
-  mvn -f ${REPO_ROOT}/server --global-settings ${REPO_ROOT}/server/.m2/settings.xml -Drevision=${REVISION} -Dbuild.directory.prefix=${BUILD_DIRECTORY_PREFIX} package $@
+  mvn -q -f ${REPO_ROOT}/server --global-settings ${REPO_ROOT}/server/.m2/settings.xml -Drevision=${REVISION} -Dbuild.directory.prefix=${BUILD_DIRECTORY_PREFIX} package $@
   check_error $?
 }
 
