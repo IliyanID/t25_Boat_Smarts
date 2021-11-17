@@ -93,11 +93,15 @@ export const ItineraryActionsDropdown = (props) => {
 }
 
 export const PlaceActionsDropdown = (props) => {
+    const [tooltip,toggleToolTip] = useToggle(false)
     return (
         <div>
             <div onClick={()=>setToolTip(defaultArr)}>
-                <FaHome style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
-                <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} id={`index-1-${props.index}`} data-testid={`delete-button-${(props).index}`}/>
+                <FaHome id={`to-start-${props.index}`} style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
+                <Tooltip placement='bottom' isOpen={tooltip}, toggle={toggleToolTip} target={`to-start-${props.index}`}>
+
+                </Tooltip>
+                <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
             </div>
         </div>
     )
