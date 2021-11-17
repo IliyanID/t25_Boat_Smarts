@@ -35,15 +35,17 @@ const centerView = (allPackages,currentCords) =>{
 function handleMapClick(allPackagees,mapClickInfo) {
     let maxWidth = allPackagees.mapRef.current.leafletElement._size.x - mapClickInfo.containerPoint.x
     let maxHeight =  allPackagees.mapRef.current.leafletElement._size.y - mapClickInfo.containerPoint.y
+    let latlng = mapClickInfo.latlng
 
     if(maxWidth < 45 && maxHeight > 170)
         return
-    let latlng = mapClickInfo.latlng
     if(checkBounds(latlng,allPackagees.showMessage))
         return
-    if(!allPackagees.previewTripFocus){
-        allPackagees.placeActions.append(latLngToPlace(latlng));
-    }
+    if(allPackagees.previewTripFocus)
+        return
+    
+    allPackagees.placeActions.append(latLngToPlace(latlng));
+    
 }
 
 const componentDidMount = (allPackages) =>{
