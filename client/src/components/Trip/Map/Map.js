@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Map as LeafletMap, Polyline, TileLayer } from 'react-leaflet';
+import { Map as LeafletMap, Polyline, TileLayer, Panel } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
 import { checkBounds } from '../../../utils/currentLocation';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
+import { ItineraryActionsDropdown } from '../Itinerary/actions';
+import { map } from 'leaflet';
 
 const MAP_BOUNDS = [[-90, -180], [90, 180]];
 const MAP_LAYER_ATTRIBUTION = "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors";
@@ -31,6 +33,11 @@ const centerView = (allPackages,currentCords) =>{
 }
 
 function handleMapClick(allPackagees,mapClickInfo) {
+    let maxWidth = allPackagees.mapRef.current.leafletElement._size.x - mapClickInfo.containerPoint.x
+    let maxHeight =  allPackagees.mapRef.current.leafletElement._size.y - mapClickInfo.containerPoint.y
+
+    if(maxWidth < 45 && maxHeight > 170)
+        return
     let latlng = mapClickInfo.latlng
     if(checkBounds(latlng,allPackagees.showMessage))
         return
@@ -73,10 +80,14 @@ const handlePlaces = (allPackages)=>{
 
 }
 
+
+
 export default function Map(props) {
     const states = packageStates()
     const allPackages = {...states,...props}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
+   
+
 
     return (
         <LeafletMap
@@ -87,9 +98,13 @@ export default function Map(props) {
             onClick={(e)=>handleMapClick(allPackages,e)}
             data-testid="Map"
         >
+           
             <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
             <TripLines places={allPackages.places} />
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
+
+            <ItineraryActionsDropdown {...props}/>
+
         </LeafletMap>
     );
 }

@@ -9,7 +9,6 @@ import FileUploadModal from './Itinerary/Modals/FileUploadModal';
 import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
-import { ItineraryActionsDropdown } from './Itinerary/actions';
 import FileDownloadModal from './Itinerary/Modals/FileDownloadModal'
 import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
 
@@ -134,7 +133,7 @@ export default function Planner(props) {
     handleTourRequest(allPackages,props);
     handleAutoTour(allPackages,props)
     return (
-        <Container>
+        <Container id='trip_container'>
             <Section>
                 <OptimizedTrip {...allPackages}/>
             </Section>
@@ -146,9 +145,8 @@ export default function Planner(props) {
                 <Search {...allPackages} />
                 {allPackages.searchResults && <><br /><Results {...allPackages} /></>}
             </Section>
-            <br />
             <Section>
-                <ItineraryActionsDropdown {...allPackages}/><Itinerary {...allPackages}/><FileDownloadModal {...allPackages}/><TripSettingsModal {...allPackages}/>
+                <Itinerary {...allPackages}/><FileDownloadModal {...allPackages}/><TripSettingsModal {...allPackages}/>
             </Section>
             <FileUploadModal {...allPackages}/>
         </Container>
