@@ -47,7 +47,7 @@
 .OptimizationOption{
     text-align: center;
     position:relative;
-    z-index:4;
+    z-index:100000;
     animation: previewMode 1.5s forwards; 
 
 }

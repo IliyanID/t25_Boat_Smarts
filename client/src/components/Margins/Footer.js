@@ -11,7 +11,7 @@ export default function Footer(props) {
     const [serverSettingsOpen, toggleServerSettings] = useToggle(false);
 
     return (
-        <div className="full-width footer">
+        <div ref={props.footer} style={props.style} className={"full-width footer " + props.className}>
             <ServerInformation toggleServerSettings={toggleServerSettings} serverSettingsOpen={serverSettingsOpen} {...props} />
         </div>
     );
@@ -26,7 +26,7 @@ function ServerInformation(props) {
     const linkStatusSymbol = connectedToValidServer() ? UNICODE_LINK_SYMBOL : UNICODE_WARNING_SIGN;
 
     return (
-        <div className={"vertical-center tco-text "}>
+        <div className="vertical-center tco-text ">
             <Container>
                 <div className="centered">
                     {linkStatusSymbol} Connected to {serverName} &nbsp;

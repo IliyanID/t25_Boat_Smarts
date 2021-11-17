@@ -77,6 +77,22 @@
 }
 .mapContainer{
     position:sticky;
-    top:0px;
+    top:20px;
     z-index:500;
 }
+
+
+/*
+body::-webkit-scrollbar {
+    width: 15px;               
+  }
+  
+  body::-webkit-scrollbar-track {
+    background:    #1E4D2B    
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: white;    
+    border-radius: 5px;     
+    border:3px solid   #1E4D2B
+  }*/

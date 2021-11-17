@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Collapse } from 'reactstrap';
 import Header from './Margins/Header';
 import Footer from './Margins/Footer';
@@ -14,19 +14,32 @@ export default function Page(props) {
 	const [serverSettings, processServerConfigSuccess] = useServerSettings(props.showMessage);
 	const [hideMargins,setMargins] = useState(true)
 
+	const header = useRef()
+	const footer = useRef()
+
+
 	useEffect(()=>{
 		document.addEventListener('scroll',(e)=>{
-			if(window.scrollY < 100){
+			
+			if(window.scrollY < 90){
+				header.current.style.transform = `translateY(-${window.scrollY}%)`
+
+				let footerDis = window.scrollY - 10;
+				if(footerDis >= 0)
+				footer.current.style.transform = `translateY(${footerDis}%)`
 				setMargins(true)
+
+				//if(header.current)
+					//header.current.style.transform = `translateY(-${windows.scrollY}%)`
 			}
 			else
 				setMargins(false)
 		})
-	},[])
+	},[header])
 
 	return (
 		<>
-			{(hideMargins)?<Header showMessage={props.showMessage} toggleAbout={toggleAbout} />:<></>}
+			<Header header={header} showMessage={props.showMessage} toggleAbout={toggleAbout} />
 			<div className="body">
 				<Collapse isOpen={showAbout}>
 					<About closePage={toggleAbout} />
@@ -35,11 +48,13 @@ export default function Page(props) {
 					<Planner showMessage={props.showMessage} serverSettings={serverSettings} {...props}/>
 				</Collapse>
 			</div>
-			{(hideMargins)?<Footer
+			<Footer
+				footer={footer}
+				
 				showMessage={props.showMessage}
 				serverSettings={serverSettings}
 				processServerConfigSuccess={processServerConfigSuccess}
-			/>:<></>}
+			/>
 		</>
 	)
 }
