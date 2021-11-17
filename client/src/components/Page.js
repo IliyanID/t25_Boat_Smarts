@@ -12,10 +12,23 @@ import { getOriginalServerUrl, sendAPIRequest } from '../utils/restfulAPI';
 export default function Page(props) {
 	const [showAbout, toggleAbout] = useToggle(false);
 	const [serverSettings, processServerConfigSuccess] = useServerSettings(props.showMessage);
+	const [hideMargins,setMargins] = useState(true)
+
+	useEffect(()=>{
+		let lastY = -1
+		document.addEventListener('scroll',(e)=>{
+			if(window.scrollY < 100 || window.scrollY < lastY){
+				setMargins(true)
+			}
+			else
+				setMargins(false)
+			lastY = window.scrollY;
+		})
+	},[])
 
 	return (
 		<>
-			<Header showMessage={props.showMessage} toggleAbout={toggleAbout} />
+			{(hideMargins)?<Header showMessage={props.showMessage} toggleAbout={toggleAbout} />:<></>}
 			<div className="body">
 				<Collapse isOpen={showAbout}>
 					<About closePage={toggleAbout} />
@@ -24,11 +37,11 @@ export default function Page(props) {
 					<Planner showMessage={props.showMessage} serverSettings={serverSettings} {...props}/>
 				</Collapse>
 			</div>
-			<Footer
+			{(hideMargins)?<Footer
 				showMessage={props.showMessage}
 				serverSettings={serverSettings}
 				processServerConfigSuccess={processServerConfigSuccess}
-			/>
+			/>:<></>}
 		</>
 	)
 }

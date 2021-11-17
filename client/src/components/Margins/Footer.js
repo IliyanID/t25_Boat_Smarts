@@ -26,7 +26,7 @@ function ServerInformation(props) {
     const linkStatusSymbol = connectedToValidServer() ? UNICODE_LINK_SYMBOL : UNICODE_WARNING_SIGN;
 
     return (
-        <div className="vertical-center tco-text">
+        <div className={"vertical-center tco-text "}>
             <Container>
                 <div className="centered">
                     {linkStatusSymbol} Connected to {serverName} &nbsp;
