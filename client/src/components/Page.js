@@ -12,33 +12,30 @@ import { getOriginalServerUrl, sendAPIRequest } from '../utils/restfulAPI';
 export default function Page(props) {
 	const [showAbout, toggleAbout] = useToggle(false);
 	const [serverSettings, processServerConfigSuccess] = useServerSettings(props.showMessage);
-	const [hideMargins,setMargins] = useState(true)
 
 	const header = useRef()
 	const footer = useRef()
 
 
 	useEffect(()=>{
-		document.addEventListener('scroll',(e)=>{
-			
+		const moveHeadersFunc = ()=>{
 			if(window.scrollY < 90){
 				header.current.style.transform = `translateY(-${window.scrollY}%)`
 
 				let footerDis = window.scrollY - 10;
-				if(footerDis >= 0)
-					footer.current.style.transform = `translateY(${footerDis}%)`
-				setMargins(true)
+				if(footerDis < 0)
+					footerDis = 0
+				footer.current.style.transform = `translateY(${footerDis}%)`
 
-				//if(header.current)
-					//header.current.style.transform = `translateY(-${windows.scrollY}%)`
+	
 			}
 			else{
 				header.current.style.transform = `translateY(-${90}%)`
 				footer.current.style.transform = `translateY(${80}%)`
-				setMargins(false)
 			}
-		})
-	},[header])
+		}
+		document.addEventListener('scroll',moveHeadersFunc)
+	},[])
 
 	return (
 		<>
