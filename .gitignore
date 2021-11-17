@@ -41,6 +41,7 @@ client/dist/
 **/coverage/
 package-lock.json
 T25WorkSpace.code-workspace
+.nfs*
 
 # Generated Java Files
 

@@ -1,23 +1,33 @@
 import React from 'react';
-import FileDownloadModal from '../Modals/FileDownloadModal.js';
-import { ItineraryActionsDropdown } from '../actions.js';
+import { useToggle } from '../../../../hooks/useToggle'
+import RoundTrip from '../../../../static/images/round-trip.png'
 import TripName from '../TripName/TripName'
+import { Tooltip } from 'reactstrap'
 
+import prettyNum, {PRECISION_SETTING} from 'pretty-num';
 const Header = (props) => {
+    const [toolTip,toggleToolTip] = useToggle(false)
     return (
         <thead>
             <tr>
                 <th/>
                 <th>
-                    <TripName key={props.tripName} showMessage={props.showMessage} {...props}/>
-                    <dd style={{float:"right"}}>
-                        {(props.totalDistance > 0)&&<>Round Trip : {props.totalDistance} {(props.totalDistance == 1)?"mile":"miles"} </>}
-                    </dd>
+                    <TripName style={{float:'left'}} key={props.tripName} showMessage={props.showMessage} {...props}/>
+                    
                 </th>
-                
                 <th>
-                    <ItineraryActionsDropdown placeActions={props.placeActions} showMessage={props.showMessage} {...props}/>
-                    <FileDownloadModal {...props}/>
+               {
+                    (props.totalDistance > 0)?
+                        <div> 
+                            <img style={{float:'right',height:'20px',margin:'5px'}} src={RoundTrip} alt='round-trip'/>
+                            <div id='round-trip' style={{float:'right'}}>{prettyNum(props.totalDistance,{thousandsSeparator:','})} {(props.totalDistance === 1)?"Mile":"Miles"}</div>
+                            <Tooltip toggle={toggleToolTip} isOpen={toolTip} placement='bottom' target='round-trip'>Round Trip</Tooltip>
+                        </div>:<></>
+                        
+                    }
+                    
+                    
+                
                 </th>
             </tr>
         </thead>

@@ -66,10 +66,8 @@ export const handleDistancesRequest = (allPackages,props) =>{
     },[allPackages.places]);
 }
 
-export const handleTourRequest = (allPackages,props) =>{
-    return useEffect(()=>{
-        const {currentURL,convertedPlaces} = prepForAPIRequest({...props},{...allPackages})
-        if(allPackages.previewTripFocus){
+const sendTourApiCall = (allPackages,props) =>{
+    const {currentURL,convertedPlaces} = prepForAPIRequest({...props},{...allPackages})
             allPackages.setOrigionalPlaces([...allPackages.places])            
             sendAPIRequest({
                 requestType:'tour',
@@ -82,11 +80,21 @@ export const handleTourRequest = (allPackages,props) =>{
                         allPackages.setAllPlaces(convertedPlaces);
                     }
                 })
-
+}
+export const handleTourRequest = (allPackages,props) =>{
+    return useEffect(()=>{
+            if(allPackages.previewTripFocus)
+                sendTourApiCall(allPackages,props)        
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
               })
-        }
     },[allPackages.previewTripFocus])
+}
+export const handleAutoTour = (allPackages,props) =>{
+    return useEffect(()=>{
+        if(allPackages.automaticallyRunTour && allPackages.places.length !== allPackages.previousPlaces.length)
+            sendTourApiCall(allPackages,props)
+   },[allPackages.automaticallyRunTour,allPackages.places])
+ 
 }
