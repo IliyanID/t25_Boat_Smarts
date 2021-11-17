@@ -263,3 +263,16 @@ We also added 2 items to manage type and where specification
 ![server4](images/ServerSprint4.png)
 
 # Sprint 5
+
+### User Interface
+
+### Client Components
+
+### Server Classes
+
+We will add one item to the server structure
+ * ThreeOpt.java will optimize a tript using the 3-opt algorithm
+
+We will also be modifying the tour optimization code to run concurrently.
+
+![server5](images/ServerSprint5.png)
