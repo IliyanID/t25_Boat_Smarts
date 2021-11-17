@@ -38,6 +38,20 @@
 
 ## Planned Epics
 
+### User Experience
+We will continue to improve our user experience by doing another round of asking people to play with our site.
+
+### Save Map
+The user will now be able to have the trip and the map in the same file. These will be in SVG and KML format.
+
+### Units
+This will allow the user to set different units for distances traveled. These include kilometers, nautical miles, and letting the user choose their unit name and earth radius. The setting should be remembered across sessions.
+
+### Maps
+This will give the user the ability to change the map background. These will be remembered as the selected map for future sessions.
+
+### Shorter Trip
+We are going to try and finish up the Shorter Trip epic by implementing concurrency and the Three-opt algorithm
 
 ## Metrics
 
