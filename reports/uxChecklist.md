@@ -56,3 +56,30 @@ This checklist is our guide to help us solve issues regarding the topics below:
 ### Loading a Trip
 * Can you load a Trip we give you via file upload?
 * Is it responsive? Does it load fast enough for you?
+
+#### Types and Country
+* Can you search for a location via heliport?
+* Can you search for a location via balloonport?
+* Can you search for a location via only in Canada?
+* Can you search for a location via only in Russia?
+
+#### Modify Trip
+* Go the bottom of the list and make the last place your new starting location.
+* Reorder the trip
+* Reverse the trip
+* Remove a place in the trip
+
+#### Shorter Trip
+* Can you optimize the trip?
+* Can you revert to the origainl trip?
+* Can you comfirm the new trip?
+
+#### Auto-Opt
+* Add a item to the trip, does it auto-opt
+* Can you turn off auto-opt?
+* Add another item to the trip, does it auto-opt
+* Do you like this feature?
+
+#### Misc. Questions
+* Is there any where else you would like these buttons?
+* What did(n't) like about the site?
