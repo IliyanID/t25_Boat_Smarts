@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Button, Input, InputGroup, InputGroupAddon, InputGroupText, Label, Row, Col } from "reactstrap";
+import { checkBounds } from '../../../../utils/currentLocation'
 import Coordinates from 'coordinate-parser';
 import { reverseGeocode } from "../../../../utils/reverseGeocode";
 import { LOG } from "../../../../utils/constants";
@@ -14,9 +15,8 @@ export default function CoordinateSearch(props) {
   }
 
   function handleAdd() {
-    if (latLng) {
+    if(latLng && !checkBounds(latLng,props.showMessage))
       props.placeActions.append(latLngToPlace(latLng));
-    }
   }
 
   async function getResults() {
