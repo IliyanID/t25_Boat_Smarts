@@ -5,6 +5,7 @@ import { AiOutlineClose, AiOutlineRedo} from 'react-icons/ai';
 import { TiArrowRepeat } from 'react-icons/ti'
 import { RiSettings5Fill } from 'react-icons/ri'
 import { currentLocation } from '../../../utils/currentLocation';
+import { useToggle } from '../../../hooks/useToggle'
 
 export const toggle = (index,toolTip,setToolTip) =>{
     let temp =  [...toolTip]
@@ -98,8 +99,8 @@ export const PlaceActionsDropdown = (props) => {
         <div>
             <div onClick={()=>setToolTip(defaultArr)}>
                 <FaHome id={`to-start-${props.index}`} style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
-                <Tooltip placement='bottom' isOpen={tooltip}, toggle={toggleToolTip} target={`to-start-${props.index}`}>
-
+                <Tooltip placement='bottom' isOpen={tooltip}  toggle={toggleToolTip} target={`to-start-${props.index}`}>
+                    Move to Start of Trip
                 </Tooltip>
                 <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
             </div>
