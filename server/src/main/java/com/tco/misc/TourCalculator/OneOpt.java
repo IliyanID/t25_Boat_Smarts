@@ -20,12 +20,9 @@ public class OneOpt extends TourCalculator{
             if(super.hitMaxTime)
                 break;
             
-                //System.out.println("\n\nStarting Location: " + i);
             int[] testShortTrip = new int[super.shorterTrip.length];
-
             this.visited = new boolean[super.shorterTrip.length];
             double newMinDistance = 0;
-
             int currentPlace = i;
             testShortTrip[0] = currentPlace;
             this.visited[currentPlace] = true;
@@ -42,12 +39,9 @@ public class OneOpt extends TourCalculator{
                     currentPlace = nextClosestPlace;
                 }
             }
-            //System.out.println("Temp Running Total:" + newMinDistance);
             double endToStartDistance = super.distances[testShortTrip[0]][testShortTrip[testShortTrip.length - 1]];
             newMinDistance += endToStartDistance;
-            //If we haven't hit the max time
-            //If the cumalitive distance is not just the end to start
-            //If new distance is better than lasst
+            //If we haven't hit the max time & If the cumalitive distance is not just the end to start & If new distance is better than lasst
             if(!super.hitMaxTime && newMinDistance != endToStartDistance && newMinDistance < this.currentCumalitiveDistance){
                 this.currentCumalitiveDistance = newMinDistance;
                 super.shorterTrip = testShortTrip;
