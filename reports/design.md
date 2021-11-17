@@ -268,6 +268,10 @@ We also added 2 items to manage type and where specification
 
 ### Client Components
 
+With the addition of the OptimizedTrip component and the SettingsModal, we have finished adding all of the major components. The improvements we make this sprint will be, primarily, to imrove the UI/UX of our product.
+
+![components4](images/ComponentsSprint5.png)
+
 ### Server Classes
 
 We will add one item to the server structure
