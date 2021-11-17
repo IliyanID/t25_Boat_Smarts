@@ -265,7 +265,14 @@ We also added 2 items to manage type and where specification
 # Sprint 5
 
 ### User Interface
-
+The user will be able to access the map from any point on the site. The user will be able to collapse the map to free up the screen. The user will be able to access trip features from icons found at the top of the map. The user will be able to change the theme of the map by selecting themes from the bottom right hand of the map.
+![Sprint5UI1](images/Sprint5UI1.png)
+The user will be able to modify trip settings by selecting the gear icon in the top of the map. Inside they will have the option to automatically run the tuor request. They will also be able to select and andd units by using the drop down. New units will be saved and appear in the dropdown.
+![Sprint5UI2](images/Sprint5UI2.png)
+The files upload and download modal will be combined. The use will be able to select between the upload and download tab. Inside the download tab the user can select two new file types; The SVG and KML file types. 
+![Sprint5UI3](images/Sprint5UI3.png)
+When the user selects the file upload tab they will be welocmed with a sceen to upload a pre-existing trip.
+![Sprint5UI4](images/Sprint5UI4.png)
 ### Client Components
 
 With the addition of the OptimizedTrip component and the SettingsModal, we have finished adding all of the major components. The improvements we make this sprint will be, primarily, to imrove the UI/UX of our product.
