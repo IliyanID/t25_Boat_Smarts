@@ -56,16 +56,18 @@
         max-width:10px!important;
     }
     .tripDetails{
-        padding-left:18px;
-        width:50vw;
-        max-width: 1400px;
+        padding-right:0px!important;
+        padding-left:0px!important;
+        width:calc(60vw - 120px)!important;
+        max-width: 1800px;
     }
     .tripIcons{
         display:float;
         right:0px;
-        width:230px;
-        padding-left:5px;
-        transform:translateX(45%);
+        width:100px!important;
+        padding: 0px !important;
+        padding-top:10px!important;
+        margin:0px!important;
     }
 
 .unitContainer{
