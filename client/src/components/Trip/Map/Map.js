@@ -6,7 +6,7 @@ import { checkBounds } from '../../../utils/currentLocation';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
 import { ItineraryActionsDropdown } from '../Itinerary/actions';
-import { map } from 'leaflet';
+import { LayerSelection } from './LayerSelection'
 
 const MAP_BOUNDS = [[-90, -180], [90, 180]];
 const MAP_LAYER_ATTRIBUTION = "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors";
@@ -88,8 +88,13 @@ export default function Map(props) {
     const states = packageStates()
     const allPackages = {...states,...props}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
-   
 
+    const layers ={
+        streets:'https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        hybrid:'https://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+        satelite:'https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+        terrain:'https://mt0.google.com/vt/lyrs=p&x={x}&y={y}&z={z}'
+    }
 
     return (
         <LeafletMap
@@ -100,8 +105,9 @@ export default function Map(props) {
             onClick={(e)=>handleMapClick(allPackages,e)}
             data-testid="Map"
         >
-           
-            <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
+            {/*<TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />*/}
+            <TileLayer url={layers.terrain} />
+            <LayerSelection/>
             <TripLines places={allPackages.places} />
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
