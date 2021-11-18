@@ -66,8 +66,13 @@ export const handleDistancesRequest = (allPackages,props) =>{
     },[allPackages.places]);
 }
 
-const sendTourApiCall = (allPackages,props) =>{
+const sendTourApiCall = (allPackages,props,selectedIndex) =>{
     const {currentURL,convertedPlaces} = prepForAPIRequest({...props},{...allPackages})
+            
+            let tempPlace= {name:null,lat:null,lng:null};
+            if(selectedIndex >= 0 && selectedIndex < allPackages.places.length)
+                tempPlace = allPackages.places[selectedIndex]
+
             allPackages.setOrigionalPlaces([...allPackages.places])            
             sendAPIRequest({
                 requestType:'tour',
@@ -78,23 +83,38 @@ const sendTourApiCall = (allPackages,props) =>{
                     if(response){
                         let convertedPlaces = response.places.map(place => convertPlace(place))
                         allPackages.setAllPlaces(convertedPlaces);
+                        convertedPlaces.forEach((item,index)=>{
+                            if(item.name === tempPlace.name && item.lat === tempPlace.lat && item.lng === tempPlace.lng){
+                                console.log('found')
+                                console.log(index)
+                                allPackages.setSelectedIndex(index)
+                                return
+                            }
+            })
+
                     }
                 })
+           
 }
 export const handleTourRequest = (allPackages,props) =>{
     return useEffect(()=>{
             if(allPackages.previewTripFocus)
-                sendTourApiCall(allPackages,props)        
-            window.scrollTo({
+                sendTourApiCall(allPackages,props,allPackages.selectedIndex)        
+            /*window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
-              })
+              })*/
     },[allPackages.previewTripFocus])
 }
 export const handleAutoTour = (allPackages,props) =>{
+    
+
     return useEffect(()=>{
-        if(allPackages.automaticallyRunTour && allPackages.places.length !== allPackages.previousPlaces.length)
-            sendTourApiCall(allPackages,props)
+        if(allPackages.automaticallyRunTour && allPackages.places.length !== allPackages.previousPlaces.length){
+                      sendTourApiCall(allPackages,props,allPackages.selectedIndex)
+
+           
+        }
    },[allPackages.automaticallyRunTour,allPackages.places])
  
 }

@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
-import { Button, Col, Container, Input, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
+import { Button, Col, Container, Input, Modal, ModalBody, ModalFooter, ModalHeader, Row, ListGroup, ListGroupItem, Tooltip } from 'reactstrap';
+import {useMultiToggle} from '../../hooks/useToggle'
 import { useServerInputValidation } from '../../hooks/useServerInputValidation';
 import { SCHEMAS } from '../../utils/restfulAPI';
 import { LOG } from '../../utils/constants';
-
+import featureDescriptions from '../../static/descriptions/serverFeatures.json'
+import { AiFillInfoCircle } from 'react-icons/ai';
 
 export function missingFeatures(config,serverSettings){
     let missingFeatures= [];
@@ -65,15 +67,15 @@ function getCurrentServerName(config, serverSettings) {
     else if (serverSettings.serverConfig) {
         return serverSettings.serverConfig.serverName;
     }
-    return "";
+    return [];
 }
 
 function getCurrentFeatures(config, serverSettings){
     if(config && config.features)
-        return "[" + config.features.map((item)=>{return item}) + "]";
+        return config.features;
 
     else if(serverSettings.serverConfig && serverSettings.serverConfig.features)
-        return "[" + serverSettings.serverConfig.features.map((item)=>{return item}) + "]";
+        return serverSettings.serverConfig.features;
     
     else
         return "None"
@@ -87,7 +89,29 @@ function Header(props) {
     );
 }
 
+function generateCurrentFeaturesCard(features,type,tooltips,toggleToolTips){
+    if(features && Array.isArray(features)){
+    return  <ListGroup>
+                {features.map((feature,index)=>{
+                    let id = `feature-int-serversettings-${index}-${type}`
+                    return  <ListGroupItem color={type}>
+                                <AiFillInfoCircle style={{marginRight:'15px'}} id={id}/>
+                                <Tooltip placement='right' target={id} isOpen={tooltips[index]} toggle={()=>toggleToolTips(index)}>
+                                    {featureDescriptions[feature.trim()]}
+                                </Tooltip >
+                                {feature.charAt(0).toUpperCase() + feature.slice(1)}
+                                
+                            </ListGroupItem>
+                })}
+            </ListGroup>
+    }
+    else
+                return <div></div>
+}
+
 function Body(props) {
+    const[tooltipsCurFeature,toggleToolTipsCurFeature] = useMultiToggle(false,props.features.length)
+    const[tooltipsMissingFeature,toggleToolTipsMissingFeature] = useMultiToggle(false,props.missingFeatures.length)
     const urlInput =
         <Input
             value={props.serverInput}
@@ -101,13 +125,15 @@ function Body(props) {
         warnMissingFeatures(props.missingFeatures, props.showMessage, props.validServer);
     }, [props.missingFeatures]);
 
+
+
     return (
         <ModalBody>
             <Container>
                 <SettingsRow label="Name" value={props.serverName} />
                 <SettingsRow label="URL" value={urlInput} />
-                <SettingsRow label="Features" value={props.features} />
-                {(props.missingFeatures.length>0) && <SettingsRow label="Missing Features" value={'[' + props.missingFeatures.map((feature)=>{return feature}) + ']'}/>}
+                <SettingsRow label="Features" value={generateCurrentFeaturesCard(props.features,'info',tooltipsCurFeature,toggleToolTipsCurFeature)} />
+                {(props.missingFeatures.length>0) && <SettingsRow label="Missing Features" value={generateCurrentFeaturesCard(props.missingFeatures,'warning',tooltipsMissingFeature,toggleToolTipsMissingFeature)}/>}
             </Container>
         </ModalBody>
     );
@@ -115,7 +141,7 @@ function Body(props) {
 
 function warnMissingFeatures(missingFeatures, showMessage, validServer) {
     if(missingFeatures.length > 0 && validServer){
-        let message = 'Server is missing features [' + missingFeatures.map((feature)=>{return feature}) + ']. Check the log for more details.';
+        let message = 'Server is missing features' + missingFeatures.map((feature)=>{return ' ' + feature}) + '. Check the log for more details.';
         showMessage(message,"warning");
     }
 }
@@ -123,7 +149,7 @@ function warnMissingFeatures(missingFeatures, showMessage, validServer) {
 function SettingsRow({label, value}) {
     return (
         <Row className="my-2 vertical-center">
-            <Col xs={4}>
+            <Col xs={2}>
                 {label}:
             </Col>
             <Col xs={8}>

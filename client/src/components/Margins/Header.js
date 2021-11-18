@@ -7,7 +7,7 @@ const COURSE_URL = "https://cs.colostate.edu/~cs314";
 
 export default function Header(props) {
     return (
-        <div className="full-width header vertical-center">
+        <div ref={props.header} style={props.style} className={"full-width header vertical-center " + props.className}>
             <Container>
                 <div className="vertical-center">
                     <a href={COURSE_URL} target="_blank">

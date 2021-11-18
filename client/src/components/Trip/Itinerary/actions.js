@@ -76,20 +76,21 @@ export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
     return (
-    <ButtonGroup style={{float:'right',marginBottom:'10px'}}>
+         <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {
             data.map((item,index)=>{
                 let id = `home-row-${index}`
                 return(
                 <Fragment key={id}>
                     <Button id={id} onClick={() => { setToolTip(defaultArr); item.onClick(props) }}>{item.icon}</Button>
-                    <Tooltip placement="bottom" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
+                    <Tooltip placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                         {item.description}
                     </Tooltip>
                 </Fragment>)
             })
         }
     </ButtonGroup>
+
     );
 }
 

@@ -9,7 +9,6 @@ import FileUploadModal from './Itinerary/Modals/FileUploadModal';
 import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
-import { ItineraryActionsDropdown } from './Itinerary/actions';
 import FileDownloadModal from './Itinerary/Modals/FileDownloadModal'
 import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
 
@@ -135,10 +134,8 @@ export default function Planner(props) {
     handleAutoTour(allPackages,props)
     return (
         <Container>
-            <Section>
+            <Section className='mapContainer'>
                 <OptimizedTrip {...allPackages}/>
-            </Section>
-            <Section>
                 <Map {...allPackages}/>
             </Section>
             <br />
@@ -146,9 +143,8 @@ export default function Planner(props) {
                 <Search {...allPackages} />
                 {allPackages.searchResults && <><br /><Results {...allPackages} /></>}
             </Section>
-            <br />
             <Section>
-                <ItineraryActionsDropdown {...allPackages}/><Itinerary {...allPackages}/><FileDownloadModal {...allPackages}/><TripSettingsModal {...allPackages}/>
+                <Itinerary {...allPackages}/><FileDownloadModal {...allPackages}/><TripSettingsModal {...allPackages}/>
             </Section>
             <FileUploadModal {...allPackages}/>
         </Container>
@@ -157,7 +153,7 @@ export default function Planner(props) {
 
 function Section(props) {
     return (
-        <Row>
+        <Row className={props.className}>
             <Col sm={12} md={{ size: 10, offset: 1 }}>
                 {props.children}
             </Col>

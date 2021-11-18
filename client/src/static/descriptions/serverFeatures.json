@@ -1,0 +1,17 @@
+{
+        "config" : "Tells the website what features the server supports",
+        "find" : "Allows the website to search for places to add to the trip",
+    
+    
+        "distances" : "Allows the website to calculate the distances between individual places",
+    
+    
+        "tour" : "Allows the website to optimize the current trip into a new shorter trip",
+    
+    
+        "type" : "Allows the user to filter search results by specific types of locations",
+    
+    
+        "where" : "Allows the user to filter search result by specific countries"
+    
+}
