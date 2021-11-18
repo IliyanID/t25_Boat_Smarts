@@ -8,17 +8,7 @@ import { useToggle } from '../hooks/useToggle';
 import { LOG } from '../utils/constants';
 import { getOriginalServerUrl, sendAPIRequest } from '../utils/restfulAPI';
 
-
-export default function Page(props) {
-	const [showAbout, toggleAbout] = useToggle(false);
-	const [serverSettings, processServerConfigSuccess] = useServerSettings(props.showMessage);
-
-	const header = useRef()
-	const footer = useRef()
-
-
-	useEffect(()=>{
-		const moveHeadersFunc = ()=>{
+	const moveHeadersFunc = (header,footer)=>{
 			if(window.scrollY < 90){
 				header.current.style.transform = `translateY(-${window.scrollY}%)`
 
@@ -34,7 +24,14 @@ export default function Page(props) {
 				footer.current.style.transform = `translateY(${80}%)`
 			}
 		}
-		document.addEventListener('scroll',moveHeadersFunc)
+export default function Page(props) {
+	const [showAbout, toggleAbout] = useToggle(false);
+	const [serverSettings, processServerConfigSuccess] = useServerSettings(props.showMessage);
+
+	const header = useRef(); const footer = useRef()
+
+	useEffect(()=>{
+		document.addEventListener('scroll',()=>moveHeadersFunc(header,footer))
 	},[])
 
 	return (
