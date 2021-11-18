@@ -56,10 +56,16 @@
     position:relative;
     z-index:4;
     animation: previewModeHide .5s forwards; 
+    border-radius: 10px 10px 0px 0px;
+    background-color: rgb(255, 255, 255);
+            
 
 }
 .OptimizationOptionDefault{
     height: 0px;
+    border-radius: 10px 10px 0px 0px;  
+    background-color: rgb(255, 255, 255);
+            
 
 }
     @keyframes previewMode {
@@ -84,8 +90,13 @@
     .OptimizationOption > *{
         margin:5px;   
     }
+        .OptimizationOption{
+            border-radius: 10px 10px 0px 0px;
+            background-color: rgb(255, 255, 255);
+            
+        }
         .OptimizedHeader > h3{
-            color:rgb(56, 56, 56);   
+           color:rgb(56, 56, 56);   
         }
         .OptimizedHeader >*{
             display:inline-block;
