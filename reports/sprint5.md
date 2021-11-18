@@ -4,7 +4,7 @@
 ### *Release!*
 
 ## Sprint Leader: 
-### *firstname lastname*
+### *Iliyan Dimitrov*
 
 ## Definition of Done
 
@@ -66,7 +66,7 @@ We are going to try and finish up the Shorter Trip epic by implementing concurre
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* |  | 
+| *11/17/21* | *#413,#425,#416* | *#421,#403,#264,#399,#414* | None | 
 
 
 ## Review
