@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { Button, Collapse } from 'reactstrap';
 import { Map as LeafletMap, Polyline, TileLayer, Panel } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
@@ -7,6 +8,7 @@ import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
 import { ItineraryActionsDropdown } from '../Itinerary/actions';
 import { map } from 'leaflet';
+import { useToggle } from '../../../hooks/useToggle';
 
 const MAP_BOUNDS = [[-90, -180], [90, 180]];
 const MAP_LAYER_ATTRIBUTION = "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors";
@@ -19,11 +21,13 @@ const packageStates = () =>{
     const [previewMarker,setPreviewMarker] = useState(false)
     const mapRef = useRef()
     const [zoom,setZoom] = useState(15)
+    const [isOpen, toggleOpen] = useToggle(true);
     return {
         coordinates,setCoordinates,
         previewMarker,setPreviewMarker,
         mapRef,
-        zoom,setZoom
+        zoom,setZoom,
+        isOpen,toggleOpen
     }
 }
 const centerView = (allPackages,currentCords) =>{
@@ -89,25 +93,27 @@ export default function Map(props) {
     const allPackages = {...states,...props}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
    
-
-
     return (
-        <LeafletMap
-            ref={allPackages.mapRef} className="mapStyle"
-            boxZoom={false} useFlyTo={true}
-            zoom={allPackages.zoom} minZoom={MAP_MIN_ZOOM} maxZoom={MAP_MAX_ZOOM} maxBounds={MAP_BOUNDS}
-            center={allPackages.coordinates}
-            onClick={(e)=>handleMapClick(allPackages,e)}
-            data-testid="Map"
-        >
-           
-            <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
-            <TripLines places={allPackages.places} />
-            {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
+        <div>
+        <Collapse isOpen={allPackages.isOpen}>
+            <LeafletMap
+                ref={allPackages.mapRef} className="mapStyle"
+                boxZoom={false} useFlyTo={true}
+                zoom={allPackages.zoom} minZoom={MAP_MIN_ZOOM} maxZoom={MAP_MAX_ZOOM} maxBounds={MAP_BOUNDS}
+                center={allPackages.coordinates}
+                onClick={(e)=>handleMapClick(allPackages,e)}
+                data-testid="Map"
+            >
+                <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
+                <TripLines places={allPackages.places} />
+                {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
-            <ItineraryActionsDropdown {...props}/>
+                <ItineraryActionsDropdown {...props}/>
 
-        </LeafletMap>
+            </LeafletMap>
+        </Collapse>
+        <Button className="mt-1" size="sm" color="secondary" onClick={allPackages.toggleOpen}>{allPackages.isOpen ? "Hide Map" : "Show Map"}</Button>
+        </div>
     );
 }
 
