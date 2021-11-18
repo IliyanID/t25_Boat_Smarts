@@ -9,21 +9,29 @@ import { ItineraryActionsDropdown } from '../Itinerary/actions';
 import { LayerSelection } from './LayerSelection'
 
 const MAP_BOUNDS = [[-90, -180], [90, 180]];
-const MAP_LAYER_ATTRIBUTION = "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors";
-const MAP_LAYER_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const MAP_MIN_ZOOM = 1;
 const MAP_MAX_ZOOM = 19;
+const layers ={
+        Streets:'https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        Hybrid:'https://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+        Satelite:'https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+        Terrain:'https://mt0.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+        Traffic:'https://mt0.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}',
+        Default:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    }
 
 const packageStates = () =>{
     const [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
     const [previewMarker,setPreviewMarker] = useState(false)
     const mapRef = useRef()
     const [zoom,setZoom] = useState(15)
+    const [selectedLayer,setSelectedLayer] = useState('Default')
     return {
         coordinates,setCoordinates,
         previewMarker,setPreviewMarker,
         mapRef,
-        zoom,setZoom
+        zoom,setZoom,
+        selectedLayer,setSelectedLayer
     }
 }
 const centerView = (allPackages,currentCords) =>{
@@ -37,7 +45,12 @@ function handleMapClick(allPackagees,mapClickInfo) {
     let maxHeight =  allPackagees.mapRef.current.leafletElement._size.y - mapClickInfo.containerPoint.y
     let latlng = mapClickInfo.latlng
 
-    if(maxWidth < 45 && maxHeight > 170)
+    //console.log(mapClickInfo)
+    console.log(`maxWidth: ${maxWidth} | maxHeight ${maxHeight}`)
+
+    if(maxWidth < 45 && maxHeight < 450)
+        return
+    if(mapClickInfo.containerPoint.x < 70 && maxHeight < 74)
         return
     if(checkBounds(latlng,allPackagees.showMessage))
         return
@@ -51,6 +64,9 @@ function handleMapClick(allPackagees,mapClickInfo) {
 const componentDidMount = (allPackages) =>{
     return   useEffect(()=>{
             getCenter().then((result)=>{allPackages.setCoordinates(result)});
+            const storedLayer = localStorage.getItem('t25-map-layer');
+            if(storedLayer)
+                allPackages.setSelectedLayer(storedLayer)
         },[])
 }
 
@@ -89,16 +105,6 @@ export default function Map(props) {
     const allPackages = {...states,...props,...MAP_BOUNDS}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
 
-    const layers ={
-        streets:'https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-        hybrid:'https://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
-        satelite:'https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
-        terrain:'https://mt0.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
-        traffic:'https://mt0.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}',
-        default:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    }
-    const [selectedLayer,setSelectedLayer] = useState(layers.default)
-
     return (
         <LeafletMap
             ref={allPackages.mapRef} className="mapStyle"
@@ -108,8 +114,8 @@ export default function Map(props) {
             onClick={(e)=>handleMapClick(allPackages,e)}
             data-testid="Map"
         >
-            <TileLayer url={selectedLayer} />
-            <LayerSelection layers={layers} setSelectedLayer={setSelectedLayer} {...allPackages}/>
+            <TileLayer url={layers[allPackages.selectedLayer]} />
+            <LayerSelection layers={layers} {...allPackages}/>
             <TripLines places={allPackages.places} />
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 

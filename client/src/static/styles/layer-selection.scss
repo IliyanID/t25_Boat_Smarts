@@ -1,22 +1,28 @@
 .layerSelection{
     width:75px;
     height: 75px;
-    background-color: white;
+
     z-index:10000000;
 
     border-radius: 10px;
     padding:2.5px;
+    float:left;
 }
 
     .disablePreviewMap{
+        cursor:pointer;
         position:absolute;
         width:70px;
         height: 70px;
         
         z-index:5000;
-        color:white;
+        color:rgb(255, 255, 255);
+        background-color: rgba(0, 0, 0, 0.5);
         text-align: center;
-        padding-top:40px;
+        padding-top:25px;
+        border-radius: 10px;
+
+        border:1.5px solid rgb(189, 189, 189)
     }
     .previewMap{
         width:70px;
@@ -24,3 +30,12 @@
         border-radius: 10px;
         
     }
+        .disablePreviewMap:hover{
+            border:1.5px solid #3498db;
+            
+        }
+
+.popover{
+    background-color:rgb(255, 255, 255);
+    max-width:50vw;
+}
