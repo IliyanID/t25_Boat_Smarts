@@ -18,6 +18,7 @@ export default function FileUploadModal(props) {
     const handleSaveClick = async (e) => {
         e.preventDefault();
         const convertedPlaces = await Promise.all(filePlaces.map(place => convertPlace(place)));
+        props.setSelectedIndex(-1)
         props.setPlaces(convertedPlaces);
         props.toggleFileUploadOpen();
 
