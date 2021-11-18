@@ -2,16 +2,28 @@
     position:absolute;
     bottom:5px;
     left:5px;
-    width:60px;
-    height: 60px;
+    width:75px;
+    height: 75px;
     background-color: white;
     z-index:10000000;
 
-    border-radius: 2px;
+    border-radius: 10px;
     padding:2.5px;
 }
 
-    .layerSelection > img{
-        width:55px;
+    .disablePreviewMap{
+        position:absolute;
+        width:70px;
+        height: 70px;
+        
+        z-index:5000;
+        color:white;
+        text-align: center;
+        padding-top:40px;
+    }
+    .previewMap{
+        width:70px;
+        height: 70px;
+        border-radius: 10px;
         
     }

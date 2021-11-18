@@ -86,15 +86,18 @@ const handlePlaces = (allPackages)=>{
 
 export default function Map(props) {
     const states = packageStates()
-    const allPackages = {...states,...props}
+    const allPackages = {...states,...props,...MAP_BOUNDS}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
 
     const layers ={
         streets:'https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         hybrid:'https://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
         satelite:'https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
-        terrain:'https://mt0.google.com/vt/lyrs=p&x={x}&y={y}&z={z}'
+        terrain:'https://mt0.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+        traffic:'https://mt0.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}',
+        default:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     }
+    const [selectedLayer,setSelectedLayer] = useState(layers.default)
 
     return (
         <LeafletMap
@@ -105,9 +108,8 @@ export default function Map(props) {
             onClick={(e)=>handleMapClick(allPackages,e)}
             data-testid="Map"
         >
-            {/*<TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />*/}
-            <TileLayer url={layers.terrain} />
-            <LayerSelection/>
+            <TileLayer url={selectedLayer} />
+            <LayerSelection layers={layers} setSelectedLayer={setSelectedLayer} {...allPackages}/>
             <TripLines places={allPackages.places} />
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
