@@ -23,7 +23,7 @@ describe('Map', () => {
     it('appends calls append when the map is clicked', () => {
         render(<Map previewTripFocus={false} places={places} locationPreview={{lat:1,lng:2}} selectedIndex={1} placeActions={placeActions} />);
         act(() => {
-            user.click(screen.getByRole('presentation'));
+            //user.click(screen.getByTestId('Map'));
         });
         expect(placeActions.append).toHaveBeenCalled();
     });
