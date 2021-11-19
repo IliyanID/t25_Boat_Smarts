@@ -96,7 +96,7 @@ export const ItineraryActionsDropdown = (props) => {
             
                 </Fragment>)
             })}
-        <Popover  placement='auto' isOpen={popover} toggle={()=>togglePopover(!popover)} target={`home-row-1`} >
+        <Popover  placement='left' isOpen={popover} toggle={()=>togglePopover(!popover)} target={`home-row-1`} >
             {
                 Object.keys(props.layers).map((item,key)=>{
                     return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>
