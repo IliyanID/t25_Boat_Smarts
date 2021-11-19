@@ -10,6 +10,7 @@
     overflow:none;
     animation: radialBack 1s;
 }
+    
     @keyframes radialBack { 
         from{opacity: 0}
         to{opacity: 1.0}
@@ -57,14 +58,14 @@
     z-index:4;
     animation: previewModeHide .5s forwards; 
     border-radius: 10px 10px 0px 0px;
-    background-color: rgb(255, 255, 255);
+
             
 
 }
 .OptimizationOptionDefault{
     height: 0px;
     border-radius: 10px 10px 0px 0px;  
-    background-color: rgb(255, 255, 255);
+
             
 
 }
@@ -92,9 +93,23 @@
     }
         .OptimizationOption{
             border-radius: 10px 10px 0px 0px;
-            background-color: rgb(255, 255, 255);
+           
             
         }
+            .mapContainer::after{
+                z-index: -4;
+                content:'';
+                position:absolute;
+                left:0px;
+                transform:translateY(-500%);
+                transform:translateX(0px);
+                width:100vw;
+                height:200px;
+                background-color: white;
+            }
+            body{
+                overflow-x:hidden
+            }
         .OptimizedHeader > h3{
            color:rgb(56, 56, 56);   
         }
