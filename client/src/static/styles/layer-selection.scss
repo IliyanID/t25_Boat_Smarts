@@ -17,12 +17,12 @@
         
         z-index:5000;
         color:rgb(255, 255, 255);
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color:rgba(0, 0, 0, 0.493);
         text-align: center;
         padding-top:25px;
         border-radius: 10px;
 
-        border:1.5px solid rgb(189, 189, 189)
+        border:1.5px solid rgb(70, 70, 70);
     }
     .previewMap{
         width:70px;
@@ -31,11 +31,11 @@
         
     }
         .disablePreviewMap:hover{
-            border:1.5px solid #3498db;
+            border:1.5px solid #36a7f3!important;
             
         }
 
 .popover{
-    background-color:rgb(255, 255, 255);
+    background-color:rgba(255, 255, 255, 0.589);
     max-width:50vw;
 }
