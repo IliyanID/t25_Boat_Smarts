@@ -85,16 +85,16 @@ export const ItineraryActionsDropdown = (props) => {
                 let id = `home-row-${index}`
                 return(
                 <Fragment key={id}>
-                    <Button id={id} onClick={() => { setToolTip(defaultArr); item.onClick(props) }}>{item.icon}</Button>
-                    <Tooltip placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
+                    <Button  id={id} onClick={() => { setToolTip(defaultArr); item.onClick(props) }}>{item.icon}</Button>
+                    <Tooltip  placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                         {item.description}
                     </Tooltip>
                     {
                         (index == 1)?
-                            <Popover   placement='auto' isOpen={popover} toggle={()=>togglePopover(!popover)} target={id} >
+                            <Popover  placement='auto' isOpen={popover} toggle={()=>togglePopover(!popover)} target={id} >
                                 {
                                     Object.keys(props.layers).map(item=>{
-                                        return <IndividualLayer id={`layer-selection-${item}`} index={item}  {...props}/>
+                                        return <IndividualLayer key={id + '2'} id={`layer-selection-${item}`} index={item}  {...props}/>
                                     })
                                 }
                             </Popover>:<></>
