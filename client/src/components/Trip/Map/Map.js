@@ -50,7 +50,7 @@ function handleMapClick(allPackagees,mapClickInfo) {
     //console.log(mapClickInfo)
     //console.log(`maxWidth: ${maxWidth} | maxHeight ${maxHeight}`)
 
-    if(maxWidth < 45 && maxHeight < 450)
+    if(maxWidth < 45 && maxHeight < 45000)
         return
     if(checkBounds(latlng,allPackagees.showMessage))
         return
