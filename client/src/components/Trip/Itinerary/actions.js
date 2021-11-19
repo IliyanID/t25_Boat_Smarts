@@ -78,13 +78,18 @@ export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
     const [popover,togglePopover] = useState(false)
+    console.log(props.previewTripFocus)
     return (
          <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {data.map((item,index)=>{
                 let id = `home-row-${index}`
                 return(
                 <Fragment key={id}>
-                    <Button  id={id} onClick={() => { setToolTip(defaultArr); item.onClick(props) }}>{item.icon}</Button>
+                    <Button  id={id} onClick={() => { 
+                        if(props.previewTripFocus)
+                            return
+                        setToolTip(defaultArr); 
+                        item.onClick(props) }}>{item.icon}</Button>
                     <Tooltip  placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                         {item.description}
                     </Tooltip>
