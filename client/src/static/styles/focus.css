@@ -102,13 +102,13 @@
                 position:absolute;
                 left:0px;
                 transform:translateY(-500%);
-                transform:translateX(0px);
                 width:100vw;
                 height:200px;
                 background-color: white;
             }
             body{
-                overflow-x:hidden
+                overflow-x:hidden;
+                width:100vw;
             }
         .OptimizedHeader > h3{
            color:rgb(56, 56, 56);   
