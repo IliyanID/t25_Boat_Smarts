@@ -121,7 +121,7 @@ export const Map = (props) => {
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
             <ItineraryActionsDropdown {...allPackages}/>
-            
+            {(allPackages.automaticallyRunTour)?<div className='glowingDot'/>:<></>} 
         </LeafletMap>
         
         </>
