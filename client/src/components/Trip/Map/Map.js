@@ -99,7 +99,7 @@ const handlePlaces = (allPackages)=>{
 
 
 
-export default function Map(props) {
+export function Map(props) {
     const states = packageStates()
     const allPackages = {...states,...props,...MAP_BOUNDS,layers:layers}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
@@ -170,3 +170,5 @@ function PlaceMarker({places, selectedIndex}) {
     }
     return <Marker place={places[selectedIndex]} />;
 }
+
+export default Map
