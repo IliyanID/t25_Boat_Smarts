@@ -101,7 +101,6 @@ const handlePlaces = (allPackages)=>{
 
 
 export const Map = (props) => {
-    console.log('rerendered map')
     const states = packageStates()
     const allPackages = {...states,...props,...MAP_BOUNDS,layers:layers}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
