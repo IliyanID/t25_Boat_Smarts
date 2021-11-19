@@ -80,8 +80,7 @@ export const ItineraryActionsDropdown = (props) => {
     const [popover,togglePopover] = useState(false)
     return (
          <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
-        {
-            data.map((item,index)=>{
+        {data.map((item,index)=>{
                 let id = `home-row-${index}`
                 return(
                 <Fragment key={id}>
@@ -91,8 +90,7 @@ export const ItineraryActionsDropdown = (props) => {
                     </Tooltip>
             
                 </Fragment>)
-            })
-        }
+            })}
         <Popover  placement='auto' isOpen={popover} toggle={()=>togglePopover(!popover)} target={`home-row-1`} >
             {
                 Object.keys(props.layers).map((item,key)=>{
