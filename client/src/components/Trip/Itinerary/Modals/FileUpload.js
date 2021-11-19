@@ -40,17 +40,16 @@ const handleSaveClick = async (e,allPackages) => {
     allPackages.setTripName(tripName)
 }
 
-
+const HandleFileInput = (allPackages) =>{
+    return useEffect(() => {
+        validateFile(allPackages.fileInput, allPackages.context);
+    }, [allPackages.fileInput]);
+}
 
 export function FileUpload(props) {
     const allPackages = packageStates(props)
+    HandleFileInput(allPackages)
    
-   
-    useEffect(() => {
-        validateFile(allPackages.fileInput, allPackages.context);
-    }, [allPackages.fileInput]);
-
-
     let fileName
     if(allPackages.fileInput && allPackages.fileInput.files)
         fileName = allPackages.fileInput.files[0].name
