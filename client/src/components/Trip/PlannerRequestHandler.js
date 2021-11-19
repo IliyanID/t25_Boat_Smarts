@@ -85,8 +85,6 @@ const sendTourApiCall = (allPackages,props,selectedIndex) =>{
                         allPackages.setAllPlaces(convertedPlaces);
                         convertedPlaces.forEach((item,index)=>{
                             if(item.name === tempPlace.name && item.lat === tempPlace.lat && item.lng === tempPlace.lng){
-                                console.log('found')
-                                console.log(index)
                                 allPackages.setSelectedIndex(index)
                                 return
                             }

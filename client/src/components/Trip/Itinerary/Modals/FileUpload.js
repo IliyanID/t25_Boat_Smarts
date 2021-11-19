@@ -82,7 +82,7 @@ export function FileUpload(props) {
  export function validateFile(input, context) {
     const { validFile, setValidFile, filePlaces, setFilePlaces, setSelectedIndex } = context;
     if (input && 'files' in input && input.files.length > 0) {
-        console.log(input.files)
+        //console.log(input.files)
         let reader = new FileReader();
         reader.readAsText(input.files[0]);
         reader.onload = () => {

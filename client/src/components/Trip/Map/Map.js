@@ -47,7 +47,7 @@ function handleMapClick(allPackagees,mapClickInfo) {
     let latlng = mapClickInfo.latlng
 
     //console.log(mapClickInfo)
-    console.log(`maxWidth: ${maxWidth} | maxHeight ${maxHeight}`)
+    //console.log(`maxWidth: ${maxWidth} | maxHeight ${maxHeight}`)
 
     if(maxWidth < 45 && maxHeight < 450)
         return

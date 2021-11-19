@@ -29,14 +29,5 @@ export const IndividualLayer = (props) =>{
     )
 }
 
-export const LayerSelection = (props) =>{
-    
-    console.log('entered')
-    return(
-        <>
-        
-        
-        </>
-   )
-}
-export default LayerSelection;
+
+export default IndividualLayer;
