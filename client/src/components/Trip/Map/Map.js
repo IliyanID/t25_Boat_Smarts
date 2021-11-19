@@ -7,6 +7,7 @@ import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
 import { ItineraryActionsDropdown } from '../Itinerary/actions';
 import { LayerSelection } from './LayerSelection'
+import { deeplyCompareArray } from '../../../utils/deeplyCompare';
 
 const MAP_BOUNDS = [[-90, -180], [90, 180]];
 const MAP_MIN_ZOOM = 1;
@@ -99,7 +100,8 @@ const handlePlaces = (allPackages)=>{
 
 
 
-export function Map(props) {
+export const Map = React.memo((props) => {
+    console.log('rerendered map')
     const states = packageStates()
     const allPackages = {...states,...props,...MAP_BOUNDS,layers:layers}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
@@ -124,7 +126,7 @@ export function Map(props) {
         
         </>
     );
-}
+},(prevProps,newProps) => {return deeplyCompareArray(prevProps.places,newProps.places) &&  prevProps.selectedIndex === newProps.selectedIndex})
 
 const getCenter = async () => {
     let centerCoordinates = {...DEFAULT_STARTING_PLACE}

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Switch from 'react-switch'
 import { useToggle } from '../../../../hooks/useToggle.js';
+import {PreviewModeToolTip} from '../../../../utils/PreviewModeToolTip'
 import { Button, 
      Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container } from "reactstrap";
 
@@ -21,7 +22,7 @@ export function TripSettingsModal(props) {
                 </Row>
                 <Row>
                     <Col><Switch disabled={props.automaticallyRunTour}  onChange={props.toggleDisablePreviewMode} checked={props.disablePreviewMode}/></Col>
-                    <Col>Disable Preview Mode</Col>
+                    <Col>Disable Preview Mode <PreviewModeToolTip id='settings'/> </Col>
                 </Row>
             </Container>
             <ModalFooter>

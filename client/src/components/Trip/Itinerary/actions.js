@@ -74,11 +74,11 @@ export const toggle = (index,toolTip,setToolTip) =>{
             description:'Delete Current Trip'
         }
     ]
+
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
     const [popover,togglePopover] = useState(false)
-    console.log(props.previewTripFocus)
     return (
          <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {data.map((item,index)=>{
@@ -108,6 +108,8 @@ export const ItineraryActionsDropdown = (props) => {
 
     );
 }
+
+
 
 export const PlaceActionsDropdown = (props) => {
     const [tooltip,toggleToolTip] = useToggle(false)
