@@ -51,8 +51,6 @@ function handleMapClick(allPackagees,mapClickInfo) {
 
     if(maxWidth < 45 && maxHeight < 450)
         return
-    if(mapClickInfo.containerPoint.x < 70 && maxHeight < 74)
-        return
     if(checkBounds(latlng,allPackagees.showMessage))
         return
     if(allPackagees.previewTripFocus)
@@ -103,10 +101,11 @@ const handlePlaces = (allPackages)=>{
 
 export default function Map(props) {
     const states = packageStates()
-    const allPackages = {...states,...props,...MAP_BOUNDS}
+    const allPackages = {...states,...props,...MAP_BOUNDS,layers:layers}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
 
     return (
+        <>
         <LeafletMap
             ref={allPackages.mapRef} className="mapStyle"
             boxZoom={false} useFlyTo={true}
@@ -116,13 +115,14 @@ export default function Map(props) {
             data-testid="Map"
         >
             <TileLayer url={layers[allPackages.selectedLayer]} />
-            <LayerSelection layers={layers} {...allPackages}/>
             <TripLines places={allPackages.places} />
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
-            <ItineraryActionsDropdown {...props}/>
-
+            <ItineraryActionsDropdown {...allPackages}/>
+            
         </LeafletMap>
+        
+        </>
     );
 }
 

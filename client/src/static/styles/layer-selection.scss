@@ -12,6 +12,7 @@
     .disablePreviewMap{
         cursor:pointer;
         position:absolute;
+        display:flex;
         width:70px;
         height: 70px;
         
@@ -19,10 +20,12 @@
         color:rgb(255, 255, 255);
         background-color:rgba(0, 0, 0, 0.493);
         text-align: center;
-        padding-top:25px;
+        justify-content: center;
+        align-items: center;
         border-radius: 10px;
 
-        border:1.5px solid rgb(70, 70, 70);
+        border:1.5px solid rgb(128, 128, 128);
+        transition-duration: .5s;
     }
     .previewMap{
         width:70px;
@@ -31,11 +34,11 @@
         
     }
         .disablePreviewMap:hover{
-            border:1.5px solid #36a7f3!important;
+            background-color: rgba(0, 0, 0, 0.678);
             
         }
 
 .popover{
     background-color:rgba(255, 255, 255, 0.589);
-    max-width:50vw;
+    max-width:90vw;
 }

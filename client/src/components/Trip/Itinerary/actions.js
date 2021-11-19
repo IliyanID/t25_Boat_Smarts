@@ -1,11 +1,14 @@
 import React, { useState, Fragment } from 'react';
-import { ButtonGroup, Tooltip, Button } from 'reactstrap';
-import { FaHome, FaTrashAlt, FaFileUpload,FaFileDownload, FaRoute} from 'react-icons/fa';
-import { AiOutlineClose, AiOutlineRedo} from 'react-icons/ai';
+import { ButtonGroup, Tooltip, Button, Popover} from 'reactstrap';
+import { FaHome, FaTrashAlt, FaRoute} from 'react-icons/fa';
+import { AiOutlineClose } from 'react-icons/ai';
+import { BsFileEarmarkFill } from 'react-icons/bs'
 import { TiArrowRepeat } from 'react-icons/ti'
 import { RiSettings5Fill } from 'react-icons/ri'
 import { currentLocation } from '../../../utils/currentLocation';
 import { useToggle } from '../../../hooks/useToggle'
+import { FiLayers } from 'react-icons/fi'
+import { IndividualLayer } from '../Map/LayerSelection'
 
 export const toggle = (index,toolTip,setToolTip) =>{
     let temp =  [...toolTip]
@@ -27,19 +30,18 @@ export const toggle = (index,toolTip,setToolTip) =>{
             description:'Add starting Location'
         },
         {
-            icon:<FaFileUpload/>,
+            icon:<FiLayers/>,
+            onClick:(props)=>{}
+            ,description:'Change Map Layers'
+        },
+        {
+            icon:<BsFileEarmarkFill/>,
             onClick:(props)=>{
                 props.toggleFileUploadOpen()
             },
-            description:'Load Trip From File'
+            description:'Download or Upload Trip'
         },
-        {
-            icon:<FaFileDownload/>,
-            onClick:(props)=>{
-                props.toggleFileDownloadOpen()
-            },
-            description:'Save Trip To File' 
-        },
+
         {
             icon:<FaRoute/>,
             onClick:(props)=>{
@@ -75,6 +77,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
+    const [popover,togglePopover] = useState(false)
     return (
          <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {
@@ -86,9 +89,20 @@ export const ItineraryActionsDropdown = (props) => {
                     <Tooltip placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                         {item.description}
                     </Tooltip>
+                    {
+                        (index == 1)?
+                            <Popover   placement='auto' isOpen={popover} toggle={()=>togglePopover(!popover)} target={id} >
+                                {
+                                    Object.keys(props.layers).map(item=>{
+                                        return <IndividualLayer id={`layer-selection-${item}`} index={item}  {...props}/>
+                                    })
+                                }
+                            </Popover>:<></>
+                    }
                 </Fragment>)
             })
         }
+        
     </ButtonGroup>
 
     );
