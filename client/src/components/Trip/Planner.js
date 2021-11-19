@@ -30,10 +30,10 @@ const packageUtilSearch = () =>{
     const [limitTypes,setLimitTypes] = useState(defaultLimit)
     const [limitWhere,setLimitWhere] = useState(defaultLimit)
     let Curpackage = {
-        filterSearchOpen:filterSearchOpen,toggleFilterSearch,toggleFilterSearch,
-        limitTypes:limitTypes,setLimitTypes:setLimitTypes,
-        limitWhere:limitWhere,setLimitWhere:setLimitWhere,
-        searchResults:searchResults,setSearchResults:setSearchResults
+        filterSearchOpen,toggleFilterSearch,toggleFilterSearch,
+        limitTypes,setLimitTypes,
+        limitWhere,setLimitWhere,
+        searchResults,setSearchResults
     }
 
     return Curpackage;
