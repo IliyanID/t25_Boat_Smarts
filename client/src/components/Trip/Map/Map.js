@@ -100,7 +100,7 @@ const handlePlaces = (allPackages)=>{
 
 
 
-export const Map = React.memo((props) => {
+export const Map = (props) => {
     console.log('rerendered map')
     const states = packageStates()
     const allPackages = {...states,...props,...MAP_BOUNDS,layers:layers}
@@ -126,7 +126,7 @@ export const Map = React.memo((props) => {
         
         </>
     );
-},(prevProps,newProps) => {return deeplyCompareArray(prevProps.places,newProps.places) &&  prevProps.selectedIndex === newProps.selectedIndex})
+}
 
 const getCenter = async () => {
     let centerCoordinates = {...DEFAULT_STARTING_PLACE}

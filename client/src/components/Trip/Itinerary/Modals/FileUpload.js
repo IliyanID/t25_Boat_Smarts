@@ -25,7 +25,7 @@ const packageStates = (props) =>{
 
 const handleFileLoad = (e,allPackages) => {
     allPackages.setFileInput(e.target);
-    allPackages.validateFile(allPackages.fileInput, allPackages.context);
+    validateFile(allPackages.fileInput, allPackages.context);
 }
 
 const handleSaveClick = async (e,allPackages) => {
