@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {beforeEach, describe, expect, it, jest} from '@jest/globals';
-import FileUploadModal, {convertPlace,csvToJson} from '../../../src/components/Trip/Itinerary/Modals/FileUploadModal';
+import FileUploadModal, {convertPlace,csvToJson} from '../../../src/components/Trip/Itinerary/Modals/FileUpload';
 import { MOCK_FILE_INFO } from '../../sharedMocks';
 
 describe('FileUploadModal', () => {
