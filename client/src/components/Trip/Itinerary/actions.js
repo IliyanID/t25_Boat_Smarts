@@ -89,19 +89,17 @@ export const ItineraryActionsDropdown = (props) => {
                     <Tooltip  placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                         {item.description}
                     </Tooltip>
-                    {
-                        (index == 1)?
-                            <Popover  placement='auto' isOpen={popover} toggle={()=>togglePopover(!popover)} target={id} >
-                                {
-                                    Object.keys(props.layers).map(item=>{
-                                        return <IndividualLayer key={id + '2'} id={`layer-selection-${item}`} index={item}  {...props}/>
-                                    })
-                                }
-                            </Popover>:<></>
-                    }
+            
                 </Fragment>)
             })
         }
+        <Popover  placement='auto' isOpen={popover} toggle={()=>togglePopover(!popover)} target={`home-row-1`} >
+            {
+                Object.keys(props.layers).map((item,key)=>{
+                    return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>
+                })
+            }
+        </Popover>
         
     </ButtonGroup>
 
