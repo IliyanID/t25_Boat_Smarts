@@ -37,7 +37,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
         {
             icon:<BsFileEarmarkFill/>,
             onClick:(props)=>{
-                props.toggleFileUploadOpen()
+                props.toggleFileActions()
             },
             description:'Download or Upload Trip'
         },

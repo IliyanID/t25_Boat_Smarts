@@ -14,7 +14,7 @@ const MIME_TYPE = {
 };
 
 
-export default function FileDownloadModal(props) {
+export function FileDownload(props) {
 
     const [fileName, setFileName] = useState(props.tripName);
     const [fileType, setFileType] = useState(localStorage.getItem("fileType") != null ? localStorage.getItem("fileType") : "JSON");
@@ -27,7 +27,7 @@ export default function FileDownloadModal(props) {
             localStorage.setItem("fileType",fileType);
         }
         downloadFile(fileName, MIME_TYPE[fileType], props.places);
-        props.toggleFileDownloadOpen();
+        props.toggleFileActions();
     }
 
     return (
@@ -45,16 +45,15 @@ export default function FileDownloadModal(props) {
 
 export function ModalWrapper(props) {
     return (
-        <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
-            <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
+        <>
             <ModalBody>
                 {props.children}
             </ModalBody>
             <ModalFooter>
-                <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
+                <Button color="secondary" onClick={props.toggleFileActions}>Cancel</Button>
                 <Button color="primary" onClick={props.handleDownload} disabled={props.fileName===""} data-testid="download">Download</Button>
             </ModalFooter>
-        </Modal>
+        </>
     )
 }
 
@@ -115,3 +114,4 @@ export function addExtension(fileName, mimeType){
         return cleanName + ".csv";
     }
 }
+export default FileDownload

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { convertPlace } from './Itinerary/Modals/FileUploadModal'
+import { convertPlace } from './Itinerary/Modals/FileUpload'
 import { sendAPIRequest, getOriginalServerUrl } from "../../utils/restfulAPI"
 import { EARTH_RADIUS_UNITS_DEFAULT } from "../../utils/constants"
 import { latLngToPlace } from "../../utils/transformers"
