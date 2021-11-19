@@ -14,12 +14,10 @@ const PackageAllStates = (props) =>{
 export const FileModal = (props) =>{
     const allPackages = PackageAllStates(props);
     return <Modal isOpen={allPackages.fileActionsOpen} toggle={allPackages.toggleFileActions}>
-            <ModalHeader toggle={allPackages.toggleFileActions}>
-                <Nav tabs>
-                    <IndividualTab tabId='FileDownload' tabName='Download Trip' {...allPackages}/>
-                    <IndividualTab tabId='FileUpload' tabName='Upload Trip' {...allPackages}/>
-                </Nav>
-            </ModalHeader>
+            <Nav tabs>
+                <IndividualTab tabId='FileDownload' tabName='Download Trip' {...allPackages}/>
+                <IndividualTab tabId='FileUpload' tabName='Upload Trip' {...allPackages}/>
+            </Nav>
             <TabContent activeTab={allPackages.selectedTab}>
                 <TabPane tabId='FileDownload'>
                     <FileDownload {...allPackages}/>
