@@ -22,7 +22,7 @@ describe('FileUploadModal', () => {
     beforeEach(() => {
         fetch.resetMocks();
         fetch.mockResponse(MOCK_FILE_INFO["testTrip.json"]);
-        render(<FileUploadModal fileUploadOpen={true} setAllPlaces={setPlaces} />);
+        render(<FileUploadModal fileActionsOpen={true} setAllPlaces={setPlaces} />);
     });
     it('renders when fileUploadOpen is true', () => {
         expect(screen.getByRole('input')).toBeDefined();

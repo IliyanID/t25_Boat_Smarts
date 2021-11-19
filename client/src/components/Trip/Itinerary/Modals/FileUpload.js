@@ -127,3 +127,5 @@ export function convertPlace(place) {
         return {...placeToLatLng(place), name: place.name}
     }
 }
+
+export default FileUpload

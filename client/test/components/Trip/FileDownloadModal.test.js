@@ -6,10 +6,12 @@ import FileDownloadModal,{downloadFile} from '../../../src/components/Trip/Itine
 
 describe('FileUploadModal', () => {
 
-
+    beforeEach(()=>{
+        render(<FileDownloadModal fileActionsOpen={true} toggleFileActions={()=>{}} tripName="test" />);
+    })
 
     it('downloadFile JSON', () => {
-        render(<FileDownloadModal fileDownloadOpen={true} toggleFileDownloadOpen={()=>{}} tripName="test" />);
+        
         //fireEvent.click(screen.getByTestId('download'));
         //let saveToMem = false;
         global.URL.createObjectURL = jest.fn();
@@ -17,7 +19,6 @@ describe('FileUploadModal', () => {
     });
 
     it('downloadFile JSON', () => {
-        render(<FileDownloadModal fileDownloadOpen={true} toggleFileDownloadOpen={()=>{}} tripName="test" />);
         //fireEvent.click(screen.getByTestId('download'));
         //let saveToMem = false;
         global.URL.createObjectURL = jest.fn();
