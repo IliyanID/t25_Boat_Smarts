@@ -64,9 +64,11 @@ const packageUtilTour = (packagedUtilPlaces) =>{
 const packageUtilMap = () =>{
     const [centerView,setCenterView] = useState(false);
     const [locationPreview, setLocationPreview] = useState();
+    const [layersOpen,toggleLayers] = useToggle(false)
     let Curpackage = {
         centerView:centerView,setCenterView:setCenterView,
-        locationPreview:locationPreview,setLocationPreview:setLocationPreview
+        locationPreview:locationPreview,setLocationPreview:setLocationPreview,
+        layersOpen,toggleLayers
     }
     return Curpackage;
 }

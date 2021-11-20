@@ -78,7 +78,6 @@ export const toggle = (index,toolTip,setToolTip) =>{
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
-    const [popover,togglePopover] = useState(false)
     return (
          <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {data.map((item,index)=>{
@@ -96,7 +95,7 @@ export const ItineraryActionsDropdown = (props) => {
             
                 </Fragment>)
             })}
-        <Popover  placement='left' isOpen={popover} toggle={()=>togglePopover(!popover)} target={`home-row-1`} >
+        <Popover  placement='left' isOpen={props.layersOpen} toggle={props.toggleLayers} target={`home-row-1`} >
             {
                 Object.keys(props.layers).map((item,key)=>{
                     return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>

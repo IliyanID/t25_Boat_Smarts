@@ -14,6 +14,7 @@ export const IndividualLayer = (props) =>{
             <div style={style} onClick={()=>{
                 props.setSelectedLayer(props.index);
                 localStorage.setItem('t25-map-layer',props.index)
+                props.toggleLayers()
             }} className='disablePreviewMap'>{props.index}</div>
             <LeafletMap 
                 className='previewMap'
