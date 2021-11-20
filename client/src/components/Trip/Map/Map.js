@@ -14,9 +14,9 @@ const MAP_MIN_ZOOM = 1;
 const MAP_MAX_ZOOM = 19;
 const layers ={
         Elivation:'https://a.tile.opentopomap.org/{z}/{x}/{y}.png',
-        Streets:'https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        Street:'https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         Hybrid:'https://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
-        Satelite:'https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+        Satellite:'https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
         Terrain:'https://mt0.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
         Traffic:'https://mt0.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}',
         Default:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
