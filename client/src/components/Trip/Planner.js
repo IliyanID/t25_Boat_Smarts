@@ -22,7 +22,7 @@ const packageStatesIntoObject = (originalPackage,states,stateFunction) =>{
 
     //Combine the the exisiting package with the combinedStates object
     originalPackage = {...originalPackage,...combinedStates}
-    return originalObj
+    return originalPackage
 }
 
 const packageUtilPlaces = () =>{
