@@ -74,38 +74,35 @@ export const toggle = (index,toolTip,setToolTip) =>{
             description:'Delete Current Trip'
         }
     ]
+const ItineraryActionsClick = (props) =>{
+    if(props.previewTripFocus)
+        return
+    setToolTip(defaultArr); 
+    item.onClick(props)
+
+}
 
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
     return (
-         <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
+        <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {data.map((item,index)=>{
                 let id = `home-row-${index}`
-                return(
-                <Fragment key={id}>
-                    <Button  id={id} onClick={() => { 
-                        if(props.previewTripFocus)
-                            return
-                        setToolTip(defaultArr); 
-                        item.onClick(props) }}>{item.icon}</Button>
-                    <Tooltip  placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
-                        {item.description}
-                    </Tooltip>
-            
-                </Fragment>)
-            })}
+                return(<Fragment key={id}>
+                            <Button  id={id} onClick={()=>ItineraryActionsClick(props)}>{item.icon}</Button>
+                            <Tooltip  placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
+                                {item.description}
+                             </Tooltip>
+                        </Fragment>)
+        })}
         <Popover  placement='left' isOpen={props.layersOpen} toggle={props.toggleLayers} target={`home-row-1`} >
-            {
-                Object.keys(props.layers).map((item,key)=>{
+            {Object.keys(props.layers).map((item,key)=>{
                     return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>
-                })
-            }
+            })}
         </Popover>
         
-    </ButtonGroup>
-
-    );
+    </ButtonGroup>);
 }
 
 
