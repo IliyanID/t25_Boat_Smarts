@@ -25,21 +25,27 @@ export function TripSettingsModal(props) {
                     <Col><Switch disabled={props.automaticallyRunTour}  onChange={props.toggleDisablePreviewMode} checked={props.disablePreviewMode}/></Col>
                     <Col>Disable Preview Mode <PreviewModeToolTip id='settings'/> </Col>
                 </Row>
-                <Row className='dangerZone'>Danger Zone</Row>
-                <Row>
-                    <div className='deleteTripContainer'>
-                    <Row>
-                        <Col>{`Will Delete Trip : "${props.tripName}"`}</Col>
-                        <Col><Button onClick={()=>{props.placeActions.removeAll();props.toggleTripSettingsOpen()}} style={{color:'red',fontWeight:'500'}}>Delete Trip</Button></Col>
-                    </Row>
-                    </div>
-                </Row>
+                <DangerZone {...props}/>
             </Container>
             <ModalFooter>
                 <Button color="primary" onClick={props.toggleTripSettingsOpen} data-testid="SaveSettings">Save</Button>
             </ModalFooter>
         </Modal>
     )
+}
+
+const DangerZone = (props) =>{
+    return <>
+        <Row className='dangerZone'>Danger Zone</Row>
+        <Row>
+            <div className='deleteTripContainer'>
+                <Row>
+                    <Col>{`Will Delete Trip : "${props.tripName}"`}</Col>
+                    <Col><Button onClick={()=>{props.placeActions.removeAll();props.toggleTripSettingsOpen()}} style={{color:'red',fontWeight:'500'}}>Delete Trip</Button></Col>
+                </Row>
+            </div>
+        </Row>
+        </>
 }
 
 export default TripSettingsModal
