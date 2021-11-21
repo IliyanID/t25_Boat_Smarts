@@ -16,7 +16,7 @@ const packageTripName = (props) =>{
     }
 }
 let handleFocusOut = (e,allPackages)=>{
-    let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer";
+    let userDidntPressCheckMark = e && e.path && e.path[1].id !== "inputContainer" && e.path[2].id !== 'inputContainer';
     let userDidntPressSaveButton = e && e.path && e.path[0].innerText != "Save"
     //If the parent of the clicked item isn't the inputRef div
     if(userDidntPressCheckMark && userDidntPressSaveButton){
