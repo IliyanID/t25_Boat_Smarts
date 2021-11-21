@@ -12,8 +12,16 @@ import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourR
 import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
 import  zipObject  from 'lodash.zipobject'
 
-const combineObjects = (originalObj, addedObj) =>{
-    originalObj = {...originalObj,...addedObj}
+const packageStatesIntoObject = (originalPackage,states,stateFunction) =>{
+    //originalPackage is the object so far holding the packages
+    //states is an array [stateName, setStateFunction]
+
+    //zipObject creates an object where if you pass zipObject([1,2],['one','two']) it will return
+    // {1:'one',2:'two'}
+    const combinedStates = zipObject(states,stateFunction)
+
+    //Combine the the exisiting package with the combinedStates object
+    originalPackage = {...originalPackage,...combinedStates}
     return originalObj
 }
 
@@ -30,12 +38,14 @@ const packageUtilPlaces = () =>{
 
 const packageUtilSearch = () =>{
     let p ={}
-    p = combineObjects(p,zipObject(['searchResults','setSearchResults'],useState({})))
-    p = combineObjects(p,zipObject(['filterSearchOpen','toggleFilterSearch'],useToggle(false)))
+
+    p = packageStatesIntoObject(p,['searchResults','setSearchResults'],useState({}))
+    p = packageStatesIntoObject(p,['filterSearchOpen','toggleFilterSearch'],useToggle(false))
+  
     
     let defaultLimit = {request:[],response:[]}
-    p = combineObjects(p,zipObject(['limitTypes','setLimitTypes'],useState({...defaultLimit})))
-    p = combineObjects(p,zipObject(['limitWhere','setLimitWhere'],useState({...defaultLimit})))
+    p = packageStatesIntoObject(p,['limitTypes','setLimitTypes'],useState({...defaultLimit}))
+    p = packageStatesIntoObject(p,['limitWhere','setLimitWhere'],useState({...defaultLimit}))
     return p;
 }
 
