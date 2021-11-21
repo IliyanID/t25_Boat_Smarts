@@ -10,6 +10,12 @@ import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
 import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
+import  zipObject  from 'lodash.zipobject'
+
+const combineObjects = (originalObj, addedObj) =>{
+    originalObj = {...originalObj,...addedObj}
+    return originalObj
+}
 
 const packageUtilPlaces = () =>{
     const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
@@ -23,20 +29,14 @@ const packageUtilPlaces = () =>{
 }
 
 const packageUtilSearch = () =>{
-    const [searchResults, setSearchResults] = useState({});
-
-    const [filterSearchOpen,toggleFilterSearch] = useToggle(false);
+    let p ={}
+    p = combineObjects(p,zipObject(['searchResults','setSearchResults'],useState({})))
+    p = combineObjects(p,zipObject(['filterSearchOpen','toggleFilterSearch'],useToggle(false)))
+    
     let defaultLimit = {request:[],response:[]}
-    const [limitTypes,setLimitTypes] = useState(defaultLimit)
-    const [limitWhere,setLimitWhere] = useState(defaultLimit)
-    let Curpackage = {
-        filterSearchOpen:filterSearchOpen,toggleFilterSearch:toggleFilterSearch,
-        limitTypes:limitTypes,setLimitTypes:setLimitTypes,
-        limitWhere:limitWhere,setLimitWhere:setLimitWhere,
-        searchResults:searchResults,setSearchResults:setSearchResults
-    }
-
-    return Curpackage;
+    p = combineObjects(p,zipObject(['limitTypes','setLimitTypes'],useState({...defaultLimit})))
+    p = combineObjects(p,zipObject(['limitWhere','setLimitWhere'],useState({...defaultLimit})))
+    return p;
 }
 
 const packageUtilDistances = () =>{
