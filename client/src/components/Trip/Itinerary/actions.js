@@ -9,6 +9,7 @@ import { currentLocation } from '../../../utils/currentLocation';
 import { useToggle } from '../../../hooks/useToggle'
 import { FiLayers } from 'react-icons/fi'
 import { IndividualLayer } from '../Map/LayerSelection'
+import { MakeToolTip } from '../../../utils/PreviewModeToolTip';
 
 export const toggle = (index,toolTip,setToolTip) =>{
     let temp =  [...toolTip]
@@ -74,7 +75,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
             description:'Delete Current Trip'
         }
     ]
-const ItineraryActionsClick = (props) =>{
+const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
     if(props.previewTripFocus)
         return
     setToolTip(defaultArr); 
@@ -90,7 +91,7 @@ export const ItineraryActionsDropdown = (props) => {
         {data.map((item,index)=>{
                 let id = `home-row-${index}`
                 return(<Fragment key={id}>
-                            <Button  id={id} onClick={()=>ItineraryActionsClick(props)}>{item.icon}</Button>
+                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{item.icon}</Button>
                             <Tooltip  placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                                 {item.description}
                              </Tooltip>
@@ -108,14 +109,11 @@ export const ItineraryActionsDropdown = (props) => {
 
 
 export const PlaceActionsDropdown = (props) => {
-    const [tooltip,toggleToolTip] = useToggle(false)
     return (
         <div>
             <div onClick={()=>setToolTip(defaultArr)}>
                 <FaHome id={`to-start-${props.index}`} style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
-                <Tooltip placement='bottom' isOpen={tooltip}  toggle={toggleToolTip} target={`to-start-${props.index}`}>
-                    Move to Start of Trip
-                </Tooltip>
+                <MakeToolTip target = {`to-start-${props.index}`} placement='bottom' text='Move To Start Of Trip'/>
                 <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
             </div>
         </div>
