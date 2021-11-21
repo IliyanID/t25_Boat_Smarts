@@ -80,28 +80,29 @@ export function FileUpload(props) {
 
  export function validateFile(input, context) {
     const { validFile, setValidFile, filePlaces, setFilePlaces, setSelectedIndex } = context;
-    if (input && 'files' in input && input.files.length > 0) {
+    if (!input || !('files' in input) || input.files.length <= 0) 
+            return
         //console.log(input.files)
-        let reader = new FileReader();
-        reader.readAsText(input.files[0]);
-        reader.onload = () => {
-            let result;
-            try {
-                result = JSON.parse(reader.result);
-            } catch (e) {
-                result = csvToJson(reader.result);
-            } finally {
-                setValidFile(isJsonResponseValid(result, tripSchema));
-                if (isJsonResponseValid(result, tripSchema)) {
-                    setFilePlaces(result.places);
-                    setSelectedIndex(0);
-                }
+    let reader = new FileReader();
+    reader.readAsText(input.files[0]);
+    reader.onload = () => {
+        let result;
+        try {
+            result = JSON.parse(reader.result);
+        } catch (e) {
+            result = csvToJson(reader.result);
+        } finally {
+            setValidFile(isJsonResponseValid(result, tripSchema));
+            if (isJsonResponseValid(result, tripSchema)) {
+                setFilePlaces(result.places);
+                setSelectedIndex(0);
             }
         }
-        reader.onerror = () => {
-            LOG.error(reader.error);
-        }
     }
+    reader.onerror = () => {
+        LOG.error(reader.error);
+    }
+    
 }
 
 export function csvToJson(stringFromFile) {
