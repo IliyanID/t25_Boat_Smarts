@@ -67,8 +67,8 @@ const getButtonLayout = (allPackages) =>{
         buttonLayout = <FaEdit  data-testid="edit" onClick={()=>setFocus(allPackages)} style={iconStyle}/>
     }
     else{
-        buttonLayout = cancelPackage.map(item=>{
-            return <img data-testid={item.id} style={iconStyle} onClick={()=>item.onClick(allPackages)} src={item.src}></img>
+        buttonLayout = cancelPackage.map((item,index)=>{
+            return <img key={`${item}-${index}`} data-testid={item.id} style={iconStyle} onClick={()=>item.onClick(allPackages)} src={item.src}></img>
         })
     }
     return buttonLayout;
