@@ -1,10 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
-import {buildTripJSON, buildTripCSV} from "../../src/utils/fileBuilder";
+import {buildTripJSON, buildTripCSV, buildTripSVG} from "../../src/utils/fileBuilder";
 import {isJsonResponseValid} from "../../src/utils/restfulAPI";
 import * as tripSchema from '../../schemas/TripFile';
 import { latLngToPlace } from "../../src/utils/transformers"
 
 describe('fileBuilder', () => {
+    const places0 = []
+
     const places1 = [
         {
             lat: 40,
@@ -55,6 +57,20 @@ describe('fileBuilder', () => {
         let tripLines = tripCSV.split('\n');
         let firstLine = tripLines[0].split(',');
         expect(firstLine.length).toEqual(5);
+    })
+
+    it('returns a SVG with the base map', () =>{
+        let tripSVG = buildTripSVG(places0);
+        let tripLines = tripSVG.split('\n');
+        expect(tripLines.length).toBeGreaterThan(7);
+    })
+
+    it('adds a line and a circle for every place', () =>{
+        let fullTripSVG = buildTripSVG(places1);
+        let fullTripLines = fullTripSVG.split('\n');
+        let emptyTripLines = buildTripSVG(places0).split('\n');
+        let addedLines = places1.length * 2;
+        expect(fullTripLines.length).toEqual(emptyTripLines.length + addedLines);
     })
 
 })
