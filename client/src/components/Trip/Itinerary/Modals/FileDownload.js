@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useToggle } from '../../../../hooks/useToggle.js';
 import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Row, Col } from "reactstrap";
-import {buildTripJSON, buildTripCSV} from "../../../../utils/fileBuilder";
+import {buildTripJSON, buildTripCSV, buildTripSVG} from "../../../../utils/fileBuilder";
 import { EARTH_RADIUS_UNITS_DEFAULT } from "../../../../utils/constants"
 
 
@@ -72,6 +72,7 @@ export function FileTypeSelector(props) {
                         <DropdownMenu>
                             <DropdownItem onClick={()=> props.setFileType("JSON")}>JSON</DropdownItem>
                             <DropdownItem onClick={()=> props.setFileType("CSV")}>CSV</DropdownItem>
+                            <DropdownItem onClick={()=> props.setFileType("SVG")}>SVG</DropdownItem>
                         </DropdownMenu>
                     </Dropdown><br/>
                     <FormGroup check>
@@ -103,6 +104,8 @@ export function buildFileText(mimeType, places) {
         return buildTripJSON(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
     } else if (mimeType === MIME_TYPE.CSV) {
         return buildTripCSV(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
+    } else if (mimeType === MIME_TYPE.SVG) {
+        return buildTripSVG(places);
     }
 }
 
@@ -112,6 +115,8 @@ export function addExtension(fileName, mimeType){
         return cleanName + ".json";
     } else if (mimeType === MIME_TYPE.CSV) {
         return cleanName + ".csv";
+    } else if (mimeType === MIME_TYPE.SVG) {
+        return cleanName + ".svg";
     }
 }
 export default FileDownload

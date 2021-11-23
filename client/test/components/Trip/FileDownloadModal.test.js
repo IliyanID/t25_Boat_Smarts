@@ -18,11 +18,18 @@ describe('FileUploadModal', () => {
         downloadFile('f','application/json',[])
     });
 
-    it('downloadFile JSON', () => {
+    it('downloadFile CSV', () => {
         //fireEvent.click(screen.getByTestId('download'));
         //let saveToMem = false;
         global.URL.createObjectURL = jest.fn();
         downloadFile('f','test/csv',[])
+    });
+
+    it('downloadFile SVG', () => {
+        //fireEvent.click(screen.getByTestId('download'));
+        //let saveToMem = false;
+        global.URL.createObjectURL = jest.fn();
+        downloadFile('f','image/svg+xml',[])
     });
 
     
