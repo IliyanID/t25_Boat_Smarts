@@ -66,13 +66,6 @@ export const toggle = (index,toolTip,setToolTip) =>{
                 props.toggleTripSettingsOpen();
             },
             description:'Trip Settings'
-        },
-        {
-            icon:<FaTrashAlt/>,
-            onClick:(props)=>{
-                props.placeActions.removeAll()
-            },
-            description:'Delete Current Trip'
         }
     ]
 const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
