@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import {buildTripJSON, buildTripCSV, buildTripSVG} from "../../src/utils/fileBuilder";
+import {buildTripJSON, buildTripCSV, buildTripSVG, buildTripKML} from "../../src/utils/fileBuilder";
 import {isJsonResponseValid} from "../../src/utils/restfulAPI";
 import * as tripSchema from '../../schemas/TripFile';
 import { latLngToPlace } from "../../src/utils/transformers"
@@ -70,6 +70,20 @@ describe('fileBuilder', () => {
         let fullTripLines = fullTripSVG.split('\n');
         let emptyTripLines = buildTripSVG(places0).split('\n');
         let addedLines = places1.length * 2;
+        expect(fullTripLines.length).toEqual(emptyTripLines.length + addedLines);
+    })
+
+    it('returns a KML with the base tags and style', () =>{
+        let tripKML = buildTripKML(places0, "name");
+        let tripLines = tripKML.split('\n');
+        expect(tripLines.length).toBeGreaterThan(15);
+    })
+
+    it('KML adds a line and a point for every place', () =>{
+        let fullTripKML = buildTripKML(places1, "name");
+        let fullTripLines = fullTripKML.split('\n');
+        let emptyTripLines = buildTripKML(places0, "name").split('\n');
+        let addedLines = places1.length * 17;
         expect(fullTripLines.length).toEqual(emptyTripLines.length + addedLines);
     })
 
