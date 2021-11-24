@@ -5,12 +5,25 @@ import Map from './Map/Map';
 import Search from './Search/Search';
 import Results from './Results/Results';
 import Itinerary from './Itinerary/Itinerary';
-import FileUploadModal from './Itinerary/Modals/FileUploadModal';
+import {FileModal} from './Itinerary/Modals/FileModal';
 import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
 import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
-import FileDownloadModal from './Itinerary/Modals/FileDownloadModal'
 import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
+import  zipObject  from 'lodash.zipobject'
+
+const packageStatesIntoObject = (originalPackage,states,stateFunction) =>{
+    //originalPackage is the object so far holding the packages
+    //states is an array [stateName, setStateFunction]
+
+    //zipObject creates an object where if you pass zipObject([1,2],['one','two']) it will return
+    // {1:'one',2:'two'}
+    const combinedStates = zipObject(states,stateFunction)
+
+    //Combine the the exisiting package with the combinedStates object
+    originalPackage = {...originalPackage,...combinedStates}
+    return originalPackage
+}
 
 const packageUtilPlaces = () =>{
     const {setAllPlaces, previousPlaces, places, setPlaces, selectedIndex, setSelectedIndex, placeActions} = usePlaces();
@@ -24,20 +37,16 @@ const packageUtilPlaces = () =>{
 }
 
 const packageUtilSearch = () =>{
-    const [searchResults, setSearchResults] = useState({});
+    let p ={}
 
-    const [filterSearchOpen,toggleFilterSearch] = useToggle(false);
+    p = packageStatesIntoObject(p,['searchResults','setSearchResults'],useState({}))
+    p = packageStatesIntoObject(p,['filterSearchOpen','toggleFilterSearch'],useToggle(false))
+  
+    
     let defaultLimit = {request:[],response:[]}
-    const [limitTypes,setLimitTypes] = useState(defaultLimit)
-    const [limitWhere,setLimitWhere] = useState(defaultLimit)
-    let Curpackage = {
-        filterSearchOpen:filterSearchOpen,toggleFilterSearch,toggleFilterSearch,
-        limitTypes:limitTypes,setLimitTypes:setLimitTypes,
-        limitWhere:limitWhere,setLimitWhere:setLimitWhere,
-        searchResults:searchResults,setSearchResults:setSearchResults
-    }
-
-    return Curpackage;
+    p = packageStatesIntoObject(p,['limitTypes','setLimitTypes'],useState({...defaultLimit}))
+    p = packageStatesIntoObject(p,['limitWhere','setLimitWhere'],useState({...defaultLimit}))
+    return p;
 }
 
 const packageUtilDistances = () =>{
@@ -65,21 +74,21 @@ const packageUtilTour = (packagedUtilPlaces) =>{
 const packageUtilMap = () =>{
     const [centerView,setCenterView] = useState(false);
     const [locationPreview, setLocationPreview] = useState();
+    const [layersOpen,toggleLayers] = useToggle(false)
     let Curpackage = {
         centerView:centerView,setCenterView:setCenterView,
-        locationPreview:locationPreview,setLocationPreview:setLocationPreview
+        locationPreview:locationPreview,setLocationPreview:setLocationPreview,
+        layersOpen,toggleLayers
     }
     return Curpackage;
 }
 
 const packageUtilFiles = () =>{
-    const [fileDownloadOpen, toggleFileDownloadOpen] = useToggle(false);
-    const [fileUploadOpen, toggleFileUploadOpen] = useToggle(false);
+    const [fileActionsOpen, toggleFileActions] = useToggle(false);
     const [filePlaces, setFilePlaces] = useState([]);
     let Curpackage = {
-        fileUploadOpen:fileUploadOpen,toggleFileUploadOpen:toggleFileUploadOpen,
         filePlaces:filePlaces,setFilePlaces:setFilePlaces,
-        fileDownloadOpen,toggleFileDownloadOpen
+        fileActionsOpen,toggleFileActions
     }
     return Curpackage;
 }
@@ -144,9 +153,8 @@ export default function Planner(props) {
                 {allPackages.searchResults && <><br /><Results {...allPackages} /></>}
             </Section>
             <Section>
-                <Itinerary {...allPackages}/><FileDownloadModal {...allPackages}/><TripSettingsModal {...allPackages}/>
+                <Itinerary {...allPackages}/><FileModal {...allPackages}/><TripSettingsModal {...allPackages}/>
             </Section>
-            <FileUploadModal {...allPackages}/>
         </Container>
     );
 }

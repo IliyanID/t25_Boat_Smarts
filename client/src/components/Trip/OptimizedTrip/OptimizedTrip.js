@@ -2,7 +2,8 @@ import React, { useRef, useEffect } from 'react'
 import { useToggle } from '../../../hooks/useToggle';
 import { Button, Collapse, Tooltip } from 'reactstrap';
 import { AiFillInfoCircle } from 'react-icons/ai';
-import '../../../static/styles/focus.css'
+import {PreviewModeToolTip} from '../../../utils/PreviewModeToolTip';
+import '../../../static/styles/focus.css';
 import { FaHandMiddleFinger } from 'react-icons/fa';
 
 const packageRefs = () =>{
@@ -61,8 +62,7 @@ const OptimizedTrip = (props) =>{
                 <div ref={allPackages.buttonsRef} className='OptimizationOptionDefault'>
                         <div className='OptimizedHeader'>
                             <h3>Planner is in Preview Mode</h3>
-                            <AiFillInfoCircle id='previewMode'/>
-                            <Tooltip placement="right" isOpen={allPackages.toolTip} toggle={allPackages.toggleToolTip} target='previewMode'>All site features, except for the map, are temporarily disabled until the user confirms or denies the optimized trip.</Tooltip>
+                            <PreviewModeToolTip id='header'/>
                         </div>
                         <Button color="primary" onClick={()=>hanleConfirm(allPackages)} data-testid='ConfirmTrip'>Confirm Optimized Trip</Button>
                         <Button color="secondary" onClick={()=>handleReject(allPackages)} data-testid='DenyTrip'>Revert to Origional Trip</Button>

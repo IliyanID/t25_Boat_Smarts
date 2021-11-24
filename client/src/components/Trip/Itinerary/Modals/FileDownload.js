@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useToggle } from '../../../../hooks/useToggle.js';
 import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Row, Col } from "reactstrap";
-import {buildTripJSON, buildTripCSV} from "../../../../utils/fileBuilder";
+import {buildTripJSON, buildTripCSV, buildTripSVG} from "../../../../utils/fileBuilder";
 import { EARTH_RADIUS_UNITS_DEFAULT } from "../../../../utils/constants"
 
 
@@ -14,7 +14,7 @@ const MIME_TYPE = {
 };
 
 
-export default function FileDownloadModal(props) {
+export function FileDownload(props) {
 
     const [fileName, setFileName] = useState(props.tripName);
     const [fileType, setFileType] = useState(localStorage.getItem("fileType") != null ? localStorage.getItem("fileType") : "JSON");
@@ -27,7 +27,7 @@ export default function FileDownloadModal(props) {
             localStorage.setItem("fileType",fileType);
         }
         downloadFile(fileName, MIME_TYPE[fileType], props.places);
-        props.toggleFileDownloadOpen();
+        props.toggleFileActions();
     }
 
     return (
@@ -45,16 +45,15 @@ export default function FileDownloadModal(props) {
 
 export function ModalWrapper(props) {
     return (
-        <Modal isOpen={props.fileDownloadOpen} toggle={props.toggleFileDownloadOpen}>
-            <ModalHeader toggle={props.toggleFileDownloadOpen}>Download Trip</ModalHeader>
+        <>
             <ModalBody>
                 {props.children}
             </ModalBody>
             <ModalFooter>
-                <Button color="secondary" onClick={props.toggleFileDownloadOpen}>Cancel</Button>
+                <Button color="secondary" onClick={props.toggleFileActions}>Cancel</Button>
                 <Button color="primary" onClick={props.handleDownload} disabled={props.fileName===""} data-testid="download">Download</Button>
             </ModalFooter>
-        </Modal>
+        </>
     )
 }
 
@@ -73,6 +72,7 @@ export function FileTypeSelector(props) {
                         <DropdownMenu>
                             <DropdownItem onClick={()=> props.setFileType("JSON")}>JSON</DropdownItem>
                             <DropdownItem onClick={()=> props.setFileType("CSV")}>CSV</DropdownItem>
+                            <DropdownItem onClick={()=> props.setFileType("SVG")}>SVG</DropdownItem>
                         </DropdownMenu>
                     </Dropdown><br/>
                     <FormGroup check>
@@ -104,6 +104,8 @@ export function buildFileText(mimeType, places) {
         return buildTripJSON(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
     } else if (mimeType === MIME_TYPE.CSV) {
         return buildTripCSV(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
+    } else if (mimeType === MIME_TYPE.SVG) {
+        return buildTripSVG(places);
     }
 }
 
@@ -113,5 +115,8 @@ export function addExtension(fileName, mimeType){
         return cleanName + ".json";
     } else if (mimeType === MIME_TYPE.CSV) {
         return cleanName + ".csv";
+    } else if (mimeType === MIME_TYPE.SVG) {
+        return cleanName + ".svg";
     }
 }
+export default FileDownload

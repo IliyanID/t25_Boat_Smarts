@@ -13,7 +13,7 @@ export default function App() {
 export const HookCaller = () => {
     const { enqueueSnackbar } = useSnackbar();
 
-    function showMessage(message, variant = "info") {
+    async function showMessage(message, variant = "info") {
         enqueueSnackbar(message, { variant: variant })
     }
 

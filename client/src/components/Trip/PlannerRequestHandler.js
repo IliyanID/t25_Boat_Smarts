@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { convertPlace } from './Itinerary/Modals/FileUploadModal'
+import { convertPlace } from './Itinerary/Modals/FileUpload'
 import { sendAPIRequest, getOriginalServerUrl } from "../../utils/restfulAPI"
 import { EARTH_RADIUS_UNITS_DEFAULT } from "../../utils/constants"
 import { latLngToPlace } from "../../utils/transformers"
@@ -85,8 +85,6 @@ const sendTourApiCall = (allPackages,props,selectedIndex) =>{
                         allPackages.setAllPlaces(convertedPlaces);
                         convertedPlaces.forEach((item,index)=>{
                             if(item.name === tempPlace.name && item.lat === tempPlace.lat && item.lng === tempPlace.lng){
-                                console.log('found')
-                                console.log(index)
                                 allPackages.setSelectedIndex(index)
                                 return
                             }

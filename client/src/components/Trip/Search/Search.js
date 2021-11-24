@@ -68,8 +68,8 @@ export default function Search(props) {
     return (
         <>{SearchTab(allPackages)} 
         <TabContent activeTab={activeTab}>
-            {TableContentsData.map(tab=>{
-                return (<TabPane tabId={tab.tabId}>
+            {TableContentsData.map((tab,key)=>{
+                return (<TabPane key={`search-tab-pan-${key}`} tabId={tab.tabId}>
                             <Row>
                                 <Col className={tab.className}>
                                     {tab.tabContent}

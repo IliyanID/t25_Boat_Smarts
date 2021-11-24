@@ -9,12 +9,21 @@ import 'leaflet/dist/leaflet.css';
 import { ItineraryActionsDropdown } from '../Itinerary/actions';
 import { map } from 'leaflet';
 import { useToggle } from '../../../hooks/useToggle';
+import { LayerSelection } from './LayerSelection'
+import { deeplyCompareArray } from '../../../utils/deeplyCompare';
 
 const MAP_BOUNDS = [[-90, -180], [90, 180]];
-const MAP_LAYER_ATTRIBUTION = "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors";
-const MAP_LAYER_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const MAP_MIN_ZOOM = 1;
 const MAP_MAX_ZOOM = 19;
+const layers ={
+        Elevation:'https://a.tile.opentopomap.org/{z}/{x}/{y}.png',
+        Street:'https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        Hybrid:'https://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+        Satellite:'https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+        Terrain:'https://mt0.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+        Traffic:'https://mt0.google.com/vt/lyrs=m@221097413,traffic&x={x}&y={y}&z={z}',
+        Default:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    }
 
 const packageStates = () =>{
     const [coordinates,setCoordinates] = useState(placeToLatLng(DEFAULT_STARTING_PLACE))
@@ -22,12 +31,15 @@ const packageStates = () =>{
     const mapRef = useRef()
     const [zoom,setZoom] = useState(15)
     const [isOpen, toggleOpen] = useToggle(true);
+    const [selectedLayer,setSelectedLayer] = useState('Default')
+
     return {
         coordinates,setCoordinates,
         previewMarker,setPreviewMarker,
         mapRef,
         zoom,setZoom,
-        isOpen,toggleOpen
+        isOpen,toggleOpen,
+        selectedLayer,setSelectedLayer
     }
 }
 const centerView = (allPackages,currentCords) =>{
@@ -41,7 +53,10 @@ function handleMapClick(allPackagees,mapClickInfo) {
     let maxHeight =  allPackagees.mapRef.current.leafletElement._size.y - mapClickInfo.containerPoint.y
     let latlng = mapClickInfo.latlng
 
-    if(maxWidth < 45 && maxHeight > 170)
+    //console.log(mapClickInfo)
+    //console.log(`maxWidth: ${maxWidth} | maxHeight ${maxHeight}`)
+
+    if(maxWidth < 45 && maxHeight < 45000)
         return
     if(checkBounds(latlng,allPackagees.showMessage))
         return
@@ -55,6 +70,9 @@ function handleMapClick(allPackagees,mapClickInfo) {
 const componentDidMount = (allPackages) =>{
     return   useEffect(()=>{
             getCenter().then((result)=>{allPackages.setCoordinates(result)});
+            const storedLayer = localStorage.getItem('t25-map-layer');
+            if(storedLayer)
+                allPackages.setSelectedLayer(storedLayer)
         },[])
 }
 
@@ -88,32 +106,32 @@ const handlePlaces = (allPackages)=>{
 
 
 
-export default function Map(props) {
+export const Map = (props) => {
     const states = packageStates()
-    const allPackages = {...states,...props}
+    const allPackages = {...states,...props,...MAP_BOUNDS,layers:layers}
     componentDidMount(allPackages);handleCenterView(allPackages);handleLocationPreview(allPackages);handlePlaces(allPackages)    
-   
+
     return (
-        <div>
-        <Collapse isOpen={allPackages.isOpen}>
-            <LeafletMap
-                ref={allPackages.mapRef} className="mapStyle"
-                boxZoom={false} useFlyTo={true}
-                zoom={allPackages.zoom} minZoom={MAP_MIN_ZOOM} maxZoom={MAP_MAX_ZOOM} maxBounds={MAP_BOUNDS}
-                center={allPackages.coordinates}
-                onClick={(e)=>handleMapClick(allPackages,e)}
-                data-testid="Map"
-            >
-                <TileLayer url={MAP_LAYER_URL} attribution={MAP_LAYER_ATTRIBUTION} />
-                <TripLines places={allPackages.places} />
-                {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
+        <>
+      <Collapse isOpen={allPackages.isOpen}>
+        <LeafletMap
+            ref={allPackages.mapRef} className="mapStyle"
+            boxZoom={false} useFlyTo={true}
+            zoom={allPackages.zoom} minZoom={MAP_MIN_ZOOM} maxZoom={MAP_MAX_ZOOM} maxBounds={MAP_BOUNDS}
+            center={allPackages.coordinates}
+            onClick={(e)=>handleMapClick(allPackages,e)}
+            data-testid="Map"
+        >
+            <TileLayer url={layers[allPackages.selectedLayer]} />
+            <TripLines places={allPackages.places} />
+            {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
-                <ItineraryActionsDropdown {...props}/>
-
-            </LeafletMap>
+            <ItineraryActionsDropdown {...allPackages}/>
+            {(allPackages.automaticallyRunTour)?<div className='glowingDot'/>:<></>} 
+        </LeafletMap>
         </Collapse>
         <Button className="mt-1" size="sm" color="secondary" onClick={allPackages.toggleOpen}>{allPackages.isOpen ? "Hide Map" : "Show Map"}</Button>
-        </div>
+        </>
     );
 }
 
@@ -161,3 +179,5 @@ function PlaceMarker({places, selectedIndex}) {
     }
     return <Marker place={places[selectedIndex]} />;
 }
+
+export default Map

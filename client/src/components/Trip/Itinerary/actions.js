@@ -1,11 +1,15 @@
 import React, { useState, Fragment } from 'react';
-import { ButtonGroup, Tooltip, Button } from 'reactstrap';
-import { FaHome, FaTrashAlt, FaFileUpload,FaFileDownload, FaRoute} from 'react-icons/fa';
-import { AiOutlineClose, AiOutlineRedo} from 'react-icons/ai';
+import { ButtonGroup, Tooltip, Button, Popover} from 'reactstrap';
+import { FaHome, FaTrashAlt, FaRoute} from 'react-icons/fa';
+import { AiOutlineClose } from 'react-icons/ai';
+import { BsFileEarmarkFill } from 'react-icons/bs'
 import { TiArrowRepeat } from 'react-icons/ti'
 import { RiSettings5Fill } from 'react-icons/ri'
 import { currentLocation } from '../../../utils/currentLocation';
 import { useToggle } from '../../../hooks/useToggle'
+import { FiLayers } from 'react-icons/fi'
+import { IndividualLayer } from '../Map/LayerSelection'
+import { MakeToolTip } from '../../../utils/PreviewModeToolTip';
 
 export const toggle = (index,toolTip,setToolTip) =>{
     let temp =  [...toolTip]
@@ -27,19 +31,18 @@ export const toggle = (index,toolTip,setToolTip) =>{
             description:'Add starting Location'
         },
         {
-            icon:<FaFileUpload/>,
-            onClick:(props)=>{
-                props.toggleFileUploadOpen()
-            },
-            description:'Load Trip From File'
+            icon:<FiLayers/>,
+            onClick:(props)=>{}
+            ,description:'Change Map Layers'
         },
         {
-            icon:<FaFileDownload/>,
+            icon:<BsFileEarmarkFill/>,
             onClick:(props)=>{
-                props.toggleFileDownloadOpen()
+                props.toggleFileActions()
             },
-            description:'Save Trip To File' 
+            description:'Download or Upload Trip'
         },
+
         {
             icon:<FaRoute/>,
             onClick:(props)=>{
@@ -63,46 +66,47 @@ export const toggle = (index,toolTip,setToolTip) =>{
                 props.toggleTripSettingsOpen();
             },
             description:'Trip Settings'
-        },
-        {
-            icon:<FaTrashAlt/>,
-            onClick:(props)=>{
-                props.placeActions.removeAll()
-            },
-            description:'Delete Current Trip'
         }
     ]
+const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
+    if(props.previewTripFocus)
+        return
+    setToolTip(defaultArr); 
+    item.onClick(props)
+
+}
+
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
     return (
-         <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
-        {
-            data.map((item,index)=>{
+        <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
+        {data.map((item,index)=>{
                 let id = `home-row-${index}`
-                return(
-                <Fragment key={id}>
-                    <Button id={id} onClick={() => { setToolTip(defaultArr); item.onClick(props) }}>{item.icon}</Button>
-                    <Tooltip placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
-                        {item.description}
-                    </Tooltip>
-                </Fragment>)
-            })
-        }
-    </ButtonGroup>
-
-    );
+                return(<Fragment key={id}>
+                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{item.icon}</Button>
+                            <Tooltip  placement="right" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
+                                {item.description}
+                             </Tooltip>
+                        </Fragment>)
+        })}
+        <Popover  placement='left' isOpen={props.layersOpen} toggle={props.toggleLayers} target={`home-row-1`} >
+            {Object.keys(props.layers).map((item,key)=>{
+                    return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>
+            })}
+        </Popover>
+        
+    </ButtonGroup>);
 }
 
+
+
 export const PlaceActionsDropdown = (props) => {
-    const [tooltip,toggleToolTip] = useToggle(false)
     return (
         <div>
             <div onClick={()=>setToolTip(defaultArr)}>
                 <FaHome id={`to-start-${props.index}`} style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
-                <Tooltip placement='bottom' isOpen={tooltip}  toggle={toggleToolTip} target={`to-start-${props.index}`}>
-                    Move to Start of Trip
-                </Tooltip>
+                <MakeToolTip target = {`to-start-${props.index}`} placement='bottom' text='Move To Start Of Trip'/>
                 <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
             </div>
         </div>

@@ -56,16 +56,18 @@
         max-width:10px!important;
     }
     .tripDetails{
-        padding-left:18px;
-        width:50vw;
-        max-width: 1400px;
+        padding-right:0px!important;
+        padding-left:0px!important;
+        width:calc(60vw - 120px)!important;
+        max-width: 1800px;
     }
     .tripIcons{
         display:float;
         right:0px;
-        width:230px;
-        padding-left:5px;
-        transform:translateX(45%);
+        width:160px!important;
+        padding: 0px !important;
+        padding-top:10px!important;
+        margin:0px!important;
     }
 
 .unitContainer{
@@ -96,3 +98,27 @@ body::-webkit-scrollbar {
     border-radius: 5px;     
     border:3px solid   #1E4D2B
   }*/
+.glowingDot{
+    position:absolute;
+    width:10px;
+    height:10px;
+    content:'';
+    border-radius: 50%;
+    background-color: rgb(21, 255, 0);
+    z-index: 20000;
+    top:1px;
+    left:1px;
+    animation:pulsing 4s;
+    animation-iteration-count: infinite;
+}
+    @keyframes pulsing {
+        0%{
+            opacity:1;
+        }
+        50%{
+           opacity:.5;
+        }
+        100%{
+            opacity: 1;
+        }
+    }

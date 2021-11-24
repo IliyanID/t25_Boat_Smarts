@@ -42,9 +42,9 @@ async function append(place, context) {
     
     newPlaces.push(fullPlace);
 
-
     setSelectedIndex(newPlaces.length - 1);
     setPlaces(newPlaces);
+    
 }
 
 function removeAtIndex(index, context) {
