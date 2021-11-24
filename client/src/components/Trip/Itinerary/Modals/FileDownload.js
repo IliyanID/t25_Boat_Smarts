@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useToggle } from '../../../../hooks/useToggle.js';
 import { Button, Input, InputGroup, InputGroupAddon,InputGroupText, Modal, ModalBody, ModalFooter, ModalHeader, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Row, Col } from "reactstrap";
-import {buildTripJSON, buildTripCSV, buildTripSVG} from "../../../../utils/fileBuilder";
+import {buildTripJSON, buildTripCSV, buildTripSVG, buildTripKML} from "../../../../utils/fileBuilder";
 import { EARTH_RADIUS_UNITS_DEFAULT } from "../../../../utils/constants"
 
 
@@ -70,9 +70,10 @@ export function FileTypeSelector(props) {
                             {props.fileType}
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem onClick={()=> props.setFileType("JSON")}>JSON</DropdownItem>
-                            <DropdownItem onClick={()=> props.setFileType("CSV")}>CSV</DropdownItem>
-                            <DropdownItem onClick={()=> props.setFileType("SVG")}>SVG</DropdownItem>
+                            <DropdownItem data-testid="selectJSON" onClick={()=> props.setFileType("JSON")}>JSON</DropdownItem>
+                            <DropdownItem data-testid="selectCSV" onClick={()=> props.setFileType("CSV")}>CSV</DropdownItem>
+                            <DropdownItem data-testid="selectSVG" onClick={()=> props.setFileType("SVG")}>SVG</DropdownItem>
+                            <DropdownItem data-testid="selectKML" onClick={()=> props.setFileType("KML")}>KML</DropdownItem>
                         </DropdownMenu>
                     </Dropdown><br/>
                     <FormGroup check>
@@ -85,7 +86,7 @@ export function FileTypeSelector(props) {
 
 export function downloadFile(fileName, mimeType, places) {
     const fileNameWithExtension = addExtension(fileName, mimeType);
-    const fileText = buildFileText(mimeType, places);
+    const fileText = buildFileText(mimeType, places, fileName);
     const file = new Blob([fileText], {type: mimeType });
     const link = document.createElement("a");
     const url = URL.createObjectURL(file);
@@ -99,13 +100,15 @@ export function downloadFile(fileName, mimeType, places) {
     }, 0);
 }
 
-export function buildFileText(mimeType, places) {
+export function buildFileText(mimeType, places, fileName) {
     if (mimeType === MIME_TYPE.JSON){
         return buildTripJSON(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
     } else if (mimeType === MIME_TYPE.CSV) {
         return buildTripCSV(places, "miles",  EARTH_RADIUS_UNITS_DEFAULT.miles);
     } else if (mimeType === MIME_TYPE.SVG) {
         return buildTripSVG(places);
+    } else if (mimeType === MIME_TYPE.KML) {
+        return buildTripKML(places, fileName);
     }
 }
 
@@ -117,6 +120,8 @@ export function addExtension(fileName, mimeType){
         return cleanName + ".csv";
     } else if (mimeType === MIME_TYPE.SVG) {
         return cleanName + ".svg";
+    } else if (mimeType === MIME_TYPE.KML) {
+        return cleanName + ".kml";
     }
 }
 export default FileDownload
