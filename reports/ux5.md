@@ -91,6 +91,7 @@ Age, nationality, and other background information can sometimes be helpful unde
 
 | Pseudonym | Demographics |
 | :--- | :--- |
+|Momma Holmes| Andrew's Mom |
 
 
 
@@ -102,4 +103,7 @@ Note any aid that wass given along with anything you notice from their use of th
 Add issues to GitHub for any changes necessary to the system.
 
 | Task | problem, aid, observation | hi/med/low | github#  |
-| :--- | :--- | :---: | :---: | 
+| :--- | :--- | :---: | :---: |
+| Delete Trip | took a while find main options on the map | low ||
+| download/upload | icon not obvious, tooltips help | ||
+| Add current location | "add starting location" Tooltip is confusing | med ||
