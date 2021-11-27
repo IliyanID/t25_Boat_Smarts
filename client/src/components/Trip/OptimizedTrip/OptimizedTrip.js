@@ -1,19 +1,23 @@
 import React, { useRef, useEffect } from 'react'
 import { useToggle } from '../../../hooks/useToggle';
-import { Button, Tooltip } from 'reactstrap';
-import {PreviewModeToolTip} from '../../../utils/PreviewModeToolTip'
-import '../../../static/styles/focus.css'
+import { Button, Collapse, Tooltip } from 'reactstrap';
+import { AiFillInfoCircle } from 'react-icons/ai';
+import {PreviewModeToolTip} from '../../../utils/PreviewModeToolTip';
+import '../../../static/styles/focus.css';
+import { FaHandMiddleFinger } from 'react-icons/fa';
 
 const packageRefs = () =>{
     let firstMount = useRef(true);
     let blockerRef = useRef();
     let buttonsRef = useRef();
     let [toolTip,toggleToolTip] = useToggle(false)
+    const [isOpen, toggleOpen] = useToggle(false);
     return {
         firstMount,
         blockerRef,
         buttonsRef,
-        toolTip,toggleToolTip
+        toolTip,toggleToolTip,
+        isOpen,toggleOpen
     }
 }
 
@@ -33,11 +37,13 @@ const handlePreviewFocus = (allPackages)=>{
             allPackages.firstMount.current = false;
         else if(allPackages.previewTripFocus && !allPackages.disablePreviewMode){
             allPackages.blockerRef.current.classList = 'focus';
-            allPackages.buttonsRef.current.classList = 'OptimizationOption'
+            allPackages.buttonsRef.current.classList = 'OptimizationOption';
+            allPackages.toggleOpen();
         }
         else{
             allPackages.blockerRef.current.classList = 'notInFocus';
-            allPackages.buttonsRef.current.classList = 'OptimizationOptionHide'
+            allPackages.buttonsRef.current.classList = 'OptimizationOptionHide';
+            allPackages.toggleOpen();
         }
     },[allPackages.previewTripFocus])
 
@@ -51,7 +57,7 @@ const OptimizedTrip = (props) =>{
 
     if(allPackages.disablePreviewMode)
             hanleConfirm(allPackages)
-    return  <>
+    return  <Collapse isOpen={allPackages.isOpen}>
                 <div ref={allPackages.blockerRef} data-testid='blocker'/>
                 <div ref={allPackages.buttonsRef} className='OptimizationOptionDefault'>
                         <div className='OptimizedHeader'>
@@ -61,7 +67,7 @@ const OptimizedTrip = (props) =>{
                         <Button color="primary" onClick={()=>hanleConfirm(allPackages)} data-testid='ConfirmTrip'>Confirm Optimized Trip</Button>
                         <Button color="secondary" onClick={()=>handleReject(allPackages)} data-testid='DenyTrip'>Revert to Origional Trip</Button>
                 </div>
-            </>
+            </Collapse>
 }
 
 

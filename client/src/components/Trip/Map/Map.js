@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { Button, Collapse } from 'reactstrap';
 import { Map as LeafletMap, Polyline, TileLayer, Panel } from 'react-leaflet';
 import Marker from './Marker';
 import { latLngToPlace, placeToLatLng } from '../../../utils/transformers';
@@ -6,6 +7,8 @@ import { checkBounds } from '../../../utils/currentLocation';
 import { DEFAULT_STARTING_PLACE } from '../../../utils/constants';
 import 'leaflet/dist/leaflet.css';
 import { ItineraryActionsDropdown } from '../Itinerary/actions';
+import { map } from 'leaflet';
+import { useToggle } from '../../../hooks/useToggle';
 import { LayerSelection } from './LayerSelection'
 import { deeplyCompareArray } from '../../../utils/deeplyCompare';
 
@@ -27,12 +30,15 @@ const packageStates = () =>{
     const [previewMarker,setPreviewMarker] = useState(false)
     const mapRef = useRef()
     const [zoom,setZoom] = useState(15)
+    const [isOpen, toggleOpen] = useToggle(true);
     const [selectedLayer,setSelectedLayer] = useState('Default')
+
     return {
         coordinates,setCoordinates,
         previewMarker,setPreviewMarker,
         mapRef,
         zoom,setZoom,
+        isOpen,toggleOpen,
         selectedLayer,setSelectedLayer
     }
 }
@@ -107,6 +113,7 @@ export const Map = (props) => {
 
     return (
         <>
+      <Collapse isOpen={allPackages.isOpen}>
         <LeafletMap
             ref={allPackages.mapRef} className="mapStyle"
             boxZoom={false} useFlyTo={true}
@@ -122,7 +129,8 @@ export const Map = (props) => {
             <ItineraryActionsDropdown {...allPackages}/>
             {(allPackages.automaticallyRunTour)?<div className='glowingDot'/>:<></>} 
         </LeafletMap>
-        
+        </Collapse>
+        <Button className="mt-1" size="sm" color="secondary" onClick={allPackages.toggleOpen}>{allPackages.isOpen ? "Hide Map" : "Show Map"}</Button>
         </>
     );
 }
