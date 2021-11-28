@@ -39,7 +39,7 @@ const packageStates = () =>{
         mapRef,
         zoom,setZoom,
         isOpen,toggleOpen,
-        selectedLayer,setSelectedLayer
+        selectedLayer,setSelectedLayer,
     }
 }
 const centerView = (allPackages,currentCords) =>{
@@ -49,14 +49,13 @@ const centerView = (allPackages,currentCords) =>{
 }
 
 function handleMapClick(allPackagees,mapClickInfo) {
+    console.log('entered')
     let maxWidth = allPackagees.mapRef.current.leafletElement._size.x - mapClickInfo.containerPoint.x
-    let maxHeight =  allPackagees.mapRef.current.leafletElement._size.y - mapClickInfo.containerPoint.y
+    let maxHeight =  mapClickInfo.containerPoint.y
     let latlng = mapClickInfo.latlng
 
-    //console.log(mapClickInfo)
-    //console.log(`maxWidth: ${maxWidth} | maxHeight ${maxHeight}`)
-
-    if(maxWidth < 45 && maxHeight < 45000)
+    const actionsRef = document.getElementById('iteneraryActionsDropDown')
+    if(maxWidth < actionsRef.offsetWidth && maxHeight < actionsRef.offsetHeight)
         return
     if(checkBounds(latlng,allPackagees.showMessage))
         return
@@ -113,7 +112,6 @@ export const Map = (props) => {
 
     return (
         <>
-      <Collapse isOpen={allPackages.isOpen}>
         <LeafletMap
             ref={allPackages.mapRef} className="mapStyle"
             boxZoom={false} useFlyTo={true}
@@ -121,6 +119,7 @@ export const Map = (props) => {
             center={allPackages.coordinates}
             onClick={(e)=>handleMapClick(allPackages,e)}
             data-testid="Map"
+            style={allPackages.style}
         >
             <TileLayer url={layers[allPackages.selectedLayer]} />
             <TripLines places={allPackages.places} />
@@ -129,8 +128,7 @@ export const Map = (props) => {
             <ItineraryActionsDropdown {...allPackages}/>
             {(allPackages.automaticallyRunTour)?<div className='glowingDot'/>:<></>} 
         </LeafletMap>
-        </Collapse>
-        <Button className="mt-1" size="sm" color="secondary" onClick={allPackages.toggleOpen}>{allPackages.isOpen ? "Hide Map" : "Show Map"}</Button>
+
         </>
     );
 }

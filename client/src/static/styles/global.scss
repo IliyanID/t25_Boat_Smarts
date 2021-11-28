@@ -35,6 +35,10 @@ a {
     height: 50vh;
     width: 100%;
     z-index:2000000!important;
+    transition: height 0.25s ease-in
+}
+.mapStyle > *{
+    transition-duration: 1s;
 }
 
 // The following variable declarations create our color theme

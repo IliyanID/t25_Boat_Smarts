@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Container, Row, Collapse, Button } from 'reactstrap';
 import { useToggle } from '../../hooks/useToggle';
 import Map from './Map/Map';
 import Search from './Search/Search';
@@ -75,10 +75,12 @@ const packageUtilMap = () =>{
     const [centerView,setCenterView] = useState(false);
     const [locationPreview, setLocationPreview] = useState();
     const [layersOpen,toggleLayers] = useToggle(false)
+    const [hideMap,toggleHideMap] = useToggle(true)
     let Curpackage = {
         centerView:centerView,setCenterView:setCenterView,
         locationPreview:locationPreview,setLocationPreview:setLocationPreview,
-        layersOpen,toggleLayers
+        layersOpen,toggleLayers,
+        hideMap,toggleHideMap
     }
     return Curpackage;
 }
@@ -141,12 +143,19 @@ export default function Planner(props) {
     handleDistancesRequest(allPackages,props);
     handleTourRequest(allPackages,props);
     handleAutoTour(allPackages,props)
+    let mapStyle = {display:'inherit'}
+    if(!allPackages.hideMap)
+        mapStyle.height = '80px'
     return (
         <Container>
-            <Section className='mapContainer'>
-                <OptimizedTrip {...allPackages}/>
-                <Map {...allPackages}/>
-            </Section>
+                <Section className='mapCollapse mapContainer'>
+                {(allPackages.hideMap || allPackages.previewTripFocus)?<div className='optimizeTripBackground'/>:<></>}
+
+                        <OptimizedTrip {...allPackages}/>
+                        <Map style={mapStyle} {...allPackages}/>
+                </Section>
+                
+
             <br />
             <Section>
                 <Search {...allPackages} />

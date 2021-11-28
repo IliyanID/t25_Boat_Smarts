@@ -96,7 +96,7 @@
            
             
         }
-            .mapContainer::after{
+            .optimizeTripBackground{
                 z-index: -4;
                 content:'';
                 position:absolute;
@@ -104,7 +104,7 @@
                 transform:translateY(-500%);
                 transform:translateX(0px);
                 width:100vw;
-                height:200px;
+                height:100px;
                 background-color: white;
             }
             body{
