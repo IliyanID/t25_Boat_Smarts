@@ -31,9 +31,24 @@ export function TripSettingsModal(props) {
         }
     }
 
+    const handleMiles = () =>{
+        setUnit("Miles");
+        toggleInput(false);
+    }
+
+    const handleKilometers = () =>{
+        setUnit("Kilometers");
+        toggleInput(false);
+    }
+
+    const handleNautcalMiles = () =>{
+        setUnit("Nautcal Miles");
+        toggleInput(false);
+    }
+
     const handleCreateOwnUnit = () =>{
         setUnit("Create Your Own");
-        toggleInput();
+        toggleInput(true);
     }
 
     return (
@@ -71,9 +86,9 @@ export function TripSettingsModal(props) {
                                         {unit}
                                     </DropdownToggle>
                                     <DropdownMenu>
-                                        <DropdownItem data-testid="selectMiles" onClick={()=> setUnit("Miles")}>Miles</DropdownItem>
-                                        <DropdownItem data-testid="selectKM" onClick={()=> setUnit("Kilometers")}>Kilometers</DropdownItem>
-                                        <DropdownItem data-testid="selectNautcalMiles" onClick={()=> setUnit("Nautcal Miles")}>Nautcal Miles</DropdownItem>
+                                        <DropdownItem data-testid="selectMiles" onClick={()=> handleMiles()}>Miles</DropdownItem>
+                                        <DropdownItem data-testid="selectKM" onClick={()=> handleKilometers()}>Kilometers</DropdownItem>
+                                        <DropdownItem data-testid="selectNautcalMiles" onClick={()=> handleNautcalMiles()}>Nautcal Miles</DropdownItem>
                                         <DropdownItem data-testid="selectAddYourOwn" onClick={()=> handleCreateOwnUnit()}>Create Your Own</DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown><br/>
