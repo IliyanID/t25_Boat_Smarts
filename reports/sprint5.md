@@ -67,6 +67,7 @@ We are going to try and finish up the Shorter Trip epic by implementing concurre
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
 | *11/17/21* | *#413,#425,#416* | *#421,#403,#264,#399,#414* | None | 
+| *11/29/21* | *#421,#403,#264,#399 | #414*,#391,#264,#390 | None | 
 
 
 ## Review
