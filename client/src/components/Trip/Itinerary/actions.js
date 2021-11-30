@@ -97,9 +97,9 @@ const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
-    let orientation = {vertical:true}
-    if(!props.hideMap)
-        orientation = {horizontal:true}
+    let orientation = {}
+    if(props.hideMap)
+        orientation = {vertical:true}
     
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
