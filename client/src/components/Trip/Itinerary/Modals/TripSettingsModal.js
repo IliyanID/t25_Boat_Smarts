@@ -11,7 +11,7 @@ import classnames from 'classnames'
 
 
 export function TripSettingsModal(props) {
-    const [currentTab, setCurrentTab] = usestate('1');
+    const [currentTab, setCurrentTab] = useState('1');
 
     const tabToggle = (tab) =>{
         if (currentTab !== tab) setCurrentTab(tab)
@@ -48,7 +48,7 @@ export function TripSettingsModal(props) {
             </Nav>
             <TabContent activeTab={currentTab}>
                 <TabPane tabId="1">
-                    
+
                 </TabPane>
                 <TabPane tabId="2">
                     <Container>
