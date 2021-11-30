@@ -3,7 +3,7 @@ import Switch from 'react-switch'
 import { useToggle } from '../../../../hooks/useToggle.js';
 import {PreviewModeToolTip} from '../../../../utils/PreviewModeToolTip'
 import { Button, 
-     Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container, TabContent, TabPlane, Nav, NavItem, NavLink } from "reactstrap";
+     Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container, TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import '../../../../static/styles/DeleteTripSection.css'
 import classnames from 'classnames'
 
@@ -46,7 +46,11 @@ export function TripSettingsModal(props) {
                     </NavLink>
                 </NavItem>
             </Nav>
-            <TabContent acive
+            <TabContent activeTab={currentTab}>
+                <TabPane tabId="1">
+                    
+                </TabPane>
+                <TabPane tabId="2">
                     <Container>
                         <Row>
                             <Col><Switch onChange={handleAutoTour} checked={props.automaticallyRunTour}/></Col>
@@ -58,6 +62,8 @@ export function TripSettingsModal(props) {
                         </Row>
                         <DangerZone {...props}/>
                     </Container>
+                </TabPane>
+            </TabContent>    
             <ModalFooter>
                 <Button color="primary" onClick={props.toggleTripSettingsOpen} data-testid="SaveSettings">Save</Button>
             </ModalFooter>
