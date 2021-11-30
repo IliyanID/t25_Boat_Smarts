@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Switch from 'react-switch'
 import { useToggle } from '../../../../hooks/useToggle.js';
 import {PreviewModeToolTip} from '../../../../utils/PreviewModeToolTip'
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container, TabContent, TabPane, Nav, NavItem, NavLink, Dropdown,DropdownItem, Label, DropdownToggle, DropdownMenu, Input } from "reactstrap";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container, TabContent, TabPane, Nav, NavItem, NavLink, Dropdown,DropdownItem, Label, DropdownToggle, DropdownMenu, InputGroup, Input, InputGroupAddon, InputGroupText } from "reactstrap";
 import '../../../../static/styles/DeleteTripSection.css'
 import classnames from 'classnames'
 
@@ -22,6 +22,8 @@ export function TripSettingsModal(props) {
 
     const [unit,setUnit] = useState("Miles");
 
+    const [input, toggleInput] = useToggle(true);
+
     const handleAutoTour = ()=>{
         props.toggleAutomaticallyRunTour()
         if(!props.disablePreviewMode){
@@ -30,17 +32,8 @@ export function TripSettingsModal(props) {
     }
 
     const handleCreateOwnUnit = () =>{
-        if (unit === "Create Your Own"){
-            return(
-                <Container>
-                    <Row>
-                        <Col>
-
-                        </Col>
-                    </Row>
-                </Container>
-            )
-        }
+        setUnit("Create Your Own");
+        toggleInput();
     }
 
     return (
@@ -81,12 +74,21 @@ export function TripSettingsModal(props) {
                                         <DropdownItem data-testid="selectMiles" onClick={()=> setUnit("Miles")}>Miles</DropdownItem>
                                         <DropdownItem data-testid="selectKM" onClick={()=> setUnit("Kilometers")}>Kilometers</DropdownItem>
                                         <DropdownItem data-testid="selectNautcalMiles" onClick={()=> setUnit("Nautcal Miles")}>Nautcal Miles</DropdownItem>
-                                        <DropdownItem data-testid="selectAddYourOwn" onClick={()=> setUnit("Create Your Own")}>Create Your Own</DropdownItem>
+                                        <DropdownItem data-testid="selectAddYourOwn" onClick={()=> handleCreateOwnUnit()}>Create Your Own</DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown><br/>
                             </Col>
                         </Row>
-                        {handleCreateOwnUnit}
+                        <Row>
+                            <Col>
+                                <InputGroup>
+                                    <InputGroupAddon addonType ="prepend">
+                                        <InputGroupText>Unit Name:</InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input disabled = {input}/>
+                                </InputGroup>
+                            </Col>
+                        </Row>
                     </Container>
                 </TabPane>
                 <TabPane tabId="2">
