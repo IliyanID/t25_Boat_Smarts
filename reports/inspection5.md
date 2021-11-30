@@ -5,7 +5,7 @@ We first identify the code we wish to inspect, determine the time we wish to mee
 
 |  | Details |
 | ----- | ----- |
-| Subject | *file and methods/line range to review for meeting* |
+| Subject | OptimizedTrip.js,FourPointers.java |
 | Meeting | *date, time, location* |
 | Checklist | *reference, URL, etc.* |
 
@@ -16,6 +16,7 @@ We note the amount of time each person spent reviewing the code in preparation f
 | Name | Preparation Time |
 | ---- | ---- |
 | Caleb | 45 min |
+| Jake | 45 min |
 
 
 ### Problems found
@@ -28,3 +29,5 @@ We add a GitHub issue for each defect that requires a modification to the system
 | currentLocation.js:17 | showwMessage is not in a Try Catch Block | low | Caleb | |
 | Map.js:59-64 | no need to check the others if on is not true - Just switch 'if' to 'ifelse' | low | Caleb | |
 | Map.js:140-146 | cant we just call the current location function | low | Caleb | |
+| FourPointers.java:80-84 | duplicated code in same file | low | Jake | |
+| OptimizedTrip.js:43-47 | duplicated code in same file | low | Jake | |
