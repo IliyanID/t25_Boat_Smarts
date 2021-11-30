@@ -40,7 +40,7 @@ const TableRow = (props) => {
         </td>
         <td className='tripIcons'>
             <img  src={reorderIcon} id={`dragger-${index}`} alt={`dragger-${index}`}/>
-                <Tooltip placement="left" isOpen={toolTip} target={`dragger-${index}`} toggle={toggleToolTip}>Drag to re-order trip</Tooltip>
+                <Tooltip placement="bottom" isOpen={toolTip} target={`dragger-${index}`} toggle={toggleToolTip}>Drag to Re-Order Trip</Tooltip>
             <button style={noStyleButton}><PlaceActionsDropdown {...props} placeActions={props.placeActions} index={index} /> </button>
         </td>
     </tr>
