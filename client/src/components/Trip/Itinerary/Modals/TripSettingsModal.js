@@ -22,7 +22,7 @@ export function TripSettingsModal(props) {
 
     const [unit,setUnit] = useState("Miles");
 
-    const [input, toggleInput] = useToggle(true);
+    const [input, toggleInput] = useState(true);
 
     const handleAutoTour = ()=>{
         props.toggleAutomaticallyRunTour()
@@ -33,22 +33,22 @@ export function TripSettingsModal(props) {
 
     const handleMiles = () =>{
         setUnit("Miles");
-        toggleInput(false);
+        toggleInput(true);
     }
 
     const handleKilometers = () =>{
         setUnit("Kilometers");
-        toggleInput(false);
+        toggleInput(true);
     }
 
     const handleNautcalMiles = () =>{
         setUnit("Nautcal Miles");
-        toggleInput(false);
+        toggleInput(true);
     }
 
     const handleCreateOwnUnit = () =>{
         setUnit("Create Your Own");
-        toggleInput(true);
+        toggleInput(false);
     }
 
     return (
@@ -98,7 +98,15 @@ export function TripSettingsModal(props) {
                             <Col>
                                 <InputGroup>
                                     <InputGroupAddon addonType ="prepend">
-                                        <InputGroupText>Unit Name:</InputGroupText>
+                                        <InputGroupText>Unit Name</InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input disabled = {input}/>
+                                </InputGroup>
+                            </Col>
+                            <Col>
+                                <InputGroup>
+                                    <InputGroupAddon addonType ="prepend">
+                                        <InputGroupText>Earth Radius</InputGroupText>
                                     </InputGroupAddon>
                                     <Input disabled = {input}/>
                                 </InputGroup>
