@@ -94,13 +94,13 @@ export function TripSettingsModal(props) {
                                 </Dropdown><br/>
                             </Col>
                         </Row>
-                        <Row>
+                        <Row hidden = {input}>
                             <Col>
                                 <InputGroup>
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Unit Name</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input disabled = {input}/>
+                                    <Input />
                                 </InputGroup>
                             </Col>
                             <Col>
@@ -108,10 +108,10 @@ export function TripSettingsModal(props) {
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Earth Radius</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input disabled = {input}/>
+                                    <Input />
                                 </InputGroup>
                             </Col>
-                        </Row>
+                        </Row><br/>
                     </Container>
                 </TabPane>
                 <TabPane tabId="2">
