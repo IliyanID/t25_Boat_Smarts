@@ -52,6 +52,7 @@ export function TripSettingsModal(props) {
                 </TabPane>
                 <TabPane tabId="2">
                     <Container>
+                        <br/>
                         <Row>
                             <Col><Switch onChange={handleAutoTour} checked={props.automaticallyRunTour}/></Col>
                             <Col>Automatically Shorten Trip</Col>
