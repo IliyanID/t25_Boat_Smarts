@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react";
 import Switch from 'react-switch'
 import { useToggle } from '../../../../hooks/useToggle.js';
 import {PreviewModeToolTip} from '../../../../utils/PreviewModeToolTip'
-import { Button, 
-     Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container, TabContent, TabPane, Nav, NavItem, NavLink, Dropdown,DropdownItem, Label, DropdownToggle, DropdownMenu } from "reactstrap";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container, TabContent, TabPane, Nav, NavItem, NavLink, Dropdown,DropdownItem, Label, DropdownToggle, DropdownMenu, Input } from "reactstrap";
 import '../../../../static/styles/DeleteTripSection.css'
 import classnames from 'classnames'
 
@@ -29,6 +28,21 @@ export function TripSettingsModal(props) {
             props.toggleDisablePreviewMode();
         }
     }
+
+    const handleCreateOwnUnit = () =>{
+        if (unit === "Create Your Own"){
+            return(
+                <Container>
+                    <Row>
+                        <Col>
+
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
+    }
+
     return (
         <Modal isOpen={props.tripSettingsOpen} toggle={props.toggleTripSettingsOpen}>
             <ModalHeader toggle={props.toggleTripSettingsOpen}>Trip Settings</ModalHeader>
@@ -57,19 +71,22 @@ export function TripSettingsModal(props) {
                     <Container>
                         <br/>
                         <Row>
-                            <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
-                                <Label>Unit Type:&ensp;</Label>
-                                <DropdownToggle caret>
-                                    {unit}
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem data-testid="selectMiles" onClick={()=> setUnit("Miles")}>Miles</DropdownItem>
-                                    <DropdownItem data-testid="selectKM" onClick={()=> setUnit("Kilometers")}>Kilometers</DropdownItem>
-                                    <DropdownItem data-testid="selectNautcalMiles" onClick={()=> setUnit("Nautcal Miles")}>Nautcal Miles</DropdownItem>
-                                    <DropdownItem data-testid="selectAddYourOwn" onClick={()=> setUnit("Create Your Own")}>Create Your Own</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown><br/>
+                            <Col>
+                                <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
+                                    <Label>Unit Type:&ensp;</Label>
+                                    <DropdownToggle caret>
+                                        {unit}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem data-testid="selectMiles" onClick={()=> setUnit("Miles")}>Miles</DropdownItem>
+                                        <DropdownItem data-testid="selectKM" onClick={()=> setUnit("Kilometers")}>Kilometers</DropdownItem>
+                                        <DropdownItem data-testid="selectNautcalMiles" onClick={()=> setUnit("Nautcal Miles")}>Nautcal Miles</DropdownItem>
+                                        <DropdownItem data-testid="selectAddYourOwn" onClick={()=> setUnit("Create Your Own")}>Create Your Own</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown><br/>
+                            </Col>
                         </Row>
+                        {handleCreateOwnUnit}
                     </Container>
                 </TabPane>
                 <TabPane tabId="2">
