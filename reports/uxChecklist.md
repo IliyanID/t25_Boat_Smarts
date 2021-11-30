@@ -83,3 +83,5 @@ This checklist is our guide to help us solve issues regarding the topics below:
 #### Misc. Questions
 * Is there any where else you would like these buttons?
 * What did(n't) like about the site?
+* What do you like/dislike about our new map and button layout? Is it too conjested?
+* What else would you like to see implemented?
