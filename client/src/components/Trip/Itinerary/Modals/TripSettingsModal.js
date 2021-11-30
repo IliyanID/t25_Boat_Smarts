@@ -17,6 +17,12 @@ export function TripSettingsModal(props) {
         if (currentTab !== tab) setCurrentTab(tab)
     }
 
+    const [dropdownOpen,setDropdownOpen] = useState(false);
+
+    const toggle = () => setDropdownOpen(prevState => !prevState);
+
+    const [unit,setUnit] = useState("Miles");
+
     const handleAutoTour = ()=>{
         props.toggleAutomaticallyRunTour()
         if(!props.disablePreviewMode){
@@ -48,7 +54,23 @@ export function TripSettingsModal(props) {
             </Nav>
             <TabContent activeTab={currentTab}>
                 <TabPane tabId="1">
-
+                    <Container>
+                        <br/>
+                        <Row>
+                            <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
+                                <Label>Unit Type:&ensp;</Label>
+                                <DropdownToggle caret>
+                                    {unit}
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem data-testid="selectMiles" onClick={()=> setUnit("Miles")}>Miles</DropdownItem>
+                                    <DropdownItem data-testid="selectKM" onClick={()=> setUnit("Kilometers")}>Kilometers</DropdownItem>
+                                    <DropdownItem data-testid="selectNautcalMiles" onClick={()=> setUnit("Nautcal Miles")}>Nautcal Miles</DropdownItem>
+                                    <DropdownItem data-testid="selectAddYourOwn" onClick={()=> setUnit("Create Your Own")}>Create Your Own</DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown><br/>
+                        </Row>
+                    </Container>
                 </TabPane>
                 <TabPane tabId="2">
                     <Container>
