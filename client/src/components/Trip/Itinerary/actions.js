@@ -29,19 +29,19 @@ export const toggle = (index,toolTip,setToolTip) =>{
                     props.showMessage('Geolocation disabled. Please turn it on and reload the page','warning')
                 })
             },
-            description:(props)=>{return 'Add Current Location'}
+            description:'Add Current Location'
         },
         {
             icon:<FiLayers/>,
             onClick:(props)=>{}
-            ,description:(props)=>{return 'Change Map Layers'}
+            ,description:'Change Map Layers'
         },
         {
             icon:<BsFileEarmarkFill/>,
             onClick:(props)=>{
                 props.toggleFileActions()
             },
-            description:(props)=>{return 'Download or Upload Trip'}
+            description:'Download or Upload Trip'
         },
 
         {
@@ -49,7 +49,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
             onClick:(props)=>{
                 props.togglePreviewTripFocus(); 
             },
-            description:(props)=>{return 'Create Shorter Trip'}
+            description:'Create Shorter Trip'
         },
         {
             icon:<TiArrowRepeat/>,
@@ -59,14 +59,14 @@ export const toggle = (index,toolTip,setToolTip) =>{
                     props.showMessage('Reversed Trip from Starting Location','info')
                 }
             },
-            description:(props)=>{return 'Reverse Trip From Star'}
+            description:'Reverse Trip From Star'
         },
         {
             icon:<RiSettings5Fill/>,
             onClick:(props)=>{
                 props.toggleTripSettingsOpen();
             },
-            description:(props)=>{return 'Trip Settings'}
+            description:'Trip Settings'
         },
         {
             icon:(props)=>{
@@ -93,7 +93,13 @@ const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
     item.onClick(props)
 
 }
+const checkIfFunc = (func,props) =>{
+    let result = func
+    if(typeof func === 'function')
+        result = func(props)
+    return result
 
+}
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
@@ -106,14 +112,13 @@ export const ItineraryActionsDropdown = (props) => {
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {data.map((item,index)=>{
-                let icon = item.icon;
-                if(typeof icon == 'function')
-                    icon = icon(props)
+                let icon = checkIfFunc(item.icon,props)
+                let description = checkIfFunc(item.description,props);
                 let id = `home-row-${index}`
                 return(<Fragment key={id}>
                             <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{icon}</Button>
                             <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
-                                {item.description(props)}
+                                {description}
                              </Tooltip>
                         </Fragment>)
         })}
