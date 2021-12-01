@@ -70,7 +70,7 @@ export function TripSettingsModal(props) {
                             active: currentTab === '2'
                         })}
                         onClick={() => {tabToggle('2');}}>
-                            Optization
+                            Optimization
                     </NavLink>
                 </NavItem>
             </Nav>
