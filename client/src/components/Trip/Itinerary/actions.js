@@ -136,7 +136,7 @@ export const ItineraryActionsDropdown = (props) => {
 export const PlaceActionsDropdown = (props) => {
     return (
         <div>
-            <div onClick={()=>setToolTip(defaultArr)}>
+            <div>
                 <FaHome id={`to-start-${props.index}`} style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
                 <MakeToolTip target = {`to-start-${props.index}`} placement='bottom' text='Move To Start Of Trip'/>
                 <AiOutlineClose id={`delete-${props.index}`} onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
