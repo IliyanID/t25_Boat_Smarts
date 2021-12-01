@@ -20,7 +20,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
     const data = [
    
         {
-            icon:(props)=>{return<FaHome/>},
+            icon:<FaHome/>,
             onClick:(props)=>{
                 currentLocation().then((curr)=>{
                     curr.name='Current Location'
@@ -32,12 +32,12 @@ export const toggle = (index,toolTip,setToolTip) =>{
             description:(props)=>{return 'Add Current Location'}
         },
         {
-            icon:(props)=>{return<FiLayers/>},
+            icon:<FiLayers/>,
             onClick:(props)=>{}
             ,description:(props)=>{return 'Change Map Layers'}
         },
         {
-            icon:(props)=>{return<BsFileEarmarkFill/>},
+            icon:<BsFileEarmarkFill/>,
             onClick:(props)=>{
                 props.toggleFileActions()
             },
@@ -45,14 +45,14 @@ export const toggle = (index,toolTip,setToolTip) =>{
         },
 
         {
-            icon:(props)=>{return<FaRoute/>},
+            icon:<FaRoute/>,
             onClick:(props)=>{
                 props.togglePreviewTripFocus(); 
             },
             description:(props)=>{return 'Create Shorter Trip'}
         },
         {
-            icon:(props)=>{return<TiArrowRepeat/>},
+            icon:<TiArrowRepeat/>,
             onClick:(props)=>{
                 if(props.places.length !== 0){
                     props.placeActions.reverse()
@@ -62,7 +62,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
             description:(props)=>{return 'Reverse Trip From Star'}
         },
         {
-            icon:(props)=>{return<RiSettings5Fill/>},
+            icon:<RiSettings5Fill/>,
             onClick:(props)=>{
                 props.toggleTripSettingsOpen();
             },
@@ -100,13 +100,18 @@ export const ItineraryActionsDropdown = (props) => {
     let orientation = {}
     if(props.hideMap)
         orientation = {vertical:true}
+
+    
     
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {data.map((item,index)=>{
+                let icon = item.icon;
+                if(typeof icon == 'function')
+                    icon = icon(props)
                 let id = `home-row-${index}`
                 return(<Fragment key={id}>
-                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{item.icon(props)}</Button>
+                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{icon}</Button>
                             <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
                                 {item.description(props)}
                              </Tooltip>
