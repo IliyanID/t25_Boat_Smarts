@@ -29,7 +29,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
                     props.showMessage('Geolocation disabled. Please turn it on and reload the page','warning')
                 })
             },
-            description:(props)=>{return 'Add starting Location'}
+            description:(props)=>{return 'Add Current Location'}
         },
         {
             icon:(props)=>{return<FiLayers/>},
@@ -49,7 +49,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
             onClick:(props)=>{
                 props.togglePreviewTripFocus(); 
             },
-            description:(props)=>{return 'Create shorter trip'}
+            description:(props)=>{return 'Create Shorter Trip'}
         },
         {
             icon:(props)=>{return<TiArrowRepeat/>},
@@ -59,7 +59,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
                     props.showMessage('Reversed Trip from Starting Location','info')
                 }
             },
-            description:(props)=>{return 'Reverse trip from start'}
+            description:(props)=>{return 'Reverse Trip From Star'}
         },
         {
             icon:(props)=>{return<RiSettings5Fill/>},
@@ -100,7 +100,10 @@ export const ItineraryActionsDropdown = (props) => {
     let orientation = {}
     if(props.hideMap)
         orientation = {vertical:true}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99ef1bf30cf91ec9e226b43df8bb54dcb34216f7
     
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
@@ -130,7 +133,8 @@ export const PlaceActionsDropdown = (props) => {
             <div onClick={()=>setToolTip(defaultArr)}>
                 <FaHome id={`to-start-${props.index}`} style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
                 <MakeToolTip target = {`to-start-${props.index}`} placement='bottom' text='Move To Start Of Trip'/>
-                <AiOutlineClose onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
+                <AiOutlineClose id={`delete-${props.index}`} onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
+                <MakeToolTip target = {`delete-${props.index}`} placement='bottom' text='Remove Place From Trip'/>
             </div>
         </div>
     )

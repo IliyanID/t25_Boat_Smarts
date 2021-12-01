@@ -21,8 +21,9 @@ public class TourRequest extends Request {
     public void buildResponse() {
         double maxNanoSeconds =  (this.response - (this.places.size() * .0005))*1000000000;
 
-        if(this.places != null)
+        if(this.places != null && this.places.size() > 0) {
             places = new TwoOpt(this.places, maxNanoSeconds,this.earthRadius).run();
+        }
         log.trace("buildResponse -> {}", this);
     }
 

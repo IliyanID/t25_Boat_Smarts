@@ -92,6 +92,7 @@ Age, nationality, and other background information can sometimes be helpful unde
 | Pseudonym | Demographics |
 | :--- | :--- |
 |Momma Holmes| Andrew's Mom |
+|The Belig| Jake's roommate |
 
 
 
@@ -107,3 +108,6 @@ Add issues to GitHub for any changes necessary to the system.
 | Delete Trip | took a while find main options on the map | low ||
 | download/upload | icon not obvious, tooltips help | ||
 | Add current location | "add starting location" Tooltip is confusing | med ||
+| Rework the sumbols in between the place lists | the blue segments that indiciated the distances was confusing for him | low ||
+| Disable the pop ups | a way to disbale the pop ups or able to close them. He said its annoying that you cant manually close them. | low ||
+| Reverse confusion| the reverse trip didnt really make sense to him since the first location doesnt change| low ||
