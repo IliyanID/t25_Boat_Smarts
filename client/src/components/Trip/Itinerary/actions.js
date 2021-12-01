@@ -100,10 +100,6 @@ export const ItineraryActionsDropdown = (props) => {
     let orientation = {}
     if(props.hideMap)
         orientation = {vertical:true}
-<<<<<<< HEAD
-
-=======
->>>>>>> 99ef1bf30cf91ec9e226b43df8bb54dcb34216f7
     
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
