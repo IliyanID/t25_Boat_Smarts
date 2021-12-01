@@ -49,7 +49,6 @@ const centerView = (allPackages,currentCords) =>{
 }
 
 function handleMapClick(allPackagees,mapClickInfo) {
-    console.log('entered')
     let maxWidth = allPackagees.mapRef.current.leafletElement._size.x - mapClickInfo.containerPoint.x
     let maxHeight =  mapClickInfo.containerPoint.y
     let latlng = mapClickInfo.latlng
