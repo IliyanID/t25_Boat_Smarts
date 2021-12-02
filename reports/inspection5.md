@@ -17,6 +17,7 @@ We note the amount of time each person spent reviewing the code in preparation f
 | ---- | ---- |
 | Caleb | 45 min |
 | Jake | 45 min |
+| Iliyan | 45 min 
 
 
 ### Problems found
@@ -31,3 +32,5 @@ We add a GitHub issue for each defect that requires a modification to the system
 | Map.js:140-146 | cant we just call the current location function | low | Caleb | |
 | FourPointers.java:80-84 | duplicated code in same file | low | Jake | |
 | OptimizedTrip.js:43-47 | duplicated code in same file | low | Jake | |
+| OptimizedTrip.js:65 | Unnecisary export can just call MakeToolTip instead | low | Iliyan | |
+| deeplyCompare.js:1:28 | None of the code is used on the site | low | Iliyan | |
