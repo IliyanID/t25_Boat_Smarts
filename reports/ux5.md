@@ -93,6 +93,7 @@ Age, nationality, and other background information can sometimes be helpful unde
 | :--- | :--- |
 |Momma Holmes| Andrew's Mom |
 |The Belig| Jake's roommate |
+|Momma Cluett | Caleb's MOM |
 
 
 
@@ -111,3 +112,5 @@ Add issues to GitHub for any changes necessary to the system.
 | Rework the sumbols in between the place lists | the blue segments that indiciated the distances was confusing for him | low ||
 | Disable the pop ups | a way to disbale the pop ups or able to close them. He said its annoying that you cant manually close them. | low ||
 | Reverse confusion| the reverse trip didnt really make sense to him since the first location doesnt change| low ||
+| Map Backgrouds | The map backgroups will not minimize when clicking off |high||
+| Reorder Trip | When you click the reorder button, they would like to put in a number and have the item move to that number in the trip |low||
