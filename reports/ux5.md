@@ -94,6 +94,7 @@ Age, nationality, and other background information can sometimes be helpful unde
 |Momma Holmes| Andrew's Mom |
 |The Belig| Jake's roommate |
 |Momma Cluett | Caleb's MOM |
+|Lina| Iliyan's Mom |
 
 
 
@@ -114,3 +115,6 @@ Add issues to GitHub for any changes necessary to the system.
 | Reverse confusion| the reverse trip didnt really make sense to him since the first location doesnt change| low ||
 | Map Backgrouds | The map backgroups will not minimize when clicking off |high||
 | Reorder Trip | When you click the reorder button, they would like to put in a number and have the item move to that number in the trip |low||
+| download/upload| Thinks the button should be moved down by trip name instead| low ||
+| download/upload| Thinks it should be reworded as export and import rather than download and upload| low ||
+| Undo| Accidently added place and wanted easy way to undo the change| low ||
