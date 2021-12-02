@@ -17,7 +17,8 @@ We note the amount of time each person spent reviewing the code in preparation f
 | ---- | ---- |
 | Caleb | 45 min |
 | Jake | 45 min |
-| Iliyan | 45 min 
+| Iliyan | 45 min |
+| Derek | 45 min |
 
 
 ### Problems found
@@ -34,3 +35,6 @@ We add a GitHub issue for each defect that requires a modification to the system
 | OptimizedTrip.js:43-47 | duplicated code in same file | low | Jake | |
 | OptimizedTrip.js:65 | Unnecisary export can just call MakeToolTip instead | low | Iliyan | |
 | deeplyCompare.js:1:28 | None of the code is used on the site | low | Iliyan | |
+| TripSettingsModal.js:58 | Can use exported nav item from Search | low | Derek | |
+| TripSettingsModal.js:77 | Extract tab component | low | Derek | |
+| TripSettingsModal.ja:83 | Make UnitsDropdown component | low | Derek | |
