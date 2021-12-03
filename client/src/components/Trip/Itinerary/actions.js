@@ -102,12 +102,10 @@ const checkIfFunc = (func,props) =>{
 const addOrRemoveReverseAction = (props) =>{
     return useEffect(()=>{
         let UndoAction = {
-            icon:<AiOutlineUndo/>,
-            onClick:(props)=>{
+            icon:<AiOutlineUndo/>,onClick:(props)=>{
                 props.showMessage('Undid Last Action','info')
                 props.setPlaces([...props.previousPlaces])
-            },
-            description:'Undo Last Action'
+            },description:'Undo Last Action'
         }
         let placesAreEqual = true
         props.places.forEach((place,index)=>{
@@ -124,9 +122,8 @@ const addOrRemoveReverseAction = (props) =>{
             }*/
         })
 
-        if(placesAreEqual){
+        if(placesAreEqual)
             props.setPlannerActions([...data])
-        }
         else{
             let temp = [...data]
             temp.splice(temp.length - 1,0,{...UndoAction})
