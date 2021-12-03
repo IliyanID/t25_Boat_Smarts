@@ -117,7 +117,7 @@ const addOrRemoveReverseAction = (props) =>{
         }
         else{
             let temp = [...data]
-            temp.splice(temp.length - 2,0,{...UndoAction})
+            temp.splice(temp.length - 1,0,{...UndoAction})
             props.setPlannerActions(temp)
         }
     },[props.places])
