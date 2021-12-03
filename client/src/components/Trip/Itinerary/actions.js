@@ -1,8 +1,8 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { ButtonGroup, Tooltip, Button, Popover} from 'reactstrap';
 import { FaHome, FaTrashAlt, FaRoute} from 'react-icons/fa';
-import { AiOutlineClose } from 'react-icons/ai';
-import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md'
+import { AiOutlineClose, AiOutlineUndo } from 'react-icons/ai';
+import { MdOutlineExpandLess, MdOutlineExpandMore, MdOutlinePanoramaPhotosphereSelect } from 'react-icons/md'
 import { BsFileEarmarkFill } from 'react-icons/bs'
 import { TiArrowRepeat } from 'react-icons/ti'
 import { RiSettings5Fill } from 'react-icons/ri'
@@ -100,9 +100,35 @@ const checkIfFunc = (func,props) =>{
     return result
 
 }
+const addOrRemoveReverseAction = (props) =>{
+    return useEffect(()=>{
+        let UndoAction = {
+            icon:<AiOutlineUndo/>,
+            onClick:(props)=>{
+                props.showMessage('Undid Last Action','info')
+                props.setPlaces([...props.previousPlaces])
+            },
+            description:'Undo Last Action'
+        }
+        let placesAreEqual = props.previousPlaces.length === props.places.length
+
+        if(placesAreEqual){
+            props.setPlannerActions([...data])
+        }
+        else{
+            let temp = [...data]
+            temp.splice(temp.length - 2,0,{...UndoAction})
+            props.setPlannerActions(temp)
+        }
+    },[props.places])
+}
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
+
+    const [plannerActions,setPlannerActions] = useState([...data])
+    addOrRemoveReverseAction({...props,...{plannerActions,setPlannerActions}})
+
     let orientation = {}
     if(props.hideMap)
         orientation = {vertical:true}
@@ -111,7 +137,7 @@ export const ItineraryActionsDropdown = (props) => {
     
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
-        {data.map((item,index)=>{
+        {plannerActions.map((item,index)=>{
                 let icon = checkIfFunc(item.icon,props)
                 let description = checkIfFunc(item.description,props);
                 let id = `home-row-${index}`
