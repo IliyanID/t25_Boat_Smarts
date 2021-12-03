@@ -111,6 +111,17 @@ const addOrRemoveReverseAction = (props) =>{
             description:'Undo Last Action'
         }
         let placesAreEqual = props.previousPlaces.length === props.places.length
+        props.places.forEach((place,index)=>{
+            if(props.previousPlaces.length !== props.places.length){
+                placesAreEqual = false
+                return
+            }
+            let lastPlace = props.previousPlaces[index]
+            if(lastPlace.name !== place.name || lastPlace.lat !== place.lat || lastPlace.long !== place.long){
+                placesAreEqual = false
+                return
+            }
+        })
 
         if(placesAreEqual){
             props.setPlannerActions([...data])
