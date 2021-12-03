@@ -109,8 +109,10 @@ const addOrRemoveReverseAction = (props) =>{
             },
             description:'Undo Last Action'
         }
-        let placesAreEqual = props.previousPlaces.length === props.places.length
+        let placesAreEqual = true
         props.places.forEach((place,index)=>{
+            if(props.automaticallyRunTour)
+                return
             if(props.previousPlaces.length !== props.places.length){
                 placesAreEqual = false
                 return
