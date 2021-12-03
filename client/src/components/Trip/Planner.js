@@ -54,9 +54,6 @@ const packageUtilDistances = () =>{
 
     p = packageStatesIntoObject(p,['distances','setDistances'],useState({distances: []}))
     return p;
-
-    p = packageStatesIntoObject(p,['',''],)
-    return p;
 }
 
 const packageUtilTour = (packagedUtilPlaces) =>{
