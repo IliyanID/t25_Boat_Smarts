@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { ButtonGroup, Tooltip, Button, Popover} from 'reactstrap';
 import { FaHome, FaTrashAlt, FaRoute} from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
+import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md'
 import { BsFileEarmarkFill } from 'react-icons/bs'
 import { TiArrowRepeat } from 'react-icons/ti'
 import { RiSettings5Fill } from 'react-icons/ri'
@@ -58,7 +59,7 @@ export const toggle = (index,toolTip,setToolTip) =>{
                     props.showMessage('Reversed Trip from Starting Location','info')
                 }
             },
-            description:'Reverse Trip From Start'
+            description:'Reverse Trip From Star'
         },
         {
             icon:<RiSettings5Fill/>,
@@ -66,6 +67,23 @@ export const toggle = (index,toolTip,setToolTip) =>{
                 props.toggleTripSettingsOpen();
             },
             description:'Trip Settings'
+        },
+        {
+            icon:(props)=>{
+                if(props.hideMap)
+                    return<MdOutlineExpandLess/>
+                else
+                    return <MdOutlineExpandMore/>
+                },
+            onClick:(props)=>{
+                props.toggleHideMap()
+
+            },
+            description:(props)=>{
+                if(props.hideMap)
+                    return 'Collapse Map'
+                return 'Expand Map'
+            }
         }
     ]
 const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
@@ -75,22 +93,36 @@ const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
     item.onClick(props)
 
 }
+const checkIfFunc = (func,props) =>{
+    let result = func
+    if(typeof func === 'function')
+        result = func(props)
+    return result
 
+}
 export const ItineraryActionsDropdown = (props) => {
     let defaultArr = new Array(data.length).fill(false)
     const [toolTip,setToolTip] = useState(defaultArr)
+    let orientation = {}
+    if(props.hideMap)
+        orientation = {vertical:true}
+
+    
+    
     return (
-        <ButtonGroup vertical style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
+        <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {data.map((item,index)=>{
+                let icon = checkIfFunc(item.icon,props)
+                let description = checkIfFunc(item.description,props);
                 let id = `home-row-${index}`
                 return(<Fragment key={id}>
-                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{item.icon}</Button>
-                            <Tooltip  placement="left" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
-                                {item.description}
+                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{icon}</Button>
+                            <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
+                                {description}
                              </Tooltip>
                         </Fragment>)
         })}
-        <Popover  placement='left' isOpen={props.layersOpen} toggle={props.toggleLayers} target={`home-row-1`} >
+        <Popover  placement='auto' isOpen={props.layersOpen} toggle={props.toggleLayers} target={`home-row-1`} >
             {Object.keys(props.layers).map((item,key)=>{
                     return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>
             })}
@@ -104,7 +136,7 @@ export const ItineraryActionsDropdown = (props) => {
 export const PlaceActionsDropdown = (props) => {
     return (
         <div>
-            <div onClick={()=>setToolTip(defaultArr)}>
+            <div>
                 <FaHome id={`to-start-${props.index}`} style={{margin:' 0px 10px'}} onClick={()=>{props.placeActions.move(props.index,0)}}/>
                 <MakeToolTip target = {`to-start-${props.index}`} placement='bottom' text='Move To Start Of Trip'/>
                 <AiOutlineClose id={`delete-${props.index}`} onClick={() => {props.placeActions.removeAtIndex(props.index)}} data-testid={`delete-button-${(props).index}`}/>
