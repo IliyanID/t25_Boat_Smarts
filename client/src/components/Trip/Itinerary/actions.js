@@ -7,7 +7,7 @@ import { BsFileEarmarkFill } from 'react-icons/bs'
 import { TiArrowRepeat } from 'react-icons/ti'
 import { RiSettings5Fill } from 'react-icons/ri'
 import { currentLocation } from '../../../utils/currentLocation';
-import { useToggle } from '../../../hooks/useToggle'
+import { useMultiToggle } from '../../../hooks/useToggle'
 import { FiLayers } from 'react-icons/fi'
 import { IndividualLayer } from '../Map/LayerSelection'
 import { MakeToolTip } from '../../../utils/PreviewModeToolTip';
@@ -86,10 +86,9 @@ export const toggle = (index,toolTip,setToolTip) =>{
             }
         }
     ]
-const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
+const ItineraryActionsClick = (props,setToolTip,item) =>{
     if(props.previewTripFocus)
-        return
-    setToolTip(defaultArr); 
+        return 
     item.onClick(props)
 
 }
@@ -116,11 +115,11 @@ const addOrRemoveReverseAction = (props) =>{
                 placesAreEqual = false
                 return
             }
-            let lastPlace = props.previousPlaces[index]
+            /*let lastPlace = props.previousPlaces[index]
             if(lastPlace.name !== place.name || lastPlace.lat !== place.lat || lastPlace.long !== place.long){
                 placesAreEqual = false
                 return
-            }
+            }*/
         })
 
         if(placesAreEqual){
@@ -134,9 +133,7 @@ const addOrRemoveReverseAction = (props) =>{
     },[props.places])
 }
 export const ItineraryActionsDropdown = (props) => {
-    let defaultArr = new Array(data.length).fill(false)
-    const [toolTip,setToolTip] = useState(defaultArr)
-
+    const [toolTip,setToolTip] = useMultiToggle(false,data.length)
     const [plannerActions,setPlannerActions] = useState([...data])
     addOrRemoveReverseAction({...props,...{plannerActions,setPlannerActions}})
 
@@ -153,8 +150,8 @@ export const ItineraryActionsDropdown = (props) => {
                 let description = checkIfFunc(item.description,props);
                 let id = `home-row-${index}`
                 return(<Fragment key={id}>
-                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{icon}</Button>
-                            <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
+                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,item)}>{icon}</Button>
+                            <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => setToolTip(index)}>
                                 {description}
                              </Tooltip>
                         </Fragment>)
