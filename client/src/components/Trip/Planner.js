@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Container, Row, Collapse, Button } from 'reactstrap';
 import { useToggle } from '../../hooks/useToggle';
 import Map from './Map/Map';
 import Search from './Search/Search';
@@ -50,63 +50,50 @@ const packageUtilSearch = () =>{
 }
 
 const packageUtilDistances = () =>{
-    const [distances, setDistances] = useState({distances: []});
-    let Curpackage = {
-        distances:distances,setDistances:setDistances
-    }
-    return Curpackage;
+    let p ={}
+
+    p = packageStatesIntoObject(p,['distances','setDistances'],useState({distances: []}))
+    return p;
+
+    p = packageStatesIntoObject(p,['',''],)
+    return p;
 }
 
 const packageUtilTour = (packagedUtilPlaces) =>{
-    const [origionalPlaces,setOrigionalPlaces] = useState(...[packagedUtilPlaces.places])
-    const [previewTripFocus,togglePreviewTripFocus] = useToggle(false);
-    const [disablePreviewMode,toggleDisablePreviewMode] = useToggle(false)
-    const [automaticallyRunTour,toggleAutomaticallyRunTour] = useToggle(false)
-    let Curpackage = {
-        origionalPlaces:origionalPlaces,setOrigionalPlaces:setOrigionalPlaces,
-        previewTripFocus:previewTripFocus,togglePreviewTripFocus:togglePreviewTripFocus,
-        disablePreviewMode,toggleDisablePreviewMode,
-    automaticallyRunTour:automaticallyRunTour,toggleAutomaticallyRunTour:toggleAutomaticallyRunTour
-    }
-    return Curpackage;
+    let p = {}
+    p = packageStatesIntoObject(p,['origionalPlaces','setOrigionalPlaces'],useState(...[packagedUtilPlaces.places]))
+    p = packageStatesIntoObject(p,['previewTripFocus','togglePreviewTripFocus'],useToggle(false))
+    p = packageStatesIntoObject(p,['disablePreviewMode','toggleDisablePreviewMode'],useToggle(false))
+    p = packageStatesIntoObject(p,['automaticallyRunTour','toggleAutomaticallyRunTour'],useToggle(false))
+    return p;
 }
 
 const packageUtilMap = () =>{
-    const [centerView,setCenterView] = useState(false);
-    const [locationPreview, setLocationPreview] = useState();
-    const [layersOpen,toggleLayers] = useToggle(false)
-    let Curpackage = {
-        centerView:centerView,setCenterView:setCenterView,
-        locationPreview:locationPreview,setLocationPreview:setLocationPreview,
-        layersOpen,toggleLayers
-    }
-    return Curpackage;
+    let p = {}
+    p = packageStatesIntoObject(p,['centerView','setCenterView'],useState(false))
+    p = packageStatesIntoObject(p,['locationPreview','setLocationPreview'],useState())
+    p = packageStatesIntoObject(p,['layersOpen','toggleLayers'],useToggle(false))
+    p = packageStatesIntoObject(p,['hideMap','toggleHideMap'],useToggle(true))
+    return p;
 }
 
 const packageUtilFiles = () =>{
-    const [fileActionsOpen, toggleFileActions] = useToggle(false);
-    const [filePlaces, setFilePlaces] = useState([]);
-    let Curpackage = {
-        filePlaces:filePlaces,setFilePlaces:setFilePlaces,
-        fileActionsOpen,toggleFileActions
-    }
-    return Curpackage;
+    let p = {}
+    p = packageStatesIntoObject(p,['fileActionsOpen','toggleFileActions'], useToggle(false))
+    p = packageStatesIntoObject(p,['filePlaces','setFilePlaces'],useState([]))
+    return p;
 }
 
 const packageUtilTripName = () =>{
-    const [tripName, setTripName] = useState("My Trip")
-    let Curpackage = {
-        tripName:tripName,setTripName:setTripName
-    }
-    return Curpackage;
+    let p = {}
+    p = packageStatesIntoObject(p,['tripName','setTripName'], useState("My Trip"))
+    return p;
 }
 
 const packageTripSettings = (allPackages) =>{
-    const [tripSettingsOpen,toggleTripSettingsOpen] = useToggle(false)
-    let Curpackage = {
-        tripSettingsOpen,toggleTripSettingsOpen
-    }
-    return Curpackage;
+    let p = {}
+    p = packageStatesIntoObject(p,['tripSettingsOpen','toggleTripSettingsOpen'], useToggle(false))
+    return p;
 }
 
 
@@ -141,12 +128,19 @@ export default function Planner(props) {
     handleDistancesRequest(allPackages,props);
     handleTourRequest(allPackages,props);
     handleAutoTour(allPackages,props)
+    let mapStyle = {display:'inherit'}
+    if(!allPackages.hideMap)
+        mapStyle.height = '80px'
     return (
         <Container>
-            <Section className='mapContainer'>
-                <OptimizedTrip {...allPackages}/>
-                <Map {...allPackages}/>
-            </Section>
+                <Section className='mapCollapse mapContainer'>
+                {(allPackages.hideMap || allPackages.previewTripFocus)?<div className='optimizeTripBackground'/>:<></>}
+
+                        <OptimizedTrip {...allPackages}/>
+                        <Map style={mapStyle} {...allPackages}/>
+                </Section>
+                
+
             <br />
             <Section>
                 <Search {...allPackages} />
