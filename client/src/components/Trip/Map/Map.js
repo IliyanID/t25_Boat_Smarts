@@ -39,7 +39,7 @@ const packageStates = () =>{
         mapRef,
         zoom,setZoom,
         isOpen,toggleOpen,
-        selectedLayer,setSelectedLayer
+        selectedLayer,setSelectedLayer,
     }
 }
 const centerView = (allPackages,currentCords) =>{
@@ -111,7 +111,6 @@ export const Map = (props) => {
 
     return (
         <>
-      <Collapse isOpen={allPackages.isOpen}>
         <LeafletMap
             ref={allPackages.mapRef} className="mapStyle"
             boxZoom={false} useFlyTo={true}
@@ -119,6 +118,7 @@ export const Map = (props) => {
             center={allPackages.coordinates}
             onClick={(e)=>handleMapClick(allPackages,e)}
             data-testid="Map"
+            style={allPackages.style}
         >
             <TileLayer url={layers[allPackages.selectedLayer]} />
             <TripLines places={allPackages.places} />
@@ -127,8 +127,7 @@ export const Map = (props) => {
             <ItineraryActionsDropdown {...allPackages}/>
             {(allPackages.automaticallyRunTour)?<div className='glowingDot'/>:<></>} 
         </LeafletMap>
-        </Collapse>
-        <Button className="mt-1" size="sm" color="secondary" onClick={allPackages.toggleOpen}>{allPackages.isOpen ? "Hide Map" : "Show Map"}</Button>
+
         </>
     );
 }
