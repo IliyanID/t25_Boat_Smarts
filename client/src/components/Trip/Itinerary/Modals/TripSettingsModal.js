@@ -21,6 +21,7 @@ export function TripSettingsModal(props) {
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
     const [unit,setUnit] = useState("Miles");
+    const [unitValue, setUnitValue] = useState(3959.0);
 
     const [input, toggleInput] = useState(true);
 
@@ -33,16 +34,19 @@ export function TripSettingsModal(props) {
 
     const handleMiles = () =>{
         setUnit("Miles");
+        setUnitValue(3959.0);
         toggleInput(true);
     }
 
     const handleKilometers = () =>{
         setUnit("Kilometers");
+        setUnitValue(6371.4);
         toggleInput(true);
     }
 
     const handleNautcalMiles = () =>{
         setUnit("Nautcal Miles");
+        setUnitValue(3440.3);
         toggleInput(true);
     }
 
@@ -50,6 +54,13 @@ export function TripSettingsModal(props) {
         setUnit("Create Your Own");
         toggleInput(false);
     }
+
+    const handleSave = () => {
+        localStorage.setItem("fileUnitsName", unit);
+        localStorage.setItem("fileUnitsValue", unitValue);
+        props.toggleTripSettingsOpen();
+    }
+    
 
     return (
         <Modal isOpen={props.tripSettingsOpen} toggle={props.toggleTripSettingsOpen}>
@@ -100,7 +111,7 @@ export function TripSettingsModal(props) {
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Unit Name</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input />
+                                    <Input onChange={(e) => handleNameChange(e.target.value)}/>
                                 </InputGroup>
                             </Col>
                             <Col>
@@ -130,7 +141,7 @@ export function TripSettingsModal(props) {
                 </TabPane>
             </TabContent>    
             <ModalFooter>
-                <Button color="primary" onClick={props.toggleTripSettingsOpen} data-testid="SaveSettings">Save</Button>
+                <Button color="primary" onClick={handleSave} data-testid="SaveSettings">Save</Button>
             </ModalFooter>
         </Modal>
     )
