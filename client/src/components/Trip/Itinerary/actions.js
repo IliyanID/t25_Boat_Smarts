@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { ButtonGroup, Tooltip, Button, Popover} from 'reactstrap';
 import { FaHome, FaTrashAlt, FaRoute} from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -107,7 +107,12 @@ export const ItineraryActionsDropdown = (props) => {
     if(props.hideMap)
         orientation = {vertical:true}
 
-    
+    useEffect(() => {
+        if (props.layersOpen)
+        document.addEventListener('click', () => {
+            props.toggleLayers();
+        })
+    }, [props.layersOpen])
     
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
