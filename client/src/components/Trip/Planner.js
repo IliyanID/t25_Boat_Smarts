@@ -90,6 +90,8 @@ const packageUtilTripName = () =>{
 const packageTripSettings = (allPackages) =>{
     let p = {}
     p = packageStatesIntoObject(p,['tripSettingsOpen','toggleTripSettingsOpen'], useToggle(false))
+    p = packageStatesIntoObject(p,['fileUnitsName', 'setFileUnitsName'], useState(localStorage.getItem("fileUnitsName") != null ? localStorage.getItem("fileUnitsName") : "miles"))
+    p = packageStatesIntoObject(p,['fileUnitsValue', 'setFileUnitsValue'], useState(localStorage.getItem("fileUnitsValue") != null ? localStorage.getItem("fileUnitsValue") : 3959.0))
     return p;
 }
 
