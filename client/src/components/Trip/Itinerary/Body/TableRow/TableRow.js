@@ -17,7 +17,8 @@ const handleSelect = (props,containerPackage)=>{
 }
 
 const TableRow = (props) => {
-    const name = props.place.name ? props.place.name : "-";
+    const fullName = props.place.name ? props.place.name : "-";
+    const name = fullName.includes(',') ? fullName.substring(0, fullName.indexOf(',', fullName.indexOf(',')+1) >= 0 ? fullName.indexOf(',', fullName.indexOf(',')+1) : fullName.length) : fullName;
     const location = latLngToText(props.place);
    
     let componentIsDragged = props.index === undefined; 
