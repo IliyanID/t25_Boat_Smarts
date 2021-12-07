@@ -1,13 +1,13 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { ButtonGroup, Tooltip, Button, Popover} from 'reactstrap';
 import { FaHome, FaTrashAlt, FaRoute} from 'react-icons/fa';
-import { AiOutlineClose } from 'react-icons/ai';
-import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md'
+import { AiOutlineClose, AiOutlineUndo } from 'react-icons/ai';
+import { MdOutlineExpandLess, MdOutlineExpandMore, MdOutlinePanoramaPhotosphereSelect } from 'react-icons/md'
 import { BsFileEarmarkFill } from 'react-icons/bs'
 import { TiArrowRepeat } from 'react-icons/ti'
 import { RiSettings5Fill } from 'react-icons/ri'
 import { currentLocation } from '../../../utils/currentLocation';
-import { useToggle } from '../../../hooks/useToggle'
+import { useMultiToggle } from '../../../hooks/useToggle'
 import { FiLayers } from 'react-icons/fi'
 import { IndividualLayer } from '../Map/LayerSelection'
 import { MakeToolTip } from '../../../utils/PreviewModeToolTip';
@@ -86,10 +86,9 @@ export const toggle = (index,toolTip,setToolTip) =>{
             }
         }
     ]
-const ItineraryActionsClick = (props,setToolTip, defaultArr,item) =>{
+const ItineraryActionsClick = (props,setToolTip,item) =>{
     if(props.previewTripFocus)
-        return
-    setToolTip(defaultArr); 
+        return 
     item.onClick(props)
 
 }
@@ -100,9 +99,43 @@ const checkIfFunc = (func,props) =>{
     return result
 
 }
+const addOrRemoveReverseAction = (props) =>{
+    return useEffect(()=>{
+        let UndoAction = {
+            icon:<AiOutlineUndo/>,onClick:(props)=>{
+                props.showMessage('Undid Last Action','info')
+                props.setPlaces([...props.previousPlaces])
+            },description:'Undo Last Action'
+        }
+        let placesAreEqual = true
+        props.places.forEach((place,index)=>{
+            if(props.automaticallyRunTour)
+                return
+            if(props.previousPlaces.length !== props.places.length){
+                placesAreEqual = false
+                return
+            }
+            /*let lastPlace = props.previousPlaces[index]
+            if(lastPlace.name !== place.name || lastPlace.lat !== place.lat || lastPlace.long !== place.long){
+                placesAreEqual = false
+                return
+            }*/
+        })
+
+        if(placesAreEqual)
+            props.setPlannerActions([...data])
+        else{
+            let temp = [...data]
+            temp.splice(temp.length - 1,0,{...UndoAction})
+            props.setPlannerActions(temp)
+        }
+    },[props.places])
+}
 export const ItineraryActionsDropdown = (props) => {
-    let defaultArr = new Array(data.length).fill(false)
-    const [toolTip,setToolTip] = useState(defaultArr)
+    const [toolTip,setToolTip] = useMultiToggle(false,data.length)
+    const [plannerActions,setPlannerActions] = useState([...data])
+    addOrRemoveReverseAction({...props,...{plannerActions,setPlannerActions}})
+
     let orientation = {}
     if(props.hideMap)
         orientation = {vertical:true}
@@ -116,13 +149,13 @@ export const ItineraryActionsDropdown = (props) => {
     
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
-        {data.map((item,index)=>{
+        {plannerActions.map((item,index)=>{
                 let icon = checkIfFunc(item.icon,props)
                 let description = checkIfFunc(item.description,props);
                 let id = `home-row-${index}`
                 return(<Fragment key={id}>
-                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,defaultArr,item)}>{icon}</Button>
-                            <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => toggle(index, toolTip, setToolTip)}>
+                            <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,item)}>{icon}</Button>
+                            <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => setToolTip(index)}>
                                 {description}
                              </Tooltip>
                         </Fragment>)
