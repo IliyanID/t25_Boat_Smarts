@@ -29,4 +29,12 @@ describe('Default Search', () => {
         });
     })
 
+    it('clears user input on clear', () => {
+        fireEvent.change(screen.getByRole('textbox'), {target: {value: 'Denver'}});
+        act(() => {
+            fireEvent.click(screen.getByRole('clear'));
+        });
+        expect(screen.getByRole('textbox').value).toBe('');
+    });
+
 });

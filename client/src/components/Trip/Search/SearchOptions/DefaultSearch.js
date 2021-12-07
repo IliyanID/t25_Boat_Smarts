@@ -6,7 +6,7 @@ import {
     Button,
     Image
 } from 'reactstrap';
-import { FaFilter,FaSearch }from 'react-icons/fa'
+import { FaFilter,FaSearch , FaBan}from 'react-icons/fa'
 import {sendAPIRequest} from "../../../../utils/restfulAPI";
 
 export default function DefaultSearch(props) {
@@ -29,12 +29,14 @@ export default function DefaultSearch(props) {
             return
         let requestBody = createFindRequestBody(userInput,props.limitTypes.request,props.limitWhere.request)
         getResults(requestBody, props.currentURL, props.setSearchResults,userInput);
-        
     },[userInput, props.activeTab]);
 
 
     return (
         <InputGroup>
+            <InputGroupAddon addonType="prepend">
+                <Button role="clear" color = "danger" onClick={() => clearInput(props.setSearchResults, setUserInput)}><FaBan/></Button>
+            </InputGroupAddon>
             <Input value={userInput} onChange={handleChange}/>
             <InputGroupAddon addonType="append">
                 <Button role="filter" onClick={props.toggleFilterSearch}><FaFilter/></Button>
@@ -50,10 +52,15 @@ async function getResults(requestBody, currentURL, setSearchResults,userInput) {
         return
         }
     const response = await sendAPIRequest(requestBody, currentURL);
-    if(response){
+    if(response && userInput !== ""){
         setSearchResults(response);
     }
 };
+
+function clearInput(setSearchResults, setUserInput){
+    setSearchResults(null);
+    setUserInput('');
+}
 
 function createFindRequestBody(userInput,types,where) {
     let request = {
