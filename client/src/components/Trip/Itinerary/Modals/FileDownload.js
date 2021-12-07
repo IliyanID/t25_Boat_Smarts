@@ -26,7 +26,7 @@ export function FileDownload(props) {
         if (saveToMem){
             localStorage.setItem("fileType",fileType);
         }
-        downloadFile(fileName, MIME_TYPE[fileType], props.fileUnitsName, props.fileUnitsValue, props.places);
+        downloadFile(fileName, MIME_TYPE[fileType], props.places, {fileUnitsName: props.fileUnitsName, fileUnitsValue:props.fileUnitsValue});
         props.toggleFileActions();
     }
 
@@ -84,9 +84,9 @@ export function FileTypeSelector(props) {
     )
 }
 
-export function downloadFile(fileName, mimeType, places, unitsName, unitsValue) {
+export function downloadFile(fileName, mimeType, places, units) {
     const fileNameWithExtension = addExtension(fileName, mimeType);
-    const fileText = buildFileText(mimeType, places, unitsName, parseFloat(unitsValue), fileName);
+    const fileText = buildFileText(mimeType, places, fileName, units);
     const file = new Blob([fileText], {type: mimeType });
     const link = document.createElement("a");
     const url = URL.createObjectURL(file);
@@ -100,11 +100,11 @@ export function downloadFile(fileName, mimeType, places, unitsName, unitsValue) 
     }, 0);
 }
 
-export function buildFileText(mimeType, places, fileName, unitsName, unitsValue,) {
+export function buildFileText(mimeType, places, fileName, units={fileUnitsName:"miles",fileUnitsValue:EARTH_RADIUS_UNITS_DEFAULT.miles}) {
     if (mimeType === MIME_TYPE.JSON){
-        return buildTripJSON(places, unitsName, unitsValue);
+        return buildTripJSON(places, units.fileUnitsName, units.fileUnitsValue);
     } else if (mimeType === MIME_TYPE.CSV) {
-        return buildTripCSV(places, unitsName, unitsValue);
+        return buildTripCSV(places, units.fileUnitsName, units.fileUnitsValue);
     } else if (mimeType === MIME_TYPE.SVG) {
         return buildTripSVG(places);
     } else if (mimeType === MIME_TYPE.KML) {
