@@ -84,7 +84,7 @@ export function FileTypeSelector(props) {
     )
 }
 
-export function downloadFile(fileName, mimeType, unitsName, unitsValue, places) {
+export function downloadFile(fileName, mimeType, places, unitsName, unitsValue) {
     const fileNameWithExtension = addExtension(fileName, mimeType);
     const fileText = buildFileText(mimeType, places, unitsName, parseFloat(unitsValue), fileName);
     const file = new Blob([fileText], {type: mimeType });
@@ -100,11 +100,11 @@ export function downloadFile(fileName, mimeType, unitsName, unitsValue, places) 
     }, 0);
 }
 
-export function buildFileText(mimeType, places, unitsName, unitsValue, fileName) {
+export function buildFileText(mimeType, places, fileName, unitsName, unitsValue,) {
     if (mimeType === MIME_TYPE.JSON){
-        return buildTripJSON(places, unitsName,  unitsValue);
+        return buildTripJSON(places, unitsName, unitsValue);
     } else if (mimeType === MIME_TYPE.CSV) {
-        return buildTripCSV(places, unitsName,  unitsValue);
+        return buildTripCSV(places, unitsName, unitsValue);
     } else if (mimeType === MIME_TYPE.SVG) {
         return buildTripSVG(places);
     } else if (mimeType === MIME_TYPE.KML) {
