@@ -195,7 +195,12 @@ const LineSettingsTab = (props) => {
                     </Input>
                     </InputGroup>
                 </Row>
-                
+                <Row>
+                <InputGroup className="mx-2 my-2">
+                    <InputGroupAddon addonType="prepend">Line width</InputGroupAddon>
+                    <Input id="lineWidth" name="lineWidth" type="range" step="1" min="1" max="5" onChange={e => props.setLineWidth(e.target.value)}/>
+                    </InputGroup>
+                </Row>
             </Container>
         </TabPane>
     )
