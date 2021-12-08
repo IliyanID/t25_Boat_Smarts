@@ -121,7 +121,7 @@ export const Map = (props) => {
             style={allPackages.style}
         >
             <TileLayer url={layers[allPackages.selectedLayer]} />
-            <TripLines places={allPackages.places} lineColor={props.lineColor} dashArray={props.dashArray} />
+            <TripLines places={allPackages.places} lineColor={props.lineColor} dashArray={props.dashArray} lineWidth={props.lineWidth}/>
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
             <ItineraryActionsDropdown {...allPackages}/>
