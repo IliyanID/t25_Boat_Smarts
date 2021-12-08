@@ -20,10 +20,10 @@ export function TripSettingsModal(props) {
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
-    const [unit,setUnit] = useState("Miles");
-    const [unitValue, setUnitValue] = useState(3959.0);
+    const [unit,setUnit] = useState(localStorage.getItem("fileUnitsName") != null ? localStorage.getItem("fileUnitsName") : "Miles");
+    const [unitValue, setUnitValue] = useState(localStorage.getItem("fileUnitsValue") != null ? localStorage.getItem("fileUnitsValue") : 3959.0);
 
-    const [input, toggleInput] = useState(true);
+    const [input, toggleInput] = useState(localStorage.getItem("fileUnitsName") != "Create Your Own");
 
     const handleAutoTour = ()=>{
         props.toggleAutomaticallyRunTour()
@@ -128,7 +128,7 @@ export function TripSettingsModal(props) {
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Earth Radius</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input />
+                                    <Input onChange={(e) => setUnitValue(e.target.value)}/>
                                 </InputGroup>
                             </Col>
                         </Row><br/>
