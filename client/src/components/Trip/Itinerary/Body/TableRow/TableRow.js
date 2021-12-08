@@ -20,7 +20,6 @@ const TableRow = (props) => {
     const fullName = props.place.name ? props.place.name : "-";
     const secondCommaOrEnd = fullName.indexOf(',', fullName.indexOf(',')+1) >= 0 ? fullName.indexOf(',', fullName.indexOf(',')+1) : fullName.length;
     const name = fullName.includes(',') ? fullName.substring(0, secondCommaOrEnd) : fullName;
-    const location = latLngToText(props.place);
    
     let componentIsDragged = props.index === undefined; 
     let index = props.index
@@ -37,7 +36,7 @@ const TableRow = (props) => {
         <th className='tripNumber' scope="row">{index + 1} </th>
         <td className='tripDetails'>
             <button id={`trip-focus-${index}`} onClick={()=>handleSelect(props,containerPackage)} style={noStyleButton}>{name}</button>
-            <br/><small className="text-muted">{location}</small><br/>
+            <br/><small className="text-muted">{latLngToText(props.place)}</small><br/>
             <DistanceInfo componentIsDragged={componentIsDragged} index={index} {...props}/>
         </td>
         <td className='tripIcons'>
