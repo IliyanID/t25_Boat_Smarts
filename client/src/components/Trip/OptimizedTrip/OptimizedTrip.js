@@ -65,7 +65,7 @@ const OptimizedTrip = (props) =>{
                             <PreviewModeToolTip id='header'/>
                         </div>
                         <Button color="primary" onClick={()=>hanleConfirm(allPackages)} data-testid='ConfirmTrip'>Confirm Optimized Trip</Button>
-                        <Button color="secondary" onClick={()=>handleReject(allPackages)} data-testid='DenyTrip'>Revert to Origional Trip</Button>
+                        <Button color="secondary" onClick={()=>handleReject(allPackages)} data-testid='DenyTrip'>Revert to Original Trip</Button>
                 </div>
             </Collapse>
 }

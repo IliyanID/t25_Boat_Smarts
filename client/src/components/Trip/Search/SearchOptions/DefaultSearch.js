@@ -6,8 +6,10 @@ import {
     Button,
     Image
 } from 'reactstrap';
-import { FaFilter,FaSearch }from 'react-icons/fa'
+import { FaFilter,FaSearch , FaBan}from 'react-icons/fa'
 import {sendAPIRequest} from "../../../../utils/restfulAPI";
+import { MakeToolTip } from '../../../../utils/PreviewModeToolTip';
+import { AiFillPropertySafety } from "react-icons/ai";
 
 export default function DefaultSearch(props) {
     const [userInput, setUserInput] = useState("");
@@ -29,20 +31,31 @@ export default function DefaultSearch(props) {
             return
         let requestBody = createFindRequestBody(userInput,props.limitTypes.request,props.limitWhere.request)
         getResults(requestBody, props.currentURL, props.setSearchResults,userInput);
-        
     },[userInput, props.activeTab]);
 
 
     return (
-        <InputGroup>
-            <Input value={userInput} onChange={handleChange}/>
-            <InputGroupAddon addonType="append">
-                <Button role="filter" onClick={props.toggleFilterSearch}><FaFilter/></Button>
-                <Button role="search" onClick={handleClick}><FaSearch/></Button>
-            </InputGroupAddon>
-        </InputGroup>
+        <SearchInputGroup setSearchResults={props.setSearchResults} userInput={userInput} setUserInput={setUserInput} handleChange={handleChange} handleClick={handleClick} toggleFilterSearch={props.toggleFilterSearch}/>
     )
 };
+
+function SearchInputGroup(props) {
+    return (
+        <InputGroup>
+            <InputGroupAddon addonType="prepend">
+                <Button id="defSearchClear" role="clear" color = "danger" onClick={() => clearInput(props.setSearchResults, props.setUserInput)}><FaBan/></Button>
+                <MakeToolTip target = "defSearchClear" placement='bottom' text='Clear Search Results'/>
+            </InputGroupAddon>
+            <Input value={props.userInput} onChange={props.handleChange} placeholder='Search For A Place'/>
+            <InputGroupAddon addonType="append">
+                <Button id="defSearchFilter" role="filter" onClick={props.toggleFilterSearch}><FaFilter/></Button>
+                <MakeToolTip target = "defSearchFilter" placement='bottom' text='Filter Search Results'/>
+                <Button id='defSearch' role="search" onClick={props.handleClick}><FaSearch/></Button>
+                <MakeToolTip target = "defSearch" placement='bottom' text='Search'/>
+            </InputGroupAddon>
+        </InputGroup>
+    );
+}
 
 async function getResults(requestBody, currentURL, setSearchResults,userInput) {
     if (userInput === ""){
@@ -50,10 +63,15 @@ async function getResults(requestBody, currentURL, setSearchResults,userInput) {
         return
         }
     const response = await sendAPIRequest(requestBody, currentURL);
-    if(response){
+    if(response && userInput !== ""){
         setSearchResults(response);
     }
 };
+
+function clearInput(setSearchResults, setUserInput){
+    setSearchResults(null);
+    setUserInput('');
+}
 
 function createFindRequestBody(userInput,types,where) {
     let request = {
