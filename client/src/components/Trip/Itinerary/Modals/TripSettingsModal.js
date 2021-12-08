@@ -84,6 +84,15 @@ export function TripSettingsModal(props) {
                             Optimization
                     </NavLink>
                 </NavItem>
+                <NavItem> 
+                    <NavLink
+                        className={classnames({
+                            active: currentTab === '3'
+                        })}
+                        onClick={() => {tabToggle('3');}}>
+                            Lines
+                    </NavLink>
+                </NavItem>
             </Nav>
             <TabContent activeTab={currentTab}>
                 <TabPane tabId="1">
@@ -139,6 +148,7 @@ export function TripSettingsModal(props) {
                         <DangerZone {...props}/>
                     </Container>
                 </TabPane>
+                <LineSettingsTab {...props}/>
             </TabContent>    
             <ModalFooter>
                 <Button color="primary" onClick={handleSave} data-testid="SaveSettings">Save</Button>
@@ -159,6 +169,29 @@ const DangerZone = (props) =>{
             </div>
         </Row>
         </>
+}
+
+const colors = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black", "White", "Gray"];
+
+const LineSettingsTab = (props) => {
+    return (
+        <TabPane tabId="3">
+            <Container>
+                <br/>
+                <Row>
+                    <InputGroup className="mx-2">
+                    <InputGroupAddon addonType="prepend">Line color</InputGroupAddon>
+                    <Input id="lineColor" name="lineColor" type="select" value={props.lineColor} onChange={e => {if (e.target.value === "Default") props.setLineColor("#3388ff"); else props.setLineColor(e.target.value)}}>
+                        {colors.map(color => <option key={color}>{color}</option>)}
+                    </Input>
+                    </InputGroup>
+                </Row>
+                <Row>
+                    
+                </Row>
+            </Container>
+        </TabPane>
+    )
 }
 
 export default TripSettingsModal
