@@ -145,11 +145,13 @@ export function TripSettingsModal(props) {
                             <Col><Switch disabled={props.automaticallyRunTour}  onChange={props.toggleDisablePreviewMode} checked={props.disablePreviewMode}/></Col>
                             <Col>Disable Preview Mode <PreviewModeToolTip id='settings'/> </Col>
                         </Row>
-                        <DangerZone {...props}/>
                     </Container>
                 </TabPane>
                 <LineSettingsTab {...props}/>
-            </TabContent>    
+            <DangerZone {...props}/>
+
+            </TabContent>  
+
             <ModalFooter>
                 <Button color="primary" onClick={handleSave} data-testid="SaveSettings">Save</Button>
             </ModalFooter>
