@@ -121,7 +121,7 @@ export const Map = (props) => {
             style={allPackages.style}
         >
             <TileLayer url={layers[allPackages.selectedLayer]} />
-            <TripLines places={allPackages.places} />
+            <TripLines places={allPackages.places} lineColor={props.lineColor} />
             {(allPackages.previewMarker)?<Marker place={allPackages.locationPreview} />:<PlaceMarker places={allPackages.places} selectedIndex={allPackages.selectedIndex} />}
 
             <ItineraryActionsDropdown {...allPackages}/>
@@ -152,6 +152,7 @@ function TripLines(props) {
         <Polyline
             key={`${JSON.stringify(path)}-${index}`}
             positions={path}
+            color={props.lineColor}
         />
     );
 }
