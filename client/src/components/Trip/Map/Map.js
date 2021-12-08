@@ -154,6 +154,7 @@ function TripLines(props) {
             positions={path}
             color={props.lineColor}
             dashArray={props.dashArray}
+            weight={props.lineWidth}
         />
     );
 }
