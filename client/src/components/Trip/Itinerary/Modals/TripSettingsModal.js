@@ -179,7 +179,7 @@ const LineSettingsTab = (props) => {
             <Container>
                 <br/>
                 <Row>
-                    <InputGroup className="mx-2">
+                    <InputGroup className="mx-2 my-2">
                     <InputGroupAddon addonType="prepend">Line color</InputGroupAddon>
                     <Input id="lineColor" name="lineColor" type="select" value={props.lineColor} onChange={e => {if (e.target.value === "Default") props.setLineColor("#3388ff"); else props.setLineColor(e.target.value)}}>
                         {colors.map(color => <option key={color}>{color}</option>)}
@@ -187,8 +187,15 @@ const LineSettingsTab = (props) => {
                     </InputGroup>
                 </Row>
                 <Row>
-                    
+                <InputGroup className="mx-2 my-2">
+                    <InputGroupAddon addonType="prepend">Solid or Dashed</InputGroupAddon>
+                    <Input id="dashArray" name="dashArray" type="select" value={props.dashArray === "" ? "Solid" : "Dashed"} onChange={e => {if (e.target.value === "Solid") props.setDashArray(""); else props.setDashArray("8")}}>
+                        <option>Solid</option>
+                        <option>Dashed</option>
+                    </Input>
+                    </InputGroup>
                 </Row>
+                
             </Container>
         </TabPane>
     )
