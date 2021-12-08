@@ -84,6 +84,15 @@ export function TripSettingsModal(props) {
                             Optimization
                     </NavLink>
                 </NavItem>
+                <NavItem> 
+                    <NavLink
+                        className={classnames({
+                            active: currentTab === '3'
+                        })}
+                        onClick={() => {tabToggle('3');}}>
+                            Lines
+                    </NavLink>
+                </NavItem>
             </Nav>
             <TabContent activeTab={currentTab}>
                 <TabPane tabId="1">
@@ -139,6 +148,7 @@ export function TripSettingsModal(props) {
                         <DangerZone {...props}/>
                     </Container>
                 </TabPane>
+                <LineSettingsTab {...props}/>
             </TabContent>    
             <ModalFooter>
                 <Button color="primary" onClick={handleSave} data-testid="SaveSettings">Save</Button>
@@ -159,6 +169,41 @@ const DangerZone = (props) =>{
             </div>
         </Row>
         </>
+}
+
+const colors = ["Default", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black", "White", "Gray"];
+
+const LineSettingsTab = (props) => {
+    return (
+        <TabPane tabId="3">
+            <Container>
+                <br/>
+                <Row>
+                    <InputGroup className="mx-2 my-2">
+                    <InputGroupAddon addonType="prepend">Line color</InputGroupAddon>
+                    <Input id="lineColor" name="lineColor" type="select" value={props.lineColor} onChange={e => {if (e.target.value === "Default") props.setLineColor("#3388ff"); else props.setLineColor(e.target.value)}}>
+                        {colors.map(color => <option key={color}>{color}</option>)}
+                    </Input>
+                    </InputGroup>
+                </Row>
+                <Row>
+                <InputGroup className="mx-2 my-2">
+                    <InputGroupAddon addonType="prepend">Solid or Dashed</InputGroupAddon>
+                    <Input id="dashArray" name="dashArray" type="select" value={props.dashArray === "" ? "Solid" : "Dashed"} onChange={e => {if (e.target.value === "Solid") props.setDashArray(""); else props.setDashArray("8")}}>
+                        <option>Solid</option>
+                        <option>Dashed</option>
+                    </Input>
+                    </InputGroup>
+                </Row>
+                <Row>
+                <InputGroup className="mx-2 my-2">
+                    <InputGroupAddon addonType="prepend">Line width</InputGroupAddon>
+                    <Input id="lineWidth" name="lineWidth" type="range" step="1" min="1" max="6" value={props.lineWidth} onChange={e => props.setLineWidth(e.target.value)}/>
+                    </InputGroup>
+                </Row>
+            </Container>
+        </TabPane>
+    )
 }
 
 export default TripSettingsModal

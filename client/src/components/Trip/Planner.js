@@ -87,11 +87,14 @@ const packageUtilTripName = () =>{
     return p;
 }
 
-const packageTripSettings = (allPackages) =>{
+const packageTripSettings = () =>{
     let p = {}
     p = packageStatesIntoObject(p,['tripSettingsOpen','toggleTripSettingsOpen'], useToggle(false))
     p = packageStatesIntoObject(p,['fileUnitsName', 'setFileUnitsName'], useState(localStorage.getItem("fileUnitsName") != null ? localStorage.getItem("fileUnitsName") : "miles"))
     p = packageStatesIntoObject(p,['fileUnitsValue', 'setFileUnitsValue'], useState(localStorage.getItem("fileUnitsValue") != null ? localStorage.getItem("fileUnitsValue") : 3959.0))
+    p = packageStatesIntoObject(p,['lineColor', 'setLineColor'], useState('#3388ff'))
+    p = packageStatesIntoObject(p,['dashArray', 'setDashArray'], useState(""))
+    p = packageStatesIntoObject(p,['lineWidth', 'setLineWidth'], useState(3))
     return p;
 }
 
