@@ -6,6 +6,7 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container
 import '../../../../static/styles/DeleteTripSection.css'
 import classnames from 'classnames'
 import { BsTrash } from 'react-icons/bs'
+import { MakeToolTip } from "../../../../utils/PreviewModeToolTip";
 
 
 
@@ -135,14 +136,18 @@ export function TripSettingsModal(props) {
                                                         }
                                                     }}
                                                     >{unit.unitName}</div>
-                                                    {(unit.userAdded)?<BsTrash style={{marginLeft:'20px',display:'inline-block'}} onClick={()=>{
+                                                    {(unit.userAdded)?<>
+                                                    <BsTrash id={`Delete-unit-${index}`} style={{marginLeft:'20px',display:'inline-block'}} onClick={()=>{
                                                         let temp = [...allUnits]
                                                         temp.splice(index,1)
                                                         setAllUnits(temp)
                                                         setUnit(temp[0].unitName)
                                                         toggleInput(true)
                                                         setUnitValue(temp[0].earthRadius)
-                                                    }}/>:<></>}
+                                                    }}/>
+                                                    <MakeToolTip target={`Delete-unit-${index}`} text={`Permanently Delete ${unit.unitName}`}/>
+                                                    </>
+                                                    :<></>}
                                                 </DropdownItem>
                                             })
                                         }
