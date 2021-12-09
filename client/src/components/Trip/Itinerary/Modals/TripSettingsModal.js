@@ -5,6 +5,7 @@ import {PreviewModeToolTip} from '../../../../utils/PreviewModeToolTip'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Row, Col, Container, TabContent, TabPane, Nav, NavItem, NavLink, Dropdown,DropdownItem, Label, DropdownToggle, DropdownMenu, InputGroup, Input, InputGroupAddon, InputGroupText } from "reactstrap";
 import '../../../../static/styles/DeleteTripSection.css'
 import classnames from 'classnames'
+import { BsTrash } from 'react-icons/bs'
 
 
 
@@ -25,6 +26,7 @@ export function TripSettingsModal(props) {
 
     const [input, toggleInput] = useState(localStorage.getItem("fileUnitsName") != "Create Your Own");
 
+
     const handleAutoTour = ()=>{
         props.toggleAutomaticallyRunTour()
         if(!props.disablePreviewMode){
@@ -32,30 +34,38 @@ export function TripSettingsModal(props) {
         }
     }
 
-    const handleMiles = () =>{
-        setUnit("Miles");
-        setUnitValue(3959.0);
-        toggleInput(true);
-    }
-
-    const handleKilometers = () =>{
-        setUnit("Kilometers");
-        setUnitValue(6371.4);
-        toggleInput(true);
-    }
-
-    const handleNautcalMiles = () =>{
-        setUnit("Nautcal Miles");
-        setUnitValue(3440.3);
-        toggleInput(true);
-    }
-
-    const handleCreateOwnUnit = () =>{
-        setUnit("Create Your Own");
-        toggleInput(false);
-    }
-
+    const allUnitsDefault = [
+        {
+            unitName:'Miles',
+            earthRadius:3959.0
+        },
+        {
+            unitName:'Kilometers',
+            earthRadius:6371.4
+        },
+        {
+            unitName:'Nautcal Miles',
+            earthRadius:3440.3
+        },
+        {
+            unitName:'Create Your Own'
+        }
+    ]
+    const [allUnits,setAllUnits] = useState(localStorage.getItem("allUnitsSaved") != null ? JSON.parse(localStorage.getItem("allUnitsSaved")) : [...allUnitsDefault])
     const handleSave = () => {
+        let index = allUnits.map(e=>{return e.unitName}).indexOf(unit)
+        if(index === -1){
+            let temp = [...allUnits]
+            temp.unshift({
+                unitName:unit,
+                earthRadius:unitValue,
+                userAdded:true
+            })
+            let saved = JSON.stringify(temp)
+            localStorage.setItem('allUnitsSaved',saved)
+            setAllUnits(temp)
+        }
+
         localStorage.setItem("fileUnitsName", unit);
         localStorage.setItem("fileUnitsValue", unitValue);
         props.toggleTripSettingsOpen();
@@ -106,10 +116,34 @@ export function TripSettingsModal(props) {
                                         {unit}
                                     </DropdownToggle>
                                     <DropdownMenu>
-                                        <DropdownItem data-testid="selectMiles" onClick={()=> handleMiles()}>Miles</DropdownItem>
-                                        <DropdownItem data-testid="selectKM" onClick={()=> handleKilometers()}>Kilometers</DropdownItem>
-                                        <DropdownItem data-testid="selectNautcalMiles" onClick={()=> handleNautcalMiles()}>Nautcal Miles</DropdownItem>
-                                        <DropdownItem data-testid="selectAddYourOwn" onClick={()=> handleCreateOwnUnit()}>Create Your Own</DropdownItem>
+                                        {
+                                            allUnits.map((unit,index)=>{
+                                                return <DropdownItem data-testid={`select${unit.unitName}`} >
+                                                    <div
+                                                    style={{width:'70%',display:'inline-block'}}
+                                                    onClick={()=>{
+                                                        console.log(unit)
+                                                        if(index === allUnits.length - 1){
+                                                            setUnit(unit.unitName)
+                                                            toggleInput(false)
+                                                        }
+                                                        else {   
+                                                            toggleInput(true)
+                                                            setUnit(unit.unitName)
+                                                            setUnitValue(unit.earthRadius)
+                                                        }
+                                                    }}
+                                                    >{unit.unitName}</div>
+                                                    {(unit.userAdded)?<BsTrash style={{marginLeft:'20px',display:'inline-block'}} onClick={()=>{
+                                                        let temp = [...allUnits]
+                                                        temp.splice(index,1)
+                                                        setAllUnits(temp)
+                                                        setUnit(temp[0].unitName)
+                                                        setUnitValue(temp[0].earthRadius)
+                                                    }}/>:<></>}
+                                                </DropdownItem>
+                                            })
+                                        }
                                     </DropdownMenu>
                                 </Dropdown><br/>
                             </Col>
@@ -120,7 +154,9 @@ export function TripSettingsModal(props) {
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Unit Name</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input onChange={(e) => setUnit(e.target.value)}/>
+                                    <Input onChange={(e) => {
+                                        setUnit(e.target.value)
+                                    }}/>
                                 </InputGroup>
                             </Col>
                             <Col>
@@ -128,7 +164,9 @@ export function TripSettingsModal(props) {
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Earth Radius</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input onChange={(e) => setUnitValue(e.target.value)}/>
+                                    <Input onChange={(e) => {
+                                        setUnitValue(e.target.value)
+                                        }}/>
                                 </InputGroup>
                             </Col>
                         </Row><br/>
