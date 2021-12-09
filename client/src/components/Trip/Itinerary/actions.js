@@ -135,18 +135,13 @@ export const ItineraryActionsDropdown = (props) => {
     const [toolTip,setToolTip] = useMultiToggle(false,data.length)
     const [plannerActions,setPlannerActions] = useState([...data])
     addOrRemoveReverseAction({...props,...{plannerActions,setPlannerActions}})
-
     let orientation = {}
     if(props.hideMap)
         orientation = {vertical:true}
-
     useEffect(() => {
         if (props.layersOpen)
         document.addEventListener('click', () => {
-            props.toggleLayers();
-        })
-    }, [props.layersOpen])
-    
+            props.toggleLayers();})}, [props.layersOpen])
     return (
         <ButtonGroup id='iteneraryActionsDropDown' {...orientation} style={{float:'right',marginBottom:'10px',zIndex:'10000'}}>
         {plannerActions.map((item,index)=>{
@@ -155,17 +150,11 @@ export const ItineraryActionsDropdown = (props) => {
                 let id = `home-row-${index}`
                 return(<Fragment key={id}>
                             <Button  id={id} onClick={()=>ItineraryActionsClick(props,setToolTip,item)}>{icon}</Button>
-                            <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => setToolTip(index)}>
-                                {description}
+                            <Tooltip  placement="auto" isOpen={toolTip[index]} target={id} toggle={() => setToolTip(index)}>{description}
                              </Tooltip>
-                        </Fragment>)
-        })}
+                        </Fragment>)})}
         <Popover  placement='auto' isOpen={props.layersOpen} toggle={props.toggleLayers} target={`home-row-1`} >
-            {Object.keys(props.layers).map((item,key)=>{
-                    return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>
-            })}
-        </Popover>
-        
+            {Object.keys(props.layers).map((item,key)=>{return <IndividualLayer key={`layerSelect-${key}`} id={`layer-selection-${item}`} index={item}  {...props}/>})}</Popover>    
     </ButtonGroup>);
 }
 
