@@ -281,6 +281,6 @@ With the addition of the OptimizedTrip component and the SettingsModal, we have 
 
 ### Server Classes
 
-We did not add any new items to the server, but made changes to existing components to ensure they run currectly
+We did not add any new items to the server, but made changes to existing components to ensure they run correctly
 
 ![server5](images/ServerSprint4.png)
