@@ -178,7 +178,7 @@ export function TripSettingsModal(props) {
                                         <InputGroupText>Earth Radius</InputGroupText>
                                     </InputGroupAddon>
                                     <Input type='number' onChange={(e) => {
-                                        if(e.target.value > 9999999999999)
+                                        if(e.target.value > 9999999999)
                                             return
                                         e.target.value = e.target.value.replaceAll(',','')
                                         setUnitValue(e.target.value)
