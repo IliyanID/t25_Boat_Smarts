@@ -30,7 +30,7 @@ export function FileDownload(props) {
             localStorage.setItem("fileType",fileType);
         }
    
-        downloadFile(fileName, MIME_TYPE[fileType], props.places, {fileUnitsName: unitName, fileUnitsValue:parseInt(unitValue)});
+        downloadFile(fileName, MIME_TYPE[fileType], props.places, {fileUnitsName: unitName, fileUnitsValue:parseFloat(unitValue)});
         props.toggleFileActions();
     }
 
