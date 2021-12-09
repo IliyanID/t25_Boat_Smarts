@@ -19,35 +19,28 @@ public class OneOpt extends TourCalculator{
         for (int i = 0; i < super.distances.length; i++) {
             if(super.hitMaxTime)
                 break;
-            
             int[] testShortTrip = new int[super.shorterTrip.length];
             this.visited = new boolean[super.shorterTrip.length];
             double newMinDistance = 0;
             int currentPlace = i;
             testShortTrip[0] = currentPlace;
             this.visited[currentPlace] = true;
-
             for(int j = 1; j < super.distances[i].length;j++){
                 if(super.hitMaxTime)
                     break;
-
                 int nextClosestPlace = findClosestPlace(currentPlace);
                 if(nextClosestPlace >= 0){
                     this.visited[nextClosestPlace] = true;
                     testShortTrip[j] = nextClosestPlace;
                     newMinDistance += super.distances[currentPlace][nextClosestPlace];
-                    currentPlace = nextClosestPlace;
-                }
+                    currentPlace = nextClosestPlace;}
             }
             double endToStartDistance = super.distances[testShortTrip[0]][testShortTrip[testShortTrip.length - 1]];
             newMinDistance += endToStartDistance;
-            //If we haven't hit the max time & If the cumalitive distance is not just the end to start & If new distance is better than lasst
             if(!super.hitMaxTime && newMinDistance != endToStartDistance && newMinDistance < this.currentCumalitiveDistance){
                 this.currentCumalitiveDistance = newMinDistance;
-                super.shorterTrip = testShortTrip;
-            }
-        }
-        return super.shorterTrip;
+                super.shorterTrip = testShortTrip;}
+        }return super.shorterTrip;
     }
 
     private int findClosestPlace(int currPlace) {
