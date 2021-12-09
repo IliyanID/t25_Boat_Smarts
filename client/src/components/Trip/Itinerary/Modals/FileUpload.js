@@ -94,6 +94,8 @@ export function FileUpload(props) {
         } finally {
             setValidFile(isJsonResponseValid(result, tripSchema));
             if (isJsonResponseValid(result, tripSchema)) {
+                if (result.units) localStorage.setItem('fileUnitsName', result.units);
+                if (result.earthRadius) localStorage.setItem('fileUnitsValue', result.earthRadius);
                 setFilePlaces(result.places);
                 setSelectedIndex(0);
             }
@@ -113,7 +115,9 @@ export function csvToJson(stringFromFile) {
         let curr = {};
         const line = lines[i].split(',');
         for (let j = 0; j < properties.length; j++) {
-            curr[properties[j]] = line[j]
+            if (properties[j] === 'units') json['units'] = line[j];
+            else if (properties[j] === 'earthRadius') json['earthRadius'] = parseFloat(line[j]);
+            else curr[properties[j]] = line[j];
         }
         json.places.push(curr);
     }
