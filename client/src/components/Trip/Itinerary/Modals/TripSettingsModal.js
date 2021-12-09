@@ -69,6 +69,7 @@ export function TripSettingsModal(props) {
         localStorage.setItem("fileUnitsName", unit);
         localStorage.setItem("fileUnitsValue", unitValue);
         props.toggleTripSettingsOpen();
+        toggleInput(false)
     }
     
 
@@ -139,6 +140,7 @@ export function TripSettingsModal(props) {
                                                         temp.splice(index,1)
                                                         setAllUnits(temp)
                                                         setUnit(temp[0].unitName)
+                                                        toggleInput(true)
                                                         setUnitValue(temp[0].earthRadius)
                                                     }}/>:<></>}
                                                 </DropdownItem>
@@ -165,6 +167,7 @@ export function TripSettingsModal(props) {
                                         <InputGroupText>Earth Radius</InputGroupText>
                                     </InputGroupAddon>
                                     <Input onChange={(e) => {
+                                        e.target.value = e.target.value.replaceAll(',','')
                                         setUnitValue(e.target.value)
                                         }}/>
                                 </InputGroup>
