@@ -115,8 +115,8 @@ export function csvToJson(stringFromFile) {
         let curr = {};
         const line = lines[i].split(',');
         for (let j = 0; j < properties.length; j++) {
-            if (properties[j] === 'units') json[units] = properties[j];
-            else if (properties[j] === 'earthRadius') json[earthRadius] = properties[j];
+            if (properties[j] === 'units') json['units'] = line[j];
+            else if (properties[j] === 'earthRadius') json['earthRadius'] = parseFloat(line[j]);
             else curr[properties[j]] = line[j];
         }
         json.places.push(curr);
