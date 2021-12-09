@@ -28,24 +28,13 @@ public class TwoOpt extends TourCalculator{
         //Base Case if the trip has less than three locations it's already at optimal
         if(this.shorterTrip.length < 4)
             return this.shorterTrip;
-
         double lastCumalitiveDistance =  this.currentCumalitiveDistance;
-
-        /*for(int i : shorterTrip){
-            System.out.print(i + " ");
-        }
-        System.out.println();*/
-
         while(true){
-            //System.out.println("lastCumalitiveDistance : " + lastCumalitiveDistance);
-
             //The best round trip so far
             long runningBestContribution = Long.MAX_VALUE;
-
             FourPointers p = new FourPointers(this.shorterTrip,lastCumalitiveDistance,this.distances);
             //Locations of Best Place to Swap
             int[] bestPointers = new int[4];
-
             //Max number of combinations with two pointers
             int n = this.shorterTrip.length;
             n = n*(n-3)/2;
@@ -53,7 +42,6 @@ public class TwoOpt extends TourCalculator{
                 //Check if max response time has been elapsed
                 if(super.checkHitMaxTime())
                     break; 
-
                 //Resulting round trip after swap
                 long tempCumalitive = p.swap();
                 if(runningBestContribution > tempCumalitive){
@@ -62,21 +50,17 @@ public class TwoOpt extends TourCalculator{
                     p.copyTo(bestPointers);
                 }
             }
-
-
             //If a shorter trip was found
             if(runningBestContribution < lastCumalitiveDistance){
                 lastCumalitiveDistance = runningBestContribution;
                 //Convert this.shorterTrip to new improved trip
                 p.applyPointers(bestPointers);
                 //System.out.println("CurrentCumalitiveDistance:" + this.currentCumalitiveDistance );
-
             }
             else{
                 break; 
             }           
         }
-        
         return this.shorterTrip;
     }
 }
