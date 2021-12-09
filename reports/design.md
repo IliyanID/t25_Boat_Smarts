@@ -281,9 +281,6 @@ With the addition of the OptimizedTrip component and the SettingsModal, we have 
 
 ### Server Classes
 
-We will add one item to the server structure
- * ThreeOpt.java will optimize a tript using the 3-opt algorithm
+We did not add any new items to the server, but made changes to existing components to ensure they run correctly
 
-We will also be modifying the tour optimization code to run concurrently.
-
-![server5](images/ServerSprint5.png)
+![server5](images/ServerSprint4.png)
