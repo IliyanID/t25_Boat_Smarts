@@ -26,7 +26,9 @@ export function FileDownload(props) {
         if (saveToMem){
             localStorage.setItem("fileType",fileType);
         }
-        downloadFile(fileName, MIME_TYPE[fileType], props.places, {fileUnitsName: props.fileUnitsName, fileUnitsValue:props.fileUnitsValue});
+        const unitName = localStorage.getItem("fileUnitsName") != null ? localStorage.getItem("fileUnitsName") : "Miles"
+        const unitValue = localStorage.getItem("fileUnitsValue") != null ? parseInt(localStorage.getItem("fileUnitsValue")) : EARTH_RADIUS_UNITS_DEFAULT.miles
+        downloadFile(fileName, MIME_TYPE[fileType], props.places, {fileUnitsName: unitName, fileUnitsValue:unitValue});
         props.toggleFileActions();
     }
 
