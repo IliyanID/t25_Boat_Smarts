@@ -94,6 +94,8 @@ export function FileUpload(props) {
         } finally {
             setValidFile(isJsonResponseValid(result, tripSchema));
             if (isJsonResponseValid(result, tripSchema)) {
+                if (result.units) localStorage.setItem('fileUnitsName', result.units);
+                if (result.earthRadius) localStorage.setItem('fileUnitsValue', result.earthRadius);
                 setFilePlaces(result.places);
                 setSelectedIndex(0);
             }
