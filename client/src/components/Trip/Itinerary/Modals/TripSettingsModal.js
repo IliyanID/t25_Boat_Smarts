@@ -165,7 +165,10 @@ export function TripSettingsModal(props) {
                                         <InputGroupText>Unit Name</InputGroupText>
                                     </InputGroupAddon>
                                     <Input onChange={(e) => {
-                                        setUnit(e.target.value)
+                                        if(e.target.value.length < 15)
+                                            setUnit(e.target.value)
+                                        else
+                                        e.target.value = e.target.value.substring(0,e.target.value.length - 1)
                                     }}/>
                                 </InputGroup>
                             </Col>
@@ -174,7 +177,9 @@ export function TripSettingsModal(props) {
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Earth Radius</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input onChange={(e) => {
+                                    <Input type='number' onChange={(e) => {
+                                        if(e.target.value > 9999999999999)
+                                            return
                                         e.target.value = e.target.value.replaceAll(',','')
                                         setUnitValue(e.target.value)
                                         }}/>
