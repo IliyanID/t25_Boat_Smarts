@@ -36,9 +36,7 @@ const DistanceInfo = (props) =>{
     ) 
 }
 const unit = (item) =>{
-    if(item == 1)
-        return prettyNum(item,{thousandsSeparator:','}) + ' Mile'
-
-    return prettyNum(item,{thousandsSeparator:','}) + ' Miles'
+    const unitName = localStorage.getItem("fileUnitsName") != null ? localStorage.getItem("fileUnitsName") : "Miles"
+    return prettyNum(item,{thousandsSeparator:','}) + ' ' + unitName
 }
 export default DistanceInfo;

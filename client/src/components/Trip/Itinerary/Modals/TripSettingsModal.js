@@ -120,7 +120,7 @@ export function TripSettingsModal(props) {
                                     <InputGroupAddon addonType ="prepend">
                                         <InputGroupText>Unit Name</InputGroupText>
                                     </InputGroupAddon>
-                                    <Input onChange={(e) => handleNameChange(e.target.value)}/>
+                                    <Input onChange={(e) => setUnit(e.target.value)}/>
                                 </InputGroup>
                             </Col>
                             <Col>

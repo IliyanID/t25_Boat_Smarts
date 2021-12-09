@@ -8,7 +8,7 @@ import Itinerary from './Itinerary/Itinerary';
 import {FileModal} from './Itinerary/Modals/FileModal';
 import { usePlaces } from '../../hooks/usePlaces';;
 import OptimizedTrip from './OptimizedTrip/OptimizedTrip';
-import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest } from './PlannerRequestHandler'
+import { handleAutoTour, handleConfigRequest, handleDistancesRequest,handleTourRequest,placeUpdateMessage } from './PlannerRequestHandler'
 import TripSettingsModal from './Itinerary/Modals/TripSettingsModal'
 import  zipObject  from 'lodash.zipobject'
 
@@ -128,6 +128,7 @@ export default function Planner(props) {
 
     handleConfigRequest(allPackages,props);
     handleDistancesRequest(allPackages,props);
+    placeUpdateMessage(allPackages, props);
     handleTourRequest(allPackages,props);
     handleAutoTour(allPackages,props)
     let mapStyle = {display:'inherit'}
@@ -138,8 +139,7 @@ export default function Planner(props) {
                 <Section className='mapCollapse mapContainer'>
                 {(allPackages.hideMap || allPackages.previewTripFocus)?<div className='optimizeTripBackground'/>:<></>}
 
-                        <OptimizedTrip {...allPackages}/>
-                        <Map style={mapStyle} {...allPackages}/>
+                        <OptimizedTrip {...allPackages}/><Map style={mapStyle} {...allPackages}/>
                 </Section>
                 
 
