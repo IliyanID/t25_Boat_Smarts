@@ -22,12 +22,14 @@ export function FileDownload(props) {
     useEffect(()=>{setFileName(props.tripName)}, [props.tripName, props.fileDownloadOpen]);
 
     const [saveToMem, setSaveToMem] = useToggle(false);
+
+    const unitName = localStorage.getItem("fileUnitsName") != null ? localStorage.getItem("fileUnitsName") : "Miles"
+    const unitValue = localStorage.getItem("fileUnitsValue") != null ? localStorage.getItem("fileUnitsValue") : EARTH_RADIUS_UNITS_DEFAULT.miles
     function handleDownload() {
         if (saveToMem){
             localStorage.setItem("fileType",fileType);
         }
-        const unitName = localStorage.getItem("fileUnitsName") != null ? localStorage.getItem("fileUnitsName") : "Miles"
-        const unitValue = localStorage.getItem("fileUnitsValue") != null ? parseInt(localStorage.getItem("fileUnitsValue")) : EARTH_RADIUS_UNITS_DEFAULT.miles
+   
         downloadFile(fileName, MIME_TYPE[fileType], props.places, {fileUnitsName: unitName, fileUnitsValue:unitValue});
         props.toggleFileActions();
     }

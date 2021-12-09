@@ -139,8 +139,7 @@ export default function Planner(props) {
                 <Section className='mapCollapse mapContainer'>
                 {(allPackages.hideMap || allPackages.previewTripFocus)?<div className='optimizeTripBackground'/>:<></>}
 
-                        <OptimizedTrip {...allPackages}/>
-                        <Map style={mapStyle} {...allPackages}/>
+                        <OptimizedTrip {...allPackages}/><Map style={mapStyle} {...allPackages}/>
                 </Section>
                 
 
