@@ -57,9 +57,9 @@ We are going to try and finish up the Shorter Trip epic by implementing concurre
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | *count* | *count* |
-| Tasks |  *count*   | *count* | 
-| Story Points |  *sum*  | *sum* | 
+| Epics | *5* | *4* |
+| Tasks |  *49*   | *48* | 
+| Story Points |  *73*  | *68* | 
 
 
 ## Scrums
