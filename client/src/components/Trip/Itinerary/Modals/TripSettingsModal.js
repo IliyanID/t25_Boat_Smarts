@@ -66,11 +66,14 @@ export function TripSettingsModal(props) {
             localStorage.setItem('allUnitsSaved',saved)
             setAllUnits(temp)
         }
+        else{
+            localStorage.setItem('allUnitsSaved',JSON.stringify(allUnits))
+        }
 
         localStorage.setItem("fileUnitsName", unit);
         localStorage.setItem("fileUnitsValue", unitValue);
         props.toggleTripSettingsOpen();
-        toggleInput(false)
+        toggleInput(true)
     }
     
 
