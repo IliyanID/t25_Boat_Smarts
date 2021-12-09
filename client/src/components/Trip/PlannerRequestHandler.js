@@ -53,13 +53,19 @@ export const handleDistancesRequest = (allPackages,props) =>{
         sendAPIRequest({
             requestType:'distances',
             places:convertedPlaces,
-            earthRadius:EARTH_RADIUS_UNITS_DEFAULT.miles
+            earthRadius:parseInt(localStorage.getItem("fileUnitsValue") != null ? localStorage.getItem("fileUnitsValue") : EARTH_RADIUS_UNITS_DEFAULT.miles)
         },currentURL).then((response)=>{
                 if(response)
                     allPackages.setDistances(response)
                 else    
                     allPackages.setDistances({distances: []});
             })
+        
+    },[allPackages.places, allPackages.tripSettingsOpen]);
+}
+
+export const placeUpdateMessage = (allPackages, props) => {
+    return useEffect(()=>{
         if(allPackages.selectedIndex != -1 && allPackages.places.length > allPackages.previousPlaces.length ){
             props.showMessage("Added to Trip " + allPackages.places[allPackages.selectedIndex].name,"info")            
         }
