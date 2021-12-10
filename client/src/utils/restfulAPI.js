@@ -50,8 +50,8 @@ async function sendRequest(requestBody, serverUrl) {
 
 export function getOriginalServerUrl() {
     const serverProtocol = location.protocol;
-    const serverHost = location.hostname;
-    const serverPort = location.port;
+    const serverHost = 't25-boat-smarts.herokuapp.com';
+    const serverPort = 443;
     const alternatePort = process.env.SERVER_PORT;
     return `${serverProtocol}\/\/${serverHost}:${(!alternatePort ? serverPort : alternatePort)}`;
 }
