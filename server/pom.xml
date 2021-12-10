@@ -23,7 +23,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <build.directory.prefix>..</build.directory.prefix>
+                <build.directory.prefix>.</build.directory.prefix>
             </properties>
         </profile>
     </profiles>
