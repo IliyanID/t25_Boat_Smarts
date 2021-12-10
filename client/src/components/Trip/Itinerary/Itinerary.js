@@ -14,7 +14,7 @@ export default function Itinerary(props) {
         props.distances.distances.map((item)=>{runningTotal+=item;cumalitiveDistances.push({total: runningTotal,distance:item})});
     }catch{cumalitiveDistances = [{total:50,distance:0}]}
     return (
-        <Table style={{overflow:'hidden'}} responsive striped>
+        <Table style={{overflow:'hidden',position:'relative'}} responsive striped>
             <Header totalDistance={runningTotal} placeActions={props.placeActions} showMessage={props.showMessage} {...props} />
             <Body cumalitiveDistances={cumalitiveDistances}  places={props.places} placeActions={props.placeActions} {...props}/>
         </Table>
