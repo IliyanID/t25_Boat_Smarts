@@ -4,7 +4,7 @@
 ### *Release!*
 
 ## Sprint Leader: 
-### *firstname lastname*
+### *Iliyan Dimitrov*
 
 ## Definition of Done
 
@@ -57,28 +57,36 @@ We are going to try and finish up the Shorter Trip epic by implementing concurre
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | *count* | *count* |
-| Tasks |  *count*   | *count* | 
-| Story Points |  *sum*  | *sum* | 
+| Epics | *5* | *4* |
+| Tasks |  *49*   | *48* | 
+| Story Points |  *73*  | *68* | 
 
 
 ## Scrums
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* |  | 
+| *11/17/21* | *#413,#425,#416* | *#421,#403,#264,#399,#414* | None | 
+| *11/29/21* | *#421,#403,#264,#399 | #414*,#391,#264,#390 | None | 
+| *12/1/21* | #390,#264,#392 |  | None | 
+| *12/3/21* | #449,#391,#267,#390 | #450 #451 | Collapsing Map Preview Mode | 
+| *12/6/21* | #450 #451 | #452 #453 #458 | None | 
+| *12/8/21* | #452 #453 #458 | None | None | 
 
 
 ## Review
 
 ### Epics completed  
+We have completed four epics which were Units, Lines, Save Map, Map, and User Experience
 
 ### Epics not completed 
+We were not able to complete three-opt for the server under the Shorter Trip Epic.
 
 ## Retrospective
+We were able to do a lot of polishing on our website. We implemented many optional features that we believe improves the feel and look of the website. We also worked very well in a team this time around. Overall this was a succesful sprint.
 
 ### Things that went well
+Overall we did a great job this Sprint. We were able to get a good bit of work done. Our tasks were a bit more spread out or random as we spend a good amount of time tweaking the UI. We did well in speading out tasks where not one person would complete entire epics at a time.
 
 ### Things we need to improve
-
-### One thing we will change next time
+We don't believe there is anything to improve.
