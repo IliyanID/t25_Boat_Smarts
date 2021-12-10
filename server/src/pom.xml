@@ -13,7 +13,7 @@
     <groupId>com.tco</groupId>
     <artifactId>server</artifactId>
     <packaging>jar</packaging>
-    <version>${revision}</version>
+    <version>1.0</version>
     <name>tco</name>
 
     <profiles>
