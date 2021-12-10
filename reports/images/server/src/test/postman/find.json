@@ -1,0 +1,2865 @@
+{
+	"info": {
+		"_postman_id": "fdddb77f-443a-462b-aaea-af7d66265487",
+		"name": "findTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "alwarith-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Muscat\"",
+							",limit:0",
+							",places:[{\"iso_country\": \"OM\", \"latitude\": \"23.605048\", \"name\": \"Armed Forces Beach Club Helipad\", \"municipality\": \"Muscat\", \"type\": \"heliport\", \"longitude\": \"58.331587\"}, {\"altitude\": \"48\", \"iso_country\": \"OM\", \"latitude\": \"23.593299865722656\", \"name\": \"Muscat International Airport\", \"municipality\": \"Muscat\", \"type\": \"large_airport\", \"longitude\": \"58.284400939941406\"}, {\"altitude\": \"547\", \"iso_country\": \"US\", \"latitude\": \"41.367801666259766\", \"name\": \"Muscatine Municipal Airport\", \"municipality\": \"Muscatine\", \"type\": \"small_airport\", \"longitude\": \"-91.14820098876953\"}, {\"altitude\": \"633\", \"iso_country\": \"US\", \"latitude\": \"41.4336013794\", \"name\": \"Unity Healthcare Heliport\", \"municipality\": \"Muscatine\", \"type\": \"heliport\", \"longitude\": \"-91.05419921880001\"}]",
+							",found:4",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Muscat\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "annierud-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"elkview\"",
+							",limit:0",
+							",places:[{\"latitude\": \"41.62699890136719\", \"name\": \"Cosklos Elkview Airport\", \"longitude\": \"-75.5281982421875\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"elkview\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "beefman-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Heathrow\"",
+							",limit:0",
+							",places:[{\"name\": \"London Heathrow Airport\", \"latitude\": \"51.4706\", \"longitude\": \"-0.461941\"}, {\"name\": \"Heathrow Airport\", \"latitude\": \"31.43910026550293\", \"longitude\": \"-97.14689636230469\"}]",
+							",found:2",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Heathrow\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bginna-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Half Moon Bay\"",
+							",limit:0",
+							",places:[{\"name\": \"Half Moon Bay Airport\", \"latitude\": \"37.513401031499995\", \"longitude\": \"-122.500999451\", \"altitude\": \"66\", \"type\": \"small_airport\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Half Moon Bay\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bjurenka-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"La Porte\"",
+							",limit:0",
+							",places:[{\"altitude\": \"838\", \"iso_country\": \"US\", \"latitude\": \"41.610599517822266\", \"name\": \"La Porte Hospital Heliport\", \"municipality\": \"La Porte\", \"type\": \"heliport\", \"longitude\": \"-86.72579956054688\"}, {\"altitude\": \"812\", \"iso_country\": \"US\", \"latitude\": \"41.5724983215\", \"name\": \"La Porte Municipal Airport\", \"municipality\": \"La Porte\", \"type\": \"small_airport\", \"longitude\": \"-86.73449707030001\"}, {\"altitude\": \"25\", \"iso_country\": \"US\", \"latitude\": \"29.669300079345703\", \"name\": \"La Porte Municipal Airport\", \"municipality\": \"La Porte\", \"type\": \"small_airport\", \"longitude\": \"-95.06420135498047\"}, {\"altitude\": \"31\", \"iso_country\": \"US\", \"latitude\": \"29.72879981994629\", \"name\": \"La Porte Plant Heliport\", \"municipality\": \"Deer Park\", \"type\": \"heliport\", \"longitude\": \"-95.08910369873047\"}, {\"altitude\": \"950\", \"iso_country\": \"US\", \"latitude\": \"42.31669998168945\", \"name\": \"Nichols Airport\", \"municipality\": \"La Porte City\", \"type\": \"small_airport\", \"longitude\": \"-92.28350067138672\"}, {\"altitude\": \"740\", \"iso_country\": \"US\", \"latitude\": \"41.68450164794922\", \"name\": \"Norm's Airpark\", \"municipality\": \"La Porte\", \"type\": \"small_airport\", \"longitude\": \"-86.7677993774414\"}, {\"altitude\": \"28\", \"iso_country\": \"US\", \"latitude\": \"29.7012996673584\", \"name\": \"Rental Tools Heliport\", \"municipality\": \"La Porte\", \"type\": \"heliport\", \"longitude\": \"-95.07830047607422\"}]",
+							",found:7",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"La Porte\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "brockli-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"vanau\"",
+							",limit:0",
+							",places:[{\"name\": \"Cavanaugh Airport\", \"latitude\": \"40.51390075683594\", \"longitude\": \"-99.01200103759766\"}, {\"name\": \"Cavanaugh Bay Airport\", \"latitude\": \"48.52080154418945\", \"longitude\": \"-116.83000183105469\"}, {\"name\": \"Tanglefoot Seaplane Base\", \"latitude\": \"48.53889846801758\", \"longitude\": \"-116.83200073242188\"}]",
+							",found:3",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"vanau\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carnhy-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"boise\"",
+							",limit:0",
+							",places:[{\"latitude\": \"36.77429962158203\", \"name\": \"Boise City Airport\", \"longitude\": \"-102.51000213623047\"}, {\"latitude\": \"43.56439972\", \"name\": \"Boise Air Terminal/Gowen field\", \"longitude\": \"-116.2229996\"}, {\"latitude\": \"43.590999603271484\", \"name\": \"Nampa Valley Heliport\", \"longitude\": \"-116.2770004272461\"}, {\"latitude\": \"43.612701416\", \"name\": \"St Luke's Boise Medical Center Heliport\", \"longitude\": \"-116.192001343\"}, {\"latitude\": \"43.61429977416992\", \"name\": \"St Alphonsus Heliport\", \"longitude\": \"-116.26399993896484\"}, {\"latitude\": \"43.653198242200006\", \"name\": \"Boise Plaza Heliport\", \"longitude\": \"-116.206001282\"}, {\"latitude\": \"43.680999755859375\", \"name\": \"Peaceful Cove Airport\", \"longitude\": \"-116.2030029296875\"}, {\"latitude\": \"47.3414\", \"name\": \"Amboise Dierre Airport\", \"longitude\": \"0.9425\"}]",
+							",found:8",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"boise\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "caspian-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"shadow\"",
+							",limit:0",
+							",places:[{\"latitude\": \"37.740299224853516\", \"name\": \"Morning Shadows Ranch Airport\", \"municipality\": \"South Fork\", \"type\": \"small_airport\", \"longitude\": \"-106.5260009765625\"}, {\"latitude\": \"26.732799530029297\", \"name\": \"Pine Shadows Airpark\", \"municipality\": \"Fort Myers\", \"type\": \"small_airport\", \"longitude\": \"-81.89730072021484\"}]",
+							",found:2",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"shadow\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ccluett-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"asddfgdf\"",
+							",limit:0",
+							",places:[]",
+							",found:0",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"asddfgdf\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cmack816-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Jerry\"",
+							",limit:0",
+							",places:[{\"altitude\": \"252\", \"iso_country\": \"US\", \"latitude\": \"44.058333\", \"name\": \"Jerry Douglass Heliport\", \"municipality\": \"Lisbon\", \"id\": \"20ME\", \"longitude\": \"-70.098611\"}, {\"altitude\": \"1100\", \"iso_country\": \"US\", \"latitude\": \"34.516700744628906\", \"name\": \"Jerry-Wright Airfield\", \"municipality\": \"Lawton\", \"id\": \"4OL3\", \"longitude\": \"-98.33370208740234\"}, {\"altitude\": \"342\", \"iso_country\": \"US\", \"latitude\": \"37.94499969482422\", \"name\": \"Jerry W. Humphrey Seaplane Base\", \"municipality\": \"Newburgh\", \"id\": \"IN59\", \"longitude\": \"-87.42449951171875\"}, {\"altitude\": \"1434\", \"iso_country\": \"US\", \"latitude\": \"36.96229934692383\", \"name\": \"Jerry Sumners Sr Aurora Municipal Airport\", \"municipality\": \"Aurora\", \"id\": \"K2H2\", \"longitude\": \"-93.69529724121094\"}, {\"altitude\": \"750\", \"iso_country\": \"US\", \"latitude\": \"41.835899353027\", \"name\": \"Jerry Tyler Memorial Airport\", \"municipality\": \"Niles\", \"id\": \"K3TR\", \"longitude\": \"-86.225196838379\"}, {\"altitude\": \"6159\", \"iso_country\": \"US\", \"latitude\": \"41.15570068\", \"name\": \"Cheyenne Regional Jerry Olson Field\", \"municipality\": \"Cheyenne\", \"id\": \"KCYS\", \"longitude\": \"-104.8119965\"}, {\"altitude\": \"5940\", \"iso_country\": \"US\", \"latitude\": \"45.82350158691406\", \"name\": \"Jerry Creek Airport\", \"municipality\": \"Wise River\", \"id\": \"MT14\", \"longitude\": \"-112.88600158691406\"}, {\"altitude\": \"1490\", \"iso_country\": \"US\", \"latitude\": \"42.354801177978516\", \"name\": \"Tom N' Jerry Airport\", \"municipality\": \"Danby\", \"id\": \"NK05\", \"longitude\": \"-76.51609802246094\"}, {\"altitude\": \"340\", \"iso_country\": \"US\", \"latitude\": \"42.758399963378906\", \"name\": \"Jerry Phibbs Airport\", \"municipality\": \"Albany\", \"id\": \"NK43\", \"longitude\": \"-73.92459869384766\"}]",
+							",found:9",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Jerry\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cytoniv-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Total\"",
+							",limit:0",
+							",places:[{\"altitude\": \"11\", \"iso_country\": \"US\", \"latitude\": \"40.07080078125\", \"name\": \"Total Rf Heliport\", \"municipality\": \"Bensalem\", \"type\": \"heliport\", \"longitude\": \"-74.93360137939453\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Total\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "devinwu2-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Heathrow\"",
+							",limit:0",
+							",places:[{\"country\": \"GB\", \"latitude\": \"51.4706\", \"name\": \"London Heathrow Airport\", \"index\": \"1\", \"type\": \"large_airport\", \"longitude\": \"-0.461941\"}, {\"country\": \"US\", \"latitude\": \"31.43910026550293\", \"name\": \"Heathrow Airport\", \"index\": \"2\", \"type\": \"small_airport\", \"longitude\": \"-97.14689636230469\"}]",
+							",found:2",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Heathrow\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dpohl-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"' H\"",
+							",limit:0",
+							",places:[{\"name\": \"The King's Daughters' Heliport\", \"latitude\": \"38.739200592041016\", \"longitude\": \"-85.38159942626953\"}, {\"name\": \"Big 'G' Heliport\", \"latitude\": \"38.210601806640625\", \"longitude\": \"-82.60600280761719\"}, {\"name\": \"Ginny 'B' Heliport\", \"latitude\": \"36.093101501464844\", \"longitude\": \"-86.65470123291016\"}, {\"name\": \"Pearson Reef 'B' Helipad\", \"latitude\": \"8.959083\", \"longitude\": \"113.653409\"}, {\"name\": \"Utkina Zavod Helipad\", \"latitude\": \"59.8685824318\", \"longitude\": \"30.4858160019\"}]",
+							",found:5",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"' H\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eide1992-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"#\"",
+							",limit:0",
+							",places:[{\"latitude\": \"30.119753\", \"name\": \"Doctors Memorial Hospital #2 Heliport\", \"longitude\": \"-83.592732\"}, {\"latitude\": \"32.548984\", \"name\": \"Yuma Auxiliary AAF #2\", \"longitude\": \"-114.511383\"}, {\"latitude\": \"35.4531\", \"name\": \"Reeves Auxillary Army Airfield #1\", \"longitude\": \"-100.9825\"}, {\"latitude\": \"36.172031\", \"name\": \"Tulare Motor Sports #1 Heliport\", \"longitude\": \"-119.306181\"}, {\"latitude\": \"36.182556\", \"name\": \"Tulare Motor Sports #2 Heliport\", \"longitude\": \"-119.313572\"}, {\"latitude\": \"39.6536111111\", \"name\": \"West Virginia Univ. Hosp. Inc. Gnd. Pad #2 Heliport\", \"longitude\": \"-79.9561111111\"}, {\"latitude\": \"40.121944\", \"name\": \"Frederick-Firestone F.S. #2 Heliport\", \"longitude\": \"-104.980833\"}, {\"latitude\": \"41.235503\", \"name\": \"Hanover Township Fire Station #5 Heliport\", \"longitude\": \"-75.934044\"}]",
+							",found:8",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"#\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "esutko-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"portland\"",
+							",limit:0",
+							",places:[{\"latitude\": \"45.57979965209961\", \"name\": \"Babler Bros Inc Heliport\", \"longitude\": \"-122.65799713134766\"}, {\"latitude\": \"41.62289810180664\", \"name\": \"Bemer Heliport\", \"longitude\": \"-72.60060119628906\"}, {\"latitude\": \"45.5430206012\", \"name\": \"Emanuel Hospital Heliport\", \"longitude\": \"-122.670512795\"}, {\"latitude\": \"47.516700744628906\", \"name\": \"Fugleberg Farm Airport\", \"longitude\": \"-97.55039978027344\"}, {\"latitude\": \"47.53779983520508\", \"name\": \"Haugen Farm Airstrip\", \"longitude\": \"-97.36370086669922\"}, {\"latitude\": \"45.58869934082031\", \"name\": \"Hessel Tractor Heliport\", \"longitude\": \"-122.65399932861328\"}, {\"latitude\": \"27.887800216674805\", \"name\": \"Hunt Airport\", \"longitude\": \"-97.35440063476562\"}, {\"latitude\": \"45.527099609375\", \"name\": \"Katu Heliport\", \"longitude\": \"-122.64399719238281\"}, {\"latitude\": \"18.1987991333\", \"name\": \"Ken Jones Airport\", \"longitude\": \"-76.53450012210001\"}, {\"latitude\": \"27.915800094604492\", \"name\": \"Magee Airport\", \"longitude\": \"-97.32029724121094\"}, {\"latitude\": \"18.0547334536\", \"name\": \"Manchioneal Airstrip\", \"longitude\": \"-76.28316700459999\"}, {\"latitude\": \"45.4991281091\", \"name\": \"Oregon Health Sciences University Emerg Heliport\", \"longitude\": \"-122.685334682\"}, {\"latitude\": \"45.49599838256836\", \"name\": \"Pge Service Center Heliport\", \"longitude\": \"-122.64800262451172\"}, {\"latitude\": \"45.51399994\", \"name\": \"Portland Adventist Medical Center Heliport\", \"longitude\": \"-122.5579987\"}, {\"latitude\": \"-38.31809997558594\", \"name\": \"Portland Airport\", \"longitude\": \"141.4709930419922\"}, {\"latitude\": \"45.525299072265625\", \"name\": \"Portland Downtown Heliport\", \"longitude\": \"-122.6709976196289\"}, {\"latitude\": \"41.56589889526367\", \"name\": \"Portland Heliport\", \"longitude\": \"-72.6415023803711\"}, {\"latitude\": \"45.540401\", \"name\": \"Portland Hillsboro Airport\", \"longitude\": \"-122.949997\"}, {\"latitude\": \"45.58869934\", \"name\": \"Portland International Airport\", \"longitude\": \"-122.5979996\"}, {\"latitude\": \"43.64619827\", \"name\": \"Portland International Jetport Airport\", \"longitude\": \"-70.30930328\"}, {\"latitude\": \"45.21630096435547\", \"name\": \"Portland Mulino Airport\", \"longitude\": \"-122.58999633789062\"}, {\"latitude\": \"36.59280014038086\", \"name\": \"Portland Municipal Airport\", \"longitude\": \"-86.47669982910156\"}, {\"latitude\": \"40.45080185\", \"name\": \"Portland Municipal Airport\", \"longitude\": \"-84.99009705\"}, {\"latitude\": \"45.54940032959\", \"name\": \"Portland Troutdale Airport\", \"longitude\": \"-122.40100097656\"}, {\"latitude\": \"45.52819824\", \"name\": \"Providence Medical Center Heliport\", \"longitude\": \"-122.6119995\"}, {\"latitude\": \"50.56809997558594\", \"name\": \"RNAS Portland Heliport\", \"longitude\": \"-2.4497199058532715\"}, {\"latitude\": \"45.532798767089844\", \"name\": \"Rose Garden Heliport\", \"longitude\": \"-122.66600036621094\"}, {\"latitude\": \"39.9900016784668\", \"name\": \"Sportland Pier Heliport\", \"longitude\": \"-74.80139923095703\"}, {\"latitude\": \"36.618099212646484\", \"name\": \"Tennessee Gas Heliport\", \"longitude\": \"-86.55919647216797\"}, {\"latitude\": \"45.55820083618164\", \"name\": \"Wallace Heliport\", \"longitude\": \"-122.53500366210938\"}, {\"latitude\": \"45.5018005371\", \"name\": \"Westwood Corporation Heliport\", \"longitude\": \"-122.67099762\"}, {\"latitude\": \"40.340301513671875\", \"name\": \"Windy P Ridge Airport\", \"longitude\": \"-85.01799774169922\"}, {\"latitude\": \"45.533199310302734\", \"name\": \"Woodland Park Hospital Heliport\", \"longitude\": \"-122.5510025024414\"}, {\"latitude\": \"45.5171012878418\", \"name\": \"World Trade Center Heliport\", \"longitude\": \"-122.67400360107422\"}]",
+							",found:34",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"portland\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ethamCS-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"#1\"",
+							",limit:0",
+							",places:[{\"latitude\": \"35.4531\", \"name\": \"Reeves Auxillary Army Airfield #1\", \"longitude\": \"-100.9825\"}, {\"latitude\": \"36.172031\", \"name\": \"Tulare Motor Sports #1 Heliport\", \"longitude\": \"-119.306181\"}]",
+							",found:2",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"#1\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "evrose54-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Flamingo\"",
+							",limit:0",
+							",places:[{\"altitude\": \"1160\", \"country\": \"US\", \"latitude\": \"33.099300384521484\", \"name\": \"Flamingo Airfield\", \"municipality\": \"Jacksboro\", \"id\": \"TA59\", \"type\": \"small_airport\", \"region\": \"US-TX\", \"longitude\": \"-98.28949737548828\"}, {\"altitude\": \"270\", \"country\": \"CR\", \"latitude\": \"10.418600082397461\", \"name\": \"Flamingo Airport\", \"municipality\": \"Brasilito\", \"id\": \"MRFL\", \"type\": \"small_airport\", \"region\": \"CR-G\", \"longitude\": \"-85.78269958496094\"}, {\"altitude\": \"20\", \"country\": \"BQ\", \"latitude\": \"12.130999565124512\", \"name\": \"Flamingo International Airport\", \"municipality\": \"Kralendijk\", \"id\": \"TNCB\", \"type\": \"medium_airport\", \"region\": \"BQ-U-A\", \"url\": \"http://en.wikipedia.org/wiki/Flamingo_International_Airport\", \"longitude\": \"-68.26850128173828\"}, {\"altitude\": \"3248\", \"country\": \"ZA\", \"latitude\": \"-30.490999221801758\", \"name\": \"Flamingo Vlei Airport\", \"municipality\": \"Flamingo Vlei\", \"id\": \"FAFG\", \"type\": \"small_airport\", \"region\": \"ZA-NC\", \"longitude\": \"21.121700286865234\"}]",
+							",found:4",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Flamingo\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fargah1-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Kuala Lumpur\"",
+							",limit:0",
+							",places:[{\"latitude\": \"2.745579957962\", \"name\": \"Kuala Lumpur International Airport\", \"longitude\": \"101.70999908447\"}, {\"latitude\": \"3.1122500896453857\", \"name\": \"Simpang Airport\", \"longitude\": \"101.7030029296875\"}]",
+							",found:2",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Kuala Lumpur\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "farsi99-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Sohar\"",
+							",limit:0",
+							",places:[{\"altitude\": \"20\", \"iso_country\": \"OM\", \"latitude\": \"24.38604\", \"name\": \"Sohar Airport\", \"municipality\": \"Sohar\", \"type\": \"small_airport\", \"longitude\": \"56.62541\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Sohar\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isnyder-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"--\"",
+							",limit:0",
+							",places:[{\"latitude\": \"44.13972091674805\", \"name\": \"Thorame--Haute Chamatte Airport\", \"longitude\": \"6.548333168029785\"}, {\"latitude\": \"44.12305450439453\", \"name\": \"Thorame--Haute Les Serres Airport\", \"longitude\": \"6.559999942779541\"}, {\"latitude\": \"44.1150016784668\", \"name\": \"Thorame--Haute Les Serres Airport\", \"longitude\": \"6.538610935211182\"}]",
+							",found:3",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"--\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jacc-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Denver International Airport\"",
+							",limit:0",
+							",places:[{\"altitude\": \"5431\", \"country\": \"United States\", \"latitude\": \"39.861698150635\", \"name\": \"Denver International Airport\", \"municipality\": \"Denver\", \"id\": \"KDEN\", \"type\": \"large_airport\", \"region\": \"Colorado\", \"url\": \"http://www.flydenver.com/\", \"longitude\": \"-104.672996521\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Denver International Airport\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jachyatt-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"fort gordon\"",
+							",limit:0",
+							",places:[{\"latitude\": \"33.4203987121582\", \"name\": \"Fort Gordon Hqs Helipad Heliport\", \"longitude\": \"-82.13960266113281\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"fort gordon\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jcbradle-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"lismore\"",
+							",limit:0",
+							",places:[{\"latitude\": \"-28.808344\", \"name\": \"Lismore - Mortimer Oval Helicopter Landing Site\", \"longitude\": \"153.284455\"}, {\"latitude\": \"-28.801211\", \"name\": \"Lismore Helibase\", \"longitude\": \"153.288242\"}, {\"latitude\": \"-28.8302993774\", \"name\": \"Lismore Airport\", \"longitude\": \"153.259994507\"}, {\"latitude\": \"-37.93330001831055\", \"name\": \"Lismore Airport\", \"longitude\": \"143.35000610351562\"}]",
+							",found:4",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"lismore\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "joaop-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"S\\u00c3\\u00a3o Paulo\"",
+							",limit:0",
+							",places:[{\"latitude\": \"-23.648889541625977\", \"name\": \"Centro Empresarial de S\\u00c3\\u00a3o Paulo Heliport\", \"longitude\": \"-46.72944259643555\"}, {\"latitude\": \"-23.593889236450195\", \"name\": \"Edif\\u00c3\\u00adcio S\\u00c3\\u00a3o Paulo Trade Building Heliport\", \"longitude\": \"-46.68888854980469\"}, {\"latitude\": \"-15.140000343322754\", \"name\": \"Fazenda S\\u00c3\\u00a3o Paulo - Retiro Santa Maria Airport\", \"longitude\": \"-51.25444412231445\"}, {\"latitude\": \"-20.155555725097656\", \"name\": \"Fazenda S\\u00c3\\u00a3o Paulo Airport\", \"longitude\": \"-49.934722900390625\"}, {\"latitude\": \"-22.952777862548828\", \"name\": \"Fazenda S\\u00c3\\u00a3o Paulo Airport\", \"longitude\": \"-54.845279693603516\"}, {\"latitude\": \"-13.610278129577637\", \"name\": \"Fazenda S\\u00c3\\u00a3o Paulo Airport\", \"longitude\": \"-58.56916809082031\"}, {\"latitude\": \"-20.864166259765625\", \"name\": \"Fazenda S\\u00c3\\u00a3o Paulo Airport\", \"longitude\": \"-52.174720764160156\"}, {\"latitude\": \"-14.976388931274414\", \"name\": \"Fazenda S\\u00c3\\u00a3o Paulo Airport\", \"longitude\": \"-51.33555603027344\"}, {\"latitude\": \"-23.270871\", \"name\": \"Fazenda S\\u00c3\\u00a3o Paulo dos Palmares Airport\", \"longitude\": \"-49.546115\"}, {\"latitude\": \"-23.558332443237305\", \"name\": \"Federa\\u00c3\\u00a7\\u00c3\\u00a3o do Com\\u00c3\\u00a9rcio do Estado de S\\u00c3\\u00a3o Paulo Heliport\", \"longitude\": \"-46.6522216796875\"}, {\"latitude\": \"-23.537778854370117\", \"name\": \"Folha de S\\u00c3\\u00a3o Paulo Heliport\", \"longitude\": \"-46.64583206176758\"}, {\"latitude\": \"-23.5222225189\", \"name\": \"Forum Trabalhista de 1\\u00c2\\u00aa Inst\\u00c3\\u00a2ncia de S\\u00c3\\u00a3o Paulo I Heliport\", \"longitude\": \"-46.6611099243\"}, {\"latitude\": \"-23.5222225189\", \"name\": \"Forum Trabalhista de 1\\u00c2\\u00aa Inst\\u00c3\\u00a2ncia de S\\u00c3\\u00a3o Paulo II Heliport\", \"longitude\": \"-46.6616668701\"}, {\"latitude\": \"-23.4557270361\", \"name\": \"Guarulhos - Sao Paulo Airport Marriott Heliport\", \"longitude\": \"-46.4917990565\"}, {\"latitude\": \"-23.632221221923828\", \"name\": \"Meli\\u00c3\\u00a1 Confort S\\u00c3\\u00a3o Paulo Heliport\", \"longitude\": \"-46.70777893066406\"}, {\"latitude\": \"-13.436944007873535\", \"name\": \"Morro de S\\u00c3\\u00a3o Paulo Airport\", \"longitude\": \"-38.92250061035156\"}, {\"latitude\": \"-23.512222290039062\", \"name\": \"O Estado de S\\u00c3\\u00a3o Paulo Heliport\", \"longitude\": \"-46.670833587646484\"}, {\"latitude\": \"-17.012778\", \"name\": \"S\\u00c3\\u00a3o Paulo do Piau\\u00c3\\u00ad Airport\", \"longitude\": \"-39.179722\"}, {\"latitude\": \"-23.592777252197266\", \"name\": \"Sofitel S\\u00c3\\u00a3o Paulo Heliport\", \"longitude\": \"-46.649723052978516\"}, {\"latitude\": \"-23.53583335876465\", \"name\": \"UNICID - Universidade Cidade de S\\u00c3\\u00a3o Paulo Heliport\", \"longitude\": \"-46.559165954589844\"}, {\"latitude\": \"-22.696742\", \"name\": \"Vila S\\u00c3\\u00a3o Paulo/Mercosul Heliport\", \"longitude\": \"-51.332565\"}]",
+							",found:21",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"S\\u00c3\\u00a3o Paulo\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jolinder-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Port-Au-Prince\"",
+							",limit:0",
+							",places:[{\"latitude\": \"18.560800552368164\", \"name\": \"Bowen Airport\", \"longitude\": \"-72.32779693603516\"}, {\"latitude\": \"18.579999923706055\", \"name\": \"Toussaint Louverture International Airport\", \"longitude\": \"-72.2925033569336\"}]",
+							",found:2",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Port-Au-Prince\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "kfinger-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Finger\"",
+							",limit:0",
+							",places:[{\"altitude\": \"3461\", \"iso_country\": \"NA\", \"latitude\": \"-25.497217178344727\", \"name\": \"Finger Gottes Airstrip\", \"type\": \"small_airport\", \"longitude\": \"18.172500610351562\"}, {\"altitude\": \"337\", \"iso_country\": \"US\", \"latitude\": \"61.60649871826172\", \"name\": \"Finger Lake Seaplane Base\", \"municipality\": \"Palmer\", \"type\": \"seaplane_base\", \"longitude\": \"-149.2779998779297\"}, {\"altitude\": \"492\", \"iso_country\": \"US\", \"latitude\": \"42.88359832763672\", \"name\": \"Finger Lakes Regional Airport\", \"municipality\": \"Seneca Falls\", \"type\": \"small_airport\", \"longitude\": \"-76.78109741210938\"}, {\"altitude\": \"48\", \"iso_country\": \"US\", \"latitude\": \"57.26990127559999\", \"name\": \"Five Finger CG Heliport\", \"municipality\": \"Five Finger\", \"type\": \"heliport\", \"longitude\": \"-133.630996704\"}, {\"altitude\": \"820\", \"iso_country\": \"US\", \"latitude\": \"38.37919998168945\", \"name\": \"Gettlefinger Field\", \"municipality\": \"Palmyra\", \"type\": \"small_airport\", \"longitude\": \"-86.08159637451172\"}]",
+							",found:5",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Finger\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "kroskykb-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Savannah\"",
+							",limit:0",
+							",places:[{\"latitude\": \"-0.7165\", \"name\": \"Savannah Airstrip\", \"longitude\": \"29.6997\"}, {\"latitude\": \"31.984399795532227\", \"name\": \"Hodges Airpark\", \"longitude\": \"-81.24620056152344\"}, {\"latitude\": \"31.984899520874023\", \"name\": \"St Joseph's Hospital Heliport\", \"longitude\": \"-81.15570068359375\"}, {\"latitude\": \"32.00999832\", \"name\": \"Hunter Army Air Field\", \"longitude\": \"-81.14569855\"}, {\"latitude\": \"32.02109909057617\", \"name\": \"Memorial Hospital Heliport\", \"longitude\": \"-81.0802993774414\"}, {\"latitude\": \"32.08190155029297\", \"name\": \"Hyatt Regency Hotel Heliport\", \"longitude\": \"-81.09210205078125\"}, {\"latitude\": \"32.12760162\", \"name\": \"Savannah Hilton Head International Airport\", \"longitude\": \"-81.20210266\"}, {\"latitude\": \"32.157501220703125\", \"name\": \"Cypress Lakes Airport\", \"longitude\": \"-81.39669799804688\"}, {\"latitude\": \"33.283599853515625\", \"name\": \"Savannah River Site (Department of Energy) Heliport\", \"longitude\": \"-81.72640228271484\"}, {\"latitude\": \"35.15919876098633\", \"name\": \"Tgp Station 856 Heliport\", \"longitude\": \"-88.22239685058594\"}, {\"latitude\": \"35.1703987121582\", \"name\": \"Savannah Hardin County Airport\", \"longitude\": \"-88.21589660644531\"}, {\"latitude\": \"35.218101501464844\", \"name\": \"Hardin County General Hospital Heliport\", \"longitude\": \"-88.21920013427734\"}, {\"latitude\": \"39.97919845581055\", \"name\": \"Worth Airport\", \"longitude\": \"-94.8739013671875\"}, {\"latitude\": \"40.96120071411133\", \"name\": \"Vogel Airpark\", \"longitude\": \"-82.37069702148438\"}, {\"latitude\": \"43.018798828125\", \"name\": \"Savannah Agri-Air Airport\", \"longitude\": \"-76.76100158691406\"}]",
+							",found:15",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Savannah\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mespy50-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Zorn\"",
+							",limit:0",
+							",places:[{\"latitude\": \"41.3567008972168\", \"name\": \"Zorn Acres Airport\", \"longitude\": \"-82.6249008178711\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Zorn\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nfkamp-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"banana\"",
+							",limit:0",
+							",places:[{\"name\": \"Campo di Volo \\\"Banana\\\"\", \"latitude\": \"45.59759\", \"longitude\": \"12.303003\", \"id\": \"IT-0287\", \"altitude\": \"6\", \"municipality\": \"Casale sul Sile (TV)\", \"type\": \"small_airport\", \"region\": \"Veneto\", \"country\": \"Italy\"}, {\"name\": \"Cassidy International Airport\", \"latitude\": \"1.9861600399017334\", \"longitude\": \"-157.35000610351562\", \"id\": \"PLCH\", \"altitude\": \"5\", \"municipality\": \"Banana\", \"type\": \"medium_airport\", \"region\": \"Line Islands\", \"country\": \"Kiribati\"}, {\"name\": \"Banana Island Helipad\", \"latitude\": \"25.296837\", \"longitude\": \"51.639031\", \"id\": \"QA-0003\", \"type\": \"heliport\", \"region\": \"Ar Rayyan Municipality\", \"country\": \"Qatar\"}, {\"name\": \"Bananal Airport\", \"latitude\": \"4.632780075073242\", \"longitude\": \"-60.585601806640625\", \"id\": \"SJYO\", \"altitude\": \"892\", \"municipality\": \"Pacaraima\", \"type\": \"small_airport\", \"region\": \"Roraima\", \"country\": \"Brazil\"}]",
+							",found:4",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"banana\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "normanaa-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"frog\"",
+							",limit:0",
+							",places:[{\"name\": \"Sherman (Frog Pond) Airport\", \"latitude\": \"33.6578884021\", \"longitude\": \"-96.7882847786\"}, {\"name\": \"Frogs End Airport\", \"latitude\": \"44.36690139770508\", \"longitude\": \"-73.15019989013672\"}, {\"name\": \"Frog Hollow Farm Airport\", \"latitude\": \"37.695098876953125\", \"longitude\": \"-76.99500274658203\"}, {\"name\": \"Bullfrog Basin Airport\", \"latitude\": \"37.54579926\", \"longitude\": \"-110.7129974\"}, {\"name\": \"Fripp Island Emergency Heliport\", \"latitude\": \"32.3218994140625\", \"longitude\": \"-80.49120330810547\"}]",
+							",found:5",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"frog\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nws-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"ronald reagan\"",
+							",limit:0",
+							",places:[{\"name\": \"Ronald Reagan Washington National Airport\", \"latitude\": \"38.8521\", \"longitude\": \"-77.037697\", \"altitude\": \"15\", \"type\": \"large_airport\", \"country\": \"United States\", \"url\": \"https://www.aopa.org/destinations/airports/KDCA/details\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"ronald reagan\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "olivia4-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"lucky\"",
+							",limit:0",
+							",places:[{\"name\": \"Lucky Landing Marina and Seaplane Base\", \"latitude\": \"44.907001495399996\", \"longitude\": \"-68.8050003052\"}, {\"name\": \"Lucky G Airport\", \"latitude\": \"33.85260009765625\", \"longitude\": \"-98.64620208740234\"}, {\"name\": \"Lucky Lairds Landing Airport\", \"latitude\": \"33.640899658203125\", \"longitude\": \"-84.90489959716797\"}, {\"name\": \"Lucky L Ranch Airport\", \"latitude\": \"40.358299255371094\", \"longitude\": \"-106.83000183105469\"}, {\"name\": \"Lucky Lake Airport\", \"latitude\": \"50.99420166015625\", \"longitude\": \"-107.13099670410156\"}, {\"name\": \"Lucky Star Ranch Airport\", \"latitude\": \"30.2911944\", \"longitude\": \"-96.5268611\"}, {\"name\": \"Lucky Downs Airport\", \"latitude\": \"-18.91670036315918\", \"longitude\": \"145\"}]",
+							",found:7",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"lucky\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pjackim-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"computer\"",
+							",limit:0",
+							",places:[{\"altitude\": \"80\", \"country\": \"US\", \"latitude\": \"40.81219864\", \"name\": \"Computer Associates Heliport\", \"municipality\": \"Islandia\", \"id\": \"6NK7\", \"type\": \"heliport\", \"region\": \"US-NY\", \"longitude\": \"-73.17579651\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"computer\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pritche-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"young h\"",
+							",limit:0",
+							",places:[{\"latitude\": \"43.71659851074219\", \"name\": \"Young Heliport\", \"longitude\": \"-116.38899993896484\"}, {\"latitude\": \"-34.32094\", \"name\": \"Young Hospital Helipad\", \"longitude\": \"148.28798\"}]",
+							",found:2",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"young h\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "puttputt-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"flagstaff\"",
+							",limit:0",
+							",places:[{\"altitude\": \"2139\", \"latitude\": \"35.20830154418945\", \"name\": \"Flagstaff Medical Center East No. 2 Heliport\", \"municipality\": \"Flagstaff\", \"id\": \"3AZ0\", \"type\": \"heliport\", \"longitude\": \"-111.64299774169922\"}, {\"altitude\": \"2083\", \"latitude\": \"35.22359848022461\", \"name\": \"Flagstaff Mall Heliport\", \"municipality\": \"Flagstaff\", \"id\": \"AZ23\", \"type\": \"heliport\", \"longitude\": \"-111.58300018310547\"}, {\"altitude\": \"2137\", \"latitude\": \"35.13850021\", \"name\": \"Flagstaff Pulliam Airport\", \"municipality\": \"Flagstaff\", \"id\": \"KFLG\", \"type\": \"medium_airport\", \"longitude\": \"-111.6709976\"}]",
+							",found:3",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"flagstaff\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rjnewby-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"schook\"",
+							",limit:0",
+							",places:[{\"name\": \"Poleschook Airport\", \"latitude\": \"47.911399841308594\", \"longitude\": \"-101.2490005493164\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"schook\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ruzuzu-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"phnom\"",
+							",limit:0",
+							",places:[{\"altitude\": \"40\", \"iso_country\": \"KH\", \"latitude\": \"11.546600341796875\", \"name\": \"Phnom Penh International Airport\", \"municipality\": \"Phnom Penh\", \"longitude\": \"104.84400177001953\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"phnom\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sammckay-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"lucky\"",
+							",limit:0",
+							",places:[{\"name\": \"Lucky Landing Marina and Seaplane Base\", \"latitude\": \"44.907001495399996\", \"longitude\": \"-68.8050003052\"}, {\"name\": \"Lucky G Airport\", \"latitude\": \"33.85260009765625\", \"longitude\": \"-98.64620208740234\"}, {\"name\": \"Lucky Lairds Landing Airport\", \"latitude\": \"33.640899658203125\", \"longitude\": \"-84.90489959716797\"}, {\"name\": \"Lucky L Ranch Airport\", \"latitude\": \"40.358299255371094\", \"longitude\": \"-106.83000183105469\"}, {\"name\": \"Lucky Lake Airport\", \"latitude\": \"50.99420166015625\", \"longitude\": \"-107.13099670410156\"}, {\"name\": \"Lucky Star Ranch Airport\", \"latitude\": \"30.2911944\", \"longitude\": \"-96.5268611\"}, {\"name\": \"Lucky Downs Airport\", \"latitude\": \"-18.91670036315918\", \"longitude\": \"145\"}]",
+							",found:7",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"lucky\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sgreyson-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Dulles\"",
+							",limit:0",
+							",places:[{\"name\": \"Washington Dulles International Airport\", \"altitude\": \"312\", \"wikipedia_link\": \"http://en.wikipedia.org/wiki/Washington_Dulles_International_Airport\", \"municipality\": \"Washington\", \"longitude\": \"-77.45580292\", \"country\": \"United States\", \"type\": \"large_airport\", \"region\": \"District of Columbia\", \"latitude\": \"38.94449997\", \"id\": \"KIAD\"}]",
+							",found:1",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Dulles\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tmanb-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Jerry Tyler Memorial Airportt\"",
+							",limit:0",
+							",places:[]",
+							",found:0",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Jerry Tyler Memorial Airportt\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "trostrn-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"--\"",
+							",limit:0",
+							",places:[{\"continent\": \"EU\", \"altitude\": \"6827\", \"iso_country\": \"FR\", \"latitude\": \"44.13972091674805\", \"municipality\": \"Thorame-Haute\", \"index\": \"43647\", \"type\": \"small_airport\", \"name\": \"Thorame--Haute Chamatte Airport\", \"iso_region\": \"FR-U\", \"id\": \"FR-0305\", \"scheduled_service\": \"no\", \"longitude\": \"6.548333168029785\"}, {\"continent\": \"EU\", \"altitude\": \"6129\", \"iso_country\": \"FR\", \"latitude\": \"44.12305450439453\", \"municipality\": \"Thorame-Haute\", \"index\": \"43649\", \"type\": \"small_airport\", \"name\": \"Thorame--Haute Les Serres Airport\", \"iso_region\": \"FR-U\", \"id\": \"FR-0306\", \"scheduled_service\": \"no\", \"longitude\": \"6.559999942779541\"}, {\"continent\": \"EU\", \"altitude\": \"6398\", \"iso_country\": \"FR\", \"latitude\": \"44.1150016784668\", \"municipality\": \"Thorame-Haute\", \"index\": \"43650\", \"type\": \"small_airport\", \"name\": \"Thorame--Haute Les Serres Airport\", \"iso_region\": \"FR-U\", \"id\": \"FR-0307\", \"scheduled_service\": \"no\", \"longitude\": \"6.538610935211182\"}]",
+							",found:3",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"--\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vanhook-2.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let expectedResult = {",
+							"match:\"Hook\"",
+							",limit:0",
+							",places:[{\"latitude\": \"40.7140007019043\", \"name\": \"Paulus Hook Pier Heliport\", \"longitude\": \"-74.03150177001953\"}, {\"latitude\": \"41.98460006713867\", \"name\": \"Sky Park Airport\", \"longitude\": \"-73.83599853515625\"}, {\"latitude\": \"43.055999755859375\", \"name\": \"Hooksett Safety Center Heliport\", \"longitude\": \"-71.44670104980469\"}, {\"latitude\": \"40.54169845581055\", \"name\": \"Hanny Beaver Airpark Inc Airport\", \"longitude\": \"-80.45259857177734\"}, {\"latitude\": \"47.911399841308594\", \"name\": \"Poleschook Airport\", \"longitude\": \"-101.2490005493164\"}, {\"latitude\": \"-20.1574\", \"name\": \"Hook Island Helipad\", \"longitude\": \"148.9481\"}, {\"latitude\": \"53.56669998168945\", \"name\": \"Big Hook Wilderness Camp Seaplane Base\", \"longitude\": \"-92.94999694824219\"}, {\"latitude\": \"52.0093\", \"name\": \"Hook Norton Airstrip\", \"longitude\": \"-1.4896\"}, {\"latitude\": \"51.276115\", \"name\": \"Hook Airstrip\", \"longitude\": \"-0.9407369\"}, {\"latitude\": \"39.80500030517578\", \"name\": \"Hook's Heliport\", \"longitude\": \"-86.03359985351562\"}, {\"latitude\": \"41.27450180053711\", \"name\": \"Hook Field\", \"longitude\": \"-84.80500030517578\"}, {\"latitude\": \"30.0618000031\", \"name\": \"David Wayne Hooks Memorial Airport\", \"longitude\": \"-95.55280303960001\"}, {\"latitude\": \"32.48529815673828\", \"name\": \"John H Hooks Jr Memorial Airport\", \"longitude\": \"-91.77030181884766\"}, {\"latitude\": \"39.53099823\", \"name\": \"Middletown Regional-Hook Field Municipal Airport\", \"longitude\": \"-84.39530182\"}, {\"latitude\": \"42.0421538954\", \"name\": \"Hooker County Airport\", \"longitude\": \"-101.059112549\"}, {\"latitude\": \"36.85710144042969\", \"name\": \"Hooker Municipal Airport\", \"longitude\": \"-101.22699737548828\"}, {\"latitude\": \"40.605098724365234\", \"name\": \"Fino Airport\", \"longitude\": \"-80.45809936523438\"}, {\"latitude\": \"-18.3367004395\", \"name\": \"Hooker Creek Airport\", \"longitude\": \"130.638000488\"}]",
+							",found:18",
+							",requestType:\"find\"}",
+							"pm.test(\"Places\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     for(let i = 0; i < jsonData.places.length; i++){",
+							"        pm.expect(expectedResult.places.some(e => e.name === jsonData.places[i].name)).to.eql(true)",
+							"      }",
+							"});\r",
+							"pm.test(\"limit\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.limit).to.eql(expectedResult.limit);\r",
+							"});\r",
+							"pm.test(\"distances\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.match).to.eql(expectedResult.match);\r",
+							"});\r",
+							"pm.test(\"found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.found).to.eql(expectedResult.found);\r",
+							"});\r",
+							"pm.test(\"requestType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(expectedResult.requestType);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"match\": \"Hook\", \"limit\": 0, \"requestType\": \"find\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
