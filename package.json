@@ -1,4 +1,0 @@
-{
-    "heroku-prebuild": "cd server && mvn package",
-    "start": ""
-}
