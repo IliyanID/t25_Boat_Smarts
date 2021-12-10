@@ -50,7 +50,7 @@ async function sendRequest(requestBody, serverUrl) {
 
 export function getOriginalServerUrl() {
     const serverProtocol = location.protocol;
-    const serverHost = (location.hostname === 't25-boat-smarts.netlify.app')?'t25-boat-smarts.herokuapp.com': location.hostname;
+    const serverHost = (location.hostname === 'localhost')? 'localhost' : 't25-boat-smarts.herokuapp.com';
     const serverPort = location.port;
     const alternatePort = process.env.SERVER_PORT;
     return `${serverProtocol}\/\/${serverHost}:${(!alternatePort ? serverPort : alternatePort)}`;
